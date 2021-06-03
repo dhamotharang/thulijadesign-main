@@ -1,0 +1,79 @@
+.container {
+    max-width: 90%;
+    margin: 20px auto;
+}
+
+.my-form {
+    width:100%;
+}
+
+table {
+    width:100%;
+}
+
+.mat-column-organization {
+    width:3%;
+}
+
+.mat-column-branch {
+    width:3%;
+}
+
+.mat-column-department {
+    width:3%;
+}
+
+.mat-column-firstName {
+    width:9%;
+}
+
+.mat-column-lastName {
+    width:9%;
+}
+
+.mat-column-emailAddress {
+    width:23%;
+}
+
+.mat-column-password {
+    width:23%;
+}
+
+.mat-column-numLogins {
+    width:8%;
+}
+
+.mat-column-lastLoginTime {
+    width:3%;
+}
+
+.mat-column-status {
+    width:3%;
+}
+
+.mat-column-profile {
+    width:4%;
+}
+
+.mat-column-action {
+    width:2%;
+    text-align: center;
+}
+
+.listimage {
+    max-width: 100%;
+    height: auto;
+}
+
+.title-bar {
+	min-height: 48px !important;
+	height: 48px !important;
+}
+
+.alert-danger {
+    background-color: #f44336;
+    color: white;
+    font-weight: 500;
+    padding: 10px;
+    border: 1px solid lightgray;
+}

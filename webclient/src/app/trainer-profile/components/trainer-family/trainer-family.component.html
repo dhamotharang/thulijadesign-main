@@ -1,0 +1,88 @@
+<mat-toolbar color="secondary" class="mat-elevation-z2 title-bar">
+	<mat-toolbar-row>
+		<a mat-button disabled style="color: black">{{ 'TRAINER-FAMILY' | translate }}</a>
+		<span class="spacer"></span>
+		<a mat-raised-button color="accent" (click)="add()">{{ 'NEW' | translate }}</a>
+	</mat-toolbar-row>
+</mat-toolbar>
+<div class="container mat-elevation-z2" *ngFor="let trainerFamily of trainerFamilies">
+	<mat-card>
+		<mat-card-header> 
+			<mat-card-title>
+				{{ 'TRAINER-FAMILY' | translate }}
+				<button mat-icon-button class="more-button" [matMenuTriggerFor]="menu" aria-label="Toggle menu">
+					<mat-icon>more_vert</mat-icon>
+				</button>
+				<mat-menu #menu="matMenu">
+					<button mat-menu-item (click)="edit(trainerFamily)">
+						<mat-icon color="accent">edit</mat-icon><span>Edit</span>
+					</button>
+					<button mat-menu-item (click)="delete(trainerFamily)">
+						<mat-icon color="warn">delete</mat-icon><span>Delete</span>
+					</button>
+					<button mat-menu-item (click)="print(trainerFamily)">
+						<mat-icon color="accent">print</mat-icon><span>Print</span>
+					</button>
+				</mat-menu>
+			</mat-card-title>
+		</mat-card-header>
+		<mat-card-content class="dashboard-card-content">
+			<table>
+				<tr>
+					<td>&nbsp;</td>
+					<td>&nbsp;</td>
+					<td>&nbsp;</td>
+					<td>&nbsp;</td>
+				</tr>
+				<tr>
+					<td>&nbsp;</td>
+					<td><span class="mat-subheading-1">{{ 'TRAINER-FAMILY-RELATIONTYPE' | translate }}</span></td>
+					<td><span class="mat-subheading-1">{{ trainerFamily.relationType.name }}</span></td>
+					<td>&nbsp;</td>
+				</tr>
+				<tr>
+					<td>&nbsp;</td>
+					<td><span class="mat-subheading-1">{{ 'TRAINER-FAMILY-NAME' | translate }}</span></td>
+					<td><span class="mat-subheading-1">{{ trainerFamily.name }}</span></td>
+					<td>&nbsp;</td>
+				</tr>
+				<tr>
+					<td>&nbsp;</td>
+					<td><span class="mat-subheading-1">{{ 'TRAINER-FAMILY-OCCUPATION' | translate }}</span></td>
+					<td><span class="mat-subheading-1">{{ trainerFamily.occupation }}</span></td>
+					<td>&nbsp;</td>
+				</tr>
+				<tr>
+					<td>&nbsp;</td>
+					<td><span class="mat-subheading-1">{{ 'TRAINER-FAMILY-CITIZEN' | translate }}</span></td>
+					<td><span class="mat-subheading-1">{{ trainerFamily.citizen.name }}</span></td>
+					<td>&nbsp;</td>
+				</tr>
+				<tr>
+					<td>&nbsp;</td>
+					<td><span class="mat-subheading-1">{{ 'TRAINER-FAMILY-NRICNUMBER' | translate }}</span></td>
+					<td><span class="mat-subheading-1">{{ trainerFamily.nricNumber }}</span></td>
+					<td>&nbsp;</td>
+				</tr>
+				<tr>
+					<td>&nbsp;</td>
+					<td><span class="mat-subheading-1">{{ 'TRAINER-FAMILY-EMAIL' | translate }}</span></td>
+					<td><span class="mat-subheading-1">{{ trainerFamily.email }}</span></td>
+					<td>&nbsp;</td>
+				</tr>
+				<tr>
+					<td>&nbsp;</td>
+					<td><span class="mat-subheading-1">{{ 'TRAINER-FAMILY-PHONE' | translate }}</span></td>
+					<td><span class="mat-subheading-1">{{ trainerFamily.phone }}</span></td>
+					<td>&nbsp;</td>
+				</tr>
+				<tr>
+					<td>&nbsp;</td>
+					<td>&nbsp;</td>
+					<td>&nbsp;</td>
+					<td>&nbsp;</td>
+				</tr>
+			</table>
+		</mat-card-content>
+	</mat-card>
+</div>

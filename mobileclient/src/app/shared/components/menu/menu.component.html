@@ -1,0 +1,65 @@
+<ion-img [src]="'/assets/img/logo.png'"></ion-img>
+<div *ngIf="currentUser">
+	<ion-list lines="none">
+		<ion-menu-toggle auto-hide="false">
+			<ion-item [routerLink]="'/'" routerLinkActive="selected" routerDirection="root" detail="false">
+				<ion-icon slot="start" name="home-outline"></ion-icon>
+				{{ 'HOME' | translate }}
+	        	<span class="divider"></span>
+			</ion-item>
+		</ion-menu-toggle>
+		<span *ngIf="isInGroup('setupmenu')">
+			<ion-menu-toggle auto-hide="false">
+				<ion-item (click)="setupMenu = !setupMenu">
+					{{ 'SETUP' | translate }}
+					<ion-icon slot="end" name="chevron-forward-circle-outline" *ngIf="!setupMenu"></ion-icon>
+					<ion-icon slot="end" name="chevron-down-circle-outline" *ngIf="setupMenu"></ion-icon>
+				</ion-item>
+			</ion-menu-toggle>
+			<ion-list *ngIf="setupMenu">
+				<ion-menu-toggle auto-hide="false">
+					<ion-item [routerLink]="'/coremain'" routerLinkActive="selected" routerDirection="root" detail="false">
+						{{ 'COREMAIN' | translate }}
+					</ion-item>
+					<ion-item [routerLink]="'/generalmain'" routerLinkActive="selected" routerDirection="root" detail="false">
+						{{ 'GENERALMAIN' | translate }}
+					</ion-item>
+				</ion-menu-toggle>
+			</ion-list>
+		</span>
+		<span *ngIf="isInGroup('trainersetupmenu')">
+			<ion-menu-toggle auto-hide="false">
+				<ion-item [routerLink]="'/masterdetail/trainermanagers'" routerLinkActive="selected" routerDirection="root" detail="false">
+					{{ 'TRAINERMANAGER' | translate }}
+					<span class="divider"></span>
+				</ion-item>
+			</ion-menu-toggle>
+		</span>
+		<ion-menu-toggle auto-hide="false">
+			<ion-item [routerLink]="profileLink" routerLinkActive="selected" routerDirection="root" detail="false">
+				<ion-icon slot="start" name="person-outline"></ion-icon>
+				{{ 'PROFILE' | translate }}
+			</ion-item>
+		</ion-menu-toggle>
+		<ion-menu-toggle auto-hide="false">
+			<ion-item [routerLink]="'/changepassword'" routerLinkActive="selected" routerDirection="root" detail="false">
+				<ion-icon slot="start" name="lock-open-outline"></ion-icon>
+				{{ 'CHANGE-PASSWORD' | translate }}
+			</ion-item>
+		</ion-menu-toggle>
+		<ion-menu-toggle auto-hide="false">
+			<ion-item (click)="logout()">
+				<ion-icon slot="start" name="log-out-outline"></ion-icon>
+				{{ 'LOGOUT' | translate }}
+			</ion-item>
+		</ion-menu-toggle>
+	</ion-list>
+</div>
+<div class="footer">
+	<div class="footer-social">
+		<ion-icon (click)="openInstagramProfile()" name="logo-instagram"></ion-icon>
+		<ion-icon (click)="openFacebookProfile()" name="logo-facebook"></ion-icon>
+		<ion-icon (click)="openTwitterProfile()" name="logo-twitter"></ion-icon>
+		<ion-icon (click)="openWebsite()" name="globe"></ion-icon>
+	</div>
+</div>

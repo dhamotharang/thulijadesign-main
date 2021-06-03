@@ -1,0 +1,137 @@
+<div class="container" fxLayout="row" fxLayout.xs="column" fxLayoutWrap 
+	fxLayoutGap="0.5%" fxLayoutAlign="center" *ngFor="let trainer of trainers">
+	<div fxFlex="30%">
+		<mat-card>
+			<img mat-card-image src="/assets/nophoto.jpg" alt="Photo of a Shiba Inu">
+			<mat-card-content>
+				<mat-card-title>{{ trainer.user.firstName }}&nbsp;{{ trainer.user.lastName }}</mat-card-title>
+			</mat-card-content>
+		</mat-card>			  
+	</div>
+	<div fxFlex="70%">
+		<mat-card>
+			<mat-card-header> 
+				<mat-card-title>
+					{{ 'TRAINER' | translate }}
+					<button mat-icon-button class="more-button" [matMenuTriggerFor]="menu" aria-label="Toggle menu">
+						<mat-icon>more_vert</mat-icon>
+					</button>
+					<mat-menu #menu="matMenu">
+						<button mat-menu-item (click)="edit(trainer)">
+							<mat-icon color="accent">edit</mat-icon><span>Edit</span>
+						</button>
+						<button mat-menu-item (click)="print(trainer)">
+							<mat-icon color="accent">print</mat-icon><span>Print</span>
+						</button>
+					</mat-menu>
+				</mat-card-title>
+			</mat-card-header>
+			<mat-card-content class="dashboard-card-content">
+				<table>
+					<tr>
+						<td>&nbsp;</td>
+						<td>&nbsp;</td>
+						<td>&nbsp;</td>
+						<td>&nbsp;</td>
+					</tr>
+					<tr>
+						<td>&nbsp;</td>
+						<td><span class="mat-subheading-1">{{ 'TRAINER-ORGANIZATION' | translate }}</span></td>
+						<td><span class="mat-subheading-1">{{ trainer.user.organization.name}} </span></td>
+						<td>&nbsp;</td>
+					</tr>
+					<tr>
+						<td>&nbsp;</td>
+						<td><span class="mat-subheading-1">{{ 'TRAINER-BRANCH' | translate }}</span></td>
+						<td><span class="mat-subheading-1">{{ trainer.user.branch.name}} </span></td>
+						<td>&nbsp;</td>
+					</tr>
+					<tr>
+						<td>&nbsp;</td>
+						<td><span class="mat-subheading-1">{{ 'TRAINER-DEPARTMENT' | translate }}</span></td>
+						<td><span class="mat-subheading-1">{{ trainer.user.department.name}} </span></td>
+						<td>&nbsp;</td>
+					</tr>
+					<tr>
+						<td>&nbsp;</td>
+						<td><span class="mat-subheading-1">{{ 'TRAINER-ICNUMBER' | translate }}</span></td>
+						<td><span class="mat-subheading-1">{{ trainer.icNumber }}</span></td>
+						<td>&nbsp;</td>
+					</tr>
+					<tr>
+						<td>&nbsp;</td>
+						<td><span class="mat-subheading-1">{{ 'TRAINER-SALUTATION' | translate }}</span></td>
+						<td><span class="mat-subheading-1">{{ trainer.salutation.name }}</span></td>
+						<td>&nbsp;</td>
+					</tr>
+					<tr>
+						<td>&nbsp;</td>
+						<td><span class="mat-subheading-1">{{ 'TRAINER-FIRSTNAME' | translate }}</span></td>
+						<td><span class="mat-subheading-1">{{ trainer.user.firstName }}</span></td>
+						<td>&nbsp;</td>
+					</tr>
+					<tr>
+						<td>&nbsp;</td>
+						<td><span class="mat-subheading-1">{{ 'TRAINER-LASTNAME' | translate }}</span></td>
+						<td><span class="mat-subheading-1">{{ trainer.user.lastName }}</span></td>
+						<td>&nbsp;</td>
+					</tr>
+					<tr>
+						<td>&nbsp;</td>
+						<td><span class="mat-subheading-1">{{ 'TRAINER-GENDER' | translate }}</span></td>
+						<td><span class="mat-subheading-1">{{ trainer.gender.name }}</span></td>
+						<td>&nbsp;</td>
+					</tr>
+					<tr>
+						<td>&nbsp;</td>
+						<td><span class="mat-subheading-1">{{ 'TRAINER-CITIZEN' | translate }}</span></td>
+						<td><span class="mat-subheading-1">{{ trainer.citizen.name }}</span></td>
+						<td>&nbsp;</td>
+					</tr>
+					<tr>
+						<td>&nbsp;</td>
+						<td><span class="mat-subheading-1">{{ 'TRAINER-HANDPHONENUMBER' | translate }}</span></td>
+						<td><span class="mat-subheading-1">{{ trainer.handphoneNumber }}</span></td>
+						<td>&nbsp;</td>
+					</tr>
+					<tr>
+						<td>&nbsp;</td>
+						<td><span class="mat-subheading-1">{{ 'TRAINER-EMAILADDRESS' | translate }}</span></td>
+						<td><span class="mat-subheading-1">{{ trainer.user.emailAddress }}</span></td>
+						<td>&nbsp;</td>
+					</tr>
+					<tr>
+						<td>&nbsp;</td>
+						<td><span class="mat-subheading-1">{{ 'TRAINER-PASSWORD' | translate }}</span></td>
+						<td><span class="mat-subheading-1">{{ trainer.user.password }}</span></td>
+						<td>&nbsp;</td>
+					</tr>
+					<tr>
+						<td>&nbsp;</td>
+						<td><span class="mat-subheading-1">{{ 'TRAINER-NUMLOGINS' | translate }}</span></td>
+						<td><span class="mat-subheading-1">{{ trainer.user.numLogins }}</span></td>
+						<td>&nbsp;</td>
+					</tr>
+					<tr>
+						<td>&nbsp;</td>
+						<td><span class="mat-subheading-1">{{ 'TRAINER-LASTLOGINTIME' | translate }}</span></td>
+						<td><span class="mat-subheading-1">{{ trainer.lastLoginTime | date }}</span></td>
+						<td>&nbsp;</td>
+					</tr>
+					<tr>
+						<td>&nbsp;</td>
+						<td><span class="mat-subheading-1">{{ 'TRAINER-STATUS' | translate }}</span></td>
+						<td><span class="mat-subheading-1">{{ trainer.user.status.name}} </span></td>
+						<td>&nbsp;</td>
+					</tr>
+					<tr>
+						<td>&nbsp;</td>
+						<td>&nbsp;</td>
+						<td>&nbsp;</td>
+						<td>&nbsp;</td>
+					</tr>
+				</table>
+			</mat-card-content>
+		</mat-card>
+	</div>
+</div>

@@ -1,0 +1,65 @@
+<ion-toolbar color="primary">
+	<ion-title>{{ 'SALUTATION' | translate }} - {{ 'NEW' | translate }}</ion-title>
+</ion-toolbar>
+<ion-content padding>
+	<form [formGroup]="salutationForm" *ngIf="salutationForm">
+		<ion-card-content>
+			<ion-item>
+				<ion-label position="floating">{{ 'SALUTATION-SEQUENCE' | translate }}</ion-label>
+                <ion-input formControlName="sequence" id="sequence" name="sequence" #sequence
+					placeholder="{{ 'SALUTATION-SEQUENCE' | translate }}" min="1" max="20">
+				</ion-input>
+			</ion-item>
+			<div *ngIf="(salutationForm.controls['sequence'].dirty || salutationForm.controls['sequence'].touched)" class="errors">
+                <div *ngIf="hasError('sequence', 'required')">
+                    {{ 'SALUTATION-SEQUENCE' | translate }}: {{ 'FIELD-IS-REQUIRED' | translate }}</div>
+                <div *ngIf="hasError('sequence', 'min')">
+                    {{ 'SALUTATION-SEQUENCE' | translate }}: {{ 'FIELD-MUSTBE-MINIMUM' | translate }} 1</div>
+                <div *ngIf="hasError('sequence', 'max')">
+                    {{ 'SALUTATION-SEQUENCE' | translate }}: {{ 'FIELD-MUSTBE-MAXIMUM' | translate }} 20</div>
+				<div *ngIf="hasError('sequence', 'pattern')">
+					{{ 'SALUTATION-SEQUENCE' | translate }}: {{ 'FIELD-MUSTBE-NUMERIC' | translate }}</div>
+			</div>
+			<ion-item>
+				<ion-label position="floating">{{ 'SALUTATION-CODE' | translate }}</ion-label>
+				<ion-input formControlName="code" id="code" name="code" #code
+					placeholder="{{ 'SALUTATION-CODE' | translate }}" maxlength="10">
+				</ion-input>
+			</ion-item>
+			<div *ngIf="(salutationForm.controls['code'].dirty || salutationForm.controls['code'].touched)" class="errors">
+                <div *ngIf="hasError('code', 'required')">
+                    {{ 'SALUTATION-CODE' | translate }}: {{ 'FIELD-IS-REQUIRED' | translate }}</div>
+                <div *ngIf="hasError('code', 'minlength')">
+                    {{ 'SALUTATION-CODE' | translate }}: {{ 'FIELD-MUSTBE-MINIMUM-LENGTH' | translate }} 1</div>
+                <div *ngIf="hasError('code', 'maxlength')">
+                    {{ 'SALUTATION-CODE' | translate }}: {{ 'FIELD-MUSTBE-MAXIMUM-LENGTH' | translate }} 10</div>
+			</div>
+			<ion-item>
+				<ion-label position="floating">{{ 'SALUTATION-NAME' | translate }}</ion-label>
+				<ion-input formControlName="name" id="name" name="name" #name
+					placeholder="{{ 'SALUTATION-NAME' | translate }}" maxlength="60">
+				</ion-input>
+			</ion-item>
+			<div *ngIf="(salutationForm.controls['name'].dirty || salutationForm.controls['name'].touched)" class="errors">
+                <div *ngIf="hasError('name', 'required')">
+                    {{ 'SALUTATION-NAME' | translate }}: {{ 'FIELD-IS-REQUIRED' | translate }}</div>
+                <div *ngIf="hasError('name', 'minlength')">
+                    {{ 'SALUTATION-NAME' | translate }}: {{ 'FIELD-MUSTBE-MINIMUM-LENGTH' | translate }} 1</div>
+                <div *ngIf="hasError('name', 'maxlength')">
+                    {{ 'SALUTATION-NAME' | translate }}: {{ 'FIELD-MUSTBE-MAXIMUM-LENGTH' | translate }} 60</div>
+			</div>
+			<ion-item>
+				<ion-checkbox formControlName="byDefault" id="byDefault" color="danger"></ion-checkbox>&nbsp;&nbsp;&nbsp;
+				<ion-label>{{ 'SALUTATION-BYDEFAULT' | translate }}</ion-label>
+			</ion-item>
+		</ion-card-content>
+		<ion-footer>
+			<ion-toolbar color="light" style="padding-left: 20px;">
+			<ion-button color="primary" (click)="save(salutationForm.value)" 
+				[disabled]="!salutationForm.valid">{{ 'SAVE' | translate }}</ion-button>
+			<ion-button type="button" color="medium"
+				(click)="onCancel()">{{ 'CANCEL' | translate }}</ion-button>
+			</ion-toolbar>
+		</ion-footer>
+	</form>
+</ion-content>

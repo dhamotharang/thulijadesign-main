@@ -1,0 +1,51 @@
+.container {
+    max-width: 90%;
+    margin: 20px auto;
+}
+
+.my-form {
+    width:100%;
+}
+
+table {
+    width:100%;
+}
+
+.mat-column-sequence {
+    width:8%;
+}
+
+.mat-column-organization {
+    width:8%;
+}
+
+.mat-column-abbreviation {
+    width:20%;
+}
+
+.mat-column-name {
+    width:61%;
+}
+
+.mat-column-action {
+    width:2%;
+    text-align: center;
+}
+
+.listimage {
+    max-width: 100%;
+    height: auto;
+}
+
+.title-bar {
+	min-height: 48px !important;
+	height: 48px !important;
+}
+
+.alert-danger {
+    background-color: #f44336;
+    color: white;
+    font-weight: 500;
+    padding: 10px;
+    border: 1px solid lightgray;
+}

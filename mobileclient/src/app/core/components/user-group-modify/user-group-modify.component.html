@@ -1,0 +1,57 @@
+<ion-toolbar color="primary">
+	<ion-title>{{ 'USER-GROUP' | translate }} - {{ 'NEW' | translate }}</ion-title>
+</ion-toolbar>
+<ion-content padding>
+	<form [formGroup]="userGroupForm" *ngIf="userGroupForm">
+		<ion-card-content>
+			<ion-item>
+				<ion-label position="floating">{{ 'USER-GROUP-SEQUENCE' | translate }}</ion-label>
+                <ion-input formControlName="sequence" id="sequence" name="sequence" #sequence
+					placeholder="{{ 'USER-GROUP-SEQUENCE' | translate }}" min="1" max="25">
+				</ion-input>
+			</ion-item>
+			<div *ngIf="(userGroupForm.controls['sequence'].dirty || userGroupForm.controls['sequence'].touched)" class="errors">
+                <div *ngIf="hasError('sequence', 'required')">
+                    {{ 'USER-GROUP-SEQUENCE' | translate }}: {{ 'FIELD-IS-REQUIRED' | translate }}</div>
+                <div *ngIf="hasError('sequence', 'min')">
+                    {{ 'USER-GROUP-SEQUENCE' | translate }}: {{ 'FIELD-MUSTBE-MINIMUM' | translate }} 1</div>
+                <div *ngIf="hasError('sequence', 'max')">
+                    {{ 'USER-GROUP-SEQUENCE' | translate }}: {{ 'FIELD-MUSTBE-MAXIMUM' | translate }} 25</div>
+				<div *ngIf="hasError('sequence', 'pattern')">
+					{{ 'USER-GROUP-SEQUENCE' | translate }}: {{ 'FIELD-MUSTBE-NUMERIC' | translate }}</div>
+			</div>
+			<ion-item>
+				<ion-label>{{ 'USER-GROUP-GROUP' | translate }}</ion-label>
+				<ion-select formControlName="group" id="group" name="group" 
+						[compareWith]="compareGroup" required>
+					<ion-select-option *ngFor="let group of groups" [value]="group">
+						{{ group.name }}</ion-select-option>
+				</ion-select>
+			</ion-item>
+			<div *ngIf="(userGroupForm.controls['group'].dirty || userGroupForm.controls['group'].touched)" class="errors">
+				<div *ngIf="hasError('group', 'required')">
+					{{ 'USER-GROUP-GROUP' | translate }}: {{ 'FIELD-IS-REQUIRED' | translate }}</div>
+			</div>
+			<ion-item>
+				<ion-label>{{ 'USER-GROUP-USER' | translate }}</ion-label>
+				<ion-select formControlName="user" id="user" name="user" 
+						[compareWith]="compareUser" required>
+					<ion-select-option *ngFor="let user of users" [value]="user">
+						{{ user.firstName }}{{ user.lastName }}</ion-select-option>
+				</ion-select>
+			</ion-item>
+			<div *ngIf="(userGroupForm.controls['user'].dirty || userGroupForm.controls['user'].touched)" class="errors">
+				<div *ngIf="hasError('user', 'required')">
+					{{ 'USER-GROUP-USER' | translate }}: {{ 'FIELD-IS-REQUIRED' | translate }}</div>
+			</div>
+		</ion-card-content>
+		<ion-footer>
+			<ion-toolbar color="light" style="padding-left: 20px;">
+			<ion-button color="primary" (click)="save(userGroupForm.value)" 
+				[disabled]="!userGroupForm.valid">{{ 'SAVE' | translate }}</ion-button>
+			<ion-button type="button" color="medium"
+				(click)="onCancel()">{{ 'CANCEL' | translate }}</ion-button>
+			</ion-toolbar>
+		</ion-footer>
+	</form>
+</ion-content>

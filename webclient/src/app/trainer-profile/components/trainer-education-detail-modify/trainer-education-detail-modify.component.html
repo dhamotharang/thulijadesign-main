@@ -1,0 +1,93 @@
+<h2 mat-dialog-title>{{ 'TRAINER-EDUCATION-DETAIL' | translate }} - {{ 'NEW' | translate }}</h2>
+<mat-dialog-content>
+	<form [formGroup]="trainerEducationDetailForm" *ngIf="trainerEducationDetailForm">
+		<mat-card-subtitle *ngIf="errorMessage" class="alert-danger">{{ errorMessage }}</mat-card-subtitle>
+		<mat-card-content class="my-form">
+			<mat-form-field>
+				<input matInput type="text" formControlName="instituteName" id="instituteName" 
+					name="instituteName" placeholder="{{ 'TRAINER-EDUCATION-DETAIL-INSTITUTENAME' | translate }}" 
+					minlength="1" maxlength="60" />
+                <mat-error *ngIf="hasError('instituteName', 'minlength')">
+                    {{ 'TRAINER-EDUCATION-DETAIL-INSTITUTENAME' | translate }}: {{ 'FIELD-MUSTBE-MINIMUM-LENGTH' | translate }} 1</mat-error>
+                <mat-error *ngIf="hasError('instituteName', 'maxlength')">
+                    {{ 'TRAINER-EDUCATION-DETAIL-INSTITUTENAME' | translate }}: {{ 'FIELD-MUSTBE-MAXIMUM-LENGTH' | translate }} 60</mat-error>
+			</mat-form-field>
+			<mat-form-field>
+				<mat-label>{{ 'TRAINER-EDUCATION-DETAIL-GRADUATIONDATE' | translate }}</mat-label>
+				<input formControlName="graduationDate" matInput [matDatepicker]="graduationDate" placeholder="{{ 'TRAINER-EDUCATION-DETAIL-GRADUATIONDATE' | translate }}">
+				<mat-datepicker-toggle matSuffix [for]="graduationDate"></mat-datepicker-toggle>
+				<mat-datepicker #graduationDate></mat-datepicker>
+                <mat-error *ngIf="hasError('graduationDate', 'minlength')">
+                    {{ 'TRAINER-EDUCATION-DETAIL-GRADUATIONDATE' | translate }}: {{ 'FIELD-MUSTBE-MINIMUM-LENGTH' | translate }} 1</mat-error>
+                <mat-error *ngIf="hasError('graduationDate', 'maxlength')">
+                    {{ 'TRAINER-EDUCATION-DETAIL-GRADUATIONDATE' | translate }}: {{ 'FIELD-MUSTBE-MAXIMUM-LENGTH' | translate }} 100</mat-error>
+			</mat-form-field>
+			<mat-form-field>
+				<mat-label>{{ 'TRAINER-EDUCATION-DETAIL-QUALIFICATION' | translate }}</mat-label>
+				<mat-select formControlName="qualification" id="qualification" name="qualification" 
+						[compareWith]="compareQualification" required>
+				    <mat-option *ngFor="let qualification of qualifications" [value]="qualification">
+				    	{{ qualification.name }}</mat-option>
+				</mat-select>
+				<mat-error *ngIf="hasError('qualification', 'required')">
+					{{ 'TRAINER-EDUCATION-DETAIL-QUALIFICATION' | translate }}: {{ 'FIELD-IS-REQUIRED' | translate }}</mat-error>
+			</mat-form-field>
+			<mat-form-field>
+				<input matInput type="text" formControlName="instituteLocation" id="instituteLocation" 
+					name="instituteLocation" placeholder="{{ 'TRAINER-EDUCATION-DETAIL-INSTITUTELOCATION' | translate }}" 
+					minlength="3" maxlength="120" />
+                <mat-error *ngIf="hasError('instituteLocation', 'minlength')">
+                    {{ 'TRAINER-EDUCATION-DETAIL-INSTITUTELOCATION' | translate }}: {{ 'FIELD-MUSTBE-MINIMUM-LENGTH' | translate }} 3</mat-error>
+                <mat-error *ngIf="hasError('instituteLocation', 'maxlength')">
+                    {{ 'TRAINER-EDUCATION-DETAIL-INSTITUTELOCATION' | translate }}: {{ 'FIELD-MUSTBE-MAXIMUM-LENGTH' | translate }} 120</mat-error>
+			</mat-form-field>
+			<mat-form-field>
+				<mat-label>{{ 'TRAINER-EDUCATION-DETAIL-FIELDSTUDY' | translate }}</mat-label>
+				<mat-select formControlName="fieldStudy" id="fieldStudy" name="fieldStudy" 
+						[compareWith]="compareFieldStudy" required>
+				    <mat-option *ngFor="let fieldStudy of fieldStudies" [value]="fieldStudy">
+				    	{{ fieldStudy.name }}</mat-option>
+				</mat-select>
+				<mat-error *ngIf="hasError('fieldStudy', 'required')">
+					{{ 'TRAINER-EDUCATION-DETAIL-FIELDSTUDY' | translate }}: {{ 'FIELD-IS-REQUIRED' | translate }}</mat-error>
+			</mat-form-field>
+			<mat-form-field>
+				<input matInput type="text" formControlName="major" id="major" 
+					name="major" placeholder="{{ 'TRAINER-EDUCATION-DETAIL-MAJOR' | translate }}" 
+					minlength="3" maxlength="120" />
+                <mat-error *ngIf="hasError('major', 'minlength')">
+                    {{ 'TRAINER-EDUCATION-DETAIL-MAJOR' | translate }}: {{ 'FIELD-MUSTBE-MINIMUM-LENGTH' | translate }} 3</mat-error>
+                <mat-error *ngIf="hasError('major', 'maxlength')">
+                    {{ 'TRAINER-EDUCATION-DETAIL-MAJOR' | translate }}: {{ 'FIELD-MUSTBE-MAXIMUM-LENGTH' | translate }} 120</mat-error>
+			</mat-form-field>
+			<mat-form-field>
+				<input matInput type="text" formControlName="grade" id="grade" 
+					name="grade" placeholder="{{ 'TRAINER-EDUCATION-DETAIL-GRADE' | translate }}" 
+					minlength="3" maxlength="120" />
+                <mat-error *ngIf="hasError('grade', 'minlength')">
+                    {{ 'TRAINER-EDUCATION-DETAIL-GRADE' | translate }}: {{ 'FIELD-MUSTBE-MINIMUM-LENGTH' | translate }} 3</mat-error>
+                <mat-error *ngIf="hasError('grade', 'maxlength')">
+                    {{ 'TRAINER-EDUCATION-DETAIL-GRADE' | translate }}: {{ 'FIELD-MUSTBE-MAXIMUM-LENGTH' | translate }} 120</mat-error>
+			</mat-form-field>
+			<div style="color:#666666;padding-bottom:8px"><mat-label>{{ 'TRAINER-EDUCATION-DETAIL-DESCRIPTION' | translate }}</mat-label></div>
+            <editor 
+                formControlName = "description"
+                [init]="{ 
+	                	base_url: '/tinymce', 
+	                	menubar: false,
+	                    suffix: '.min', 
+	                    plugins: 'lists advlist table',
+	                    toolbar: 'undo redo | bold italic underline | ' + 
+	                    	'alignleft aligncenter alignright alignjustify | ' +
+	                    	'bullist numlist outdent indent | removeformat' 
+				}">
+			</editor><br />
+        </mat-card-content>
+    </form>
+</mat-dialog-content>
+<mat-dialog-actions>
+    <button mat-raised-button color="primary" (click)="save(trainerEducationDetailForm.value)" 
+        [disabled]="!trainerEducationDetailForm.valid">{{ 'SAVE' | translate }}</button>
+    <button type="button" mat-raised-button color="warn"
+        (click)="onCancel()">{{ 'CANCEL' | translate }}</button>
+</mat-dialog-actions>

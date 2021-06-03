@@ -1,0 +1,65 @@
+<ion-toolbar color="primary">
+	<ion-title>{{ 'SALARY-RANGE' | translate }} - {{ 'NEW' | translate }}</ion-title>
+</ion-toolbar>
+<ion-content padding>
+	<form [formGroup]="salaryRangeForm" *ngIf="salaryRangeForm">
+		<ion-card-content>
+			<ion-item>
+				<ion-label position="floating">{{ 'SALARY-RANGE-SEQUENCE' | translate }}</ion-label>
+                <ion-input formControlName="sequence" id="sequence" name="sequence" #sequence
+					placeholder="{{ 'SALARY-RANGE-SEQUENCE' | translate }}" min="1" max="20">
+				</ion-input>
+			</ion-item>
+			<div *ngIf="(salaryRangeForm.controls['sequence'].dirty || salaryRangeForm.controls['sequence'].touched)" class="errors">
+                <div *ngIf="hasError('sequence', 'required')">
+                    {{ 'SALARY-RANGE-SEQUENCE' | translate }}: {{ 'FIELD-IS-REQUIRED' | translate }}</div>
+                <div *ngIf="hasError('sequence', 'min')">
+                    {{ 'SALARY-RANGE-SEQUENCE' | translate }}: {{ 'FIELD-MUSTBE-MINIMUM' | translate }} 1</div>
+                <div *ngIf="hasError('sequence', 'max')">
+                    {{ 'SALARY-RANGE-SEQUENCE' | translate }}: {{ 'FIELD-MUSTBE-MAXIMUM' | translate }} 20</div>
+				<div *ngIf="hasError('sequence', 'pattern')">
+					{{ 'SALARY-RANGE-SEQUENCE' | translate }}: {{ 'FIELD-MUSTBE-NUMERIC' | translate }}</div>
+			</div>
+			<ion-item>
+				<ion-label position="floating">{{ 'SALARY-RANGE-NAME' | translate }}</ion-label>
+				<ion-input formControlName="name" id="name" name="name" #name
+					placeholder="{{ 'SALARY-RANGE-NAME' | translate }}" maxlength="60">
+				</ion-input>
+			</ion-item>
+			<div *ngIf="(salaryRangeForm.controls['name'].dirty || salaryRangeForm.controls['name'].touched)" class="errors">
+                <div *ngIf="hasError('name', 'required')">
+                    {{ 'SALARY-RANGE-NAME' | translate }}: {{ 'FIELD-IS-REQUIRED' | translate }}</div>
+                <div *ngIf="hasError('name', 'minlength')">
+                    {{ 'SALARY-RANGE-NAME' | translate }}: {{ 'FIELD-MUSTBE-MINIMUM-LENGTH' | translate }} 1</div>
+                <div *ngIf="hasError('name', 'maxlength')">
+                    {{ 'SALARY-RANGE-NAME' | translate }}: {{ 'FIELD-MUSTBE-MAXIMUM-LENGTH' | translate }} 60</div>
+			</div>
+			<ion-item>
+				<ion-label position="floating">{{ 'SALARY-RANGE-DESCRIPTION' | translate }}</ion-label>
+				<ion-input formControlName="description" id="description" name="description" #description
+					placeholder="{{ 'SALARY-RANGE-DESCRIPTION' | translate }}" maxlength="150">
+				</ion-input>
+			</ion-item>
+			<div *ngIf="(salaryRangeForm.controls['description'].dirty || salaryRangeForm.controls['description'].touched)" class="errors">
+                <div *ngIf="hasError('description', 'required')">
+                    {{ 'SALARY-RANGE-DESCRIPTION' | translate }}: {{ 'FIELD-IS-REQUIRED' | translate }}</div>
+                <div *ngIf="hasError('description', 'minlength')">
+                    {{ 'SALARY-RANGE-DESCRIPTION' | translate }}: {{ 'FIELD-MUSTBE-MINIMUM-LENGTH' | translate }} 1</div>
+                <div *ngIf="hasError('description', 'maxlength')">
+                    {{ 'SALARY-RANGE-DESCRIPTION' | translate }}: {{ 'FIELD-MUSTBE-MAXIMUM-LENGTH' | translate }} 150</div>
+			</div>
+			<ion-item>
+				<ion-checkbox formControlName="byDefault" id="byDefault" color="danger"></ion-checkbox>&nbsp;&nbsp;&nbsp;
+				<ion-label>{{ 'SALARY-RANGE-BYDEFAULT' | translate }}</ion-label>
+			</ion-item>
+		</ion-card-content>
+		<ion-footer>
+			<ion-toolbar color="light" style="padding-left: 20px;">
+			<ion-button color="primary" (click)="save(salaryRangeForm.value)" 
+				[disabled]="!salaryRangeForm.valid">{{ 'SAVE' | translate }}</ion-button>
+			<ion-button type="button" color="medium"
+				(click)="onCancel()">{{ 'CANCEL' | translate }}</ion-button>
+			</ion-toolbar>
+		</ion-footer>
+	</form>
+</ion-content>

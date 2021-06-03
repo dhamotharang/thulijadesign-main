@@ -1,0 +1,67 @@
+.container {
+    max-width: 90%;
+    margin: 20px auto;
+}
+
+.my-form {
+    width:100%;
+}
+
+table {
+    width:100%;
+}
+
+.mat-column-organizationType {
+    width:4%;
+}
+
+.mat-column-abbreviation {
+    width:10%;
+}
+
+.mat-column-name {
+    width:31%;
+}
+
+.mat-column-domainUrl {
+    width:25%;
+}
+
+.mat-column-googleAnalyticCode {
+    width:4%;
+}
+
+.mat-column-organizationAdministrator {
+    width:8%;
+}
+
+.mat-column-organizationTypeAdministrator {
+    width:8%;
+}
+
+.mat-column-profile {
+    width:5%;
+}
+
+.mat-column-action {
+    width:2%;
+    text-align: center;
+}
+
+.listimage {
+    max-width: 100%;
+    height: auto;
+}
+
+.title-bar {
+	min-height: 48px !important;
+	height: 48px !important;
+}
+
+.alert-danger {
+    background-color: #f44336;
+    color: white;
+    font-weight: 500;
+    padding: 10px;
+    border: 1px solid lightgray;
+}

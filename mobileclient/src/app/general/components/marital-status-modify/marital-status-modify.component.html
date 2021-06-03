@@ -1,0 +1,63 @@
+<ion-toolbar color="primary">
+	<ion-title>{{ 'MARITAL-STATUS' | translate }} - {{ 'NEW' | translate }}</ion-title>
+</ion-toolbar>
+<ion-content padding>
+	<form [formGroup]="maritalStatusForm" *ngIf="maritalStatusForm">
+		<ion-card-content>
+			<ion-item>
+				<ion-label position="floating">{{ 'MARITAL-STATUS-SEQUENCE' | translate }}</ion-label>
+                <ion-input formControlName="sequence" id="sequence" name="sequence" #sequence
+					placeholder="{{ 'MARITAL-STATUS-SEQUENCE' | translate }}" max="10">
+				</ion-input>
+			</ion-item>
+			<div *ngIf="(maritalStatusForm.controls['sequence'].dirty || maritalStatusForm.controls['sequence'].touched)" class="errors">
+                <div *ngIf="hasError('sequence', 'required')">
+                    {{ 'MARITAL-STATUS-SEQUENCE' | translate }}: {{ 'FIELD-IS-REQUIRED' | translate }}</div>
+                <div *ngIf="hasError('sequence', 'max')">
+                    {{ 'MARITAL-STATUS-SEQUENCE' | translate }}: {{ 'FIELD-MUSTBE-MAXIMUM' | translate }} 10</div>
+				<div *ngIf="hasError('sequence', 'pattern')">
+					{{ 'MARITAL-STATUS-SEQUENCE' | translate }}: {{ 'FIELD-MUSTBE-NUMERIC' | translate }}</div>
+			</div>
+			<ion-item>
+				<ion-label position="floating">{{ 'MARITAL-STATUS-CODE' | translate }}</ion-label>
+				<ion-input formControlName="code" id="code" name="code" #code
+					placeholder="{{ 'MARITAL-STATUS-CODE' | translate }}" maxlength="10">
+				</ion-input>
+			</ion-item>
+			<div *ngIf="(maritalStatusForm.controls['code'].dirty || maritalStatusForm.controls['code'].touched)" class="errors">
+                <div *ngIf="hasError('code', 'required')">
+                    {{ 'MARITAL-STATUS-CODE' | translate }}: {{ 'FIELD-IS-REQUIRED' | translate }}</div>
+                <div *ngIf="hasError('code', 'minlength')">
+                    {{ 'MARITAL-STATUS-CODE' | translate }}: {{ 'FIELD-MUSTBE-MINIMUM-LENGTH' | translate }} 1</div>
+                <div *ngIf="hasError('code', 'maxlength')">
+                    {{ 'MARITAL-STATUS-CODE' | translate }}: {{ 'FIELD-MUSTBE-MAXIMUM-LENGTH' | translate }} 10</div>
+			</div>
+			<ion-item>
+				<ion-label position="floating">{{ 'MARITAL-STATUS-NAME' | translate }}</ion-label>
+				<ion-input formControlName="name" id="name" name="name" #name
+					placeholder="{{ 'MARITAL-STATUS-NAME' | translate }}" maxlength="60">
+				</ion-input>
+			</ion-item>
+			<div *ngIf="(maritalStatusForm.controls['name'].dirty || maritalStatusForm.controls['name'].touched)" class="errors">
+                <div *ngIf="hasError('name', 'required')">
+                    {{ 'MARITAL-STATUS-NAME' | translate }}: {{ 'FIELD-IS-REQUIRED' | translate }}</div>
+                <div *ngIf="hasError('name', 'minlength')">
+                    {{ 'MARITAL-STATUS-NAME' | translate }}: {{ 'FIELD-MUSTBE-MINIMUM-LENGTH' | translate }} 1</div>
+                <div *ngIf="hasError('name', 'maxlength')">
+                    {{ 'MARITAL-STATUS-NAME' | translate }}: {{ 'FIELD-MUSTBE-MAXIMUM-LENGTH' | translate }} 60</div>
+			</div>
+			<ion-item>
+				<ion-checkbox formControlName="byDefault" id="byDefault" color="danger"></ion-checkbox>&nbsp;&nbsp;&nbsp;
+				<ion-label>{{ 'MARITAL-STATUS-BYDEFAULT' | translate }}</ion-label>
+			</ion-item>
+		</ion-card-content>
+		<ion-footer>
+			<ion-toolbar color="light" style="padding-left: 20px;">
+			<ion-button color="primary" (click)="save(maritalStatusForm.value)" 
+				[disabled]="!maritalStatusForm.valid">{{ 'SAVE' | translate }}</ion-button>
+			<ion-button type="button" color="medium"
+				(click)="onCancel()">{{ 'CANCEL' | translate }}</ion-button>
+			</ion-toolbar>
+		</ion-footer>
+	</form>
+</ion-content>

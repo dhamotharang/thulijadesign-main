@@ -1,0 +1,151 @@
+<ion-card class="login"  *ngIf="setupForm">
+	<form [formGroup]="setupForm">
+		<ion-card-header style="padding:20px">
+			<div mat-card-avatar class="login-header-image"></div>
+			<ion-card-title>{{ 'SETUP' | translate }}</ion-card-title>
+			<ion-card-subtitle>{{ 'SETUP-MESSAGE' | translate }}</ion-card-subtitle>
+		</ion-card-header>
+		<ion-card-content class="my-form">
+			<ion-card-subtitle *ngIf="message" class="alert-danger">{{ message | translate }}</ion-card-subtitle>
+			<ion-card-content class="my-form">
+				<ion-item>
+					<ion-label for="firstName">{{ 'FIRST-NAME' | translate }}</ion-label>
+					<input matInput type="text" formControlName="firstName" id="firstName" 
+						name="firstName" placeholder="First Name" 
+						minlength="3" maxlength="60" required/>
+					<ion-icon matPrefix style="padding-right: 20px;">person</ion-icon>
+				</ion-item>
+				<div *ngIf="hasError('firstName', 'required')">
+					{{ 'FIRST-NAME-REQ' | translate }}</div>
+				<div *ngIf="hasError('firstName', 'minlength')">
+					{{ 'FIRST-NAME-MIN' | translate }}</div>
+				<div *ngIf="hasError('firstName', 'maxlength')">
+					{{ 'FIRST-NAME-MAX' | translate }}</div>
+				<div *ngIf="hasError('firstName', 'pattern')">
+					{{ 'FIRST-NAME-ALPHA' | translate }}</div>
+				<ion-item>
+					<ion-label for="lastName">{{ 'LAST-NAME' | translate }}</ion-label>
+					<input matInput type="text" formControlName="lastName" id="lastName" 
+						name="lastName" placeholder="Last Name" 
+						minlength="3" maxlength="60" required/>
+					<ion-icon matPrefix style="padding-right: 20px;">person</ion-icon>
+				</ion-item>
+				<div *ngIf="hasError('lastName', 'required')">
+					{{ 'LAST-NAME-REQ' | translate }}</div>
+				<div *ngIf="hasError('lastName', 'minlength')">
+					{{ 'LAST-NAME-MIN' | translate }}</div>
+				<div *ngIf="hasError('lastName', 'maxlength')">
+					{{ 'LAST-NAME-MAX' | translate }}</div>
+				<div *ngIf="hasError('lastName', 'pattern')">
+					{{ 'LAST-NAME-ALPHA' | translate }}</div>				
+				<ion-item>
+					<ion-label for="department">{{ 'DEPARTMENT' | translate }}</ion-label>
+					<input matInput type="text" formControlName="department" id="department" 
+						name="department" placeholder="Department" 
+						minlength="3" maxlength="120" required/>
+					<ion-icon matPrefix style="padding-right: 20px;">group</ion-icon>
+				</ion-item>
+				<div *ngIf="hasError('department', 'required')">
+					{{ 'DEPARTMENT-REQ' | translate }}</div>
+				<div *ngIf="hasError('department', 'minlength')">
+					{{ 'DEPARTMENT-MIN' | translate }}</div>
+				<div *ngIf="hasError('department', 'maxlength')">
+					{{ 'DEPARTMENT-MAX' | translate }}</div>
+				<div *ngIf="hasError('department', 'pattern')">
+					{{ 'DEPARTMENT-ALPHA' | translate }}</div>
+				<ion-item>
+					<ion-label for="branch">{{ 'BRANCH' | translate }}</ion-label>
+					<input matInput type="text" formControlName="branch" id="branch" 
+						name="branch" placeholder="Branch" 
+						minlength="3" maxlength="120" required/>
+					<ion-icon matPrefix style="padding-right: 20px;">location_city</ion-icon>
+				</ion-item>
+				<div *ngIf="hasError('branch', 'required')">
+					{{ 'BRANCH-REQ' | translate }}</div>
+				<div *ngIf="hasError('branch', 'minlength')">
+					{{ 'BRANCH-MIN' | translate }}</div>
+				<div *ngIf="hasError('branch', 'maxlength')">
+					{{ 'BRANCH-MAX' | translate }}</div>
+				<div *ngIf="hasError('branch', 'pattern')">
+					{{ 'BRANCH-ALPHA' | translate }}</div>
+				<ion-item>
+					<ion-label for="organization">{{ 'ORGANIZATION' | translate }}</ion-label>
+					<input matInput type="text" formControlName="organization" id="organization" 
+						name="organization" placeholder="Organization" 
+						minlength="3" maxlength="120" required/>
+					<ion-icon matPrefix style="padding-right: 20px;">account_balance</ion-icon>
+				</ion-item>
+				<div *ngIf="hasError('organization', 'required')">
+					{{ 'ORGANIZATION-REQ' | translate }}</div>
+				<div *ngIf="hasError('organization', 'minlength')">
+					{{ 'ORGANIZATION-MIN' | translate }}</div>
+				<div *ngIf="hasError('organization', 'maxlength')">
+					{{ 'ORGANIZATION-MAX' | translate }}</div>
+				<div *ngIf="hasError('organization', 'pattern')">
+					{{ 'ORGANIZATION-ALPHA' | translate }}</div>
+				<ion-item>
+					<ion-label for="username">{{ 'USERNAME-EMAIL' | translate }}</ion-label>
+					<input matInput type="text" formControlName="username" id="username" 
+						name="username" placeholder="Username" 
+						minlength="3" maxlength="120" required/>
+					<ion-icon matPrefix style="padding-right: 20px;">email</ion-icon>
+				</ion-item>
+				<div *ngIf="hasError('username', 'required')">
+					{{ 'USERNAME-EMAIL-REQ' | translate }}</div>
+				<div *ngIf="hasError('username', 'minlength')">
+					{{ 'USERNAME-EMAIL-MIN' | translate }}</div>
+				<div *ngIf="hasError('username', 'maxlength')">
+					{{ 'USERNAME-EMAIL-MAX' | translate }}</div>
+				<div *ngIf="hasError('username', 'pattern')">
+					{{ 'USERNAME-EMAIL-FORMAT' | translate }}</div>
+				<ion-item>
+					<ion-label for="password">{{ 'PASSWORD' | translate }}</ion-label>
+					<input matInput [type]="hide ? 'password' : 'text'" 
+						formControlName="password" id="password" 
+						name="password" placeholder="Password"  
+						minlength="5" maxlength="120" required/>
+					<ion-icon matPrefix style="padding-right: 20px;">lock</ion-icon>
+					<button mat-icon-button matSuffix (click)="hide = !hide"
+							[attr.aria-label]="'Hide password'" [attr.aria-pressed]="hide">
+						<ion-icon>{{ hide ? 'visibility_off' : 'visibility' }}</ion-icon>
+					</button>
+				</ion-item>
+				<div *ngIf="hasError('password', 'required')">
+					{{ 'PASSWORD-REQ' | translate }}</div>
+				<div *ngIf="hasError('password', 'minlength')">
+					{{ 'PASSWORD-MIN' | translate }}</div>
+				<div *ngIf="hasError('password', 'maxlength')">
+					{{ 'PASSWORD-MAX' | translate }}</div>
+				<div *ngIf="hasError('password', 'strength')">
+					{{ 'PASSWORD-STRONG' | translate }}</div>
+				<ion-item>
+					<ion-label for="password">{{ 'CONFIRM-PASSWORD' | translate }}</ion-label>
+					<input matInput [type]="confirmhide ? 'password' : 'text'" 
+						formControlName="confirmPassword" id="confirmPassword" 
+						name="confirmPassword" placeholder="confirmPassword"  
+						minlength="5" maxlength="120" required/>
+					<ion-icon matPrefix style="padding-right: 20px;">lock</ion-icon>
+					<button mat-icon-button matSuffix (click)="confirmhide = !confirmhide"
+							[attr.aria-label]="'Hide password'" [attr.aria-pressed]="confirmhide">
+						<ion-icon>{{ confirmhide ? 'visibility_off' : 'visibility' }}</ion-icon>
+					</button>
+				</ion-item>
+				<div *ngIf="hasError('confirmPassword', 'required')">
+					{{ 'CONFIRM-PASSWORD-REQ' | translate }}</div>
+				<div *ngIf="hasError('confirmPassword', 'minlength')">
+					{{ 'CONFIRM-PASSWORD-MIN' | translate }}</div>
+				<div *ngIf="hasError('confirmPassword', 'maxlength')">
+					{{ 'CONFIRM-PASSWORD-MAX' | translate }}</div>
+				<div *ngIf="hasError('confirmPassword', 'strength')">
+					{{ 'CONFIRM-PASSWORD-STRONG' | translate }}</div>
+				<div *ngIf="hasError('confirmPassword', 'mustmatch')">
+					{{ 'CONFIRM-PASSWORD-NOTMATCH' | translate }}</div>
+			</ion-card-content>
+		</ion-card-content>
+		<ion-footer class="my-form">
+			<button mat-raised-button color="primary" 
+				(click)="save()">{{ 'REGISTER' | translate }}</button>
+			<div style="height: 25px"></div>
+		</ion-footer>
+	</form>
+</ion-card>

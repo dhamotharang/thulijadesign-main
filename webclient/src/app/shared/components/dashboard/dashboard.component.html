@@ -1,0 +1,45 @@
+<div class="grid-container">
+	<h1 class="mat-h1">Thulija Design Dashboard</h1>
+	<h2 class="mat-h1">Welcome to Thulija Design</h2>
+	<mat-grid-list cols="{{ ( cardLayout | async )?.columns }}" rowHeight="200px">
+		<!--Mini Cards-->
+		<mat-grid-tile *ngFor="let mc of miniCardData" 
+			[colspan]="( cardLayout | async )?.miniCard.cols" 
+			[rowspan]="( cardLayout | async )?.miniCard.rows">
+			<app-mini-card [title]="mc.title" 
+			[textValue]="mc.textValue" [value]="mc.value" 
+			[isIncrease]="mc.isIncrease" [color]="mc.color" 
+			[percentValue]="mc.percentValue"></app-mini-card>
+		</mat-grid-tile>
+		<!--Charts-->
+		<mat-grid-tile [colspan]="( cardLayout | async )?.chart.cols" 
+			[rowspan]="( cardLayout | async )?.chart.rows">
+			<app-card title="Scholar Registration">
+				<app-participant-registration-chart></app-participant-registration-chart>
+			</app-card>
+		</mat-grid-tile>
+		<mat-grid-tile [colspan]="( cardLayout | async )?.chart.cols" 
+			[rowspan]="( cardLayout | async )?.chart.rows">
+			<app-card title="Outreach Management">
+				<app-product-sales-chart></app-product-sales-chart>
+			</app-card>
+		</mat-grid-tile>
+		<mat-grid-tile [colspan]="( cardLayout | async )?.chart.cols" 
+			[rowspan]="( cardLayout | async )?.chart.rows">
+			<app-card title="Scholar Performance">
+				<app-sales-traffic-chart></app-sales-traffic-chart>
+			</app-card>
+		</mat-grid-tile>
+		<mat-grid-tile [colspan]="( cardLayout | async )?.chart.cols" 
+			[rowspan]="( cardLayout | async )?.chart.rows">
+			<app-card title="Training Provider Performance">
+				<app-store-sessions-chart></app-store-sessions-chart>
+			</app-card>
+		</mat-grid-tile>    
+		<mat-grid-tile *ngFor="let i of [5, 6, 7, 8]" 
+			[colspan]="( cardLayout | async )?.chart.cols"
+			[rowspan]="( cardLayout | async )?.chart.rows">
+				<app-card title="Card {{i}}"><div>Chart Content Here</div></app-card>
+		</mat-grid-tile>
+	</mat-grid-list>
+ </div>

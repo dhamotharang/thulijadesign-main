@@ -1,0 +1,27 @@
+<mat-sidenav-container menuHeight>
+    <mat-sidenav #sidenav mode="side" opened role="navigation" [fixedInViewport]="false">
+        <mat-nav-list>
+			<a mat-list-item [routerLink]="['/coremain', {outlets: { 'sidebar':['core', 'organizationtypes'] }}]">
+				{{ 'ORGANIZATION-TYPE' | translate }} </a>
+			<a mat-list-item [routerLink]="['/coremain', {outlets: { 'sidebar':['core', 'organizations'] }}]">
+				{{ 'ORGANIZATION' | translate }} </a>
+			<a mat-list-item [routerLink]="['/coremain', {outlets: { 'sidebar':['core', 'branches'] }}]">
+				{{ 'BRANCH' | translate }} </a>
+			<a mat-list-item [routerLink]="['/coremain', {outlets: { 'sidebar':['core', 'departments'] }}]">
+				{{ 'DEPARTMENT' | translate }} </a>
+			<a mat-list-item [routerLink]="['/coremain', {outlets: { 'sidebar':['core', 'users'] }}]">
+				{{ 'USER' | translate }} </a>
+			<a mat-list-item [routerLink]="['/coremain', {outlets: { 'sidebar':['core', 'groups'] }}]">
+				{{ 'GROUP' | translate }} </a>
+			<a mat-list-item [routerLink]="['/coremain', {outlets: { 'sidebar':['core', 'usergroups'] }}]">
+				{{ 'USER-GROUP' | translate }} </a>
+			<a mat-list-item [routerLink]="['/coremain', {outlets: { 'sidebar':['masterdetail', 'groupmanagers'] }}]">
+				{{ 'GROUP-MANAGER' | translate }} </a>
+			<a mat-list-item [routerLink]="['/coremain', {outlets: { 'sidebar':['core', 'statuses'] }}]">
+				{{ 'STATUS' | translate }} </a>
+        </mat-nav-list>
+    </mat-sidenav>
+    <mat-sidenav-content>
+        <router-outlet name="sidebar"></router-outlet>
+    </mat-sidenav-content>
+</mat-sidenav-container>

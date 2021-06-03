@@ -1,0 +1,100 @@
+.container {
+    max-width: 90%;
+    margin: 20px auto;
+}
+
+.my-form {
+    width:100%;
+}
+
+table {
+    width:100%;
+}
+
+.mat-header-cell {
+    padding:15px 10px 8px 8px;
+    font-size:16px;
+    white-space: nowrap;
+}
+
+.mat-column-trainer {
+    width:10%;
+}
+
+.mat-column-positionTitle {
+    width:10%;
+}
+
+.mat-column-companyName {
+    width:10%;
+}
+
+.mat-column-startDate {
+    width:10%;
+}
+
+.mat-column-endDate {
+    width:10%;
+}
+
+.mat-column-specialization {
+    width:10%;
+}
+
+.mat-column-jobRole {
+    width:10%;
+}
+
+.mat-column-industry {
+    width:10%;
+}
+
+.mat-column-positionLevel {
+    width:10%;
+}
+
+.mat-column-salary {
+    width:10%;
+}
+
+.mat-column-description {
+    width:10%;
+}
+
+.mat-column-update {
+    width:10%;
+    text-align: center;
+}
+
+.mat-column-delete {
+    width:10%;
+    text-align: center;
+}
+
+.more-button {
+	position: absolute;
+	top: 5px;
+	right: 10px;
+}
+
+.dashboard-card-content {
+    padding-left: 50px;
+    padding-right: 50px;
+}
+
+.title-bar {
+	min-height: 48px !important;
+	height: 48px !important;
+}
+
+.mat-toolbar {
+	min-height: 48px !important;
+    height: 48px !important;
+    background-color: #eaecfb;
+}
+
+.mat-toolbar-row {
+	min-height: 48px !important;
+    height: 48px !important;
+    background-color: #eaecfb;
+}

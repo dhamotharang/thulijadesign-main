@@ -1,0 +1,214 @@
+<h2 mat-dialog-title>{{ 'TRAINER' | translate }} - {{ 'NEW' | translate }}</h2>
+<mat-dialog-content>
+	<form [formGroup]="trainerForm" *ngIf="trainerForm">
+		<mat-card-subtitle *ngIf="errorMessage" class="alert-danger">{{ errorMessage }}</mat-card-subtitle>
+		<mat-card-content class="my-form">
+			<mat-form-field>
+				<mat-label>{{ 'TRAINER-ORGANIZATION' | translate }}</mat-label>
+				<mat-select formControlName="organization" id="organization" name="organization" 
+						[compareWith]="compareOrganization" required>
+				    <mat-option *ngFor="let organization of organizations" [value]="organization">
+				    	{{ organization.name }}</mat-option>
+				</mat-select>
+				<mat-icon matPrefix style="padding-right: 20px;">account_balance</mat-icon>
+				<mat-error *ngIf="hasError('organization', 'required')">
+					{{ 'TRAINER-ORGANIZATION' | translate }}: {{ 'FIELD-IS-REQUIRED' | translate }}</mat-error>
+			</mat-form-field>
+			<mat-form-field>
+				<mat-label>{{ 'TRAINER-BRANCH' | translate }}</mat-label>
+				<mat-select formControlName="branch" id="branch" name="branch" 
+						[compareWith]="compareBranch" required>
+				    <mat-option *ngFor="let branch of branches" [value]="branch">
+				    	{{ branch.name }}</mat-option>
+				</mat-select>
+				<mat-error *ngIf="hasError('branch', 'required')">
+					{{ 'TRAINER-BRANCH' | translate }}: {{ 'FIELD-IS-REQUIRED' | translate }}</mat-error>
+			</mat-form-field>
+			<mat-form-field>
+				<mat-label>{{ 'TRAINER-DEPARTMENT' | translate }}</mat-label>
+				<mat-select formControlName="department" id="department" name="department" 
+						[compareWith]="compareDepartment" required>
+				    <mat-option *ngFor="let department of departments" [value]="department">
+				    	{{ department.name }}</mat-option>
+				</mat-select>
+				<mat-error *ngIf="hasError('department', 'required')">
+					{{ 'TRAINER-DEPARTMENT' | translate }}: {{ 'FIELD-IS-REQUIRED' | translate }}</mat-error>
+			</mat-form-field>
+			<mat-form-field>
+				<input matInput type="text" formControlName="icNumber" id="icNumber" 
+					name="icNumber" placeholder="{{ 'TRAINER-ICNUMBER' | translate }}" 
+					minlength="1" maxlength="20" required />
+                <mat-error *ngIf="hasError('icNumber', 'required')">
+                    {{ 'TRAINER-ICNUMBER' | translate }}: {{ 'FIELD-IS-REQUIRED' | translate }}</mat-error>
+                <mat-error *ngIf="hasError('icNumber', 'minlength')">
+                    {{ 'TRAINER-ICNUMBER' | translate }}: {{ 'FIELD-MUSTBE-MINIMUM-LENGTH' | translate }} 1</mat-error>
+                <mat-error *ngIf="hasError('icNumber', 'maxlength')">
+                    {{ 'TRAINER-ICNUMBER' | translate }}: {{ 'FIELD-MUSTBE-MAXIMUM-LENGTH' | translate }} 20</mat-error>
+				<mat-error *ngIf="hasError('icNumber', 'unique')">
+					{{ 'TRAINER-ICNUMBER' | translate }}: {{ 'FIELD-MUSTBE-UNIQUE' | translate }}</mat-error>
+			</mat-form-field>
+			<mat-form-field>
+				<mat-label>{{ 'TRAINER-SALUTATION' | translate }}</mat-label>
+				<mat-select formControlName="salutation" id="salutation" name="salutation" 
+						[compareWith]="compareSalutation" required>
+				    <mat-option *ngFor="let salutation of salutations" [value]="salutation">
+				    	{{ salutation.name }}</mat-option>
+				</mat-select>
+				<mat-error *ngIf="hasError('salutation', 'required')">
+					{{ 'TRAINER-SALUTATION' | translate }}: {{ 'FIELD-IS-REQUIRED' | translate }}</mat-error>
+			</mat-form-field>
+			<mat-form-field>
+				<input matInput type="text" formControlName="firstName" id="firstName" 
+					name="firstName" placeholder="{{ 'TRAINER-FIRSTNAME' | translate }}" 
+					minlength="1" maxlength="60" required />
+				<mat-icon matPrefix style="padding-right: 20px;">person</mat-icon>
+                <mat-error *ngIf="hasError('firstName', 'required')">
+                    {{ 'TRAINER-FIRSTNAME' | translate }}: {{ 'FIELD-IS-REQUIRED' | translate }}</mat-error>
+                <mat-error *ngIf="hasError('firstName', 'minlength')">
+                    {{ 'TRAINER-FIRSTNAME' | translate }}: {{ 'FIELD-MUSTBE-MINIMUM-LENGTH' | translate }} 1</mat-error>
+                <mat-error *ngIf="hasError('firstName', 'maxlength')">
+                    {{ 'TRAINER-FIRSTNAME' | translate }}: {{ 'FIELD-MUSTBE-MAXIMUM-LENGTH' | translate }} 60</mat-error>
+			</mat-form-field>
+			<mat-form-field>
+				<input matInput type="text" formControlName="lastName" id="lastName" 
+					name="lastName" placeholder="{{ 'TRAINER-LASTNAME' | translate }}" 
+					minlength="1" maxlength="60" required />
+				<mat-icon matPrefix style="padding-right: 20px;">person</mat-icon>
+                <mat-error *ngIf="hasError('lastName', 'required')">
+                    {{ 'TRAINER-LASTNAME' | translate }}: {{ 'FIELD-IS-REQUIRED' | translate }}</mat-error>
+                <mat-error *ngIf="hasError('lastName', 'minlength')">
+                    {{ 'TRAINER-LASTNAME' | translate }}: {{ 'FIELD-MUSTBE-MINIMUM-LENGTH' | translate }} 1</mat-error>
+                <mat-error *ngIf="hasError('lastName', 'maxlength')">
+                    {{ 'TRAINER-LASTNAME' | translate }}: {{ 'FIELD-MUSTBE-MAXIMUM-LENGTH' | translate }} 60</mat-error>
+			</mat-form-field>
+			<mat-form-field>
+				<mat-label>{{ 'TRAINER-GENDER' | translate }}</mat-label>
+				<mat-select formControlName="gender" id="gender" name="gender" 
+						[compareWith]="compareGender" required>
+				    <mat-option *ngFor="let gender of genders" [value]="gender">
+				    	{{ gender.name }}</mat-option>
+				</mat-select>
+				<mat-error *ngIf="hasError('gender', 'required')">
+					{{ 'TRAINER-GENDER' | translate }}: {{ 'FIELD-IS-REQUIRED' | translate }}</mat-error>
+			</mat-form-field>
+			<mat-form-field>
+				<mat-label>{{ 'TRAINER-CITIZEN' | translate }}</mat-label>
+				<mat-select formControlName="citizen" id="citizen" name="citizen" 
+						[compareWith]="compareCitizen" required>
+				    <mat-option *ngFor="let citizen of citizens" [value]="citizen">
+				    	{{ citizen.name }}</mat-option>
+				</mat-select>
+				<mat-error *ngIf="hasError('citizen', 'required')">
+					{{ 'TRAINER-CITIZEN' | translate }}: {{ 'FIELD-IS-REQUIRED' | translate }}</mat-error>
+			</mat-form-field>
+			<mat-form-field>
+				<input matInput type="text" formControlName="handphoneNumber" id="handphoneNumber" 
+					name="handphoneNumber" placeholder="{{ 'TRAINER-HANDPHONENUMBER' | translate }}" 
+					minlength="1" maxlength="20" required />
+                <mat-error *ngIf="hasError('handphoneNumber', 'required')">
+                    {{ 'TRAINER-HANDPHONENUMBER' | translate }}: {{ 'FIELD-IS-REQUIRED' | translate }}</mat-error>
+                <mat-error *ngIf="hasError('handphoneNumber', 'minlength')">
+                    {{ 'TRAINER-HANDPHONENUMBER' | translate }}: {{ 'FIELD-MUSTBE-MINIMUM-LENGTH' | translate }} 1</mat-error>
+                <mat-error *ngIf="hasError('handphoneNumber', 'maxlength')">
+                    {{ 'TRAINER-HANDPHONENUMBER' | translate }}: {{ 'FIELD-MUSTBE-MAXIMUM-LENGTH' | translate }} 20</mat-error>
+			</mat-form-field>
+			<mat-form-field>
+				<input matInput type="text" formControlName="emailAddress" id="emailAddress" 
+					name="emailAddress" placeholder="{{ 'TRAINER-EMAILADDRESS' | translate }}" 
+					minlength="3" maxlength="120" required />
+				<mat-icon matPrefix style="padding-right: 20px;">email</mat-icon>
+                <mat-error *ngIf="hasError('emailAddress', 'required')">
+                    {{ 'TRAINER-EMAILADDRESS' | translate }}: {{ 'FIELD-IS-REQUIRED' | translate }}</mat-error>
+                <mat-error *ngIf="hasError('emailAddress', 'minlength')">
+                    {{ 'TRAINER-EMAILADDRESS' | translate }}: {{ 'FIELD-MUSTBE-MINIMUM-LENGTH' | translate }} 3</mat-error>
+                <mat-error *ngIf="hasError('emailAddress', 'maxlength')">
+                    {{ 'TRAINER-EMAILADDRESS' | translate }}: {{ 'FIELD-MUSTBE-MAXIMUM-LENGTH' | translate }} 120</mat-error>
+                <mat-error *ngIf="hasError('emailAddress', 'pattern')">
+					{{ 'TRAINER-EMAILADDRESS' | translate }}: {{ 'FIELD-MUSTBE-PATTERN' | translate }} email</mat-error>
+				<mat-error *ngIf="hasError('emailAddress', 'unique')">
+					{{ 'TRAINER-EMAILADDRESS' | translate }}: {{ 'FIELD-MUSTBE-UNIQUE' | translate }}</mat-error>
+			</mat-form-field>
+			<mat-form-field>
+				<mat-label for="password">{{ 'TRAINER-PASSWORD' | translate }}</mat-label>
+				<input matInput [type]="passwordHide ? 'password' : 'text'" 
+					formControlName="password" id="password"
+					name="password" placeholder="Password"
+					minlength="5" maxlength="120" required/>
+				<mat-icon matPrefix style="padding-right: 20px;">lock</mat-icon>
+				<button mat-icon-button matSuffix (click)="passwordHide = !passwordHide"
+						[attr.aria-label]="'Hide password'" [attr.aria-pressed]="passwordHide">
+					<mat-icon>{{ passwordHide ? 'visibility_off' : 'visibility' }}</mat-icon>
+				</button>
+                <mat-error *ngIf="hasError('password', 'required')">
+                    {{ 'TRAINER-PASSWORD' | translate }}: {{ 'FIELD-IS-REQUIRED' | translate }}</mat-error>
+                <mat-error *ngIf="hasError('password', 'minlength')">
+                    {{ 'TRAINER-PASSWORD' | translate }}: {{ 'FIELD-MUSTBE-MINIMUM-LENGTH' | translate }} 5</mat-error>
+                <mat-error *ngIf="hasError('password', 'maxlength')">
+                    {{ 'TRAINER-PASSWORD' | translate }}: {{ 'FIELD-MUSTBE-MAXIMUM-LENGTH' | translate }} 120</mat-error>
+				<mat-error *ngIf="hasError('password', 'mustmatch')">
+					{{ 'TRAINER-PASSWORD' | translate }}: {{ 'FIELD-MUSTBE-MATCH' | translate }}</mat-error>
+				<mat-error *ngIf="hasError('password', 'strength')">
+					{{ 'TRAINER-PASSWORD' | translate }}: {{ 'PASSWORD-STRONG' | translate }}</mat-error>
+			</mat-form-field>
+			<mat-form-field>
+				<mat-label for="confirmPassword">{{ 'TRAINER-CONFIRM-PASSWORD' | translate }}</mat-label>
+				<input matInput [type]="confirmPasswordHide ? 'password' : 'text'" 
+					formControlName="confirmPassword" id="confirmPassword"
+					name="confirmPassword" placeholder="Confirm Password"
+					minlength="5" maxlength="120" required/>
+				<mat-icon matPrefix style="padding-right: 20px;">lock</mat-icon>
+				<button mat-icon-button matSuffix (click)="confirmPasswordHide = !confirmPasswordHide"
+						[attr.aria-label]="'Hide password'" [attr.aria-pressed]="confirmPasswordHide">
+					<mat-icon>{{ confirmPasswordHide ? 'visibility_off' : 'visibility' }}</mat-icon>
+				</button>
+				<mat-error *ngIf="hasError('confirmPassword', 'required')">
+					{{ 'TRAINER-CONFIRM-PASSWORD' | translate }}: {{ 'FIELD-IS-REQUIRED' | translate }}</mat-error>
+				<mat-error *ngIf="hasError('confirmPassword', 'minlength')">
+					{{ 'TRAINER-CONFIRM-PASSWORD' | translate }}: {{ 'FIELD-MUSTBE-MINIMUM-LENGTH' | translate }} 5</mat-error>
+				<mat-error *ngIf="hasError('confirmPassword', 'maxlength')">
+					{{ 'TRAINER-CONFIRM-PASSWORD' | translate }}: {{ 'FIELD-MUSTBE-MAXIMUM-LENGTH' | translate }} 120</mat-error>
+				<mat-error *ngIf="hasError('confirmPassword', 'mustmatch')">
+					{{ 'TRAINER-CONFIRM-PASSWORD' | translate }}: {{ 'FIELD-MUSTBE-MATCH' | translate }}</mat-error>
+				<mat-error *ngIf="hasError('confirmPassword', 'strength')">
+					{{ 'TRAINER-CONFIRM-PASSWORD' | translate }}: {{ 'PASSWORD-STRONG' | translate }}</mat-error>
+			</mat-form-field>
+			<mat-form-field>
+				<input matInput type="text" formControlName="numLogins" id="numLogins" 
+					name="numLogins" placeholder="{{ 'TRAINER-NUMLOGINS' | translate }}" 
+					min="0" max="2000" />
+                <mat-error *ngIf="hasError('numLogins', 'min')">
+                    {{ 'TRAINER-NUMLOGINS' | translate }}: {{ 'FIELD-MUSTBE-MINIMUM' | translate }} 0</mat-error>
+                <mat-error *ngIf="hasError('numLogins', 'max')">
+                    {{ 'TRAINER-NUMLOGINS' | translate }}: {{ 'FIELD-MUSTBE-MAXIMUM' | translate }} 2000</mat-error>
+				<mat-error *ngIf="hasError('numLogins', 'pattern')">
+					{{ 'TRAINER-NUMLOGINS' | translate }}: {{ 'FIELD-MUSTBE-NUMERIC' | translate }}</mat-error>
+			</mat-form-field>
+			<mat-form-field>
+				<mat-label>{{ 'TRAINER-LASTLOGINTIME' | translate }}</mat-label>
+				<input formControlName="lastLoginTime" matInput [matDatepicker]="lastLoginTime" placeholder="{{ 'TRAINER-LASTLOGINTIME' | translate }}">
+				<mat-datepicker-toggle matSuffix [for]="lastLoginTime"></mat-datepicker-toggle>
+				<mat-datepicker #lastLoginTime></mat-datepicker>
+                <mat-error *ngIf="hasError('lastLoginTime', 'min')">
+                    {{ 'TRAINER-LASTLOGINTIME' | translate }}: {{ 'FIELD-MUSTBE-MINIMUM' | translate }} 0</mat-error>
+                <mat-error *ngIf="hasError('lastLoginTime', 'max')">
+                    {{ 'TRAINER-LASTLOGINTIME' | translate }}: {{ 'FIELD-MUSTBE-MAXIMUM' | translate }} 2000</mat-error>
+			</mat-form-field>
+			<mat-form-field>
+				<mat-label>{{ 'TRAINER-STATUS' | translate }}</mat-label>
+				<mat-select formControlName="status" id="status" name="status" 
+						[compareWith]="compareStatus" required>
+				    <mat-option *ngFor="let status of statuses" [value]="status">
+				    	{{ status.name }}</mat-option>
+				</mat-select>
+				<mat-error *ngIf="hasError('status', 'required')">
+					{{ 'TRAINER-STATUS' | translate }}: {{ 'FIELD-IS-REQUIRED' | translate }}</mat-error>
+			</mat-form-field>
+        </mat-card-content>
+    </form>
+</mat-dialog-content>
+<mat-dialog-actions>
+    <button mat-raised-button color="primary" (click)="save(trainerForm.value)" 
+        [disabled]="!trainerForm.valid">{{ 'SAVE' | translate }}</button>
+    <button type="button" mat-raised-button color="warn"
+        (click)="onCancel()">{{ 'CANCEL' | translate }}</button>
+</mat-dialog-actions>

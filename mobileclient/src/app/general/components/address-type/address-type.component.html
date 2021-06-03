@@ -1,0 +1,47 @@
+<ion-toolbar color="primary">
+	<ion-buttons slot="start">
+		<ion-menu-button></ion-menu-button>
+	</ion-buttons>
+	<ion-title>{{ 'ADDRESS-TYPE' | translate }}</ion-title>
+	<ion-buttons slot="end" color="success">
+		<ion-button fill="clear" (click)="add()">
+			<ion-icon slot="icon-only" name="add-circle-outline"></ion-icon>
+		</ion-button>
+	</ion-buttons>
+</ion-toolbar>
+<ion-content padding>
+	<ion-card *ngFor="let addressType of addressTypes">
+		<ion-card-content style="padding: bottom 0px;">
+			<h2>
+				<b>{{ 'ADDRESS-TYPE-SEQUENCE' | translate }}: </b>
+				{{ addressType.sequence }}
+			</h2>
+			<h2>
+				<b>{{ 'ADDRESS-TYPE-CODE' | translate }}: </b>
+				{{ addressType.code }}
+			</h2>
+			<h2>
+				<b>{{ 'ADDRESS-TYPE-NAME' | translate }}: </b>
+				{{ addressType.name }}
+			</h2>
+			<h2>
+				<b>{{ 'ADDRESS-TYPE-BYDEFAULT' | translate }}: </b>
+				{{ addressType.byDefault }}
+			</h2>
+			<ion-row no-padding>
+				<ion-col col-9 no-padding></ion-col>
+				<ion-col col-3 no-padding>
+					<ion-button fill="clear" size="small" (click)="edit(addressType)">
+						<ion-icon name="create-outline"></ion-icon>
+					</ion-button>
+					<ion-button fill="clear" size="small" (click)="delete(addressType)">
+						<ion-icon name="trash-outline"></ion-icon>
+					</ion-button>
+					<ion-button fill="clear" size="small" (click)="print(addressType)">
+						<ion-icon name="print-outline"></ion-icon>
+					</ion-button>
+				</ion-col>
+			</ion-row>
+		</ion-card-content>
+	</ion-card>
+</ion-content>

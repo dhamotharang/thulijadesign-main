@@ -1,0 +1,14 @@
+<div class="icon-text">
+   <mat-icon color="warn" style="font-size: 30px">info</mat-icon>
+   <span mat-dialog-title>&nbsp;&nbsp;&nbsp;&nbsp;{{ "DELETE-CONFIRMATION-TITLE" | translate }}</span>
+</div>
+<mat-dialog-content>
+    <mat-card-content class="my-form">
+        <h4 class="mat-subheading-2" [innerHtml]="'DELETE-CONFIRMATION-MESSAGE' | translate"></h4>
+        <mat-divider></mat-divider>
+    </mat-card-content>
+</mat-dialog-content>
+<mat-dialog-actions>
+    <button mat-raised-button color="primary" (click)="confirm()">Ok</button>
+    <button mat-raised-button color="secondary" (click)="closeDialog()">Cancel</button>
+</mat-dialog-actions>

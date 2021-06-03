@@ -1,0 +1,65 @@
+<ion-toolbar color="primary">
+	<ion-title>{{ 'QUALIFICATION' | translate }} - {{ 'NEW' | translate }}</ion-title>
+</ion-toolbar>
+<ion-content padding>
+	<form [formGroup]="qualificationForm" *ngIf="qualificationForm">
+		<ion-card-content>
+			<ion-item>
+				<ion-label position="floating">{{ 'QUALIFICATION-SEQUENCE' | translate }}</ion-label>
+                <ion-input formControlName="sequence" id="sequence" name="sequence" #sequence
+					placeholder="{{ 'QUALIFICATION-SEQUENCE' | translate }}" min="1" max="500">
+				</ion-input>
+			</ion-item>
+			<div *ngIf="(qualificationForm.controls['sequence'].dirty || qualificationForm.controls['sequence'].touched)" class="errors">
+                <div *ngIf="hasError('sequence', 'required')">
+                    {{ 'QUALIFICATION-SEQUENCE' | translate }}: {{ 'FIELD-IS-REQUIRED' | translate }}</div>
+                <div *ngIf="hasError('sequence', 'min')">
+                    {{ 'QUALIFICATION-SEQUENCE' | translate }}: {{ 'FIELD-MUSTBE-MINIMUM' | translate }} 1</div>
+                <div *ngIf="hasError('sequence', 'max')">
+                    {{ 'QUALIFICATION-SEQUENCE' | translate }}: {{ 'FIELD-MUSTBE-MAXIMUM' | translate }} 500</div>
+				<div *ngIf="hasError('sequence', 'pattern')">
+					{{ 'QUALIFICATION-SEQUENCE' | translate }}: {{ 'FIELD-MUSTBE-NUMERIC' | translate }}</div>
+			</div>
+			<ion-item>
+				<ion-label position="floating">{{ 'QUALIFICATION-CODE' | translate }}</ion-label>
+				<ion-input formControlName="code" id="code" name="code" #code
+					placeholder="{{ 'QUALIFICATION-CODE' | translate }}" maxlength="10">
+				</ion-input>
+			</ion-item>
+			<div *ngIf="(qualificationForm.controls['code'].dirty || qualificationForm.controls['code'].touched)" class="errors">
+                <div *ngIf="hasError('code', 'required')">
+                    {{ 'QUALIFICATION-CODE' | translate }}: {{ 'FIELD-IS-REQUIRED' | translate }}</div>
+                <div *ngIf="hasError('code', 'minlength')">
+                    {{ 'QUALIFICATION-CODE' | translate }}: {{ 'FIELD-MUSTBE-MINIMUM-LENGTH' | translate }} 1</div>
+                <div *ngIf="hasError('code', 'maxlength')">
+                    {{ 'QUALIFICATION-CODE' | translate }}: {{ 'FIELD-MUSTBE-MAXIMUM-LENGTH' | translate }} 10</div>
+			</div>
+			<ion-item>
+				<ion-label position="floating">{{ 'QUALIFICATION-NAME' | translate }}</ion-label>
+				<ion-input formControlName="name" id="name" name="name" #name
+					placeholder="{{ 'QUALIFICATION-NAME' | translate }}" maxlength="60">
+				</ion-input>
+			</ion-item>
+			<div *ngIf="(qualificationForm.controls['name'].dirty || qualificationForm.controls['name'].touched)" class="errors">
+                <div *ngIf="hasError('name', 'required')">
+                    {{ 'QUALIFICATION-NAME' | translate }}: {{ 'FIELD-IS-REQUIRED' | translate }}</div>
+                <div *ngIf="hasError('name', 'minlength')">
+                    {{ 'QUALIFICATION-NAME' | translate }}: {{ 'FIELD-MUSTBE-MINIMUM-LENGTH' | translate }} 1</div>
+                <div *ngIf="hasError('name', 'maxlength')">
+                    {{ 'QUALIFICATION-NAME' | translate }}: {{ 'FIELD-MUSTBE-MAXIMUM-LENGTH' | translate }} 60</div>
+			</div>
+			<ion-item>
+				<ion-checkbox formControlName="byDefault" id="byDefault" color="danger"></ion-checkbox>&nbsp;&nbsp;&nbsp;
+				<ion-label>{{ 'QUALIFICATION-BYDEFAULT' | translate }}</ion-label>
+			</ion-item>
+		</ion-card-content>
+		<ion-footer>
+			<ion-toolbar color="light" style="padding-left: 20px;">
+			<ion-button color="primary" (click)="save(qualificationForm.value)" 
+				[disabled]="!qualificationForm.valid">{{ 'SAVE' | translate }}</ion-button>
+			<ion-button type="button" color="medium"
+				(click)="onCancel()">{{ 'CANCEL' | translate }}</ion-button>
+			</ion-toolbar>
+		</ion-footer>
+	</form>
+</ion-content>

@@ -1,0 +1,87 @@
+<ion-toolbar color="primary">
+	<ion-buttons slot="start">
+		<ion-menu-button></ion-menu-button>
+	</ion-buttons>
+	<ion-title>{{ 'USER' | translate }}</ion-title>
+	<ion-buttons slot="end" color="success">
+		<ion-button fill="clear" (click)="add()">
+			<ion-icon slot="icon-only" name="add-circle-outline"></ion-icon>
+		</ion-button>
+	</ion-buttons>
+</ion-toolbar>
+<ion-content padding>
+	<form [formGroup]="userSearchForm" *ngIf="userSearchForm">
+		<ion-header>
+			<span style="font-size: 12px"></span>
+			<ion-item>
+				<ion-label>{{ 'USER-FIRSTNAME' | translate }}</ion-label>
+				<input matInput formControlName="firstNameSearchText" 
+					id="firstNameSearchText" name="firstNameSearchText" placeholder="{{ 'USER-FIRSTNAME' | translate }}"/>
+			</ion-item>&nbsp;&nbsp;&nbsp;&nbsp;
+			<ion-item>
+				<ion-label>{{ 'USER-LASTNAME' | translate }}</ion-label>
+				<input matInput formControlName="lastNameSearchText" 
+					id="lastNameSearchText" name="lastNameSearchText" placeholder="{{ 'USER-LASTNAME' | translate }}"/>
+			</ion-item>&nbsp;&nbsp;&nbsp;&nbsp;
+			<a mat-raised-button color="secondary" (click)="doSearch()">List</a>&nbsp;&nbsp;
+		</ion-header>
+	</form>
+	<ion-card *ngFor="let user of users">
+		<ion-card-content style="padding: bottom 0px;">
+			<h2>
+				<b>{{ 'USER-ORGANIZATION' | translate }}: </b>
+				{{ user.organization.name }}
+			</h2>
+			<h2>
+				<b>{{ 'USER-BRANCH' | translate }}: </b>
+				{{ user.branch.name }}
+			</h2>
+			<h2>
+				<b>{{ 'USER-DEPARTMENT' | translate }}: </b>
+				{{ user.department.name }}
+			</h2>
+			<h2>
+				<b>{{ 'USER-FIRSTNAME' | translate }}: </b>
+				{{ user.firstName }}
+			</h2>
+			<h2>
+				<b>{{ 'USER-LASTNAME' | translate }}: </b>
+				{{ user.lastName }}
+			</h2>
+			<h2>
+				<b>{{ 'USER-EMAILADDRESS' | translate }}: </b>
+				{{ user.emailAddress }}
+			</h2>
+			<h2>
+				<b>{{ 'USER-STATUS' | translate }}: </b>
+				{{ user.status.name }}
+			</h2>
+			<ion-row no-padding>
+				<ion-col col-9 no-padding></ion-col>
+				<ion-col col-3 no-padding>
+					<ion-button fill="clear" size="small" (click)="edit(user)">
+						<ion-icon name="create-outline"></ion-icon>
+					</ion-button>
+					<ion-button fill="clear" size="small" (click)="delete(user)">
+						<ion-icon name="trash-outline"></ion-icon>
+					</ion-button>
+					<ion-button fill="clear" size="small" (click)="print(user)">
+						<ion-icon name="print-outline"></ion-icon>
+					</ion-button>
+				</ion-col>
+			</ion-row>
+		</ion-card-content>
+	</ion-card>
+	<ion-footer>
+		<ion-label style="font-size: 14px;">{{ 'Showing rows ' + this.showRows }}</ion-label>
+		<span class="spacer"></span>
+		<ion-item>
+			<ion-label>{{ 'Filter by Alphabet' | translate }}</ion-label>
+			<ion-select [value]="selectedAlphabet">
+				<ion-select-option *ngFor="let alphabet of alphabets" 
+					[value]="alphabet">{{ alphabet }}</ion-select-option>
+			</ion-select>
+		</ion-item>&nbsp;&nbsp;
+		<a mat-raised-button color="secondary" (click)="list()">List</a>&nbsp;&nbsp;
+	</ion-footer>
+</ion-content>

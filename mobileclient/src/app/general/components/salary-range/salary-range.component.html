@@ -1,0 +1,47 @@
+<ion-toolbar color="primary">
+	<ion-buttons slot="start">
+		<ion-menu-button></ion-menu-button>
+	</ion-buttons>
+	<ion-title>{{ 'SALARY-RANGE' | translate }}</ion-title>
+	<ion-buttons slot="end" color="success">
+		<ion-button fill="clear" (click)="add()">
+			<ion-icon slot="icon-only" name="add-circle-outline"></ion-icon>
+		</ion-button>
+	</ion-buttons>
+</ion-toolbar>
+<ion-content padding>
+	<ion-card *ngFor="let salaryRange of salaryRanges">
+		<ion-card-content style="padding: bottom 0px;">
+			<h2>
+				<b>{{ 'SALARY-RANGE-SEQUENCE' | translate }}: </b>
+				{{ salaryRange.sequence }}
+			</h2>
+			<h2>
+				<b>{{ 'SALARY-RANGE-NAME' | translate }}: </b>
+				{{ salaryRange.name }}
+			</h2>
+			<h2>
+				<b>{{ 'SALARY-RANGE-DESCRIPTION' | translate }}: </b>
+				{{ salaryRange.description }}
+			</h2>
+			<h2>
+				<b>{{ 'SALARY-RANGE-BYDEFAULT' | translate }}: </b>
+				{{ salaryRange.byDefault }}
+			</h2>
+			<ion-row no-padding>
+				<ion-col col-9 no-padding></ion-col>
+				<ion-col col-3 no-padding>
+					<ion-button fill="clear" size="small" (click)="edit(salaryRange)">
+						<ion-icon name="create-outline"></ion-icon>
+					</ion-button>
+					<ion-button fill="clear" size="small" (click)="delete(salaryRange)">
+						<ion-icon name="trash-outline"></ion-icon>
+					</ion-button>
+					<ion-button fill="clear" size="small" (click)="print(salaryRange)">
+						<ion-icon name="print-outline"></ion-icon>
+					</ion-button>
+				</ion-col>
+			</ion-row>
+		</ion-card-content>
+	</ion-card>
+</ion-content>

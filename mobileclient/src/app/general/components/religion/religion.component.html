@@ -1,0 +1,47 @@
+<ion-toolbar color="primary">
+	<ion-buttons slot="start">
+		<ion-menu-button></ion-menu-button>
+	</ion-buttons>
+	<ion-title>{{ 'RELIGION' | translate }}</ion-title>
+	<ion-buttons slot="end" color="success">
+		<ion-button fill="clear" (click)="add()">
+			<ion-icon slot="icon-only" name="add-circle-outline"></ion-icon>
+		</ion-button>
+	</ion-buttons>
+</ion-toolbar>
+<ion-content padding>
+	<ion-card *ngFor="let religion of religions">
+		<ion-card-content style="padding: bottom 0px;">
+			<h2>
+				<b>{{ 'RELIGION-SEQUENCE' | translate }}: </b>
+				{{ religion.sequence }}
+			</h2>
+			<h2>
+				<b>{{ 'RELIGION-CODE' | translate }}: </b>
+				{{ religion.code }}
+			</h2>
+			<h2>
+				<b>{{ 'RELIGION-NAME' | translate }}: </b>
+				{{ religion.name }}
+			</h2>
+			<h2>
+				<b>{{ 'RELIGION-BYDEFAULT' | translate }}: </b>
+				{{ religion.byDefault }}
+			</h2>
+			<ion-row no-padding>
+				<ion-col col-9 no-padding></ion-col>
+				<ion-col col-3 no-padding>
+					<ion-button fill="clear" size="small" (click)="edit(religion)">
+						<ion-icon name="create-outline"></ion-icon>
+					</ion-button>
+					<ion-button fill="clear" size="small" (click)="delete(religion)">
+						<ion-icon name="trash-outline"></ion-icon>
+					</ion-button>
+					<ion-button fill="clear" size="small" (click)="print(religion)">
+						<ion-icon name="print-outline"></ion-icon>
+					</ion-button>
+				</ion-col>
+			</ion-row>
+		</ion-card-content>
+	</ion-card>
+</ion-content>

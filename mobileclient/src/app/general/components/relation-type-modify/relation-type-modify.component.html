@@ -1,0 +1,65 @@
+<ion-toolbar color="primary">
+	<ion-title>{{ 'RELATION-TYPE' | translate }} - {{ 'NEW' | translate }}</ion-title>
+</ion-toolbar>
+<ion-content padding>
+	<form [formGroup]="relationTypeForm" *ngIf="relationTypeForm">
+		<ion-card-content>
+			<ion-item>
+				<ion-label position="floating">{{ 'RELATION-TYPE-SEQUENCE' | translate }}</ion-label>
+                <ion-input formControlName="sequence" id="sequence" name="sequence" #sequence
+					placeholder="{{ 'RELATION-TYPE-SEQUENCE' | translate }}" min="1" max="25">
+				</ion-input>
+			</ion-item>
+			<div *ngIf="(relationTypeForm.controls['sequence'].dirty || relationTypeForm.controls['sequence'].touched)" class="errors">
+                <div *ngIf="hasError('sequence', 'required')">
+                    {{ 'RELATION-TYPE-SEQUENCE' | translate }}: {{ 'FIELD-IS-REQUIRED' | translate }}</div>
+                <div *ngIf="hasError('sequence', 'min')">
+                    {{ 'RELATION-TYPE-SEQUENCE' | translate }}: {{ 'FIELD-MUSTBE-MINIMUM' | translate }} 1</div>
+                <div *ngIf="hasError('sequence', 'max')">
+                    {{ 'RELATION-TYPE-SEQUENCE' | translate }}: {{ 'FIELD-MUSTBE-MAXIMUM' | translate }} 25</div>
+				<div *ngIf="hasError('sequence', 'pattern')">
+					{{ 'RELATION-TYPE-SEQUENCE' | translate }}: {{ 'FIELD-MUSTBE-NUMERIC' | translate }}</div>
+			</div>
+			<ion-item>
+				<ion-label position="floating">{{ 'RELATION-TYPE-CODE' | translate }}</ion-label>
+				<ion-input formControlName="code" id="code" name="code" #code
+					placeholder="{{ 'RELATION-TYPE-CODE' | translate }}" maxlength="10">
+				</ion-input>
+			</ion-item>
+			<div *ngIf="(relationTypeForm.controls['code'].dirty || relationTypeForm.controls['code'].touched)" class="errors">
+                <div *ngIf="hasError('code', 'required')">
+                    {{ 'RELATION-TYPE-CODE' | translate }}: {{ 'FIELD-IS-REQUIRED' | translate }}</div>
+                <div *ngIf="hasError('code', 'minlength')">
+                    {{ 'RELATION-TYPE-CODE' | translate }}: {{ 'FIELD-MUSTBE-MINIMUM-LENGTH' | translate }} 1</div>
+                <div *ngIf="hasError('code', 'maxlength')">
+                    {{ 'RELATION-TYPE-CODE' | translate }}: {{ 'FIELD-MUSTBE-MAXIMUM-LENGTH' | translate }} 10</div>
+			</div>
+			<ion-item>
+				<ion-label position="floating">{{ 'RELATION-TYPE-NAME' | translate }}</ion-label>
+				<ion-input formControlName="name" id="name" name="name" #name
+					placeholder="{{ 'RELATION-TYPE-NAME' | translate }}" maxlength="60">
+				</ion-input>
+			</ion-item>
+			<div *ngIf="(relationTypeForm.controls['name'].dirty || relationTypeForm.controls['name'].touched)" class="errors">
+                <div *ngIf="hasError('name', 'required')">
+                    {{ 'RELATION-TYPE-NAME' | translate }}: {{ 'FIELD-IS-REQUIRED' | translate }}</div>
+                <div *ngIf="hasError('name', 'minlength')">
+                    {{ 'RELATION-TYPE-NAME' | translate }}: {{ 'FIELD-MUSTBE-MINIMUM-LENGTH' | translate }} 1</div>
+                <div *ngIf="hasError('name', 'maxlength')">
+                    {{ 'RELATION-TYPE-NAME' | translate }}: {{ 'FIELD-MUSTBE-MAXIMUM-LENGTH' | translate }} 60</div>
+			</div>
+			<ion-item>
+				<ion-checkbox formControlName="byDefault" id="byDefault" color="danger"></ion-checkbox>&nbsp;&nbsp;&nbsp;
+				<ion-label>{{ 'RELATION-TYPE-BYDEFAULT' | translate }}</ion-label>
+			</ion-item>
+		</ion-card-content>
+		<ion-footer>
+			<ion-toolbar color="light" style="padding-left: 20px;">
+			<ion-button color="primary" (click)="save(relationTypeForm.value)" 
+				[disabled]="!relationTypeForm.valid">{{ 'SAVE' | translate }}</ion-button>
+			<ion-button type="button" color="medium"
+				(click)="onCancel()">{{ 'CANCEL' | translate }}</ion-button>
+			</ion-toolbar>
+		</ion-footer>
+	</form>
+</ion-content>

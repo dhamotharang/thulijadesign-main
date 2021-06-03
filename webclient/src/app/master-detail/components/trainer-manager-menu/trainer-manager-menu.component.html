@@ -1,0 +1,23 @@
+<mat-toolbar color="secondary" class="mat-elevation-z2">
+	<mat-toolbar-row>
+		<button type="button" mat-icon-button (click)="back()">
+			<mat-icon>keyboard_arrow_left</mat-icon>
+		</button>&nbsp;&nbsp;
+		<a mat-button disabled style="color: black" *ngIf="trainer">
+			{{ trainer.user.firstName }}&nbsp;
+			{{ trainer.user.lastName }}&nbsp;
+		</a>
+		<span class="spacer"></span>
+		<a mat-button [routerLink]="['/masterdetail/trainermanagers', trainerId, 'trainerdetailmanagers']" routerLinkActive="active">
+			{{ 'TRAINERDETAILMANAGER' | translate }}</a>
+		<a mat-button [routerLink]="['/masterdetail/trainermanagers', trainerId, 'traineraddressmanagers']" routerLinkActive="active">
+			{{ 'TRAINERADDRESSMANAGER' | translate }}</a>
+		<a mat-button [routerLink]="['/masterdetail/trainermanagers', trainerId, 'trainerfamilymanagers']" routerLinkActive="active">
+			{{ 'TRAINERFAMILYMANAGER' | translate }}</a>
+		<a mat-button [routerLink]="['/masterdetail/trainermanagers', trainerId, 'trainereducationdetailmanagers']" routerLinkActive="active">
+			{{ 'TRAINEREDUCATIONDETAILMANAGER' | translate }}</a>
+		<a mat-button [routerLink]="['/masterdetail/trainermanagers', trainerId, 'traineroccupationmanagers']" routerLinkActive="active">
+			{{ 'TRAINEROCCUPATIONMANAGER' | translate }}</a>
+	</mat-toolbar-row>
+</mat-toolbar>
+<router-outlet></router-outlet>

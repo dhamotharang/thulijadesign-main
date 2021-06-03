@@ -1,0 +1,65 @@
+<ion-toolbar color="primary">
+	<ion-title>{{ 'ADDRESS-TYPE' | translate }} - {{ 'NEW' | translate }}</ion-title>
+</ion-toolbar>
+<ion-content padding>
+	<form [formGroup]="addressTypeForm" *ngIf="addressTypeForm">
+		<ion-card-content>
+			<ion-item>
+				<ion-label position="floating">{{ 'ADDRESS-TYPE-SEQUENCE' | translate }}</ion-label>
+                <ion-input formControlName="sequence" id="sequence" name="sequence" #sequence
+					placeholder="{{ 'ADDRESS-TYPE-SEQUENCE' | translate }}" min="1" max="25">
+				</ion-input>
+			</ion-item>
+			<div *ngIf="(addressTypeForm.controls['sequence'].dirty || addressTypeForm.controls['sequence'].touched)" class="errors">
+                <div *ngIf="hasError('sequence', 'required')">
+                    {{ 'ADDRESS-TYPE-SEQUENCE' | translate }}: {{ 'FIELD-IS-REQUIRED' | translate }}</div>
+                <div *ngIf="hasError('sequence', 'min')">
+                    {{ 'ADDRESS-TYPE-SEQUENCE' | translate }}: {{ 'FIELD-MUSTBE-MINIMUM' | translate }} 1</div>
+                <div *ngIf="hasError('sequence', 'max')">
+                    {{ 'ADDRESS-TYPE-SEQUENCE' | translate }}: {{ 'FIELD-MUSTBE-MAXIMUM' | translate }} 25</div>
+				<div *ngIf="hasError('sequence', 'pattern')">
+					{{ 'ADDRESS-TYPE-SEQUENCE' | translate }}: {{ 'FIELD-MUSTBE-NUMERIC' | translate }}</div>
+			</div>
+			<ion-item>
+				<ion-label position="floating">{{ 'ADDRESS-TYPE-CODE' | translate }}</ion-label>
+				<ion-input formControlName="code" id="code" name="code" #code
+					placeholder="{{ 'ADDRESS-TYPE-CODE' | translate }}" maxlength="10">
+				</ion-input>
+			</ion-item>
+			<div *ngIf="(addressTypeForm.controls['code'].dirty || addressTypeForm.controls['code'].touched)" class="errors">
+                <div *ngIf="hasError('code', 'required')">
+                    {{ 'ADDRESS-TYPE-CODE' | translate }}: {{ 'FIELD-IS-REQUIRED' | translate }}</div>
+                <div *ngIf="hasError('code', 'minlength')">
+                    {{ 'ADDRESS-TYPE-CODE' | translate }}: {{ 'FIELD-MUSTBE-MINIMUM-LENGTH' | translate }} 1</div>
+                <div *ngIf="hasError('code', 'maxlength')">
+                    {{ 'ADDRESS-TYPE-CODE' | translate }}: {{ 'FIELD-MUSTBE-MAXIMUM-LENGTH' | translate }} 10</div>
+			</div>
+			<ion-item>
+				<ion-label position="floating">{{ 'ADDRESS-TYPE-NAME' | translate }}</ion-label>
+				<ion-input formControlName="name" id="name" name="name" #name
+					placeholder="{{ 'ADDRESS-TYPE-NAME' | translate }}" maxlength="60">
+				</ion-input>
+			</ion-item>
+			<div *ngIf="(addressTypeForm.controls['name'].dirty || addressTypeForm.controls['name'].touched)" class="errors">
+                <div *ngIf="hasError('name', 'required')">
+                    {{ 'ADDRESS-TYPE-NAME' | translate }}: {{ 'FIELD-IS-REQUIRED' | translate }}</div>
+                <div *ngIf="hasError('name', 'minlength')">
+                    {{ 'ADDRESS-TYPE-NAME' | translate }}: {{ 'FIELD-MUSTBE-MINIMUM-LENGTH' | translate }} 1</div>
+                <div *ngIf="hasError('name', 'maxlength')">
+                    {{ 'ADDRESS-TYPE-NAME' | translate }}: {{ 'FIELD-MUSTBE-MAXIMUM-LENGTH' | translate }} 60</div>
+			</div>
+			<ion-item>
+				<ion-checkbox formControlName="byDefault" id="byDefault" color="danger"></ion-checkbox>&nbsp;&nbsp;&nbsp;
+				<ion-label>{{ 'ADDRESS-TYPE-BYDEFAULT' | translate }}</ion-label>
+			</ion-item>
+		</ion-card-content>
+		<ion-footer>
+			<ion-toolbar color="light" style="padding-left: 20px;">
+			<ion-button color="primary" (click)="save(addressTypeForm.value)" 
+				[disabled]="!addressTypeForm.valid">{{ 'SAVE' | translate }}</ion-button>
+			<ion-button type="button" color="medium"
+				(click)="onCancel()">{{ 'CANCEL' | translate }}</ion-button>
+			</ion-toolbar>
+		</ion-footer>
+	</form>
+</ion-content>

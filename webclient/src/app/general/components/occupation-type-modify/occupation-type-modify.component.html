@@ -1,0 +1,55 @@
+<h2 mat-dialog-title>{{ 'OCCUPATION-TYPE' | translate }} - {{ 'NEW' | translate }}</h2>
+<mat-dialog-content>
+	<form [formGroup]="occupationTypeForm" *ngIf="occupationTypeForm">
+		<mat-card-subtitle *ngIf="errorMessage" class="alert-danger">{{ errorMessage }}</mat-card-subtitle>
+		<mat-card-content class="my-form">
+			<mat-form-field>
+				<input matInput type="text" formControlName="sequence" id="sequence" 
+					name="sequence" placeholder="{{ 'OCCUPATION-TYPE-SEQUENCE' | translate }}" 
+					min="1" max="2000" required />
+				<mat-icon matPrefix style="padding-right: 20px;">list</mat-icon>
+                <mat-error *ngIf="hasError('sequence', 'required')">
+                    {{ 'OCCUPATION-TYPE-SEQUENCE' | translate }}: {{ 'FIELD-IS-REQUIRED' | translate }}</mat-error>
+                <mat-error *ngIf="hasError('sequence', 'min')">
+                    {{ 'OCCUPATION-TYPE-SEQUENCE' | translate }}: {{ 'FIELD-MUSTBE-MINIMUM' | translate }} 1</mat-error>
+                <mat-error *ngIf="hasError('sequence', 'max')">
+                    {{ 'OCCUPATION-TYPE-SEQUENCE' | translate }}: {{ 'FIELD-MUSTBE-MAXIMUM' | translate }} 2000</mat-error>
+				<mat-error *ngIf="hasError('sequence', 'pattern')">
+					{{ 'OCCUPATION-TYPE-SEQUENCE' | translate }}: {{ 'FIELD-MUSTBE-NUMERIC' | translate }}</mat-error>
+			</mat-form-field>
+			<mat-form-field>
+				<input matInput type="text" formControlName="code" id="code" 
+					name="code" placeholder="{{ 'OCCUPATION-TYPE-CODE' | translate }}" 
+					minlength="1" maxlength="10" required />
+                <mat-error *ngIf="hasError('code', 'required')">
+                    {{ 'OCCUPATION-TYPE-CODE' | translate }}: {{ 'FIELD-IS-REQUIRED' | translate }}</mat-error>
+                <mat-error *ngIf="hasError('code', 'minlength')">
+                    {{ 'OCCUPATION-TYPE-CODE' | translate }}: {{ 'FIELD-MUSTBE-MINIMUM-LENGTH' | translate }} 1</mat-error>
+                <mat-error *ngIf="hasError('code', 'maxlength')">
+                    {{ 'OCCUPATION-TYPE-CODE' | translate }}: {{ 'FIELD-MUSTBE-MAXIMUM-LENGTH' | translate }} 10</mat-error>
+			</mat-form-field>
+			<mat-form-field>
+				<input matInput type="text" formControlName="name" id="name" 
+					name="name" placeholder="{{ 'OCCUPATION-TYPE-NAME' | translate }}" 
+					minlength="1" maxlength="60" required />
+                <mat-error *ngIf="hasError('name', 'required')">
+                    {{ 'OCCUPATION-TYPE-NAME' | translate }}: {{ 'FIELD-IS-REQUIRED' | translate }}</mat-error>
+                <mat-error *ngIf="hasError('name', 'minlength')">
+                    {{ 'OCCUPATION-TYPE-NAME' | translate }}: {{ 'FIELD-MUSTBE-MINIMUM-LENGTH' | translate }} 1</mat-error>
+                <mat-error *ngIf="hasError('name', 'maxlength')">
+                    {{ 'OCCUPATION-TYPE-NAME' | translate }}: {{ 'FIELD-MUSTBE-MAXIMUM-LENGTH' | translate }} 60</mat-error>
+			</mat-form-field>
+			<section class="checkbox-section">
+				<mat-checkbox formControlName="byDefault" 
+					id="byDefault">byDefault
+				</mat-checkbox>
+			</section>
+        </mat-card-content>
+    </form>
+</mat-dialog-content>
+<mat-dialog-actions>
+    <button mat-raised-button color="primary" (click)="save(occupationTypeForm.value)" 
+        [disabled]="!occupationTypeForm.valid">{{ 'SAVE' | translate }}</button>
+    <button type="button" mat-raised-button color="warn"
+        (click)="onCancel()">{{ 'CANCEL' | translate }}</button>
+</mat-dialog-actions>

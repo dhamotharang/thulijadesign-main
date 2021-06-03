@@ -1,0 +1,116 @@
+<h2 mat-dialog-title>{{ 'TRAINER-DETAIL' | translate }} - {{ 'NEW' | translate }}</h2>
+<mat-dialog-content>
+	<form [formGroup]="trainerDetailForm" *ngIf="trainerDetailForm">
+		<mat-card-subtitle *ngIf="errorMessage" class="alert-danger">{{ errorMessage }}</mat-card-subtitle>
+		<mat-card-content class="my-form">
+			<mat-form-field>
+				<mat-label>{{ 'TRAINER-DETAIL-DATEOFBIRTH' | translate }}</mat-label>
+				<input formControlName="dateOfBirth" matInput [matDatepicker]="dateOfBirth" placeholder="{{ 'TRAINER-DETAIL-DATEOFBIRTH' | translate }}">
+				<mat-datepicker-toggle matSuffix [for]="dateOfBirth"></mat-datepicker-toggle>
+				<mat-datepicker #dateOfBirth></mat-datepicker>
+                <mat-error *ngIf="hasError('dateOfBirth', 'required')">
+                    {{ 'TRAINER-DETAIL-DATEOFBIRTH' | translate }}: {{ 'FIELD-IS-REQUIRED' | translate }}</mat-error>
+                <mat-error *ngIf="hasError('dateOfBirth', 'minlength')">
+                    {{ 'TRAINER-DETAIL-DATEOFBIRTH' | translate }}: {{ 'FIELD-MUSTBE-MINIMUM-LENGTH' | translate }} 1</mat-error>
+                <mat-error *ngIf="hasError('dateOfBirth', 'maxlength')">
+                    {{ 'TRAINER-DETAIL-DATEOFBIRTH' | translate }}: {{ 'FIELD-MUSTBE-MAXIMUM-LENGTH' | translate }} 20</mat-error>
+			</mat-form-field>
+			<mat-form-field>
+				<input matInput type="text" formControlName="age" id="age" 
+					name="age" placeholder="{{ 'TRAINER-DETAIL-AGE' | translate }}" 
+					min="1" max="200" required />
+                <mat-error *ngIf="hasError('age', 'required')">
+                    {{ 'TRAINER-DETAIL-AGE' | translate }}: {{ 'FIELD-IS-REQUIRED' | translate }}</mat-error>
+                <mat-error *ngIf="hasError('age', 'min')">
+                    {{ 'TRAINER-DETAIL-AGE' | translate }}: {{ 'FIELD-MUSTBE-MINIMUM' | translate }} 1</mat-error>
+                <mat-error *ngIf="hasError('age', 'max')">
+                    {{ 'TRAINER-DETAIL-AGE' | translate }}: {{ 'FIELD-MUSTBE-MAXIMUM' | translate }} 200</mat-error>
+				<mat-error *ngIf="hasError('age', 'pattern')">
+					{{ 'TRAINER-DETAIL-AGE' | translate }}: {{ 'FIELD-MUSTBE-NUMERIC' | translate }}</mat-error>
+			</mat-form-field>
+			<mat-form-field>
+				<mat-label>{{ 'TRAINER-DETAIL-MARITALSTATUS' | translate }}</mat-label>
+				<mat-select formControlName="maritalStatus" id="maritalStatus" name="maritalStatus" 
+						[compareWith]="compareMaritalStatus" required>
+				    <mat-option *ngFor="let maritalStatus of maritalStatuses" [value]="maritalStatus">
+				    	{{ maritalStatus.name }}</mat-option>
+				</mat-select>
+				<mat-error *ngIf="hasError('maritalStatus', 'required')">
+					{{ 'TRAINER-DETAIL-MARITALSTATUS' | translate }}: {{ 'FIELD-IS-REQUIRED' | translate }}</mat-error>
+			</mat-form-field>
+			<mat-form-field>
+				<input matInput type="text" formControlName="dependents" id="dependents" 
+					name="dependents" placeholder="{{ 'TRAINER-DETAIL-DEPENDENTS' | translate }}" 
+					min="1" max="200" />
+                <mat-error *ngIf="hasError('dependents', 'min')">
+                    {{ 'TRAINER-DETAIL-DEPENDENTS' | translate }}: {{ 'FIELD-MUSTBE-MINIMUM' | translate }} 1</mat-error>
+                <mat-error *ngIf="hasError('dependents', 'max')">
+                    {{ 'TRAINER-DETAIL-DEPENDENTS' | translate }}: {{ 'FIELD-MUSTBE-MAXIMUM' | translate }} 200</mat-error>
+				<mat-error *ngIf="hasError('dependents', 'pattern')">
+					{{ 'TRAINER-DETAIL-DEPENDENTS' | translate }}: {{ 'FIELD-MUSTBE-NUMERIC' | translate }}</mat-error>
+			</mat-form-field>
+			<mat-form-field>
+				<mat-label>{{ 'TRAINER-DETAIL-RACE' | translate }}</mat-label>
+				<mat-select formControlName="race" id="race" name="race" 
+						[compareWith]="compareRace" required>
+				    <mat-option *ngFor="let race of races" [value]="race">
+				    	{{ race.name }}</mat-option>
+				</mat-select>
+				<mat-error *ngIf="hasError('race', 'required')">
+					{{ 'TRAINER-DETAIL-RACE' | translate }}: {{ 'FIELD-IS-REQUIRED' | translate }}</mat-error>
+			</mat-form-field>
+			<mat-form-field>
+				<mat-label>{{ 'TRAINER-DETAIL-RELIGION' | translate }}</mat-label>
+				<mat-select formControlName="religion" id="religion" name="religion" 
+						[compareWith]="compareReligion" required>
+				    <mat-option *ngFor="let religion of religions" [value]="religion">
+				    	{{ religion.name }}</mat-option>
+				</mat-select>
+				<mat-error *ngIf="hasError('religion', 'required')">
+					{{ 'TRAINER-DETAIL-RELIGION' | translate }}: {{ 'FIELD-IS-REQUIRED' | translate }}</mat-error>
+			</mat-form-field>
+			<mat-form-field>
+				<input matInput type="text" formControlName="passportNumber" id="passportNumber" 
+					name="passportNumber" placeholder="{{ 'TRAINER-DETAIL-PASSPORTNUMBER' | translate }}" 
+					minlength="1" maxlength="20" />
+                <mat-error *ngIf="hasError('passportNumber', 'minlength')">
+                    {{ 'TRAINER-DETAIL-PASSPORTNUMBER' | translate }}: {{ 'FIELD-MUSTBE-MINIMUM-LENGTH' | translate }} 1</mat-error>
+                <mat-error *ngIf="hasError('passportNumber', 'maxlength')">
+                    {{ 'TRAINER-DETAIL-PASSPORTNUMBER' | translate }}: {{ 'FIELD-MUSTBE-MAXIMUM-LENGTH' | translate }} 20</mat-error>
+			</mat-form-field>
+			<mat-form-field>
+				<input matInput type="text" formControlName="visaNumber" id="visaNumber" 
+					name="visaNumber" placeholder="{{ 'TRAINER-DETAIL-VISANUMBER' | translate }}" 
+					minlength="1" maxlength="20" />
+                <mat-error *ngIf="hasError('visaNumber', 'minlength')">
+                    {{ 'TRAINER-DETAIL-VISANUMBER' | translate }}: {{ 'FIELD-MUSTBE-MINIMUM-LENGTH' | translate }} 1</mat-error>
+                <mat-error *ngIf="hasError('visaNumber', 'maxlength')">
+                    {{ 'TRAINER-DETAIL-VISANUMBER' | translate }}: {{ 'FIELD-MUSTBE-MAXIMUM-LENGTH' | translate }} 20</mat-error>
+			</mat-form-field>
+			<mat-form-field>
+				<input matInput type="text" formControlName="visaIssueDate" id="visaIssueDate" 
+					name="visaIssueDate" placeholder="{{ 'TRAINER-DETAIL-VISAISSUEDATE' | translate }}" 
+					minlength="1" maxlength="20" />
+                <mat-error *ngIf="hasError('visaIssueDate', 'minlength')">
+                    {{ 'TRAINER-DETAIL-VISAISSUEDATE' | translate }}: {{ 'FIELD-MUSTBE-MINIMUM-LENGTH' | translate }} 1</mat-error>
+                <mat-error *ngIf="hasError('visaIssueDate', 'maxlength')">
+                    {{ 'TRAINER-DETAIL-VISAISSUEDATE' | translate }}: {{ 'FIELD-MUSTBE-MAXIMUM-LENGTH' | translate }} 20</mat-error>
+			</mat-form-field>
+			<mat-form-field>
+				<input matInput type="text" formControlName="visaExpiryDate" id="visaExpiryDate" 
+					name="visaExpiryDate" placeholder="{{ 'TRAINER-DETAIL-VISAEXPIRYDATE' | translate }}" 
+					minlength="1" maxlength="20" />
+                <mat-error *ngIf="hasError('visaExpiryDate', 'minlength')">
+                    {{ 'TRAINER-DETAIL-VISAEXPIRYDATE' | translate }}: {{ 'FIELD-MUSTBE-MINIMUM-LENGTH' | translate }} 1</mat-error>
+                <mat-error *ngIf="hasError('visaExpiryDate', 'maxlength')">
+                    {{ 'TRAINER-DETAIL-VISAEXPIRYDATE' | translate }}: {{ 'FIELD-MUSTBE-MAXIMUM-LENGTH' | translate }} 20</mat-error>
+			</mat-form-field>
+        </mat-card-content>
+    </form>
+</mat-dialog-content>
+<mat-dialog-actions>
+    <button mat-raised-button color="primary" (click)="save(trainerDetailForm.value)" 
+        [disabled]="!trainerDetailForm.valid">{{ 'SAVE' | translate }}</button>
+    <button type="button" mat-raised-button color="warn"
+        (click)="onCancel()">{{ 'CANCEL' | translate }}</button>
+</mat-dialog-actions>

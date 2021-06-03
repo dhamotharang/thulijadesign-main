@@ -1,0 +1,101 @@
+<ion-toolbar color="primary">
+	<ion-title>{{ 'ORGANIZATION' | translate }} - {{ 'NEW' | translate }}</ion-title>
+</ion-toolbar>
+<ion-content padding>
+	<form [formGroup]="organizationForm" *ngIf="organizationForm">
+		<ion-card-content>
+			<ion-item>
+				<ion-label>{{ 'ORGANIZATION-ORGANIZATIONTYPE' | translate }}</ion-label>
+				<ion-select formControlName="organizationType" id="organizationType" name="organizationType" 
+						[compareWith]="compareOrganizationType" required>
+					<ion-select-option *ngFor="let organizationType of organizationTypes" [value]="organizationType">
+						{{ organizationType.name }}</ion-select-option>
+				</ion-select>
+			</ion-item>
+			<div *ngIf="(organizationForm.controls['organizationType'].dirty || organizationForm.controls['organizationType'].touched)" class="errors">
+				<div *ngIf="hasError('organizationType', 'required')">
+					{{ 'ORGANIZATION-ORGANIZATIONTYPE' | translate }}: {{ 'FIELD-IS-REQUIRED' | translate }}</div>
+			</div>
+			<ion-item>
+				<ion-label position="floating">{{ 'ORGANIZATION-ABBREVIATION' | translate }}</ion-label>
+				<ion-input formControlName="abbreviation" id="abbreviation" name="abbreviation" #abbreviation
+					placeholder="{{ 'ORGANIZATION-ABBREVIATION' | translate }}" maxlength="50">
+				</ion-input>
+			</ion-item>
+			<div *ngIf="(organizationForm.controls['abbreviation'].dirty || organizationForm.controls['abbreviation'].touched)" class="errors">
+                <div *ngIf="hasError('abbreviation', 'required')">
+                    {{ 'ORGANIZATION-ABBREVIATION' | translate }}: {{ 'FIELD-IS-REQUIRED' | translate }}</div>
+                <div *ngIf="hasError('abbreviation', 'minlength')">
+                    {{ 'ORGANIZATION-ABBREVIATION' | translate }}: {{ 'FIELD-MUSTBE-MINIMUM-LENGTH' | translate }} 1</div>
+                <div *ngIf="hasError('abbreviation', 'maxlength')">
+                    {{ 'ORGANIZATION-ABBREVIATION' | translate }}: {{ 'FIELD-MUSTBE-MAXIMUM-LENGTH' | translate }} 50</div>
+			</div>
+			<ion-item>
+				<ion-label position="floating">{{ 'ORGANIZATION-NAME' | translate }}</ion-label>
+				<ion-input formControlName="name" id="name" name="name" #name
+					placeholder="{{ 'ORGANIZATION-NAME' | translate }}" maxlength="150">
+				</ion-input>
+			</ion-item>
+			<div *ngIf="(organizationForm.controls['name'].dirty || organizationForm.controls['name'].touched)" class="errors">
+                <div *ngIf="hasError('name', 'required')">
+                    {{ 'ORGANIZATION-NAME' | translate }}: {{ 'FIELD-IS-REQUIRED' | translate }}</div>
+                <div *ngIf="hasError('name', 'minlength')">
+                    {{ 'ORGANIZATION-NAME' | translate }}: {{ 'FIELD-MUSTBE-MINIMUM-LENGTH' | translate }} 1</div>
+                <div *ngIf="hasError('name', 'maxlength')">
+                    {{ 'ORGANIZATION-NAME' | translate }}: {{ 'FIELD-MUSTBE-MAXIMUM-LENGTH' | translate }} 150</div>
+			</div>
+			<ion-item>
+				<ion-label position="floating">{{ 'ORGANIZATION-DOMAINURL' | translate }}</ion-label>
+				<ion-input formControlName="domainUrl" id="domainUrl" name="domainUrl" #domainUrl
+					placeholder="{{ 'ORGANIZATION-DOMAINURL' | translate }}" maxlength="120">
+				</ion-input>
+			</ion-item>
+			<div *ngIf="(organizationForm.controls['domainUrl'].dirty || organizationForm.controls['domainUrl'].touched)" class="errors">
+                <div *ngIf="hasError('domainUrl', 'minlength')">
+                    {{ 'ORGANIZATION-DOMAINURL' | translate }}: {{ 'FIELD-MUSTBE-MINIMUM-LENGTH' | translate }} 1</div>
+                <div *ngIf="hasError('domainUrl', 'maxlength')">
+                    {{ 'ORGANIZATION-DOMAINURL' | translate }}: {{ 'FIELD-MUSTBE-MAXIMUM-LENGTH' | translate }} 120</div>
+			</div>
+			<ion-item>
+				<ion-label position="floating">{{ 'ORGANIZATION-GOOGLEANALYTICCODE' | translate }}</ion-label>
+				<ion-input formControlName="googleAnalyticCode" id="googleAnalyticCode" name="googleAnalyticCode" #googleAnalyticCode
+					placeholder="{{ 'ORGANIZATION-GOOGLEANALYTICCODE' | translate }}" maxlength="20">
+				</ion-input>
+			</ion-item>
+			<div *ngIf="(organizationForm.controls['googleAnalyticCode'].dirty || organizationForm.controls['googleAnalyticCode'].touched)" class="errors">
+                <div *ngIf="hasError('googleAnalyticCode', 'minlength')">
+                    {{ 'ORGANIZATION-GOOGLEANALYTICCODE' | translate }}: {{ 'FIELD-MUSTBE-MINIMUM-LENGTH' | translate }} 1</div>
+                <div *ngIf="hasError('googleAnalyticCode', 'maxlength')">
+                    {{ 'ORGANIZATION-GOOGLEANALYTICCODE' | translate }}: {{ 'FIELD-MUSTBE-MAXIMUM-LENGTH' | translate }} 20</div>
+			</div>
+			<ion-item>
+				<ion-checkbox formControlName="organizationAdministrator" id="organizationAdministrator" color="danger"></ion-checkbox>&nbsp;&nbsp;&nbsp;
+				<ion-label>{{ 'ORGANIZATION-ORGANIZATIONADMINISTRATOR' | translate }}</ion-label>
+			</ion-item>
+			<ion-item>
+				<ion-checkbox formControlName="organizationTypeAdministrator" id="organizationTypeAdministrator" color="danger"></ion-checkbox>&nbsp;&nbsp;&nbsp;
+				<ion-label>{{ 'ORGANIZATION-ORGANIZATIONTYPEADMINISTRATOR' | translate }}</ion-label>
+			</ion-item>
+			<ion-item>
+				<ion-label position="floating">{{ 'ORGANIZATION-PROFILE' | translate }}</ion-label>
+				<ion-input formControlName="profile" id="profile" name="profile" #profile
+					placeholder="{{ 'ORGANIZATION-PROFILE' | translate }}" maxlength="25">
+				</ion-input>
+			</ion-item>
+			<div *ngIf="(organizationForm.controls['profile'].dirty || organizationForm.controls['profile'].touched)" class="errors">
+                <div *ngIf="hasError('profile', 'minlength')">
+                    {{ 'ORGANIZATION-PROFILE' | translate }}: {{ 'FIELD-MUSTBE-MINIMUM-LENGTH' | translate }} 1</div>
+                <div *ngIf="hasError('profile', 'maxlength')">
+                    {{ 'ORGANIZATION-PROFILE' | translate }}: {{ 'FIELD-MUSTBE-MAXIMUM-LENGTH' | translate }} 25</div>
+			</div>
+		</ion-card-content>
+		<ion-footer>
+			<ion-toolbar color="light" style="padding-left: 20px;">
+			<ion-button color="primary" (click)="save(organizationForm.value)" 
+				[disabled]="!organizationForm.valid">{{ 'SAVE' | translate }}</ion-button>
+			<ion-button type="button" color="medium"
+				(click)="onCancel()">{{ 'CANCEL' | translate }}</ion-button>
+			</ion-toolbar>
+		</ion-footer>
+	</form>
+</ion-content>

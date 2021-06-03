@@ -1,0 +1,106 @@
+<ion-content class="profile-detail">
+	<ion-header class="ion-no-border">
+		<ion-toolbar>
+			<ion-buttons slot="start">
+				<ion-menu-button></ion-menu-button>
+			</ion-buttons>
+			<ion-buttons slot="end">
+				<ion-button>
+					<ion-icon slot="icon-only" ios="call-outline" md="call-sharp"></ion-icon>
+				</ion-button>
+				<ion-button>
+					<ion-icon slot="icon-only" ios="share-outline" md="share-sharp"></ion-icon>
+				</ion-button>
+			</ion-buttons>
+		</ion-toolbar>
+	</ion-header>
+	<div class="profile-background" *ngIf="trainers">
+		<img src="/assets/img/nophoto.png">
+		<h3>{{ trainers[0].user.firstName }}&nbsp;{{ trainers[0].user.lastName }}</h3>
+	</div>
+	<div class="profile-detail" *ngIf="trainers">
+		<ion-card *ngFor="let trainer of trainers">
+			<ion-card-content>
+				<ion-list lines="none">
+					<ion-item class="ion-no-padding">
+						<ion-label>{{ 'TRAINER-ORGANIZATION' | translate }}: </ion-label>
+						<ion-text>{{ trainer.user.organization.name }}</ion-text>
+					</ion-item>
+					<ion-item class="ion-no-padding">
+						<ion-label>{{ 'TRAINER-BRANCH' | translate }}: </ion-label>
+						<ion-text>{{ trainer.user.branch.name }}</ion-text>
+					</ion-item>
+					<ion-item class="ion-no-padding">
+						<ion-label>{{ 'TRAINER-DEPARTMENT' | translate }}: </ion-label>
+						<ion-text>{{ trainer.user.department.name }}</ion-text>
+					</ion-item>
+					<ion-item class="ion-no-padding">
+						<ion-label>{{ 'TRAINER-ICNUMBER' | translate }}: </ion-label>
+						<ion-text>{{ trainer.icNumber }}</ion-text>
+					</ion-item>
+					<ion-item class="ion-no-padding">
+						<ion-label>{{ 'TRAINER-SALUTATION' | translate }}: </ion-label>
+						<ion-text>{{ trainer.salutation.name }}</ion-text>
+					</ion-item>
+					<ion-item class="ion-no-padding">
+						<ion-label>{{ 'TRAINER-FIRSTNAME' | translate }}: </ion-label>
+						<ion-text>{{ trainer.user.firstName }}</ion-text>
+					</ion-item>
+					<ion-item class="ion-no-padding">
+						<ion-label>{{ 'TRAINER-LASTNAME' | translate }}: </ion-label>
+						<ion-text>{{ trainer.user.lastName }}</ion-text>
+					</ion-item>
+					<ion-item class="ion-no-padding">
+						<ion-label>{{ 'TRAINER-GENDER' | translate }}: </ion-label>
+						<ion-text>{{ trainer.gender.name }}</ion-text>
+					</ion-item>
+					<ion-item class="ion-no-padding">
+						<ion-label>{{ 'TRAINER-CITIZEN' | translate }}: </ion-label>
+						<ion-text>{{ trainer.citizen.name }}</ion-text>
+					</ion-item>
+					<ion-item class="ion-no-padding">
+						<ion-label>{{ 'TRAINER-HANDPHONENUMBER' | translate }}: </ion-label>
+						<ion-text>{{ trainer.handphoneNumber }}</ion-text>
+					</ion-item>
+					<ion-item class="ion-no-padding">
+						<ion-label>{{ 'TRAINER-EMAILADDRESS' | translate }}: </ion-label>
+						<ion-text>{{ trainer.user.emailAddress }}</ion-text>
+					</ion-item>
+					<ion-item class="ion-no-padding">
+						<ion-label>{{ 'TRAINER-PASSWORD' | translate }}: </ion-label>
+						<ion-text>{{ trainer.user.password }}</ion-text>
+					</ion-item>
+					<ion-item class="ion-no-padding">
+						<ion-label>{{ 'TRAINER-NUMLOGINS' | translate }}: </ion-label>
+						<ion-text>{{ trainer.user.numLogins }}</ion-text>
+					</ion-item>
+					<ion-item class="ion-no-padding">
+						<ion-label>{{ 'TRAINER-LASTLOGINTIME' | translate }}: </ion-label>
+						<ion-text>{{ trainer.lastLoginTime | date }}</ion-text>
+					</ion-item>
+					<ion-item class="ion-no-padding">
+						<ion-label>{{ 'TRAINER-STATUS' | translate }}: </ion-label>
+						<ion-text>{{ trainer.user.status.name }}</ion-text>
+					</ion-item>
+					<hr/>
+					<ion-row no-padding>
+						<ion-col col-12 no-padding style="text-align: center">
+							<ion-chip color="dark" button (click)="edit(trainer)">
+								<ion-icon name="create-outline"></ion-icon>
+								<ion-label>Edit</ion-label>
+							</ion-chip>
+							<ion-chip color="dark" button (click)="delete(trainer)">
+								<ion-icon name="trash-outline"></ion-icon>
+								<ion-label>Delete</ion-label>
+							</ion-chip>
+							<ion-chip color="dark" button (click)="print(trainer)">
+								<ion-icon name="print-outline"></ion-icon>
+								<ion-label>Print</ion-label>
+							</ion-chip>
+						</ion-col>
+					</ion-row>
+				</ion-list>
+			</ion-card-content>
+		</ion-card>
+	</div>
+</ion-content>

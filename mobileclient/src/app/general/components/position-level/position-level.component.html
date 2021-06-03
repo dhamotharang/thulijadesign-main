@@ -1,0 +1,47 @@
+<ion-toolbar color="primary">
+	<ion-buttons slot="start">
+		<ion-menu-button></ion-menu-button>
+	</ion-buttons>
+	<ion-title>{{ 'POSITION-LEVEL' | translate }}</ion-title>
+	<ion-buttons slot="end" color="success">
+		<ion-button fill="clear" (click)="add()">
+			<ion-icon slot="icon-only" name="add-circle-outline"></ion-icon>
+		</ion-button>
+	</ion-buttons>
+</ion-toolbar>
+<ion-content padding>
+	<ion-card *ngFor="let positionLevel of positionLevels">
+		<ion-card-content style="padding: bottom 0px;">
+			<h2>
+				<b>{{ 'POSITION-LEVEL-SEQUENCE' | translate }}: </b>
+				{{ positionLevel.sequence }}
+			</h2>
+			<h2>
+				<b>{{ 'POSITION-LEVEL-CODE' | translate }}: </b>
+				{{ positionLevel.code }}
+			</h2>
+			<h2>
+				<b>{{ 'POSITION-LEVEL-NAME' | translate }}: </b>
+				{{ positionLevel.name }}
+			</h2>
+			<h2>
+				<b>{{ 'POSITION-LEVEL-BYDEFAULT' | translate }}: </b>
+				{{ positionLevel.byDefault }}
+			</h2>
+			<ion-row no-padding>
+				<ion-col col-9 no-padding></ion-col>
+				<ion-col col-3 no-padding>
+					<ion-button fill="clear" size="small" (click)="edit(positionLevel)">
+						<ion-icon name="create-outline"></ion-icon>
+					</ion-button>
+					<ion-button fill="clear" size="small" (click)="delete(positionLevel)">
+						<ion-icon name="trash-outline"></ion-icon>
+					</ion-button>
+					<ion-button fill="clear" size="small" (click)="print(positionLevel)">
+						<ion-icon name="print-outline"></ion-icon>
+					</ion-button>
+				</ion-col>
+			</ion-row>
+		</ion-card-content>
+	</ion-card>
+</ion-content>

@@ -1,0 +1,62 @@
+<ion-toolbar color="primary">
+	<ion-buttons slot="start">
+		<ion-menu-button></ion-menu-button>
+	</ion-buttons>
+	<ion-title>{{ 'TRAINER-DETAIL' | translate }}</ion-title>
+	<ion-buttons slot="end" color="success">
+		<ion-button fill="clear" (click)="add()">
+			<ion-icon slot="icon-only" name="add-circle-outline"></ion-icon>
+		</ion-button>
+	</ion-buttons>
+</ion-toolbar>
+<ion-content padding>
+	<ion-card *ngFor="let trainerDetail of trainerDetails">
+		<ion-card-content style="padding: bottom 0px;">
+			<h2>
+				<b>{{ 'TRAINER-DETAIL-TRAINER' | translate }}:</b>&nbsp;
+				{{ trainerDetail.trainer.user.firstName }} {{ trainerDetail.trainer.user.lastName }}
+			</h2>
+			<h2>
+				<b>{{ 'TRAINER-DETAIL-DATEOFBIRTH' | translate }}:</b>&nbsp;
+				{{ trainerDetail.dateOfBirth | date }}
+			</h2>
+			<h2>
+				<b>{{ 'TRAINER-DETAIL-AGE' | translate }}:</b>&nbsp;
+				{{ trainerDetail.age }}
+			</h2>
+			<h2>
+				<b>{{ 'TRAINER-DETAIL-MARITALSTATUS' | translate }}:</b>&nbsp;
+				{{ trainerDetail.maritalStatus.name }}
+			</h2>
+			<h2>
+				<b>{{ 'TRAINER-DETAIL-DEPENDENTS' | translate }}:</b>&nbsp;
+				{{ trainerDetail.dependents }}
+			</h2>
+			<h2>
+				<b>{{ 'TRAINER-DETAIL-RACE' | translate }}:</b>&nbsp;
+				{{ trainerDetail.race.name }}
+			</h2>
+			<h2>
+				<b>{{ 'TRAINER-DETAIL-RELIGION' | translate }}:</b>&nbsp;
+				{{ trainerDetail.religion.name }}
+			</h2>
+			<ion-row no-padding>
+				<ion-col size="4" no-padding></ion-col>
+				<ion-col size="8" no-padding>
+					<ion-button fill="clear" size="small" (click)="edit(trainerDetail)">
+						<ion-icon name="create-outline"></ion-icon>
+					</ion-button>
+					<ion-button fill="clear" size="small" (click)="delete(trainerDetail)">
+						<ion-icon name="trash-outline"></ion-icon>
+					</ion-button>
+					<ion-button fill="clear" size="small" (click)="print(trainerDetail)">
+						<ion-icon name="print-outline"></ion-icon>
+					</ion-button>
+					<ion-button fill="clear" size="small" (click)="showDetail(trainerDetail)">
+						<ion-icon name="list-outline"></ion-icon>
+					</ion-button>
+				</ion-col>
+			</ion-row>
+		</ion-card-content>
+	</ion-card>
+</ion-content>

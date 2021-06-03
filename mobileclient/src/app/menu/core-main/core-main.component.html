@@ -1,0 +1,28 @@
+<ion-toolbar color="primary">
+	<ion-buttons slot="start">
+		<ion-menu-button></ion-menu-button>
+	</ion-buttons>
+	<ion-title>CoreMain</ion-title>
+</ion-toolbar>
+<ion-content>
+	<ion-list>
+		<ion-item [routerLink]="['/core/organizationtypes']">
+			{{ 'ORGANIZATION-TYPE' | translate }} </ion-item>
+		<ion-item [routerLink]="['/core/organizations']">
+			{{ 'ORGANIZATION' | translate }} </ion-item>
+		<ion-item [routerLink]="['/core/branches']">
+			{{ 'BRANCH' | translate }} </ion-item>
+		<ion-item [routerLink]="['/core/departments']">
+			{{ 'DEPARTMENT' | translate }} </ion-item>
+		<ion-item [routerLink]="['/core/users']">
+			{{ 'USER' | translate }} </ion-item>
+		<ion-item [routerLink]="['/core/groups']">
+			{{ 'GROUP' | translate }} </ion-item>
+		<ion-item [routerLink]="['/core/usergroups']">
+			{{ 'USER-GROUP' | translate }} </ion-item>
+		<ion-item [routerLink]="['/coremain', {outlets: { 'sidebar':['masterdetail', 'groupmanagers'] }}]">
+			{{ 'GROUP-MANAGER' | translate }} </ion-item>
+		<ion-item [routerLink]="['/core/statuses']">
+			{{ 'STATUS' | translate }} </ion-item>
+	</ion-list>
+</ion-content>

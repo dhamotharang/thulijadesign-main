@@ -1,0 +1,118 @@
+<div class="container" fxLayout="row" fxLayout.xs="column" fxLayoutWrap 
+	fxLayoutGap="0.5%" fxLayoutAlign="center" *ngIf="user">
+	<div fxFlex="30%">
+		<mat-card>
+			<img mat-card-image src="/assets/nophoto.jpg" alt="Photo of a Shiba Inu">
+			<mat-card-content>
+				<mat-card-title>{{ user.firstName }}&nbsp;{{ user.lastName }}</mat-card-title>
+			</mat-card-content>
+		</mat-card>
+	</div>
+	<div fxFlex="70%">
+		<mat-card>
+			<mat-card-header> 
+				<mat-card-title>
+					{{ 'USER' | translate }}
+				</mat-card-title>
+			</mat-card-header>
+			<mat-card-content class="dashboard-card-content">
+				<table>
+					<tr>
+						<td>&nbsp;</td>
+						<td>&nbsp;</td>
+						<td>&nbsp;</td>
+						<td>&nbsp;</td>
+					</tr>
+    				<tr>
+    					<td>&nbsp;</td>
+    					<td><span class="mat-subheading-1">{{ 'USER-ORGANIZATION' | translate }}</span></td>
+    					<td>
+							<span class="mat-subheading-1">{{ user.organization.name }}</span>
+						</td>
+						<td>&nbsp;</td>
+					</tr>
+    				<tr>
+    					<td>&nbsp;</td>
+    					<td><span class="mat-subheading-1">{{ 'USER-BRANCH' | translate }}</span></td>
+    					<td>
+							<span class="mat-subheading-1">{{ user.branch.name }}</span>
+						</td>
+						<td>&nbsp;</td>
+					</tr>
+    				<tr>
+    					<td>&nbsp;</td>
+    					<td><span class="mat-subheading-1">{{ 'USER-DEPARTMENT' | translate }}</span></td>
+    					<td>
+							<span class="mat-subheading-1">{{ user.department.name }}</span>
+						</td>
+						<td>&nbsp;</td>
+					</tr>
+    				<tr>
+    					<td>&nbsp;</td>
+    					<td><span class="mat-subheading-1">{{ 'USER-FIRSTNAME' | translate }}</span></td>
+    					<td>
+							<span class="mat-subheading-1">{{ user.firstName }}</span>
+						</td>
+						<td>&nbsp;</td>
+					</tr>
+    				<tr>
+    					<td>&nbsp;</td>
+    					<td><span class="mat-subheading-1">{{ 'USER-LASTNAME' | translate }}</span></td>
+    					<td>
+							<span class="mat-subheading-1">{{ user.lastName }}</span>
+						</td>
+						<td>&nbsp;</td>
+					</tr>
+    				<tr>
+    					<td>&nbsp;</td>
+    					<td><span class="mat-subheading-1">{{ 'USER-EMAILADDRESS' | translate }}</span></td>
+    					<td>
+							<span class="mat-subheading-1">{{ user.emailAddress }}</span>
+						</td>
+						<td>&nbsp;</td>
+					</tr>
+    				<tr>
+    					<td>&nbsp;</td>
+    					<td><span class="mat-subheading-1">{{ 'USER-PASSWORD' | translate }}</span></td>
+    					<td>
+							<span class="mat-subheading-1">{{ user.password }}</span>
+						</td>
+						<td>&nbsp;</td>
+					</tr>
+    				<tr>
+    					<td>&nbsp;</td>
+    					<td><span class="mat-subheading-1">{{ 'USER-NUMLOGINS' | translate }}</span></td>
+    					<td>
+							<span class="mat-subheading-1">{{ user.numLogins }}</span>
+						</td>
+						<td>&nbsp;</td>
+					</tr>
+    				<tr>
+    					<td>&nbsp;</td>
+    					<td><span class="mat-subheading-1">{{ 'USER-LASTLOGINTIME' | translate }}</span></td>
+    					<td>
+							<span class="mat-subheading-1">{{ user.lastLoginTime | date }}</span>
+						</td>
+						<td>&nbsp;</td>
+					</tr>
+    				<tr>
+    					<td>&nbsp;</td>
+    					<td><span class="mat-subheading-1">{{ 'USER-STATUS' | translate }}</span></td>
+    					<td>
+							<span class="mat-subheading-1">{{ user.status.name }}</span>
+						</td>
+						<td>&nbsp;</td>
+					</tr>
+    				<tr>
+    					<td>&nbsp;</td>
+    					<td><span class="mat-subheading-1">{{ 'USER-PROFILE' | translate }}</span></td>
+    					<td>
+							<span class="mat-subheading-1">{{ user.profile }}</span>
+						</td>
+						<td>&nbsp;</td>
+					</tr>
+				</table>
+			</mat-card-content>
+		</mat-card>
+	</div>
+</div>

@@ -1,0 +1,11 @@
+.mat-toolbar {
+	min-height: 48px !important;
+	height: 48px !important;
+	background-color: #10174C;
+}
+
+.mat-toolbar-row {
+	min-height: 48px !important;
+	height: 48px !important;
+	background-color: #10174C;
+}

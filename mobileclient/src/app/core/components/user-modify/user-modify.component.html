@@ -1,0 +1,167 @@
+<ion-toolbar color="primary">
+	<ion-title>{{ 'USER' | translate }} - {{ 'NEW' | translate }}</ion-title>
+</ion-toolbar>
+<ion-content padding>
+	<form [formGroup]="userForm" *ngIf="userForm">
+		<ion-card-content>
+			<ion-item>
+				<ion-label>{{ 'USER-ORGANIZATION' | translate }}</ion-label>
+				<ion-select formControlName="organization" id="organization" name="organization" 
+						[compareWith]="compareOrganization" required>
+					<ion-select-option *ngFor="let organization of organizations" [value]="organization">
+						{{ organization.name }}</ion-select-option>
+				</ion-select>
+			</ion-item>
+			<div *ngIf="(userForm.controls['organization'].dirty || userForm.controls['organization'].touched)" class="errors">
+				<div *ngIf="hasError('organization', 'required')">
+					{{ 'USER-ORGANIZATION' | translate }}: {{ 'FIELD-IS-REQUIRED' | translate }}</div>
+			</div>
+			<ion-item>
+				<ion-label>{{ 'USER-BRANCH' | translate }}</ion-label>
+				<ion-select formControlName="branch" id="branch" name="branch" 
+						[compareWith]="compareBranch" required>
+					<ng-container *ngFor="let branch of branches">
+						<ion-select-option *ngIf="branch.organization.id == userForm.value.organization.id" [value]="branch">
+							{{ branch.name }}</ion-select-option>
+					</ng-container>
+				</ion-select>
+			</ion-item>
+			<div *ngIf="(userForm.controls['branch'].dirty || userForm.controls['branch'].touched)" class="errors">
+				<div *ngIf="hasError('branch', 'required')">
+					{{ 'USER-BRANCH' | translate }}: {{ 'FIELD-IS-REQUIRED' | translate }}</div>
+			</div>
+			<ion-item>
+				<ion-label>{{ 'USER-DEPARTMENT' | translate }}</ion-label>
+				<ion-select formControlName="department" id="department" name="department" 
+						[compareWith]="compareDepartment" required>
+					<ng-container *ngFor="let department of departments">
+						<ion-select-option *ngIf="department.branch.id == userForm.value.branch.id" [value]="department">
+							{{ department.name }}</ion-select-option>
+					</ng-container>
+				</ion-select>
+			</ion-item>
+			<div *ngIf="(userForm.controls['department'].dirty || userForm.controls['department'].touched)" class="errors">
+				<div *ngIf="hasError('department', 'required')">
+					{{ 'USER-DEPARTMENT' | translate }}: {{ 'FIELD-IS-REQUIRED' | translate }}</div>
+			</div>
+			<ion-item>
+				<ion-label position="floating">{{ 'USER-FIRSTNAME' | translate }}</ion-label>
+				<ion-input formControlName="firstName" id="firstName" name="firstName" #firstName
+					placeholder="{{ 'USER-FIRSTNAME' | translate }}" maxlength="50">
+				</ion-input>
+			</ion-item>
+			<div *ngIf="(userForm.controls['firstName'].dirty || userForm.controls['firstName'].touched)" class="errors">
+                <div *ngIf="hasError('firstName', 'required')">
+                    {{ 'USER-FIRSTNAME' | translate }}: {{ 'FIELD-IS-REQUIRED' | translate }}</div>
+                <div *ngIf="hasError('firstName', 'minlength')">
+                    {{ 'USER-FIRSTNAME' | translate }}: {{ 'FIELD-MUSTBE-MINIMUM-LENGTH' | translate }} 1</div>
+                <div *ngIf="hasError('firstName', 'maxlength')">
+                    {{ 'USER-FIRSTNAME' | translate }}: {{ 'FIELD-MUSTBE-MAXIMUM-LENGTH' | translate }} 50</div>
+			</div>
+			<ion-item>
+				<ion-label position="floating">{{ 'USER-LASTNAME' | translate }}</ion-label>
+				<ion-input formControlName="lastName" id="lastName" name="lastName" #lastName
+					placeholder="{{ 'USER-LASTNAME' | translate }}" maxlength="50">
+				</ion-input>
+			</ion-item>
+			<div *ngIf="(userForm.controls['lastName'].dirty || userForm.controls['lastName'].touched)" class="errors">
+                <div *ngIf="hasError('lastName', 'required')">
+                    {{ 'USER-LASTNAME' | translate }}: {{ 'FIELD-IS-REQUIRED' | translate }}</div>
+                <div *ngIf="hasError('lastName', 'minlength')">
+                    {{ 'USER-LASTNAME' | translate }}: {{ 'FIELD-MUSTBE-MINIMUM-LENGTH' | translate }} 1</div>
+                <div *ngIf="hasError('lastName', 'maxlength')">
+                    {{ 'USER-LASTNAME' | translate }}: {{ 'FIELD-MUSTBE-MAXIMUM-LENGTH' | translate }} 50</div>
+			</div>
+			<ion-item>
+				<ion-label position="floating">{{ 'USER-EMAILADDRESS' | translate }}</ion-label>
+				<ion-input formControlName="emailAddress" id="emailAddress" name="emailAddress" #emailAddress
+					placeholder="{{ 'USER-EMAILADDRESS' | translate }}" maxlength="120">
+				</ion-input>
+			</ion-item>
+			<div *ngIf="(userForm.controls['emailAddress'].dirty || userForm.controls['emailAddress'].touched)" class="errors">
+                <div *ngIf="hasError('emailAddress', 'required')">
+                    {{ 'USER-EMAILADDRESS' | translate }}: {{ 'FIELD-IS-REQUIRED' | translate }}</div>
+                <div *ngIf="hasError('emailAddress', 'minlength')">
+                    {{ 'USER-EMAILADDRESS' | translate }}: {{ 'FIELD-MUSTBE-MINIMUM-LENGTH' | translate }} 3</div>
+                <div *ngIf="hasError('emailAddress', 'maxlength')">
+                    {{ 'USER-EMAILADDRESS' | translate }}: {{ 'FIELD-MUSTBE-MAXIMUM-LENGTH' | translate }} 120</div>
+                <div *ngIf="hasError('emailAddress', 'pattern')">
+                    {{ 'USER-EMAILADDRESS' | translate }}: {{ 'FIELD-MUSTBE-PATTERN' | translate }} email</div>
+                <div *ngIf="hasError('emailAddress', 'unique')">
+                    {{ 'USER-EMAILADDRESS' | translate }}: {{ 'FIELD-MUSTBE-UNIQUE' | translate }} try another</div>
+			</div>
+			<ion-item>
+				<ion-label position="floating">{{ 'USER-PASSWORD' | translate }}</ion-label>
+				<ion-input formControlName="password" id="password" name="password" #password
+					placeholder="{{ 'USER-PASSWORD' | translate }}" maxlength="120">
+				</ion-input>
+			</ion-item>
+			<div *ngIf="(userForm.controls['password'].dirty || userForm.controls['password'].touched)" class="errors">
+                <div *ngIf="hasError('password', 'required')">
+                    {{ 'USER-PASSWORD' | translate }}: {{ 'FIELD-IS-REQUIRED' | translate }}</div>
+                <div *ngIf="hasError('password', 'minlength')">
+                    {{ 'USER-PASSWORD' | translate }}: {{ 'FIELD-MUSTBE-MINIMUM-LENGTH' | translate }} 5</div>
+                <div *ngIf="hasError('password', 'maxlength')">
+                    {{ 'USER-PASSWORD' | translate }}: {{ 'FIELD-MUSTBE-MAXIMUM-LENGTH' | translate }} 120</div>
+                <div *ngIf="hasError('password', 'mustmatch')">
+                    {{ 'USER-PASSWORD' | translate }}: {{ 'FIELD-MUSTBE-MATCH' | translate }} true</div>
+                <div *ngIf="hasError('password', 'strength')">
+                    {{ 'USER-PASSWORD' | translate }}: {{ 'PASSWORD-STRONG' | translate }} true</div>
+			</div>
+			<ion-item>
+				<ion-label position="floating">{{ 'USER-NUMLOGINS' | translate }}</ion-label>
+                <ion-input formControlName="numLogins" id="numLogins" name="numLogins" #numLogins
+					placeholder="{{ 'USER-NUMLOGINS' | translate }}" min="0" max="2000">
+				</ion-input>
+			</ion-item>
+			<div *ngIf="(userForm.controls['numLogins'].dirty || userForm.controls['numLogins'].touched)" class="errors">
+                <div *ngIf="hasError('numLogins', 'min')">
+                    {{ 'USER-NUMLOGINS' | translate }}: {{ 'FIELD-MUSTBE-MINIMUM' | translate }} 0</div>
+                <div *ngIf="hasError('numLogins', 'max')">
+                    {{ 'USER-NUMLOGINS' | translate }}: {{ 'FIELD-MUSTBE-MAXIMUM' | translate }} 2000</div>
+				<div *ngIf="hasError('numLogins', 'pattern')">
+					{{ 'USER-NUMLOGINS' | translate }}: {{ 'FIELD-MUSTBE-NUMERIC' | translate }}</div>
+			</div>
+			<ion-item>
+				<ion-label>{{ 'USER-LASTLOGINTIME' | translate }}</ion-label>
+				<ion-datetime displayFormat="DD/MM/YYYY" 
+					formControlName="lastLoginTime" placeholder="{{ 'USER-LASTLOGINTIME' | translate }}">
+				</ion-datetime>
+			</ion-item>
+			<div *ngIf="(userForm.controls['lastLoginTime'].dirty || userForm.controls['lastLoginTime'].touched)" class="errors">
+			</div>
+			<ion-item>
+				<ion-label>{{ 'USER-STATUS' | translate }}</ion-label>
+				<ion-select formControlName="status" id="status" name="status" 
+						[compareWith]="compareStatus" required>
+					<ion-select-option *ngFor="let status of statuses" [value]="status">
+						{{ status.name }}</ion-select-option>
+				</ion-select>
+			</ion-item>
+			<div *ngIf="(userForm.controls['status'].dirty || userForm.controls['status'].touched)" class="errors">
+				<div *ngIf="hasError('status', 'required')">
+					{{ 'USER-STATUS' | translate }}: {{ 'FIELD-IS-REQUIRED' | translate }}</div>
+			</div>
+			<ion-item>
+				<ion-label position="floating">{{ 'USER-PROFILE' | translate }}</ion-label>
+				<ion-input formControlName="profile" id="profile" name="profile" #profile
+					placeholder="{{ 'USER-PROFILE' | translate }}" maxlength="25">
+				</ion-input>
+			</ion-item>
+			<div *ngIf="(userForm.controls['profile'].dirty || userForm.controls['profile'].touched)" class="errors">
+                <div *ngIf="hasError('profile', 'minlength')">
+                    {{ 'USER-PROFILE' | translate }}: {{ 'FIELD-MUSTBE-MINIMUM-LENGTH' | translate }} 1</div>
+                <div *ngIf="hasError('profile', 'maxlength')">
+                    {{ 'USER-PROFILE' | translate }}: {{ 'FIELD-MUSTBE-MAXIMUM-LENGTH' | translate }} 25</div>
+			</div>
+		</ion-card-content>
+		<ion-footer>
+			<ion-toolbar color="light" style="padding-left: 20px;">
+			<ion-button color="primary" (click)="save(userForm.value)" 
+				[disabled]="!userForm.valid">{{ 'SAVE' | translate }}</ion-button>
+			<ion-button type="button" color="medium"
+				(click)="onCancel()">{{ 'CANCEL' | translate }}</ion-button>
+			</ion-toolbar>
+		</ion-footer>
+	</form>
+</ion-content>

@@ -1,0 +1,145 @@
+<mat-toolbar color="secondary" class="mat-elevation-z2 title-bar">
+	<mat-toolbar-row>
+		<a mat-button disabled style="color: black">{{ 'TRAINER' | translate }}</a>
+		<span class="spacer"></span>
+		<a mat-raised-button color="accent" (click)="add()">{{ 'NEW' | translate }}</a>
+	</mat-toolbar-row>
+</mat-toolbar>
+<div class="container mat-elevation-z2">
+	<form [formGroup]="trainerSearchForm" *ngIf="trainerSearchForm">
+	<mat-toolbar color="secondary" class="mat-elevation-z2">
+		<mat-toolbar-row>
+			<span style="font-size: 12px"></span>
+			<mat-form-field appearance="legacy" style="font-size: 14px; padding-top: 8px; width: 300px">
+				<mat-label>{{ 'TRAINER-SALUTATION' | translate }}</mat-label>
+				<mat-select formControlName="salutationSearchList" 
+					id="salutationSearchList" name="salutationSearchList">
+					<mat-option *ngFor="let salutation of salutations" [value]="salutation">
+						{{ salutation.name }}</mat-option>
+				</mat-select>
+			</mat-form-field>&nbsp;&nbsp;&nbsp;&nbsp;
+			<mat-form-field appearance="legacy" style="font-size: 14px; padding-top: 8px; width: 300px">
+				<mat-label>{{ 'TRAINER-FIRSTNAME' | translate }}</mat-label>
+				<input matInput formControlName="firstNameSearchText" 
+					id="firstNameSearchText" name="firstNameSearchText" placeholder="{{ 'TRAINER-FIRSTNAME' | translate }}"/>
+			</mat-form-field>&nbsp;&nbsp;&nbsp;&nbsp;
+			<mat-form-field appearance="legacy" style="font-size: 14px; padding-top: 8px; width: 300px">
+				<mat-label>{{ 'TRAINER-LASTNAME' | translate }}</mat-label>
+				<input matInput formControlName="lastNameSearchText" 
+					id="lastNameSearchText" name="lastNameSearchText" placeholder="{{ 'TRAINER-LASTNAME' | translate }}"/>
+			</mat-form-field>&nbsp;&nbsp;&nbsp;&nbsp;
+			<mat-form-field appearance="legacy" style="font-size: 14px; padding-top: 8px; width: 300px">
+				<mat-label>{{ 'TRAINER-GENDER' | translate }}</mat-label>
+				<mat-select formControlName="genderSearchList" 
+					id="genderSearchList" name="genderSearchList">
+					<mat-option *ngFor="let gender of genders" [value]="gender">
+						{{ gender.name }}</mat-option>
+				</mat-select>
+			</mat-form-field>&nbsp;&nbsp;&nbsp;&nbsp;
+			<mat-form-field appearance="legacy" style="font-size: 14px; padding-top: 8px; width: 300px">
+				<mat-label>{{ 'TRAINER-CITIZEN' | translate }}</mat-label>
+				<mat-select formControlName="citizenSearchList" 
+					id="citizenSearchList" name="citizenSearchList">
+					<mat-option *ngFor="let citizen of citizens" [value]="citizen">
+						{{ citizen.name }}</mat-option>
+				</mat-select>
+			</mat-form-field>&nbsp;&nbsp;&nbsp;&nbsp;
+		</mat-toolbar-row>
+		<mat-toolbar-row>
+			<mat-form-field appearance="legacy" style="font-size: 14px; padding-top: 8px; width: 300px">
+				<mat-label>{{ 'TRAINER-ICNUMBER' | translate }}</mat-label>
+				<input matInput formControlName="icNumberSearchText" 
+					id="icNumberSearchText" name="icNumberSearchText" placeholder="{{ 'TRAINER-ICNUMBER' | translate }}"/>
+			</mat-form-field>&nbsp;&nbsp;&nbsp;&nbsp;
+			<mat-form-field appearance="legacy" style="font-size: 14px; padding-top: 8px; width: 300px">
+				<mat-label>{{ 'TRAINER-HANDPHONENUMBER' | translate }}</mat-label>
+				<input matInput formControlName="handphoneNumberSearchText" 
+					id="handphoneNumberSearchText" name="handphoneNumberSearchText" placeholder="{{ 'TRAINER-HANDPHONENUMBER' | translate }}"/>
+			</mat-form-field>&nbsp;&nbsp;&nbsp;&nbsp;
+			<a mat-raised-button color="secondary" (click)="doSearch()">List</a>&nbsp;&nbsp;
+		</mat-toolbar-row>
+	</mat-toolbar>
+	</form>
+	<table mat-table [dataSource]="trainers">
+		<ng-container matColumnDef="icNumber">
+			<th mat-header-cell *matHeaderCellDef>{{ 'TRAINER-ICNUMBER' | translate }}</th>
+			<td mat-cell *matCellDef="let element">
+				<span class="mat-subheading-1">{{ element.icNumber }}</span>
+			</td>
+		</ng-container>
+		<ng-container matColumnDef="firstName">
+			<th mat-header-cell *matHeaderCellDef>{{ 'TRAINER-FIRSTNAME' | translate }}</th>
+			<td mat-cell *matCellDef="let element">
+				<span class="mat-subheading-1">{{ element.user.firstName }}</span>
+			</td>
+		</ng-container>
+		<ng-container matColumnDef="lastName">
+			<th mat-header-cell *matHeaderCellDef>{{ 'TRAINER-LASTNAME' | translate }}</th>
+			<td mat-cell *matCellDef="let element">
+				<span class="mat-subheading-1">{{ element.user.lastName }}</span>
+			</td>
+		</ng-container>
+		<ng-container matColumnDef="gender">
+			<th mat-header-cell *matHeaderCellDef>{{ 'TRAINER-GENDER' | translate }}</th>
+			<td mat-cell *matCellDef="let element">
+				<span class="mat-subheading-1">{{ element.gender.name }}</span>
+			</td>
+		</ng-container>
+		<ng-container matColumnDef="handphoneNumber">
+			<th mat-header-cell *matHeaderCellDef>{{ 'TRAINER-HANDPHONENUMBER' | translate }}</th>
+			<td mat-cell *matCellDef="let element">
+				<span class="mat-subheading-1">{{ element.handphoneNumber }}</span>
+			</td>
+		</ng-container>
+		<ng-container matColumnDef="emailAddress">
+			<th mat-header-cell *matHeaderCellDef>{{ 'TRAINER-EMAILADDRESS' | translate }}</th>
+			<td mat-cell *matCellDef="let element">
+				<span class="mat-subheading-1">{{ element.user.emailAddress }}</span>
+			</td>
+		</ng-container>
+		<ng-container matColumnDef="status">
+			<th mat-header-cell *matHeaderCellDef>{{ 'TRAINER-STATUS' | translate }}</th>
+			<td mat-cell *matCellDef="let element">
+				<span class="mat-subheading-1">{{ element.user.status.name }}</span>
+			</td>
+		</ng-container>
+		<ng-container matColumnDef="action">
+			<th mat-header-cell *matHeaderCellDef></th>
+			<td mat-cell *matCellDef="let element" style="text-align:center">
+				<button mat-icon-button [matMenuTriggerFor]="menu">
+					<mat-icon>more_vert</mat-icon>
+				</button>
+				<mat-menu #menu="matMenu">
+					<button mat-menu-item (click)="edit(element)">
+						<mat-icon color="accent">edit</mat-icon><span>Edit</span>
+					</button>
+					<button mat-menu-item (click)="delete(element)">
+						<mat-icon color="warn">delete</mat-icon><span>Delete</span>
+					</button>
+					<button mat-menu-item (click)="print(element)">
+						<mat-icon color="accent">print</mat-icon><span>Print</span>
+					</button>
+				</mat-menu>
+				<button mat-icon-button color="primary" (click)="showDetail(element)">
+					<mat-icon>list_alt</mat-icon>
+				</button>
+			</td>
+		</ng-container>
+		<tr mat-header-row *matHeaderRowDef="columnCaptions"></tr>
+		<tr mat-row *matRowDef="let row; columns:columnCaptions"></tr>
+	</table>
+	<mat-toolbar color="secondary" class="mat-elevation-z2">
+		<mat-toolbar-row>
+			<mat-label style="font-size: 14px;">{{ 'Showing rows ' + this.showRows }}</mat-label>
+			<span class="spacer"></span>
+			<mat-form-field appearance="legacy" style="font-size: 14px; padding-top: 8px; width: 150px">
+				<mat-label>{{ 'Filter by Alphabet' | translate }}</mat-label>
+				<mat-select [(value)]="selectedAlphabet">
+					<mat-option *ngFor="let alphabet of alphabets" 
+						[value]="alphabet">{{ alphabet }}</mat-option>
+				</mat-select>
+			</mat-form-field>&nbsp;&nbsp;
+			<a mat-raised-button color="secondary" (click)="list()">List</a>&nbsp;&nbsp;
+		</mat-toolbar-row>
+	</mat-toolbar>
+</div>

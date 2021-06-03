@@ -1,0 +1,47 @@
+<ion-toolbar color="primary">
+	<ion-buttons slot="start">
+		<ion-menu-button></ion-menu-button>
+	</ion-buttons>
+	<ion-title>{{ 'COUNTRY' | translate }}</ion-title>
+	<ion-buttons slot="end" color="success">
+		<ion-button fill="clear" (click)="add()">
+			<ion-icon slot="icon-only" name="add-circle-outline"></ion-icon>
+		</ion-button>
+	</ion-buttons>
+</ion-toolbar>
+<ion-content padding>
+	<ion-card *ngFor="let country of countries">
+		<ion-card-content style="padding: bottom 0px;">
+			<h2>
+				<b>{{ 'COUNTRY-SEQUENCE' | translate }}: </b>
+				{{ country.sequence }}
+			</h2>
+			<h2>
+				<b>{{ 'COUNTRY-CODE' | translate }}: </b>
+				{{ country.code }}
+			</h2>
+			<h2>
+				<b>{{ 'COUNTRY-NAME' | translate }}: </b>
+				{{ country.name }}
+			</h2>
+			<h2>
+				<b>{{ 'COUNTRY-BYDEFAULT' | translate }}: </b>
+				{{ country.byDefault }}
+			</h2>
+			<ion-row no-padding>
+				<ion-col col-9 no-padding></ion-col>
+				<ion-col col-3 no-padding>
+					<ion-button fill="clear" size="small" (click)="edit(country)">
+						<ion-icon name="create-outline"></ion-icon>
+					</ion-button>
+					<ion-button fill="clear" size="small" (click)="delete(country)">
+						<ion-icon name="trash-outline"></ion-icon>
+					</ion-button>
+					<ion-button fill="clear" size="small" (click)="print(country)">
+						<ion-icon name="print-outline"></ion-icon>
+					</ion-button>
+				</ion-col>
+			</ion-row>
+		</ion-card-content>
+	</ion-card>
+</ion-content>

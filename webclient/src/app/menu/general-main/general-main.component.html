@@ -1,0 +1,39 @@
+<mat-sidenav-container menuHeight>
+    <mat-sidenav #sidenav mode="side" opened role="navigation" [fixedInViewport]="false">
+        <mat-nav-list>
+			<a mat-list-item [routerLink]="['/generalmain', {outlets: { 'sidebar':['general', 'salutations'] }}]">
+				{{ 'SALUTATION' | translate }} </a>
+			<a mat-list-item [routerLink]="['/generalmain', {outlets: { 'sidebar':['general', 'genders'] }}]">
+				{{ 'GENDER' | translate }} </a>
+			<a mat-list-item [routerLink]="['/generalmain', {outlets: { 'sidebar':['general', 'maritalstatuses'] }}]">
+				{{ 'MARITAL-STATUS' | translate }} </a>
+			<a mat-list-item [routerLink]="['/generalmain', {outlets: { 'sidebar':['general', 'races'] }}]">
+				{{ 'RACE' | translate }} </a>
+			<a mat-list-item [routerLink]="['/generalmain', {outlets: { 'sidebar':['general', 'religions'] }}]">
+				{{ 'RELIGION' | translate }} </a>
+			<a mat-list-item [routerLink]="['/generalmain', {outlets: { 'sidebar':['general', 'citizens'] }}]">
+				{{ 'CITIZEN' | translate }} </a>
+			<a mat-list-item [routerLink]="['/generalmain', {outlets: { 'sidebar':['general', 'addresstypes'] }}]">
+				{{ 'ADDRESS-TYPE' | translate }} </a>
+			<a mat-list-item [routerLink]="['/generalmain', {outlets: { 'sidebar':['general', 'states'] }}]">
+				{{ 'STATE' | translate }} </a>
+			<a mat-list-item [routerLink]="['/generalmain', {outlets: { 'sidebar':['general', 'countries'] }}]">
+				{{ 'COUNTRY' | translate }} </a>
+			<a mat-list-item [routerLink]="['/generalmain', {outlets: { 'sidebar':['general', 'relationtypes'] }}]">
+				{{ 'RELATION-TYPE' | translate }} </a>
+			<a mat-list-item [routerLink]="['/generalmain', {outlets: { 'sidebar':['general', 'occupationtypes'] }}]">
+				{{ 'OCCUPATION-TYPE' | translate }} </a>
+			<a mat-list-item [routerLink]="['/generalmain', {outlets: { 'sidebar':['general', 'salaryranges'] }}]">
+				{{ 'SALARY-RANGE' | translate }} </a>
+			<a mat-list-item [routerLink]="['/generalmain', {outlets: { 'sidebar':['general', 'fieldstudies'] }}]">
+				{{ 'FIELD-STUDY' | translate }} </a>
+			<a mat-list-item [routerLink]="['/generalmain', {outlets: { 'sidebar':['general', 'qualifications'] }}]">
+				{{ 'QUALIFICATION' | translate }} </a>
+			<a mat-list-item [routerLink]="['/generalmain', {outlets: { 'sidebar':['general', 'positionlevels'] }}]">
+				{{ 'POSITION-LEVEL' | translate }} </a>
+        </mat-nav-list>
+    </mat-sidenav>
+    <mat-sidenav-content>
+        <router-outlet name="sidebar"></router-outlet>
+    </mat-sidenav-content>
+</mat-sidenav-container>

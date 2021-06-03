@@ -1,0 +1,63 @@
+<ion-toolbar color="primary">
+	<ion-buttons slot="start">
+		<ion-menu-button></ion-menu-button>
+	</ion-buttons>
+	<ion-title>{{ 'TRAINER-FAMILY' | translate }}</ion-title>
+	<ion-buttons slot="end" color="success">
+		<ion-button fill="clear" (click)="add()">
+			<ion-icon slot="icon-only" name="add-circle-outline"></ion-icon>
+		</ion-button>
+	</ion-buttons>
+</ion-toolbar>
+<ion-content padding>
+	<ion-card *ngFor="let trainerFamily of trainerFamilies">
+		<ion-card-content style="padding: bottom 0px;">
+			<ion-list lines="none">
+				<ion-item>
+					<ion-label>{{ 'TRAINER-FAMILY-RELATIONTYPE' | translate }}: </ion-label>
+					<ion-text>{{ trainerFamily.relationType.name }}</ion-text>
+				</ion-item>
+				<ion-item>
+					<ion-label>{{ 'TRAINER-FAMILY-NAME' | translate }}: </ion-label>
+					<ion-text>{{ trainerFamily.name }}</ion-text>
+				</ion-item>
+				<ion-item>
+					<ion-label>{{ 'TRAINER-FAMILY-OCCUPATION' | translate }}: </ion-label>
+					<ion-text>{{ trainerFamily.occupation }}</ion-text>
+				</ion-item>
+				<ion-item>
+					<ion-label>{{ 'TRAINER-FAMILY-CITIZEN' | translate }}: </ion-label>
+					<ion-text>{{ trainerFamily.citizen.name }}</ion-text>
+				</ion-item>
+				<ion-item>
+					<ion-label>{{ 'TRAINER-FAMILY-NRICNUMBER' | translate }}: </ion-label>
+					<ion-text>{{ trainerFamily.nricNumber }}</ion-text>
+				</ion-item>
+				<ion-item>
+					<ion-label>{{ 'TRAINER-FAMILY-EMAIL' | translate }}: </ion-label>
+					<ion-text>{{ trainerFamily.email }}</ion-text>
+				</ion-item>
+				<ion-item>
+					<ion-label>{{ 'TRAINER-FAMILY-PHONE' | translate }}: </ion-label>
+					<ion-text>{{ trainerFamily.phone }}</ion-text>
+				</ion-item>
+			</ion-list>
+			<ion-row no-padding>
+				<ion-col col-12 no-padding style="text-align: center">
+					<ion-chip color="dark" button (click)="edit(trainerFamily)">
+						<ion-icon name="create-outline"></ion-icon>
+						<ion-label>Edit</ion-label>
+					</ion-chip>
+					<ion-chip color="dark" button (click)="delete(trainerFamily)">
+						<ion-icon name="trash-outline"></ion-icon>
+						<ion-label>Delete</ion-label>
+					</ion-chip>
+					<ion-chip color="dark" button (click)="print(trainerFamily)">
+						<ion-icon name="print-outline"></ion-icon>
+						<ion-label>Print</ion-label>
+					</ion-chip>
+				</ion-col>
+			</ion-row>
+		</ion-card-content>
+	</ion-card>
+</ion-content>

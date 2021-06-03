@@ -1,0 +1,55 @@
+<h2 mat-dialog-title>{{ 'QUALIFICATION' | translate }} - {{ 'NEW' | translate }}</h2>
+<mat-dialog-content>
+	<form [formGroup]="qualificationForm" *ngIf="qualificationForm">
+		<mat-card-subtitle *ngIf="errorMessage" class="alert-danger">{{ errorMessage }}</mat-card-subtitle>
+		<mat-card-content class="my-form">
+			<mat-form-field>
+				<input matInput type="text" formControlName="sequence" id="sequence" 
+					name="sequence" placeholder="{{ 'QUALIFICATION-SEQUENCE' | translate }}" 
+					min="1" max="500" required />
+				<mat-icon matPrefix style="padding-right: 20px;">list</mat-icon>
+                <mat-error *ngIf="hasError('sequence', 'required')">
+                    {{ 'QUALIFICATION-SEQUENCE' | translate }}: {{ 'FIELD-IS-REQUIRED' | translate }}</mat-error>
+                <mat-error *ngIf="hasError('sequence', 'min')">
+                    {{ 'QUALIFICATION-SEQUENCE' | translate }}: {{ 'FIELD-MUSTBE-MINIMUM' | translate }} 1</mat-error>
+                <mat-error *ngIf="hasError('sequence', 'max')">
+                    {{ 'QUALIFICATION-SEQUENCE' | translate }}: {{ 'FIELD-MUSTBE-MAXIMUM' | translate }} 500</mat-error>
+				<mat-error *ngIf="hasError('sequence', 'pattern')">
+					{{ 'QUALIFICATION-SEQUENCE' | translate }}: {{ 'FIELD-MUSTBE-NUMERIC' | translate }}</mat-error>
+			</mat-form-field>
+			<mat-form-field>
+				<input matInput type="text" formControlName="code" id="code" 
+					name="code" placeholder="{{ 'QUALIFICATION-CODE' | translate }}" 
+					minlength="1" maxlength="10" required />
+                <mat-error *ngIf="hasError('code', 'required')">
+                    {{ 'QUALIFICATION-CODE' | translate }}: {{ 'FIELD-IS-REQUIRED' | translate }}</mat-error>
+                <mat-error *ngIf="hasError('code', 'minlength')">
+                    {{ 'QUALIFICATION-CODE' | translate }}: {{ 'FIELD-MUSTBE-MINIMUM-LENGTH' | translate }} 1</mat-error>
+                <mat-error *ngIf="hasError('code', 'maxlength')">
+                    {{ 'QUALIFICATION-CODE' | translate }}: {{ 'FIELD-MUSTBE-MAXIMUM-LENGTH' | translate }} 10</mat-error>
+			</mat-form-field>
+			<mat-form-field>
+				<input matInput type="text" formControlName="name" id="name" 
+					name="name" placeholder="{{ 'QUALIFICATION-NAME' | translate }}" 
+					minlength="1" maxlength="60" required />
+                <mat-error *ngIf="hasError('name', 'required')">
+                    {{ 'QUALIFICATION-NAME' | translate }}: {{ 'FIELD-IS-REQUIRED' | translate }}</mat-error>
+                <mat-error *ngIf="hasError('name', 'minlength')">
+                    {{ 'QUALIFICATION-NAME' | translate }}: {{ 'FIELD-MUSTBE-MINIMUM-LENGTH' | translate }} 1</mat-error>
+                <mat-error *ngIf="hasError('name', 'maxlength')">
+                    {{ 'QUALIFICATION-NAME' | translate }}: {{ 'FIELD-MUSTBE-MAXIMUM-LENGTH' | translate }} 60</mat-error>
+			</mat-form-field>
+			<section class="checkbox-section">
+				<mat-checkbox formControlName="byDefault" 
+					id="byDefault">byDefault
+				</mat-checkbox>
+			</section>
+        </mat-card-content>
+    </form>
+</mat-dialog-content>
+<mat-dialog-actions>
+    <button mat-raised-button color="primary" (click)="save(qualificationForm.value)" 
+        [disabled]="!qualificationForm.valid">{{ 'SAVE' | translate }}</button>
+    <button type="button" mat-raised-button color="warn"
+        (click)="onCancel()">{{ 'CANCEL' | translate }}</button>
+</mat-dialog-actions>

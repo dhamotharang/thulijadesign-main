@@ -1,0 +1,145 @@
+<ion-content *ngIf="registrationForm">
+	<form [formGroup]="registrationForm">
+		<div class="input-group">
+			<ion-card-header>
+				<ion-card-title>{{ 'REGISTRATION' | translate }}</ion-card-title>
+				<ion-card-subtitle>{{ 'REGISTRATION-MESSAGE' | translate }}</ion-card-subtitle>
+			</ion-card-header>
+			<ion-item>
+				<ion-label>Organization</ion-label>
+				<ion-select formControlName="organization" id="organization" name="organization" 
+						[compareWith]="compareOrganization" required>
+					<ion-select-option *ngFor="let organization of organizations" [value]="organization">
+						{{ organization.name }}</ion-select-option>
+					<ion-icon name="account_balance" slot="start"></ion-icon>
+				</ion-select>
+			</ion-item>
+			<div *ngIf="(registrationForm.controls['organization'].dirty || registrationForm.controls['organization'].touched)" class="errors">
+				<div *ngIf="hasError('organization', 'required')">Organization is required</div>
+			</div>
+			<ion-item>
+				<ion-label>Branch</ion-label>
+				<ion-select formControlName="branch" id="branch" name="branch" 
+						[compareWith]="compareBranch" required>
+					<ion-select-option *ngFor="let branch of branches" [value]="branch">
+						{{ branch.name }}</ion-select-option>
+					<ion-icon name="location_city" slot="start"></ion-icon>
+				</ion-select>
+			</ion-item>
+			<div *ngIf="(registrationForm.controls['branch'].dirty || registrationForm.controls['branch'].touched)" class="errors">
+				<div *ngIf="hasError('branch', 'required')">
+					Branch is required</div>
+			</div>
+			<ion-item>
+				<ion-label>Department</ion-label>
+				<ion-select formControlName="department" id="department" name="department" 
+						[compareWith]="compareDepartment" required>
+					<ion-select-option *ngFor="let department of departments" [value]="department">
+						{{ department.name }}</ion-select-option>
+					<ion-icon name="group" slot="start"></ion-icon>
+				</ion-select>
+			</ion-item>
+			<div *ngIf="(registrationForm.controls['department'].dirty || registrationForm.controls['department'].touched)" class="errors">
+				<div *ngIf="hasError('department', 'required')">
+					Department is required</div>
+			</div>
+			<ion-item>
+				<ion-input placeholder="{{ 'FIRST-NAME' | translate }}" 
+						formControlName="firstName" id="firstName" name="firstName" #firstName 
+						minlength="3" maxlength="60" required>
+					<ion-icon name="person" slot="start"></ion-icon>
+				</ion-input>
+			</ion-item>
+			<div *ngIf="(registrationForm.controls['firstName'].dirty || registrationForm.controls['firstName'].touched)" class="errors">
+				<div *ngIf="hasError('firstName', 'required')">
+					{{ 'FIRST-NAME-REQ' | translate }}</div>
+				<div *ngIf="hasError('firstName', 'minlength')">
+					{{ 'FIRST-NAME-MIN' | translate }}</div>
+				<div *ngIf="hasError('firstName', 'maxlength')">
+					{{ 'FIRST-NAME-MAX' | translate }}</div>
+				<div *ngIf="hasError('firstName', 'pattern')">
+					{{ 'FIRST-NAME-ALPHA' | translate }}</div>
+			</div>
+			<ion-item>
+				<ion-input placeholder="{{ 'LAST-NAME' | translate }}" 
+						formControlName="lastName" id="lastName" name="lastName" #lastName
+						minlength="3" maxlength="60" required>
+					<ion-icon name="person" slot="start"></ion-icon>
+				</ion-input>
+			</ion-item>
+			<div *ngIf="(registrationForm.controls['lastName'].dirty || registrationForm.controls['lastName'].touched)" class="errors">
+				<div *ngIf="hasError('lastName', 'required')">
+					{{ 'LAST-NAME-REQ' | translate }}</div>
+				<div *ngIf="hasError('lastName', 'minlength')">
+					{{ 'LAST-NAME-MIN' | translate }}</div>
+				<div *ngIf="hasError('lastName', 'maxlength')">
+					{{ 'LAST-NAME-MAX' | translate }}</div>
+				<div *ngIf="hasError('lastName', 'pattern')">
+					{{ 'LAST-NAME-ALPHA' | translate }}</div>
+			</div>
+			<ion-item>
+				<ion-input placeholder="{{ 'USERNAME-EMAIL' | translate }}" 
+						formControlName="emailAddress" id="emailAddress" name="emailAddress" #emailAddress
+						minlength="3" maxlength="120" required>
+					<ion-icon name="mail-outline" slot="start"></ion-icon>
+				</ion-input>
+			</ion-item>
+			<div *ngIf="(registrationForm.controls['emailAddress'].dirty || registrationForm.controls['emailAddress'].touched)" class="errors">
+				<div *ngIf="hasError('emailAddress', 'required')">
+					{{ 'USERNAME-EMAIL-REQ' | translate }}</div>
+				<div *ngIf="hasError('emailAddress', 'minlength')">
+					{{ 'USERNAME-EMAIL-MIN' | translate }}</div>
+				<div *ngIf="hasError('emailAddress', 'maxlength')">
+					{{ 'USERNAME-EMAIL-MAX' | translate }}</div>
+				<div *ngIf="hasError('emailAddress', 'pattern')">
+					{{ 'USERNAME-EMAIL-FORMAT' | translate }}</div>
+			</div>
+			<ion-item>
+				<ion-input placeholder="{{ 'PASSWORD' | translate }}" 
+						[type]="hide ? 'password' : 'text'" 
+						formControlName="password" id="password" name="password" #password 
+						minlength="5" maxlength="120" required>
+					<ion-icon name="lock-closed-outline" slot="start"></ion-icon>
+				</ion-input>
+				<ion-icon name="eye" slot="end" (click)="hide = !hide"></ion-icon>
+			</ion-item>
+			<div *ngIf="(registrationForm.controls['password'].dirty || registrationForm.controls['password'].touched)" class="errors">
+				<div *ngIf="hasError('password', 'required')">
+					{{ 'PASSWORD-REQ' | translate }}</div>
+				<div *ngIf="hasError('password', 'minlength')">
+					{{ 'PASSWORD-MIN' | translate }}</div>
+				<div *ngIf="hasError('password', 'maxlength')">
+					{{ 'PASSWORD-MAX' | translate }}</div>
+				<div *ngIf="hasError('password', 'strength')">
+					{{ 'PASSWORD-STRONG' | translate }}</div>
+			</div>
+			<ion-item>
+				<ion-input placeholder="{{ 'CONFIRM-PASSWORD' | translate }}"
+						[type]="confirmhide ? 'password' : 'text'" 
+						formControlName="confirmPassword" id="confirmPassword" name="confirmPassword" #confirmPassword
+						minlength="5" maxlength="120" required>
+					<ion-icon name="lock-closed-outline" slot="start"></ion-icon>
+				</ion-input>
+				<ion-icon name="eye" slot="end" (click)="confirmhide = !confirmhide"></ion-icon>
+			</ion-item>
+			<div *ngIf="(registrationForm.controls['confirmPassword'].dirty || registrationForm.controls['confirmPassword'].touched)" class="errors">
+				<div *ngIf="hasError('confirmPassword', 'required')">
+					{{ 'CONFIRM-PASSWORD-REQ' | translate }}</div>
+				<div *ngIf="hasError('confirmPassword', 'minlength')">
+					{{ 'CONFIRM-PASSWORD-MIN' | translate }}</div>
+				<div *ngIf="hasError('confirmPassword', 'maxlength')">
+					{{ 'CONFIRM-PASSWORD-MAX' | translate }}</div>
+				<div *ngIf="hasError('confirmPassword', 'strength')">
+					{{ 'CONFIRM-PASSWORD-STRONG' | translate }}</div>
+				<div *ngIf="hasError('confirmPassword', 'mustmatch')">
+					{{ 'CONFIRM-PASSWORD-NOTMATCH' | translate }}</div>
+			</div><br/><br/>
+		</div>
+		<ion-button type="button" expand="block" color="tertiary" (click)="save()">
+			{{ 'REGISTER' | translate }}</ion-button><br/><br/>
+		<ion-button type="button" expand="block" color="light" (click)="doLogin()">
+			{{ 'LOGIN' | translate }}</ion-button>
+		<ion-button type="button" expand="block" color="secondary" (click)="doForgotPassword()">
+			{{ 'FORGOT-PASSWORD' | translate }}</ion-button>
+	</form>
+</ion-content>

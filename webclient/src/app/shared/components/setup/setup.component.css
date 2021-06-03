@@ -1,0 +1,49 @@
+.container {
+    max-width: 90%;
+    margin: 20px auto;
+}
+
+.login {
+    width:50%;
+    margin:40px auto;
+}
+
+.my-form {
+    margin: 20px;
+}
+
+.full-width {
+    width: 100%
+}
+
+.login-header-image {
+    background-image: url('http://agasthiar.com.my/admin/images/img_avatar.png');
+    background-size: cover;
+    width: 45px;
+    height: 45px;
+}
+
+.dashboard {
+    max-width: 90%;
+    margin: 20px auto;
+}
+
+.alert-danger {
+    background-color: #f44336;
+    color: white;
+    font-weight: 500;
+    padding: 10px;
+    border: 1px solid lightgray;
+}
+
+mat-form-field {
+    width:100%;
+    padding-bottom: 7px;
+}
+
+.checkbox-section {
+    display: flex;
+    align-content: center;
+    align-items: center;
+    height: 40px;
+}

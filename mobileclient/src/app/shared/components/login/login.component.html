@@ -1,0 +1,53 @@
+<ion-content *ngIf="loginForm && user === null">
+	<form [formGroup]="loginForm">
+		<div class="input-group">
+			<ion-card-header>
+				<ion-card-title>{{ 'SIGN-IN' | translate }}</ion-card-title>
+				<ion-card-subtitle>{{ 'SIGN-IN-MESSAGE' | translate }}</ion-card-subtitle>
+			</ion-card-header>
+			<ion-item>
+				<ion-input formControlName="username" id="username" name="username" #username 
+						placeholder="{{ 'USERNAME-EMAIL' | translate }}" minlength="3" maxlength="120" required>
+					<ion-icon name="mail-outline" slot="start"></ion-icon>
+				</ion-input>
+			</ion-item>
+			<div *ngIf="(loginForm.controls['username'].dirty || loginForm.controls['username'].touched)" class="errors">
+				<div *ngIf="hasError('username', 'required')">
+					{{ 'USERNAME-EMAIL-REQ' | translate }}</div>
+				<div *ngIf="hasError('username', 'minlength')">
+					{{ 'USERNAME-EMAIL-MIN' | translate }}</div>
+				<div *ngIf="hasError('username', 'maxlength')">
+					{{ 'USERNAME-EMAIL-MAX' | translate }}</div>
+				<div *ngIf="hasError('username', 'pattern')">
+					{{ 'USERNAME-EMAIL-FORMAT' | translate }}</div>
+			</div>
+			<ion-item>
+				<ion-input [type]="hide ? 'password' : 'text'" formControlName="password"
+						id="password" name="password" 
+						placeholder="{{ 'PASSWORD' | translate }}" minlength="5" maxlength="120" required>
+					<ion-icon name="lock-closed-outline" slot="start"></ion-icon>
+				</ion-input>
+				<ion-icon name="eye" slot="end" (click)="hide = !hide"></ion-icon>
+			</ion-item>
+			<div *ngIf="(loginForm.controls['password'].dirty || loginForm.controls['password'].touched)" class="errors">
+				<div *ngIf="hasError('password', 'required')">
+					{{ 'PASSWORD-REQ' | translate }}</div>
+				<div *ngIf="hasError('password', 'minlength')">
+					{{ 'PASSWORD-MIN' | translate }}</div>
+				<div *ngIf="hasError('password', 'maxlength')">
+					{{ 'PASSWORD-MAX' | translate }}</div>
+				<div *ngIf="hasError('password', 'strength')">
+					{{ 'PASSWORD-STRONG' | translate }}</div>
+			</div><br/><br/>
+		</div>
+		<ion-button type="button" expand="block" color="tertiary" (click)="doLogin()">
+			{{ 'LOGIN' | translate }}</ion-button><br/><br/><br/>
+		<ion-button type="button" expand="block" color="light" (click)="doRegistration()">
+			Not yet a member? Sign up!</ion-button>
+		<ion-button type="button" expand="block" color="secondary"(click)="doForgotPassword()">
+			{{ 'FORGOT-PASSWORD' | translate }}</ion-button>
+	</form>
+</ion-content>
+<ion-header *ngIf="user">
+	<app-dashboard></app-dashboard>
+</ion-header>

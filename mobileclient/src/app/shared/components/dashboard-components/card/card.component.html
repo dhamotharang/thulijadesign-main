@@ -1,0 +1,17 @@
+<ion-card class="dashboard-card">
+	<ion-card-header>
+		<ion-card-title>
+			{{title}}
+			<button mat-icon-button class="more-button" aria-label="Toggle menu">
+				<ion-icon>more_vert</ion-icon>
+			</button>
+			<ion-menu xPosition="before">
+				<button mat-menu-item>Expand</button>
+				<button mat-menu-item>Remove</button>
+			</ion-menu>
+		</ion-card-title>
+	</ion-card-header>
+	<ion-card-content class="dashboard-card-content">
+		<ng-content></ng-content>
+	</ion-card-content>
+ </ion-card>

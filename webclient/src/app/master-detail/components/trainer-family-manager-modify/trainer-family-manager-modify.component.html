@@ -1,0 +1,81 @@
+<h2 mat-dialog-title>{{ 'TRAINER-FAMILY' | translate }} - {{ 'NEW' | translate }}</h2>
+<mat-dialog-content>
+	<form [formGroup]="trainerFamilyForm" *ngIf="trainerFamilyForm">
+		<mat-card-subtitle *ngIf="errorMessage" class="alert-danger">{{ errorMessage }}</mat-card-subtitle>
+		<mat-card-content class="my-form">
+			<mat-form-field>
+				<mat-label>{{ 'TRAINER-FAMILY-RELATIONTYPE' | translate }}</mat-label>
+				<mat-select formControlName="relationType" id="relationType" name="relationType" 
+						[compareWith]="compareRelationType" required>
+				    <mat-option *ngFor="let relationType of relationTypes" [value]="relationType">
+				    	{{ relationType.name }}</mat-option>
+				</mat-select>
+				<mat-error *ngIf="hasError('relationType', 'required')">
+					{{ 'TRAINER-FAMILY-RELATIONTYPE' | translate }}: {{ 'FIELD-IS-REQUIRED' | translate }}</mat-error>
+			</mat-form-field>
+			<mat-form-field>
+				<input matInput type="text" formControlName="name" id="name" 
+					name="name" placeholder="{{ 'TRAINER-FAMILY-NAME' | translate }}" 
+					minlength="3" maxlength="60" required />
+                <mat-error *ngIf="hasError('name', 'required')">
+                    {{ 'TRAINER-FAMILY-NAME' | translate }}: {{ 'FIELD-IS-REQUIRED' | translate }}</mat-error>
+                <mat-error *ngIf="hasError('name', 'minlength')">
+                    {{ 'TRAINER-FAMILY-NAME' | translate }}: {{ 'FIELD-MUSTBE-MINIMUM-LENGTH' | translate }} 3</mat-error>
+                <mat-error *ngIf="hasError('name', 'maxlength')">
+                    {{ 'TRAINER-FAMILY-NAME' | translate }}: {{ 'FIELD-MUSTBE-MAXIMUM-LENGTH' | translate }} 60</mat-error>
+			</mat-form-field>
+			<mat-form-field>
+				<input matInput type="text" formControlName="occupation" id="occupation" 
+					name="occupation" placeholder="{{ 'TRAINER-FAMILY-OCCUPATION' | translate }}" 
+					minlength="3" maxlength="60" />
+                <mat-error *ngIf="hasError('occupation', 'minlength')">
+                    {{ 'TRAINER-FAMILY-OCCUPATION' | translate }}: {{ 'FIELD-MUSTBE-MINIMUM-LENGTH' | translate }} 3</mat-error>
+                <mat-error *ngIf="hasError('occupation', 'maxlength')">
+                    {{ 'TRAINER-FAMILY-OCCUPATION' | translate }}: {{ 'FIELD-MUSTBE-MAXIMUM-LENGTH' | translate }} 60</mat-error>
+			</mat-form-field>
+			<mat-form-field>
+				<mat-label>{{ 'TRAINER-FAMILY-CITIZEN' | translate }}</mat-label>
+				<mat-select formControlName="citizen" id="citizen" name="citizen" 
+						[compareWith]="compareCitizen" required>
+				    <mat-option *ngFor="let citizen of citizens" [value]="citizen">
+				    	{{ citizen.name }}</mat-option>
+				</mat-select>
+				<mat-error *ngIf="hasError('citizen', 'required')">
+					{{ 'TRAINER-FAMILY-CITIZEN' | translate }}: {{ 'FIELD-IS-REQUIRED' | translate }}</mat-error>
+			</mat-form-field>
+			<mat-form-field>
+				<input matInput type="text" formControlName="nricNumber" id="nricNumber" 
+					name="nricNumber" placeholder="{{ 'TRAINER-FAMILY-NRICNUMBER' | translate }}" 
+					minlength="3" maxlength="20" />
+                <mat-error *ngIf="hasError('nricNumber', 'minlength')">
+                    {{ 'TRAINER-FAMILY-NRICNUMBER' | translate }}: {{ 'FIELD-MUSTBE-MINIMUM-LENGTH' | translate }} 3</mat-error>
+                <mat-error *ngIf="hasError('nricNumber', 'maxlength')">
+                    {{ 'TRAINER-FAMILY-NRICNUMBER' | translate }}: {{ 'FIELD-MUSTBE-MAXIMUM-LENGTH' | translate }} 20</mat-error>
+			</mat-form-field>
+			<mat-form-field>
+				<input matInput type="text" formControlName="email" id="email" 
+					name="email" placeholder="{{ 'TRAINER-FAMILY-EMAIL' | translate }}" 
+					minlength="1" maxlength="80" />
+                <mat-error *ngIf="hasError('email', 'minlength')">
+                    {{ 'TRAINER-FAMILY-EMAIL' | translate }}: {{ 'FIELD-MUSTBE-MINIMUM-LENGTH' | translate }} 1</mat-error>
+                <mat-error *ngIf="hasError('email', 'maxlength')">
+                    {{ 'TRAINER-FAMILY-EMAIL' | translate }}: {{ 'FIELD-MUSTBE-MAXIMUM-LENGTH' | translate }} 80</mat-error>
+			</mat-form-field>
+			<mat-form-field>
+				<input matInput type="text" formControlName="phone" id="phone" 
+					name="phone" placeholder="{{ 'TRAINER-FAMILY-PHONE' | translate }}" 
+					minlength="1" maxlength="20" />
+                <mat-error *ngIf="hasError('phone', 'minlength')">
+                    {{ 'TRAINER-FAMILY-PHONE' | translate }}: {{ 'FIELD-MUSTBE-MINIMUM-LENGTH' | translate }} 1</mat-error>
+                <mat-error *ngIf="hasError('phone', 'maxlength')">
+                    {{ 'TRAINER-FAMILY-PHONE' | translate }}: {{ 'FIELD-MUSTBE-MAXIMUM-LENGTH' | translate }} 20</mat-error>
+			</mat-form-field>
+        </mat-card-content>
+    </form>
+</mat-dialog-content>
+<mat-dialog-actions>
+    <button mat-raised-button color="primary" (click)="save(trainerFamilyForm.value)" 
+        [disabled]="!trainerFamilyForm.valid">{{ 'SAVE' | translate }}</button>
+    <button type="button" mat-raised-button color="warn"
+        (click)="onCancel()">{{ 'CANCEL' | translate }}</button>
+</mat-dialog-actions>

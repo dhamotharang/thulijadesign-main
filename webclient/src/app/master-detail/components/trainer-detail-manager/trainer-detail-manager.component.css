@@ -1,0 +1,71 @@
+.container {
+    max-width: 90%;
+    margin: 20px auto;
+}
+
+.my-form {
+    width:100%;
+}
+
+table {
+    width:100%;
+}
+
+.mat-column-trainer {
+    width:7%;
+}
+
+.mat-column-dateOfBirth {
+    width:7%;
+}
+
+.mat-column-age {
+    width:8%;
+}
+
+.mat-column-maritalStatus {
+    width:7%;
+}
+
+.mat-column-dependents {
+    width:8%;
+}
+
+.mat-column-race {
+    width:7%;
+}
+
+.mat-column-religion {
+    width:7%;
+}
+
+.mat-column-passportNumber {
+    width:7%;
+}
+
+.mat-column-visaNumber {
+    width:7%;
+}
+
+.mat-column-visaIssueDate {
+    width:7%;
+}
+
+.mat-column-visaExpiryDate {
+    width:7%;
+}
+
+.mat-column-action {
+    width:8%;
+    text-align: center;
+}
+
+.listimage {
+    max-width: 100%;
+    height: auto;
+}
+
+.title-bar {
+	min-height: 48px !important;
+	height: 48px !important;
+}

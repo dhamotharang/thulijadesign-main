@@ -1,0 +1,21 @@
+<ion-card class="dashboard-card">
+	<ion-card-header class="card-header">
+		<ion-card-title>
+			<h1 class="value-text" *ngIf="isCurrency">{{value | currency:'$':'symbol':'0.0' }}</h1>
+			<h1 class="value-text" *ngIf="!isCurrency">{{value}}</h1>
+		</ion-card-title>
+		<div mat-card-avatar class="card-icon">
+			<ion-icon [color]="color" class="avatar-icon">{{icon}}</ion-icon>
+		</div>
+	</ion-card-header>
+	<h3 class="title-text">{{title}}</h3>
+	<p class="difference-text">
+		<span
+			[ngClass]="{ 'green-text': isIncrease, 'red-text': !isIncrease }">
+				{{ isIncrease ? '+' : '-' }}{{ percentValue | percent:'2.1-2' }}
+			<ion-icon *ngIf="isIncrease">arrow_upward</ion-icon>
+			<ion-icon *ngIf="!isIncrease">arrow_downward</ion-icon>
+		</span>
+		<span class="duration">{{duration}}</span>
+	</p>
+</ion-card>

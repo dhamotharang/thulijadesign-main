@@ -1,0 +1,57 @@
+<mat-toolbar color="primary" class="mat-elevation-z5">
+    <mat-toolbar-row *ngIf="currentUser == null">
+        <a mat-button [routerLink]="'/'" routerLinkActive="active">
+            {{ 'HOME' | translate }}</a>
+        <span class="spacer"></span>
+        <a mat-button [routerLink]="'/login'" routerLinkActive="active">
+            {{ 'LOGIN' | translate }}</a>
+        <a mat-button [routerLink]="'/registration'" routerLinkActive="active">
+            {{ 'REGISTRATION' | translate }}</a>
+    </mat-toolbar-row>
+    <mat-toolbar-row *ngIf="currentUser">
+        <button type="button" mat-icon-button (click)="toggle()">
+            <mat-icon>menu</mat-icon>
+        </button>&nbsp;&nbsp;
+        <a mat-button [routerLink]="'/'" routerLinkActive="active">
+            {{ 'HOME' | translate }}</a>
+		<span class="spacer"></span>
+		<span  *ngIf="isInGroup('setupmenu')">
+			<a mat-button [matMenuTriggerFor]="setupmenu">
+				<span>{{ 'SETUP' | translate }}</span>
+				<mat-icon>arrow_drop_down</mat-icon>
+			</a>
+			<mat-menu #setupmenu="matMenu">
+				<button mat-menu-item [routerLink]="'/coremain'">
+					<span>{{ 'COREMAIN' | translate }}</span>
+				</button>
+				<button mat-menu-item [routerLink]="'/generalmain'">
+					<span>{{ 'GENERALMAIN' | translate }}</span>
+				</button>
+			</mat-menu>
+		</span>
+		<span  *ngIf="isInGroup('trainersetupmenu')">
+			<a mat-button [routerLink]="'/masterdetail/trainermanagers'">
+				<span>{{ 'TRAINERMANAGER' | translate }}</span>
+			</a>
+		</span>
+		<a mat-button [matMenuTriggerFor]="menu">
+		    <mat-icon>group</mat-icon>&nbsp;
+		    <mat-icon>arrow_drop_down</mat-icon>
+		</a>
+		<mat-menu #menu="matMenu">
+		    <button mat-menu-item [routerLink]="profileLink">
+		        <mat-icon>contact_phone</mat-icon>
+		        <span>Profile</span>
+		    </button>
+		    <button mat-menu-item routerLink="changepassword">
+		        <mat-icon>lock_open</mat-icon>
+		        <span>Change Password</span>
+		    </button>
+		    <button mat-menu-item (click)="logout()">
+		        <mat-icon>exit_to_app</mat-icon>
+		        <span>Logout</span>
+		    </button>
+		</mat-menu>
+    </mat-toolbar-row>
+</mat-toolbar>
+<router-outlet></router-outlet>

@@ -1,0 +1,55 @@
+<h2 mat-dialog-title>{{ 'ADDRESS-TYPE' | translate }} - {{ 'NEW' | translate }}</h2>
+<mat-dialog-content>
+	<form [formGroup]="addressTypeForm" *ngIf="addressTypeForm">
+		<mat-card-subtitle *ngIf="errorMessage" class="alert-danger">{{ errorMessage }}</mat-card-subtitle>
+		<mat-card-content class="my-form">
+			<mat-form-field>
+				<input matInput type="text" formControlName="sequence" id="sequence" 
+					name="sequence" placeholder="{{ 'ADDRESS-TYPE-SEQUENCE' | translate }}" 
+					min="1" max="25" required />
+				<mat-icon matPrefix style="padding-right: 20px;">list</mat-icon>
+                <mat-error *ngIf="hasError('sequence', 'required')">
+                    {{ 'ADDRESS-TYPE-SEQUENCE' | translate }}: {{ 'FIELD-IS-REQUIRED' | translate }}</mat-error>
+                <mat-error *ngIf="hasError('sequence', 'min')">
+                    {{ 'ADDRESS-TYPE-SEQUENCE' | translate }}: {{ 'FIELD-MUSTBE-MINIMUM' | translate }} 1</mat-error>
+                <mat-error *ngIf="hasError('sequence', 'max')">
+                    {{ 'ADDRESS-TYPE-SEQUENCE' | translate }}: {{ 'FIELD-MUSTBE-MAXIMUM' | translate }} 25</mat-error>
+				<mat-error *ngIf="hasError('sequence', 'pattern')">
+					{{ 'ADDRESS-TYPE-SEQUENCE' | translate }}: {{ 'FIELD-MUSTBE-NUMERIC' | translate }}</mat-error>
+			</mat-form-field>
+			<mat-form-field>
+				<input matInput type="text" formControlName="code" id="code" 
+					name="code" placeholder="{{ 'ADDRESS-TYPE-CODE' | translate }}" 
+					minlength="1" maxlength="10" required />
+                <mat-error *ngIf="hasError('code', 'required')">
+                    {{ 'ADDRESS-TYPE-CODE' | translate }}: {{ 'FIELD-IS-REQUIRED' | translate }}</mat-error>
+                <mat-error *ngIf="hasError('code', 'minlength')">
+                    {{ 'ADDRESS-TYPE-CODE' | translate }}: {{ 'FIELD-MUSTBE-MINIMUM-LENGTH' | translate }} 1</mat-error>
+                <mat-error *ngIf="hasError('code', 'maxlength')">
+                    {{ 'ADDRESS-TYPE-CODE' | translate }}: {{ 'FIELD-MUSTBE-MAXIMUM-LENGTH' | translate }} 10</mat-error>
+			</mat-form-field>
+			<mat-form-field>
+				<input matInput type="text" formControlName="name" id="name" 
+					name="name" placeholder="{{ 'ADDRESS-TYPE-NAME' | translate }}" 
+					minlength="1" maxlength="60" required />
+                <mat-error *ngIf="hasError('name', 'required')">
+                    {{ 'ADDRESS-TYPE-NAME' | translate }}: {{ 'FIELD-IS-REQUIRED' | translate }}</mat-error>
+                <mat-error *ngIf="hasError('name', 'minlength')">
+                    {{ 'ADDRESS-TYPE-NAME' | translate }}: {{ 'FIELD-MUSTBE-MINIMUM-LENGTH' | translate }} 1</mat-error>
+                <mat-error *ngIf="hasError('name', 'maxlength')">
+                    {{ 'ADDRESS-TYPE-NAME' | translate }}: {{ 'FIELD-MUSTBE-MAXIMUM-LENGTH' | translate }} 60</mat-error>
+			</mat-form-field>
+			<section class="checkbox-section">
+				<mat-checkbox formControlName="byDefault" 
+					id="byDefault">byDefault
+				</mat-checkbox>
+			</section>
+        </mat-card-content>
+    </form>
+</mat-dialog-content>
+<mat-dialog-actions>
+    <button mat-raised-button color="primary" (click)="save(addressTypeForm.value)" 
+        [disabled]="!addressTypeForm.valid">{{ 'SAVE' | translate }}</button>
+    <button type="button" mat-raised-button color="warn"
+        (click)="onCancel()">{{ 'CANCEL' | translate }}</button>
+</mat-dialog-actions>

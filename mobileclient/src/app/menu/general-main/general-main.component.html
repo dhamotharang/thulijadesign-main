@@ -1,0 +1,40 @@
+<ion-toolbar color="primary">
+	<ion-buttons slot="start">
+		<ion-menu-button></ion-menu-button>
+	</ion-buttons>
+	<ion-title>GeneralMain</ion-title>
+</ion-toolbar>
+<ion-content>
+	<ion-list>
+		<ion-item [routerLink]="['/general/salutations']">
+			{{ 'SALUTATION' | translate }} </ion-item>
+		<ion-item [routerLink]="['/general/genders']">
+			{{ 'GENDER' | translate }} </ion-item>
+		<ion-item [routerLink]="['/general/maritalstatuses']">
+			{{ 'MARITAL-STATUS' | translate }} </ion-item>
+		<ion-item [routerLink]="['/general/races']">
+			{{ 'RACE' | translate }} </ion-item>
+		<ion-item [routerLink]="['/general/religions']">
+			{{ 'RELIGION' | translate }} </ion-item>
+		<ion-item [routerLink]="['/general/citizens']">
+			{{ 'CITIZEN' | translate }} </ion-item>
+		<ion-item [routerLink]="['/general/addresstypes']">
+			{{ 'ADDRESS-TYPE' | translate }} </ion-item>
+		<ion-item [routerLink]="['/general/states']">
+			{{ 'STATE' | translate }} </ion-item>
+		<ion-item [routerLink]="['/general/countries']">
+			{{ 'COUNTRY' | translate }} </ion-item>
+		<ion-item [routerLink]="['/general/relationtypes']">
+			{{ 'RELATION-TYPE' | translate }} </ion-item>
+		<ion-item [routerLink]="['/general/occupationtypes']">
+			{{ 'OCCUPATION-TYPE' | translate }} </ion-item>
+		<ion-item [routerLink]="['/general/salaryranges']">
+			{{ 'SALARY-RANGE' | translate }} </ion-item>
+		<ion-item [routerLink]="['/general/fieldstudies']">
+			{{ 'FIELD-STUDY' | translate }} </ion-item>
+		<ion-item [routerLink]="['/general/qualifications']">
+			{{ 'QUALIFICATION' | translate }} </ion-item>
+		<ion-item [routerLink]="['/general/positionlevels']">
+			{{ 'POSITION-LEVEL' | translate }} </ion-item>
+	</ion-list>
+</ion-content>
