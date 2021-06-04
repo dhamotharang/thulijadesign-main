@@ -1,0 +1,110 @@
+<ion-toolbar color="primary">
+	<ion-title>{{ 'SCHOLAR-EDUCATION-DETAIL' | translate }} - {{ 'NEW' | translate }}</ion-title>
+</ion-toolbar>
+<ion-content padding>
+	<form [formGroup]="scholarEducationDetailForm" *ngIf="scholarEducationDetailForm">
+		<ion-card-content>
+			<ion-item>
+				<ion-label position="floating">{{ 'SCHOLAR-EDUCATION-DETAIL-INSTITUTENAME' | translate }}</ion-label>
+				<ion-input formControlName="instituteName" id="instituteName" name="instituteName" #instituteName
+					placeholder="{{ 'SCHOLAR-EDUCATION-DETAIL-INSTITUTENAME' | translate }}" maxlength="60">
+				</ion-input>
+			</ion-item>
+			<div *ngIf="(scholarEducationDetailForm.controls['instituteName'].dirty || scholarEducationDetailForm.controls['instituteName'].touched)" class="errors">
+                <div *ngIf="hasError('instituteName', 'minlength')">
+                    {{ 'SCHOLAR-EDUCATION-DETAIL-INSTITUTENAME' | translate }}: {{ 'FIELD-MUSTBE-MINIMUM-LENGTH' | translate }} 1</div>
+                <div *ngIf="hasError('instituteName', 'maxlength')">
+                    {{ 'SCHOLAR-EDUCATION-DETAIL-INSTITUTENAME' | translate }}: {{ 'FIELD-MUSTBE-MAXIMUM-LENGTH' | translate }} 60</div>
+			</div>
+			<ion-item>
+				<ion-label>{{ 'SCHOLAR-EDUCATION-DETAIL-GRADUATIONDATE' | translate }}</ion-label>
+				<ion-datetime displayFormat="DD/MM/YYYY" 
+					formControlName="graduationDate" placeholder="{{ 'SCHOLAR-EDUCATION-DETAIL-GRADUATIONDATE' | translate }}">
+				</ion-datetime>
+			</ion-item>
+			<div *ngIf="(scholarEducationDetailForm.controls['graduationDate'].dirty || scholarEducationDetailForm.controls['graduationDate'].touched)" class="errors">
+			</div>
+			<ion-item>
+				<ion-label>{{ 'SCHOLAR-EDUCATION-DETAIL-QUALIFICATION' | translate }}</ion-label>
+				<ion-select formControlName="qualification" id="qualification" name="qualification" 
+						[compareWith]="compareQualification" required>
+					<ion-select-option *ngFor="let qualification of qualifications" [value]="qualification">
+						{{ qualification.name }}</ion-select-option>
+				</ion-select>
+			</ion-item>
+			<div *ngIf="(scholarEducationDetailForm.controls['qualification'].dirty || scholarEducationDetailForm.controls['qualification'].touched)" class="errors">
+				<div *ngIf="hasError('qualification', 'required')">
+					{{ 'SCHOLAR-EDUCATION-DETAIL-QUALIFICATION' | translate }}: {{ 'FIELD-IS-REQUIRED' | translate }}</div>
+			</div>
+			<ion-item>
+				<ion-label position="floating">{{ 'SCHOLAR-EDUCATION-DETAIL-INSTITUTELOCATION' | translate }}</ion-label>
+				<ion-input formControlName="instituteLocation" id="instituteLocation" name="instituteLocation" #instituteLocation
+					placeholder="{{ 'SCHOLAR-EDUCATION-DETAIL-INSTITUTELOCATION' | translate }}" maxlength="120">
+				</ion-input>
+			</ion-item>
+			<div *ngIf="(scholarEducationDetailForm.controls['instituteLocation'].dirty || scholarEducationDetailForm.controls['instituteLocation'].touched)" class="errors">
+                <div *ngIf="hasError('instituteLocation', 'minlength')">
+                    {{ 'SCHOLAR-EDUCATION-DETAIL-INSTITUTELOCATION' | translate }}: {{ 'FIELD-MUSTBE-MINIMUM-LENGTH' | translate }} 3</div>
+                <div *ngIf="hasError('instituteLocation', 'maxlength')">
+                    {{ 'SCHOLAR-EDUCATION-DETAIL-INSTITUTELOCATION' | translate }}: {{ 'FIELD-MUSTBE-MAXIMUM-LENGTH' | translate }} 120</div>
+			</div>
+			<ion-item>
+				<ion-label>{{ 'SCHOLAR-EDUCATION-DETAIL-FIELDSTUDY' | translate }}</ion-label>
+				<ion-select formControlName="fieldStudy" id="fieldStudy" name="fieldStudy" 
+						[compareWith]="compareFieldStudy" required>
+					<ion-select-option *ngFor="let fieldStudy of fieldStudies" [value]="fieldStudy">
+						{{ fieldStudy.name }}</ion-select-option>
+				</ion-select>
+			</ion-item>
+			<div *ngIf="(scholarEducationDetailForm.controls['fieldStudy'].dirty || scholarEducationDetailForm.controls['fieldStudy'].touched)" class="errors">
+				<div *ngIf="hasError('fieldStudy', 'required')">
+					{{ 'SCHOLAR-EDUCATION-DETAIL-FIELDSTUDY' | translate }}: {{ 'FIELD-IS-REQUIRED' | translate }}</div>
+			</div>
+			<ion-item>
+				<ion-label position="floating">{{ 'SCHOLAR-EDUCATION-DETAIL-MAJOR' | translate }}</ion-label>
+				<ion-input formControlName="major" id="major" name="major" #major
+					placeholder="{{ 'SCHOLAR-EDUCATION-DETAIL-MAJOR' | translate }}" maxlength="120">
+				</ion-input>
+			</ion-item>
+			<div *ngIf="(scholarEducationDetailForm.controls['major'].dirty || scholarEducationDetailForm.controls['major'].touched)" class="errors">
+                <div *ngIf="hasError('major', 'minlength')">
+                    {{ 'SCHOLAR-EDUCATION-DETAIL-MAJOR' | translate }}: {{ 'FIELD-MUSTBE-MINIMUM-LENGTH' | translate }} 3</div>
+                <div *ngIf="hasError('major', 'maxlength')">
+                    {{ 'SCHOLAR-EDUCATION-DETAIL-MAJOR' | translate }}: {{ 'FIELD-MUSTBE-MAXIMUM-LENGTH' | translate }} 120</div>
+			</div>
+			<ion-item>
+				<ion-label position="floating">{{ 'SCHOLAR-EDUCATION-DETAIL-GRADE' | translate }}</ion-label>
+				<ion-input formControlName="grade" id="grade" name="grade" #grade
+					placeholder="{{ 'SCHOLAR-EDUCATION-DETAIL-GRADE' | translate }}" maxlength="120">
+				</ion-input>
+			</ion-item>
+			<div *ngIf="(scholarEducationDetailForm.controls['grade'].dirty || scholarEducationDetailForm.controls['grade'].touched)" class="errors">
+                <div *ngIf="hasError('grade', 'minlength')">
+                    {{ 'SCHOLAR-EDUCATION-DETAIL-GRADE' | translate }}: {{ 'FIELD-MUSTBE-MINIMUM-LENGTH' | translate }} 3</div>
+                <div *ngIf="hasError('grade', 'maxlength')">
+                    {{ 'SCHOLAR-EDUCATION-DETAIL-GRADE' | translate }}: {{ 'FIELD-MUSTBE-MAXIMUM-LENGTH' | translate }} 120</div>
+			</div>
+			<div style="color:#666666;padding-bottom:8px"><ion-label>{{ 'SCHOLAR-EDUCATION-DETAIL-DESCRIPTION' | translate }}</ion-label></div>
+            <editor 
+                formControlName = "description"
+                [init]="{ 
+	                	base_url: '/tinymce', 
+	                	menubar: false,
+	                    suffix: '.min', 
+	                    plugins: 'lists advlist table',
+	                    toolbar: 'undo redo | bold italic underline | ' + 
+	                    	'alignleft aligncenter alignright alignjustify | ' +
+	                    	'bullist numlist outdent indent | removeformat' 
+				}">
+			</editor><br />
+		</ion-card-content>
+		<ion-footer>
+			<ion-toolbar color="light" style="padding-left: 20px;">
+			<ion-button color="primary" (click)="save(scholarEducationDetailForm.value)" 
+				[disabled]="!scholarEducationDetailForm.valid">{{ 'SAVE' | translate }}</ion-button>
+			<ion-button type="button" color="medium"
+				(click)="onCancel()">{{ 'CANCEL' | translate }}</ion-button>
+			</ion-toolbar>
+		</ion-footer>
+    </form>
+</ion-content>

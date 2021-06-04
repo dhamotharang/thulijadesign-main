@@ -1,0 +1,58 @@
+<ion-toolbar color="primary">
+	<ion-buttons slot="start">
+		<ion-menu-button></ion-menu-button>
+	</ion-buttons>
+	<ion-title>{{ 'SCHOLAR-DETAIL' | translate }}</ion-title>
+	<ion-buttons slot="end" color="success">
+		<ion-button fill="clear" (click)="add()">
+			<ion-icon slot="icon-only" name="add-circle-outline"></ion-icon>
+		</ion-button>
+	</ion-buttons>
+</ion-toolbar>
+<ion-content padding>
+	<ion-card *ngFor="let scholarDetail of scholarDetails">
+		<ion-card-content style="padding: bottom 0px;">
+			<h2>
+				<b>{{ 'SCHOLAR-DETAIL-DATEOFBIRTH' | translate }}:</b>&nbsp;
+				{{ scholarDetail.dateOfBirth | date }}
+			</h2>
+			<h2>
+				<b>{{ 'SCHOLAR-DETAIL-AGE' | translate }}:</b>&nbsp;
+				{{ scholarDetail.age }}
+			</h2>
+			<h2>
+				<b>{{ 'SCHOLAR-DETAIL-MARITALSTATUS' | translate }}:</b>&nbsp;
+				{{ scholarDetail.maritalStatus.name }}
+			</h2>
+			<h2>
+				<b>{{ 'SCHOLAR-DETAIL-DEPENDENTS' | translate }}:</b>&nbsp;
+				{{ scholarDetail.dependents }}
+			</h2>
+			<h2>
+				<b>{{ 'SCHOLAR-DETAIL-RACE' | translate }}:</b>&nbsp;
+				{{ scholarDetail.race.name }}
+			</h2>
+			<h2>
+				<b>{{ 'SCHOLAR-DETAIL-RELIGION' | translate }}:</b>&nbsp;
+				{{ scholarDetail.religion.name }}
+			</h2>
+			<ion-row no-padding>
+				<ion-col size="4" no-padding></ion-col>
+				<ion-col size="8" no-padding>
+					<ion-button fill="clear" size="small" (click)="edit(scholarDetail)">
+						<ion-icon name="create-outline"></ion-icon>
+					</ion-button>
+					<ion-button fill="clear" size="small" (click)="delete(scholarDetail)">
+						<ion-icon name="trash-outline"></ion-icon>
+					</ion-button>
+					<ion-button fill="clear" size="small" (click)="print(scholarDetail)">
+						<ion-icon name="print-outline"></ion-icon>
+					</ion-button>
+					<ion-button fill="clear" size="small" (click)="showDetail(scholarDetail)">
+						<ion-icon name="list-outline"></ion-icon>
+					</ion-button>
+				</ion-col>
+			</ion-row>
+		</ion-card-content>
+	</ion-card>
+</ion-content>

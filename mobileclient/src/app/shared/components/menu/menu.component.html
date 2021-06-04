@@ -24,13 +24,40 @@
 					<ion-item [routerLink]="'/generalmain'" routerLinkActive="selected" routerDirection="root" detail="false">
 						{{ 'GENERALMAIN' | translate }}
 					</ion-item>
+					<ion-item [routerLink]="'/programmain'" routerLinkActive="selected" routerDirection="root" detail="false">
+						{{ 'PROGRAMMAIN' | translate }}
+					</ion-item>
 				</ion-menu-toggle>
 			</ion-list>
 		</span>
-		<span *ngIf="isInGroup('trainersetupmenu')">
+		<span *ngIf="isInGroup('scholarsetupmenu')">
 			<ion-menu-toggle auto-hide="false">
-				<ion-item [routerLink]="'/masterdetail/trainermanagers'" routerLinkActive="selected" routerDirection="root" detail="false">
-					{{ 'TRAINERMANAGER' | translate }}
+				<ion-item [routerLink]="'/masterdetail/scholarmanagers'" routerLinkActive="selected" routerDirection="root" detail="false">
+					{{ 'SCHOLARMANAGER' | translate }}
+					<span class="divider"></span>
+				</ion-item>
+			</ion-menu-toggle>
+		</span>
+		<span *ngIf="isInGroup('programsetupmenu')">
+			<ion-menu-toggle auto-hide="false">
+				<ion-item [routerLink]="'/masterdetail/programmanagers'" routerLinkActive="selected" routerDirection="root" detail="false">
+					{{ 'PROGRAMMANAGER' | translate }}
+					<span class="divider"></span>
+				</ion-item>
+			</ion-menu-toggle>
+		</span>
+		<span *ngIf="isInGroup('playermenu')">
+			<ion-menu-toggle auto-hide="false">
+				<ion-item [routerLink]="'/plugin/batchscholarplayers'" routerLinkActive="selected" routerDirection="root" detail="false">
+					{{ 'BATCHSCHOLARPLAYER' | translate }}
+					<span class="divider"></span>
+				</ion-item>
+			</ion-menu-toggle>
+		</span>
+		<span *ngIf="isInGroup('registrationsetupmenu')">
+			<ion-menu-toggle auto-hide="false">
+				<ion-item [routerLink]="'/registrationmanager'" routerLinkActive="selected" routerDirection="root" detail="false">
+					{{ 'REGISTRATIONMANAGER' | translate }}
 					<span class="divider"></span>
 				</ion-item>
 			</ion-menu-toggle>

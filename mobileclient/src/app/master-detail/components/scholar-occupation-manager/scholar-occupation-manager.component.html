@@ -1,0 +1,70 @@
+<ion-toolbar color="primary">
+	<ion-buttons slot="start">
+		<ion-menu-button></ion-menu-button>
+	</ion-buttons>
+	<ion-title>{{ 'SCHOLAR-OCCUPATION' | translate }}</ion-title>
+	<ion-buttons slot="end" color="success">
+		<ion-button fill="clear" (click)="add()">
+			<ion-icon slot="icon-only" name="add-circle-outline"></ion-icon>
+		</ion-button>
+	</ion-buttons>
+</ion-toolbar>
+<ion-content padding>
+	<ion-card *ngFor="let scholarOccupation of scholarOccupations">
+		<ion-card-content style="padding: bottom 0px;">
+			<h2>
+				<b>{{ 'SCHOLAR-OCCUPATION-POSITIONTITLE' | translate }}:</b>&nbsp;
+				{{ scholarOccupation.positionTitle }}
+			</h2>
+			<h2>
+				<b>{{ 'SCHOLAR-OCCUPATION-COMPANYNAME' | translate }}:</b>&nbsp;
+				{{ scholarOccupation.companyName }}
+			</h2>
+			<h2>
+				<b>{{ 'SCHOLAR-OCCUPATION-STARTDATE' | translate }}:</b>&nbsp;
+				{{ scholarOccupation.startDate | date }}
+			</h2>
+			<h2>
+				<b>{{ 'SCHOLAR-OCCUPATION-ENDDATE' | translate }}:</b>&nbsp;
+				{{ scholarOccupation.endDate | date }}
+			</h2>
+			<h2>
+				<b>{{ 'SCHOLAR-OCCUPATION-SPECIALIZATION' | translate }}:</b>&nbsp;
+				{{ scholarOccupation.specialization }}
+			</h2>
+			<h2>
+				<b>{{ 'SCHOLAR-OCCUPATION-JOBROLE' | translate }}:</b>&nbsp;
+				{{ scholarOccupation.jobRole }}
+			</h2>
+			<h2>
+				<b>{{ 'SCHOLAR-OCCUPATION-INDUSTRY' | translate }}:</b>&nbsp;
+				{{ scholarOccupation.industry }}
+			</h2>
+			<h2>
+				<b>{{ 'SCHOLAR-OCCUPATION-POSITIONLEVEL' | translate }}:</b>&nbsp;
+				{{ scholarOccupation.positionLevel.name }}
+			</h2>
+			<h2>
+				<b>{{ 'SCHOLAR-OCCUPATION-SALARY' | translate }}:</b>&nbsp;
+				{{ scholarOccupation.salary }}
+			</h2>
+			<ion-row no-padding>
+				<ion-col size="4" no-padding></ion-col>
+				<ion-col size="8" no-padding>
+					<ion-button fill="clear" size="small" (click)="edit(scholarOccupation)">
+						<ion-icon name="create-outline"></ion-icon>
+					</ion-button>
+					<ion-button fill="clear" size="small" (click)="delete(scholarOccupation)">
+						<ion-icon name="trash-outline"></ion-icon>
+					</ion-button>
+					<ion-button fill="clear" size="small" (click)="print(scholarOccupation)">
+						<ion-icon name="print-outline"></ion-icon>
+					</ion-button>
+					<ion-button fill="clear" size="small" (click)="showDetail(scholarOccupation)">
+						<ion-icon name="list-outline"></ion-icon>
+					</ion-button>
+				</ion-col>
+			</ion-row>
+		</ion-card-content>
+	</ion-card>
+</ion-content>

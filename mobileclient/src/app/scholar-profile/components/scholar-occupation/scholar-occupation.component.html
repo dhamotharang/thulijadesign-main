@@ -1,0 +1,75 @@
+<ion-toolbar color="primary">
+	<ion-buttons slot="start">
+		<ion-menu-button></ion-menu-button>
+	</ion-buttons>
+	<ion-title>{{ 'SCHOLAR-OCCUPATION' | translate }}</ion-title>
+	<ion-buttons slot="end" color="success">
+		<ion-button fill="clear" (click)="add()">
+			<ion-icon slot="icon-only" name="add-circle-outline"></ion-icon>
+		</ion-button>
+	</ion-buttons>
+</ion-toolbar>
+<ion-content padding>
+	<ion-card *ngFor="let scholarOccupation of scholarOccupations">
+		<ion-card-content style="padding: bottom 0px;">
+			<ion-list lines="none">
+				<ion-item>
+					<ion-label>{{ 'SCHOLAR-OCCUPATION-POSITIONTITLE' | translate }}: </ion-label>
+					<ion-text>{{ scholarOccupation.positionTitle }}</ion-text>
+				</ion-item>
+				<ion-item>
+					<ion-label>{{ 'SCHOLAR-OCCUPATION-COMPANYNAME' | translate }}: </ion-label>
+					<ion-text>{{ scholarOccupation.companyName }}</ion-text>
+				</ion-item>
+				<ion-item>
+					<ion-label>{{ 'SCHOLAR-OCCUPATION-STARTDATE' | translate }}: </ion-label>
+					<ion-text>{{ scholarOccupation.startDate | date }}</ion-text>
+				</ion-item>
+				<ion-item>
+					<ion-label>{{ 'SCHOLAR-OCCUPATION-ENDDATE' | translate }}: </ion-label>
+					<ion-text>{{ scholarOccupation.endDate | date }}</ion-text>
+				</ion-item>
+				<ion-item>
+					<ion-label>{{ 'SCHOLAR-OCCUPATION-SPECIALIZATION' | translate }}: </ion-label>
+					<ion-text>{{ scholarOccupation.specialization }}</ion-text>
+				</ion-item>
+				<ion-item>
+					<ion-label>{{ 'SCHOLAR-OCCUPATION-JOBROLE' | translate }}: </ion-label>
+					<ion-text>{{ scholarOccupation.jobRole }}</ion-text>
+				</ion-item>
+				<ion-item>
+					<ion-label>{{ 'SCHOLAR-OCCUPATION-INDUSTRY' | translate }}: </ion-label>
+					<ion-text>{{ scholarOccupation.industry }}</ion-text>
+				</ion-item>
+				<ion-item>
+					<ion-label>{{ 'SCHOLAR-OCCUPATION-POSITIONLEVEL' | translate }}: </ion-label>
+					<ion-text>{{ scholarOccupation.positionLevel.name }}</ion-text>
+				</ion-item>
+				<ion-item>
+					<ion-label>{{ 'SCHOLAR-OCCUPATION-SALARY' | translate }}: </ion-label>
+					<ion-text>{{ scholarOccupation.salary }}</ion-text>
+				</ion-item>
+				<ion-item>
+					<ion-label>{{ 'SCHOLAR-OCCUPATION-DESCRIPTION' | translate }}: </ion-label>
+					<ion-text>{{ scholarOccupation.description }}</ion-text>
+				</ion-item>
+			</ion-list>
+			<ion-row no-padding>
+				<ion-col col-12 no-padding style="text-align: center">
+					<ion-chip color="dark" button (click)="edit(scholarOccupation)">
+						<ion-icon name="create-outline"></ion-icon>
+						<ion-label>Edit</ion-label>
+					</ion-chip>
+					<ion-chip color="dark" button (click)="delete(scholarOccupation)">
+						<ion-icon name="trash-outline"></ion-icon>
+						<ion-label>Delete</ion-label>
+					</ion-chip>
+					<ion-chip color="dark" button (click)="print(scholarOccupation)">
+						<ion-icon name="print-outline"></ion-icon>
+						<ion-label>Print</ion-label>
+					</ion-chip>
+				</ion-col>
+			</ion-row>
+		</ion-card-content>
+	</ion-card>
+</ion-content>

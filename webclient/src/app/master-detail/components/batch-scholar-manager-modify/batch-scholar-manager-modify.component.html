@@ -1,0 +1,29 @@
+<h2 mat-dialog-title>{{ 'BATCH-SCHOLAR' | translate }} - {{ 'NEW' | translate }}</h2>
+<mat-dialog-content>
+	<form [formGroup]="batchScholarForm" *ngIf="batchScholarForm">
+		<mat-card-subtitle *ngIf="errorMessage" class="alert-danger">{{ errorMessage }}</mat-card-subtitle>
+		<mat-card-content class="my-form">
+            <mat-form-field>
+            	<mat-label>Scholar</mat-label>
+                <input type="text" placeholder="First Name" matInput 
+                    formControlName="scholar" [matAutocomplete]="autoScholar" />
+                <mat-autocomplete #autoScholar="matAutocomplete" [displayWith]="displayScholar"> 
+					<mat-option *ngFor="let scholar of filteredScholars | async" [value]="scholar">
+						<ul class="flex-container nowrap">
+							<li class="flex-item">{{ scholar.user.firstName }}</li>
+							<li class="flex-item">{{ scholar.user.lastName }}</li>
+						</ul>
+					</mat-option>
+                </mat-autocomplete>
+                <mat-error *ngIf="hasError('scholar', 'required')">
+                    {{ 'BATCH-SCHOLAR-SCHOLAR' | translate }}: {{ 'FIELD-IS-REQUIRED' | translate }}</mat-error>
+            </mat-form-field>
+        </mat-card-content>
+    </form>
+</mat-dialog-content>
+<mat-dialog-actions>
+    <button mat-raised-button color="primary" (click)="save(batchScholarForm.value)" 
+        [disabled]="!batchScholarForm.valid">{{ 'SAVE' | translate }}</button>
+    <button type="button" mat-raised-button color="warn"
+        (click)="onCancel()">{{ 'CANCEL' | translate }}</button>
+</mat-dialog-actions>

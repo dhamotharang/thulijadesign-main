@@ -1,4 +1,4 @@
 export const environment = {
 	production: false,
-	apiEndpoint: 'http://design.thulija.com/api'
+	apiEndpoint: 'http://localhost:8080/api'
 };

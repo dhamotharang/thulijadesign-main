@@ -1,0 +1,38 @@
+<div class="container mat-elevation-z2">
+	<table mat-table [dataSource]="batchScholars">
+		<ng-container matColumnDef="program">
+			<th mat-header-cell *matHeaderCellDef>{{ 'PLUGIN-BATCH-PROGRAM-PROGRAMMASTER-TITLE' | translate }}</th>
+			<td mat-cell *matCellDef="let element">
+				<span class="mat-subheading-1">{{ element.batch.program.programMaster.title }}</span>
+			</td>
+		</ng-container>
+		<ng-container matColumnDef="batch">
+			<th mat-header-cell *matHeaderCellDef>{{ 'PLUGIN-BATCH-LOCATIONNAME' | translate }}</th>
+			<td mat-cell *matCellDef="let element">
+				<span class="mat-subheading-1">{{ element.batch.locationName }}</span>
+			</td>
+		</ng-container>
+		<ng-container matColumnDef="startDate">
+			<th mat-header-cell *matHeaderCellDef>{{ 'PLUGIN-BATCH-LECTURESTARTDATE' | translate }}</th>
+			<td mat-cell *matCellDef="let element">
+				<span class="mat-subheading-1">{{ element.batch.lectureStartDate | date }}</span>
+			</td>
+		</ng-container>
+		<ng-container matColumnDef="endDate">
+			<th mat-header-cell *matHeaderCellDef>{{ 'PLUGIN-BATCH-LECTUREENDDATE' | translate }}</th>
+			<td mat-cell *matCellDef="let element">
+				<span class="mat-subheading-1">{{ element.batch.lectureEndDate | date }}</span>
+			</td>
+		</ng-container>
+		<ng-container matColumnDef="action">
+			<th mat-header-cell *matHeaderCellDef>{{ 'ACTION' | translate }}</th>
+			<td mat-cell *matCellDef="let element" style="text-align:center">
+    			<button mat-icon-button color="primary" (click)="showDetail(element)">
+    				<mat-icon>view_comfy</mat-icon>
+    			</button>
+			</td>
+		</ng-container>
+		<tr mat-header-row *matHeaderRowDef="columnCaptions"></tr>
+		<tr mat-row *matRowDef="let row; columns:columnCaptions"></tr>
+	</table>
+</div>

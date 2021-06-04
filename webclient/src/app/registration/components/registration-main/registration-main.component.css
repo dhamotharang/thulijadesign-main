@@ -1,0 +1,26 @@
+.login {
+    width:60%;
+    margin:30px auto;
+}
+
+mat-sidenav-container {
+    height: 100%;
+}
+
+mat-sidenav {
+    width: 210px;
+    background-color: linen !important;
+}
+
+mat-sidenav-content {
+    background-color: white !important;
+}
+
+.mat-list-item {
+    border-bottom: 1px solid lightgrey;
+    padding: 0px;
+    margin: 0px;
+    font-size: 14px;
+    font-weight: 500;
+    height: 36px !important;
+}

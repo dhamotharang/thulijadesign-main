@@ -1,0 +1,103 @@
+<ion-toolbar color="primary">
+	<ion-buttons slot="start">
+		<ion-menu-button></ion-menu-button>
+	</ion-buttons>
+	<ion-title>{{ 'SCHOLAR-ADDRESS' | translate }}</ion-title>
+	<ion-buttons slot="end" color="success">
+		<ion-button fill="clear" (click)="add()">
+			<ion-icon slot="icon-only" name="add-circle-outline"></ion-icon>
+		</ion-button>
+	</ion-buttons>
+</ion-toolbar>
+<ion-content padding>
+	<ion-card *ngFor="let scholarAddress of scholarAddresses">
+		<ion-card-content style="padding: bottom 0px;">
+			<ion-list lines="none">
+				<ion-item>
+					<ion-label>{{ 'SCHOLAR-ADDRESS-ADDRESSTYPE' | translate }}: </ion-label>
+					<ion-text>{{ scholarAddress.addressType.name }}</ion-text>
+				</ion-item>
+				<ion-item>
+					<ion-label>{{ 'SCHOLAR-ADDRESS-CONTACTPERSONNAME' | translate }}: </ion-label>
+					<ion-text>{{ scholarAddress.contactPersonName }}</ion-text>
+				</ion-item>
+				<ion-item>
+					<ion-label>{{ 'SCHOLAR-ADDRESS-ADDRESSLINEONE' | translate }}: </ion-label>
+					<ion-text>{{ scholarAddress.addressLineOne }}</ion-text>
+				</ion-item>
+				<ion-item>
+					<ion-label>{{ 'SCHOLAR-ADDRESS-ADDRESSLINETWO' | translate }}: </ion-label>
+					<ion-text>{{ scholarAddress.addressLineTwo }}</ion-text>
+				</ion-item>
+				<ion-item>
+					<ion-label>{{ 'SCHOLAR-ADDRESS-POSTCODE' | translate }}: </ion-label>
+					<ion-text>{{ scholarAddress.postcode }}</ion-text>
+				</ion-item>
+				<ion-item>
+					<ion-label>{{ 'SCHOLAR-ADDRESS-COUNTRY' | translate }}: </ion-label>
+					<ion-text>{{ scholarAddress.country.name }}</ion-text>
+				</ion-item>
+				<ion-item>
+					<ion-label>{{ 'SCHOLAR-ADDRESS-STATE' | translate }}: </ion-label>
+					<ion-text>{{ scholarAddress.state.name }}</ion-text>
+				</ion-item>
+				<ion-item>
+					<ion-label>{{ 'SCHOLAR-ADDRESS-DISTRICT' | translate }}: </ion-label>
+					<ion-text>{{ scholarAddress.district }}</ion-text>
+				</ion-item>
+				<ion-item>
+					<ion-label>{{ 'SCHOLAR-ADDRESS-CITY' | translate }}: </ion-label>
+					<ion-text>{{ scholarAddress.city }}</ion-text>
+				</ion-item>
+				<ion-item>
+					<ion-label>{{ 'SCHOLAR-ADDRESS-TELEPHONENUMBERONE' | translate }}: </ion-label>
+					<ion-text>{{ scholarAddress.telephoneNumberOne }}</ion-text>
+				</ion-item>
+				<ion-item>
+					<ion-label>{{ 'SCHOLAR-ADDRESS-HANDPHONENUMBERONE' | translate }}: </ion-label>
+					<ion-text>{{ scholarAddress.handphoneNumberOne }}</ion-text>
+				</ion-item>
+				<ion-item>
+					<ion-label>{{ 'SCHOLAR-ADDRESS-EMAILADDRESSONE' | translate }}: </ion-label>
+					<ion-text>{{ scholarAddress.emailAddressOne }}</ion-text>
+				</ion-item>
+				<ion-item>
+					<ion-label>{{ 'SCHOLAR-ADDRESS-WEBSITEADDRESS' | translate }}: </ion-label>
+					<ion-text>{{ scholarAddress.websiteAddress }}</ion-text>
+				</ion-item>
+				<ion-item>
+					<ion-label>{{ 'SCHOLAR-ADDRESS-LATITUDE' | translate }}: </ion-label>
+					<ion-text>{{ scholarAddress.latitude }}</ion-text>
+				</ion-item>
+				<ion-item>
+					<ion-label>{{ 'SCHOLAR-ADDRESS-LONGITUDE' | translate }}: </ion-label>
+					<ion-text>{{ scholarAddress.longitude }}</ion-text>
+				</ion-item>
+				<ion-item>
+					<ion-label>{{ 'SCHOLAR-ADDRESS-LOCATIONMAP' | translate }}: </ion-label>
+					<ion-text>{{ scholarAddress.locationMap }}</ion-text>
+				</ion-item>
+				<ion-item>
+					<ion-label>{{ 'SCHOLAR-ADDRESS-PREMISEPHOTO' | translate }}: </ion-label>
+					<ion-text>{{ scholarAddress.premisePhoto }}</ion-text>
+				</ion-item>
+			</ion-list>
+			<ion-row no-padding>
+				<ion-col col-12 no-padding style="text-align: center">
+					<ion-chip color="dark" button (click)="edit(scholarAddress)">
+						<ion-icon name="create-outline"></ion-icon>
+						<ion-label>Edit</ion-label>
+					</ion-chip>
+					<ion-chip color="dark" button (click)="delete(scholarAddress)">
+						<ion-icon name="trash-outline"></ion-icon>
+						<ion-label>Delete</ion-label>
+					</ion-chip>
+					<ion-chip color="dark" button (click)="print(scholarAddress)">
+						<ion-icon name="print-outline"></ion-icon>
+						<ion-label>Print</ion-label>
+					</ion-chip>
+				</ion-col>
+			</ion-row>
+		</ion-card-content>
+	</ion-card>
+</ion-content>

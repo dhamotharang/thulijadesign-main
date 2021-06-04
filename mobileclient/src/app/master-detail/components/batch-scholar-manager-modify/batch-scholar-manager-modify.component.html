@@ -1,0 +1,35 @@
+<ion-toolbar color="primary">
+	<ion-buttons slot="start">
+		<ion-menu-button></ion-menu-button>
+	</ion-buttons>
+	<ion-title>{{ 'BATCH-SCHOLAR' | translate }}</ion-title>
+</ion-toolbar>
+<ion-content padding>
+	<form [formGroup]="batchScholarForm" *ngIf="batchScholarForm">
+		<ion-card-content>
+            <ion-item>
+            	<ion-label>Scholar</ion-label>
+                <input type="text" placeholder="First Name" matInput 
+                    formControlName="scholar"/>
+                <ion-select> 
+					<ion-select-option *ngFor="let scholar of filteredScholars | async" [value]="scholar">
+						<ul class="flex-container nowrap">
+							<li class="flex-item">{{ scholar.user.firstName }}</li>
+							<li class="flex-item">{{ scholar.user.lastName }}</li>
+						</ul>
+					</ion-select-option>
+                </ion-select>
+                <div *ngIf="hasError('scholar', 'required')">
+                    {{ 'BATCH-SCHOLAR-SCHOLAR' | translate }}: {{ 'FIELD-IS-REQUIRED' | translate }}</div>
+            </ion-item>
+		</ion-card-content>
+		<ion-footer>
+			<ion-toolbar color="light" style="padding-left: 20px;">
+			<ion-button color="primary" (click)="save(batchScholarForm.value)" 
+				[disabled]="!batchScholarForm.valid">{{ 'SAVE' | translate }}</ion-button>
+			<ion-button type="button" color="medium"
+				(click)="onCancel()">{{ 'CANCEL' | translate }}</ion-button>
+			</ion-toolbar>
+		</ion-footer>
+    </form>
+</ion-content>

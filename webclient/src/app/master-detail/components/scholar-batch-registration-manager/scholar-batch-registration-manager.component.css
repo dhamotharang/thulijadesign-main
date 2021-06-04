@@ -1,0 +1,100 @@
+.container {
+    max-width: 90%;
+    margin: 20px auto;
+}
+
+.my-form {
+    width:100%;
+    margin: 20px;
+}
+
+mat-form-field {
+    width:100%;
+    padding-top: 10px;
+	padding-bottom: 0px;
+}
+
+.checkbox-section {
+	display: flex;
+	align-content: center;
+	align-items: center;
+    height: 40px;
+}
+
+.flex-container {
+	padding: 0;
+	margin: 0;
+	list-style: none;
+	display: flex;
+}
+
+.nowrap {
+	-webkit-flex-wrap: nowrap;
+	flex-wrap: nowrap;
+}
+
+.flex-item {
+	width: 33%;
+	font-size: 14px;
+}
+
+table {
+    width:100%;
+}
+
+tr.mat-footer-row {
+    border: 1px solid #e7e7e7;
+    font-weight: bold;
+    height: 60px !important;
+}
+
+.mat-header-cell {
+    padding:15px 10px 8px 8px;
+    font-size:16px;
+    white-space: nowrap;
+}
+
+.mat-column-batch {
+	padding-left: 20px;
+	padding-right: 20px;
+	width:1%;
+}
+
+.mat-column-batchScholar {
+	padding-left: 20px;
+	padding-right: 20px;
+	width:1%;
+}
+
+.mat-column-batchPrerequisite {
+	padding-left: 20px;
+	padding-right: 20px;
+	width:1%;
+}
+
+.mat-column-response {
+	padding-left: 20px;
+	padding-right: 20px;
+	width:8%;
+}
+
+.mat-column-attachment {
+	padding-left: 20px;
+	padding-right: 20px;
+	width:23%;
+}
+
+.mat-column-remarks {
+	padding-left: 20px;
+	padding-right: 20px;
+	width:47%;
+}
+
+.listimage {
+    max-width: 100%;
+    height: auto;
+}
+
+.input_fileupload {
+	display:none;
+}

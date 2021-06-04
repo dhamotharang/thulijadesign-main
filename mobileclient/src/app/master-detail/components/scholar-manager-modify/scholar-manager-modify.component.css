@@ -1,0 +1,45 @@
+.container {
+	max-width: 90%;
+	margin: 20px auto;
+}
+
+.my-form {
+	margin: 20px;
+}
+
+mat-form-field {
+	width:100%;
+	padding-bottom: 7px;
+}
+
+.checkbox-section {
+	display: flex;
+	align-content: center;
+	align-items: center;
+    height: 40px;
+}
+
+.flex-container {
+	padding: 0;
+	margin: 0;
+	list-style: none;
+	display: flex;
+}
+
+.nowrap {
+	-webkit-flex-wrap: nowrap;
+	flex-wrap: nowrap;
+}
+
+.flex-item {
+	width: 33%;
+	font-size: 14px;
+}
+
+.mat-radio-button ~ .mat-radio-button {
+    margin-left: 16px;
+}
+
+.input_fileupload {
+	display:none;
+}

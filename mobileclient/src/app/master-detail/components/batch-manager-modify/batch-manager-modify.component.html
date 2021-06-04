@@ -1,0 +1,356 @@
+<ion-toolbar color="primary">
+	<ion-buttons slot="start">
+		<ion-menu-button></ion-menu-button>
+	</ion-buttons>
+	<ion-title>{{ 'BATCH' | translate }}</ion-title>
+</ion-toolbar>
+<ion-content padding>
+	<form [formGroup]="batchForm" *ngIf="batchForm">
+		<ion-card-content>
+			<ion-item>
+                <input matInput type="text" formControlName="code" id="code" 
+                    name="code" placeholder="{{ 'BATCH-CODE' | translate }}" maxlength="50"/>
+			</ion-item>
+			<div *ngIf="(batchForm.controls['code'].dirty || batchForm.controls['code'].touched)" class="errors">
+                <div *ngIf="hasError('code', 'required')">
+                    {{ 'BATCH-CODE' | translate }}: {{ 'FIELD-IS-REQUIRED' | translate }}</div>
+                <div *ngIf="hasError('code', 'minlength')">
+                    {{ 'BATCH-CODE' | translate }}: {{ 'FIELD-MUSTBE-MINIMUM-LENGTH' | translate }} 1</div>
+                <div *ngIf="hasError('code', 'maxlength')">
+                    {{ 'BATCH-CODE' | translate }}: {{ 'FIELD-MUSTBE-MAXIMUM-LENGTH' | translate }} 50</div>
+			</div>
+			<ion-item>
+				<ion-label>{{ 'BATCH-LECTURESTARTDATE' | translate }}</ion-label>
+				<ion-datetime displayFormat="DD/MM/YYYY" 
+					formControlName="lectureStartDate" placeholder="{{ 'BATCH-LECTURESTARTDATE' | translate }}">
+				</ion-datetime>
+			</ion-item>
+			<div *ngIf="(batchForm.controls['lectureStartDate'].dirty || batchForm.controls['lectureStartDate'].touched)" class="errors">
+                <div *ngIf="hasError('lectureStartDate', 'required')">
+                    {{ 'BATCH-LECTURESTARTDATE' | translate }}: {{ 'FIELD-IS-REQUIRED' | translate }}</div>
+			</div>
+			<ion-item>
+				<ion-label>{{ 'BATCH-LECTUREENDDATE' | translate }}</ion-label>
+				<ion-datetime displayFormat="DD/MM/YYYY" 
+					formControlName="lectureEndDate" placeholder="{{ 'BATCH-LECTUREENDDATE' | translate }}">
+				</ion-datetime>
+			</ion-item>
+			<div *ngIf="(batchForm.controls['lectureEndDate'].dirty || batchForm.controls['lectureEndDate'].touched)" class="errors">
+                <div *ngIf="hasError('lectureEndDate', 'required')">
+                    {{ 'BATCH-LECTUREENDDATE' | translate }}: {{ 'FIELD-IS-REQUIRED' | translate }}</div>
+			</div>
+			<ion-item>
+				<ion-label position="floating">{{ 'BATCH-LECTUREDURATIONDAYS' | translate }}</ion-label>
+                <ion-input formControlName="lectureDurationDays" id="lectureDurationDays" name="lectureDurationDays" #lectureDurationDays
+					placeholder="{{ 'BATCH-LECTUREDURATIONDAYS' | translate }}" min="1" max="50">
+				</ion-input>
+			</ion-item>
+			<div *ngIf="(batchForm.controls['lectureDurationDays'].dirty || batchForm.controls['lectureDurationDays'].touched)" class="errors">
+                <div *ngIf="hasError('lectureDurationDays', 'min')">
+                    {{ 'BATCH-LECTUREDURATIONDAYS' | translate }}: {{ 'FIELD-MUSTBE-MINIMUM' | translate }} 1</div>
+                <div *ngIf="hasError('lectureDurationDays', 'max')">
+                    {{ 'BATCH-LECTUREDURATIONDAYS' | translate }}: {{ 'FIELD-MUSTBE-MAXIMUM' | translate }} 50</div>
+				<div *ngIf="hasError('lectureDurationDays', 'pattern')">
+					{{ 'BATCH-LECTUREDURATIONDAYS' | translate }}: {{ 'FIELD-MUSTBE-NUMERIC' | translate }}</div>
+			</div>
+			<ion-item>
+				<ion-label position="floating">{{ 'BATCH-LECTUREDURATIONHOURS' | translate }}</ion-label>
+                <ion-input formControlName="lectureDurationHours" id="lectureDurationHours" name="lectureDurationHours" #lectureDurationHours
+					placeholder="{{ 'BATCH-LECTUREDURATIONHOURS' | translate }}" min="1" max="500">
+				</ion-input>
+			</ion-item>
+			<div *ngIf="(batchForm.controls['lectureDurationHours'].dirty || batchForm.controls['lectureDurationHours'].touched)" class="errors">
+                <div *ngIf="hasError('lectureDurationHours', 'min')">
+                    {{ 'BATCH-LECTUREDURATIONHOURS' | translate }}: {{ 'FIELD-MUSTBE-MINIMUM' | translate }} 1</div>
+                <div *ngIf="hasError('lectureDurationHours', 'max')">
+                    {{ 'BATCH-LECTUREDURATIONHOURS' | translate }}: {{ 'FIELD-MUSTBE-MAXIMUM' | translate }} 500</div>
+				<div *ngIf="hasError('lectureDurationHours', 'pattern')">
+					{{ 'BATCH-LECTUREDURATIONHOURS' | translate }}: {{ 'FIELD-MUSTBE-NUMERIC' | translate }}</div>
+			</div>
+			<ion-item>
+				<ion-label>{{ 'BATCH-ONLINESTARTDATE' | translate }}</ion-label>
+				<ion-datetime displayFormat="DD/MM/YYYY" 
+					formControlName="onlineStartDate" placeholder="{{ 'BATCH-ONLINESTARTDATE' | translate }}">
+				</ion-datetime>
+			</ion-item>
+			<div *ngIf="(batchForm.controls['onlineStartDate'].dirty || batchForm.controls['onlineStartDate'].touched)" class="errors">
+                <div *ngIf="hasError('onlineStartDate', 'minlength')">
+                    {{ 'BATCH-ONLINESTARTDATE' | translate }}: {{ 'FIELD-MUSTBE-MINIMUM-LENGTH' | translate }} 1</div>
+                <div *ngIf="hasError('onlineStartDate', 'maxlength')">
+                    {{ 'BATCH-ONLINESTARTDATE' | translate }}: {{ 'FIELD-MUSTBE-MAXIMUM-LENGTH' | translate }} 100</div>
+			</div>
+			<ion-item>
+				<ion-label>{{ 'BATCH-ONLINEENDDATE' | translate }}</ion-label>
+				<ion-datetime displayFormat="DD/MM/YYYY" 
+					formControlName="onlineEndDate" placeholder="{{ 'BATCH-ONLINEENDDATE' | translate }}">
+				</ion-datetime>
+			</ion-item>
+			<div *ngIf="(batchForm.controls['onlineEndDate'].dirty || batchForm.controls['onlineEndDate'].touched)" class="errors">
+			</div>
+			<ion-item>
+				<ion-label position="floating">{{ 'BATCH-ONLINEDURATIONDAYS' | translate }}</ion-label>
+                <ion-input formControlName="onlineDurationDays" id="onlineDurationDays" name="onlineDurationDays" #onlineDurationDays
+					placeholder="{{ 'BATCH-ONLINEDURATIONDAYS' | translate }}" min="1" max="50">
+				</ion-input>
+			</ion-item>
+			<div *ngIf="(batchForm.controls['onlineDurationDays'].dirty || batchForm.controls['onlineDurationDays'].touched)" class="errors">
+                <div *ngIf="hasError('onlineDurationDays', 'min')">
+                    {{ 'BATCH-ONLINEDURATIONDAYS' | translate }}: {{ 'FIELD-MUSTBE-MINIMUM' | translate }} 1</div>
+                <div *ngIf="hasError('onlineDurationDays', 'max')">
+                    {{ 'BATCH-ONLINEDURATIONDAYS' | translate }}: {{ 'FIELD-MUSTBE-MAXIMUM' | translate }} 50</div>
+				<div *ngIf="hasError('onlineDurationDays', 'pattern')">
+					{{ 'BATCH-ONLINEDURATIONDAYS' | translate }}: {{ 'FIELD-MUSTBE-NUMERIC' | translate }}</div>
+			</div>
+			<ion-item>
+				<ion-label position="floating">{{ 'BATCH-ONLINEDURATIONHOURS' | translate }}</ion-label>
+                <ion-input formControlName="onlineDurationHours" id="onlineDurationHours" name="onlineDurationHours" #onlineDurationHours
+					placeholder="{{ 'BATCH-ONLINEDURATIONHOURS' | translate }}" min="1" max="500">
+				</ion-input>
+			</ion-item>
+			<div *ngIf="(batchForm.controls['onlineDurationHours'].dirty || batchForm.controls['onlineDurationHours'].touched)" class="errors">
+                <div *ngIf="hasError('onlineDurationHours', 'min')">
+                    {{ 'BATCH-ONLINEDURATIONHOURS' | translate }}: {{ 'FIELD-MUSTBE-MINIMUM' | translate }} 1</div>
+                <div *ngIf="hasError('onlineDurationHours', 'max')">
+                    {{ 'BATCH-ONLINEDURATIONHOURS' | translate }}: {{ 'FIELD-MUSTBE-MAXIMUM' | translate }} 500</div>
+				<div *ngIf="hasError('onlineDurationHours', 'pattern')">
+					{{ 'BATCH-ONLINEDURATIONHOURS' | translate }}: {{ 'FIELD-MUSTBE-NUMERIC' | translate }}</div>
+			</div>
+			<ion-item>
+				<ion-label>{{ 'BATCH-MENTORINGSTARTDATE' | translate }}</ion-label>
+				<ion-datetime displayFormat="DD/MM/YYYY" 
+					formControlName="mentoringStartDate" placeholder="{{ 'BATCH-MENTORINGSTARTDATE' | translate }}">
+				</ion-datetime>
+			</ion-item>
+			<div *ngIf="(batchForm.controls['mentoringStartDate'].dirty || batchForm.controls['mentoringStartDate'].touched)" class="errors">
+			</div>
+			<ion-item>
+				<ion-label>{{ 'BATCH-MENTORINGENDDATE' | translate }}</ion-label>
+				<ion-datetime displayFormat="DD/MM/YYYY" 
+					formControlName="mentoringEndDate" placeholder="{{ 'BATCH-MENTORINGENDDATE' | translate }}">
+				</ion-datetime>
+			</ion-item>
+			<div *ngIf="(batchForm.controls['mentoringEndDate'].dirty || batchForm.controls['mentoringEndDate'].touched)" class="errors">
+			</div>
+			<ion-item>
+				<ion-label position="floating">{{ 'BATCH-MENTORINGDURATIONDAYS' | translate }}</ion-label>
+                <ion-input formControlName="mentoringDurationDays" id="mentoringDurationDays" name="mentoringDurationDays" #mentoringDurationDays
+					placeholder="{{ 'BATCH-MENTORINGDURATIONDAYS' | translate }}" min="1" max="50">
+				</ion-input>
+			</ion-item>
+			<div *ngIf="(batchForm.controls['mentoringDurationDays'].dirty || batchForm.controls['mentoringDurationDays'].touched)" class="errors">
+                <div *ngIf="hasError('mentoringDurationDays', 'min')">
+                    {{ 'BATCH-MENTORINGDURATIONDAYS' | translate }}: {{ 'FIELD-MUSTBE-MINIMUM' | translate }} 1</div>
+                <div *ngIf="hasError('mentoringDurationDays', 'max')">
+                    {{ 'BATCH-MENTORINGDURATIONDAYS' | translate }}: {{ 'FIELD-MUSTBE-MAXIMUM' | translate }} 50</div>
+				<div *ngIf="hasError('mentoringDurationDays', 'pattern')">
+					{{ 'BATCH-MENTORINGDURATIONDAYS' | translate }}: {{ 'FIELD-MUSTBE-NUMERIC' | translate }}</div>
+			</div>
+			<ion-item>
+				<ion-label position="floating">{{ 'BATCH-MENTORINGDURATIONHOURS' | translate }}</ion-label>
+                <ion-input formControlName="mentoringDurationHours" id="mentoringDurationHours" name="mentoringDurationHours" #mentoringDurationHours
+					placeholder="{{ 'BATCH-MENTORINGDURATIONHOURS' | translate }}" min="1" max="500">
+				</ion-input>
+			</ion-item>
+			<div *ngIf="(batchForm.controls['mentoringDurationHours'].dirty || batchForm.controls['mentoringDurationHours'].touched)" class="errors">
+                <div *ngIf="hasError('mentoringDurationHours', 'min')">
+                    {{ 'BATCH-MENTORINGDURATIONHOURS' | translate }}: {{ 'FIELD-MUSTBE-MINIMUM' | translate }} 1</div>
+                <div *ngIf="hasError('mentoringDurationHours', 'max')">
+                    {{ 'BATCH-MENTORINGDURATIONHOURS' | translate }}: {{ 'FIELD-MUSTBE-MAXIMUM' | translate }} 500</div>
+				<div *ngIf="hasError('mentoringDurationHours', 'pattern')">
+					{{ 'BATCH-MENTORINGDURATIONHOURS' | translate }}: {{ 'FIELD-MUSTBE-NUMERIC' | translate }}</div>
+			</div>
+			<ion-item>
+                <input matInput type="text" formControlName="contactPersonName" id="contactPersonName" 
+                    name="contactPersonName" placeholder="{{ 'BATCH-CONTACTPERSONNAME' | translate }}" maxlength="60"/>
+			</ion-item>
+			<div *ngIf="(batchForm.controls['contactPersonName'].dirty || batchForm.controls['contactPersonName'].touched)" class="errors">
+                <div *ngIf="hasError('contactPersonName', 'minlength')">
+                    {{ 'BATCH-CONTACTPERSONNAME' | translate }}: {{ 'FIELD-MUSTBE-MINIMUM-LENGTH' | translate }} 1</div>
+                <div *ngIf="hasError('contactPersonName', 'maxlength')">
+                    {{ 'BATCH-CONTACTPERSONNAME' | translate }}: {{ 'FIELD-MUSTBE-MAXIMUM-LENGTH' | translate }} 60</div>
+			</div>
+			<ion-item>
+                <input matInput type="text" formControlName="locationName" id="locationName" 
+                    name="locationName" placeholder="{{ 'BATCH-LOCATIONNAME' | translate }}" maxlength="200"/>
+			</ion-item>
+			<div *ngIf="(batchForm.controls['locationName'].dirty || batchForm.controls['locationName'].touched)" class="errors">
+                <div *ngIf="hasError('locationName', 'minlength')">
+                    {{ 'BATCH-LOCATIONNAME' | translate }}: {{ 'FIELD-MUSTBE-MINIMUM-LENGTH' | translate }} 1</div>
+                <div *ngIf="hasError('locationName', 'maxlength')">
+                    {{ 'BATCH-LOCATIONNAME' | translate }}: {{ 'FIELD-MUSTBE-MAXIMUM-LENGTH' | translate }} 200</div>
+			</div>
+			<ion-item>
+                <input matInput type="text" formControlName="houseNumber" id="houseNumber" 
+                    name="houseNumber" placeholder="{{ 'BATCH-HOUSENUMBER' | translate }}" maxlength="10"/>
+			</ion-item>
+			<div *ngIf="(batchForm.controls['houseNumber'].dirty || batchForm.controls['houseNumber'].touched)" class="errors">
+                <div *ngIf="hasError('houseNumber', 'minlength')">
+                    {{ 'BATCH-HOUSENUMBER' | translate }}: {{ 'FIELD-MUSTBE-MINIMUM-LENGTH' | translate }} 1</div>
+                <div *ngIf="hasError('houseNumber', 'maxlength')">
+                    {{ 'BATCH-HOUSENUMBER' | translate }}: {{ 'FIELD-MUSTBE-MAXIMUM-LENGTH' | translate }} 10</div>
+			</div>
+			<ion-item>
+                <input matInput type="text" formControlName="addressLineOne" id="addressLineOne" 
+                    name="addressLineOne" placeholder="{{ 'BATCH-ADDRESSLINEONE' | translate }}" maxlength="200"/>
+			</ion-item>
+			<div *ngIf="(batchForm.controls['addressLineOne'].dirty || batchForm.controls['addressLineOne'].touched)" class="errors">
+                <div *ngIf="hasError('addressLineOne', 'minlength')">
+                    {{ 'BATCH-ADDRESSLINEONE' | translate }}: {{ 'FIELD-MUSTBE-MINIMUM-LENGTH' | translate }} 1</div>
+                <div *ngIf="hasError('addressLineOne', 'maxlength')">
+                    {{ 'BATCH-ADDRESSLINEONE' | translate }}: {{ 'FIELD-MUSTBE-MAXIMUM-LENGTH' | translate }} 200</div>
+			</div>
+			<ion-item>
+                <input matInput type="text" formControlName="addressLineTwo" id="addressLineTwo" 
+                    name="addressLineTwo" placeholder="{{ 'BATCH-ADDRESSLINETWO' | translate }}" maxlength="200"/>
+			</ion-item>
+			<div *ngIf="(batchForm.controls['addressLineTwo'].dirty || batchForm.controls['addressLineTwo'].touched)" class="errors">
+                <div *ngIf="hasError('addressLineTwo', 'minlength')">
+                    {{ 'BATCH-ADDRESSLINETWO' | translate }}: {{ 'FIELD-MUSTBE-MINIMUM-LENGTH' | translate }} 1</div>
+                <div *ngIf="hasError('addressLineTwo', 'maxlength')">
+                    {{ 'BATCH-ADDRESSLINETWO' | translate }}: {{ 'FIELD-MUSTBE-MAXIMUM-LENGTH' | translate }} 200</div>
+			</div>
+			<ion-item>
+                <input matInput type="text" formControlName="postcode" id="postcode" 
+                    name="postcode" placeholder="{{ 'BATCH-POSTCODE' | translate }}" maxlength="10"/>
+			</ion-item>
+			<div *ngIf="(batchForm.controls['postcode'].dirty || batchForm.controls['postcode'].touched)" class="errors">
+                <div *ngIf="hasError('postcode', 'minlength')">
+                    {{ 'BATCH-POSTCODE' | translate }}: {{ 'FIELD-MUSTBE-MINIMUM-LENGTH' | translate }} 1</div>
+                <div *ngIf="hasError('postcode', 'maxlength')">
+                    {{ 'BATCH-POSTCODE' | translate }}: {{ 'FIELD-MUSTBE-MAXIMUM-LENGTH' | translate }} 10</div>
+			</div>
+			<ion-item>
+				<ion-label>{{ 'BATCH-COUNTRY' | translate }}</ion-label>
+				<ion-select formControlName="country" id="country" name="country" 
+						[compareWith]="compareCountry" required>
+					<ion-select-option *ngFor="let country of countries" [value]="country">
+						{{ country.name }}</ion-select-option>
+				</ion-select>
+			</ion-item>
+			<div *ngIf="(batchForm.controls['country'].dirty || batchForm.controls['country'].touched)" class="errors">
+				<div *ngIf="hasError('country', 'required')">
+					{{ 'BATCH-COUNTRY' | translate }}: {{ 'FIELD-IS-REQUIRED' | translate }}</div>
+			</div>
+			<ion-item>
+				<ion-label>{{ 'BATCH-STATE' | translate }}</ion-label>
+				<ion-select formControlName="state" id="state" name="state" 
+						[compareWith]="compareState" required>
+					<ion-select-option *ngFor="let state of states" [value]="state">
+						{{ state.name }}</ion-select-option>
+				</ion-select>
+			</ion-item>
+			<div *ngIf="(batchForm.controls['state'].dirty || batchForm.controls['state'].touched)" class="errors">
+				<div *ngIf="hasError('state', 'required')">
+					{{ 'BATCH-STATE' | translate }}: {{ 'FIELD-IS-REQUIRED' | translate }}</div>
+			</div>
+			<ion-item>
+                <input matInput type="text" formControlName="district" id="district" 
+                    name="district" placeholder="{{ 'BATCH-DISTRICT' | translate }}" maxlength="60"/>
+			</ion-item>
+			<div *ngIf="(batchForm.controls['district'].dirty || batchForm.controls['district'].touched)" class="errors">
+                <div *ngIf="hasError('district', 'minlength')">
+                    {{ 'BATCH-DISTRICT' | translate }}: {{ 'FIELD-MUSTBE-MINIMUM-LENGTH' | translate }} 1</div>
+                <div *ngIf="hasError('district', 'maxlength')">
+                    {{ 'BATCH-DISTRICT' | translate }}: {{ 'FIELD-MUSTBE-MAXIMUM-LENGTH' | translate }} 60</div>
+			</div>
+			<ion-item>
+                <input matInput type="text" formControlName="city" id="city" 
+                    name="city" placeholder="{{ 'BATCH-CITY' | translate }}" maxlength="60"/>
+			</ion-item>
+			<div *ngIf="(batchForm.controls['city'].dirty || batchForm.controls['city'].touched)" class="errors">
+                <div *ngIf="hasError('city', 'minlength')">
+                    {{ 'BATCH-CITY' | translate }}: {{ 'FIELD-MUSTBE-MINIMUM-LENGTH' | translate }} 1</div>
+                <div *ngIf="hasError('city', 'maxlength')">
+                    {{ 'BATCH-CITY' | translate }}: {{ 'FIELD-MUSTBE-MAXIMUM-LENGTH' | translate }} 60</div>
+			</div>
+			<ion-item>
+                <input matInput type="text" formControlName="telephoneNumberOne" id="telephoneNumberOne" 
+                    name="telephoneNumberOne" placeholder="{{ 'BATCH-TELEPHONENUMBERONE' | translate }}" maxlength="20"/>
+			</ion-item>
+			<div *ngIf="(batchForm.controls['telephoneNumberOne'].dirty || batchForm.controls['telephoneNumberOne'].touched)" class="errors">
+                <div *ngIf="hasError('telephoneNumberOne', 'minlength')">
+                    {{ 'BATCH-TELEPHONENUMBERONE' | translate }}: {{ 'FIELD-MUSTBE-MINIMUM-LENGTH' | translate }} 1</div>
+                <div *ngIf="hasError('telephoneNumberOne', 'maxlength')">
+                    {{ 'BATCH-TELEPHONENUMBERONE' | translate }}: {{ 'FIELD-MUSTBE-MAXIMUM-LENGTH' | translate }} 20</div>
+			</div>
+			<ion-item>
+                <input matInput type="text" formControlName="handphoneNumberOne" id="handphoneNumberOne" 
+                    name="handphoneNumberOne" placeholder="{{ 'BATCH-HANDPHONENUMBERONE' | translate }}" maxlength="20"/>
+			</ion-item>
+			<div *ngIf="(batchForm.controls['handphoneNumberOne'].dirty || batchForm.controls['handphoneNumberOne'].touched)" class="errors">
+                <div *ngIf="hasError('handphoneNumberOne', 'minlength')">
+                    {{ 'BATCH-HANDPHONENUMBERONE' | translate }}: {{ 'FIELD-MUSTBE-MINIMUM-LENGTH' | translate }} 1</div>
+                <div *ngIf="hasError('handphoneNumberOne', 'maxlength')">
+                    {{ 'BATCH-HANDPHONENUMBERONE' | translate }}: {{ 'FIELD-MUSTBE-MAXIMUM-LENGTH' | translate }} 20</div>
+			</div>
+			<ion-item>
+                <input matInput type="text" formControlName="emailAddressOne" id="emailAddressOne" 
+                    name="emailAddressOne" placeholder="{{ 'BATCH-EMAILADDRESSONE' | translate }}" maxlength="120"/>
+			</ion-item>
+			<div *ngIf="(batchForm.controls['emailAddressOne'].dirty || batchForm.controls['emailAddressOne'].touched)" class="errors">
+                <div *ngIf="hasError('emailAddressOne', 'minlength')">
+                    {{ 'BATCH-EMAILADDRESSONE' | translate }}: {{ 'FIELD-MUSTBE-MINIMUM-LENGTH' | translate }} 1</div>
+                <div *ngIf="hasError('emailAddressOne', 'maxlength')">
+                    {{ 'BATCH-EMAILADDRESSONE' | translate }}: {{ 'FIELD-MUSTBE-MAXIMUM-LENGTH' | translate }} 120</div>
+			</div>
+			<ion-item>
+                <input matInput type="text" formControlName="websiteAddress" id="websiteAddress" 
+                    name="websiteAddress" placeholder="{{ 'BATCH-WEBSITEADDRESS' | translate }}" maxlength="120"/>
+			</ion-item>
+			<div *ngIf="(batchForm.controls['websiteAddress'].dirty || batchForm.controls['websiteAddress'].touched)" class="errors">
+                <div *ngIf="hasError('websiteAddress', 'minlength')">
+                    {{ 'BATCH-WEBSITEADDRESS' | translate }}: {{ 'FIELD-MUSTBE-MINIMUM-LENGTH' | translate }} 1</div>
+                <div *ngIf="hasError('websiteAddress', 'maxlength')">
+                    {{ 'BATCH-WEBSITEADDRESS' | translate }}: {{ 'FIELD-MUSTBE-MAXIMUM-LENGTH' | translate }} 120</div>
+			</div>
+			<ion-item>
+                <input matInput type="text" formControlName="latitude" id="latitude" 
+                    name="latitude" placeholder="{{ 'BATCH-LATITUDE' | translate }}" maxlength="50"/>
+			</ion-item>
+			<div *ngIf="(batchForm.controls['latitude'].dirty || batchForm.controls['latitude'].touched)" class="errors">
+                <div *ngIf="hasError('latitude', 'minlength')">
+                    {{ 'BATCH-LATITUDE' | translate }}: {{ 'FIELD-MUSTBE-MINIMUM-LENGTH' | translate }} 1</div>
+                <div *ngIf="hasError('latitude', 'maxlength')">
+                    {{ 'BATCH-LATITUDE' | translate }}: {{ 'FIELD-MUSTBE-MAXIMUM-LENGTH' | translate }} 50</div>
+			</div>
+			<ion-item>
+                <input matInput type="text" formControlName="longitude" id="longitude" 
+                    name="longitude" placeholder="{{ 'BATCH-LONGITUDE' | translate }}" maxlength="50"/>
+			</ion-item>
+			<div *ngIf="(batchForm.controls['longitude'].dirty || batchForm.controls['longitude'].touched)" class="errors">
+                <div *ngIf="hasError('longitude', 'minlength')">
+                    {{ 'BATCH-LONGITUDE' | translate }}: {{ 'FIELD-MUSTBE-MINIMUM-LENGTH' | translate }} 1</div>
+                <div *ngIf="hasError('longitude', 'maxlength')">
+                    {{ 'BATCH-LONGITUDE' | translate }}: {{ 'FIELD-MUSTBE-MAXIMUM-LENGTH' | translate }} 50</div>
+			</div>
+			<ion-item>
+                <input matInput type="text" formControlName="locationMap" id="locationMap" 
+                    name="locationMap" placeholder="{{ 'BATCH-LOCATIONMAP' | translate }}" maxlength="50"/>
+			</ion-item>
+			<div *ngIf="(batchForm.controls['locationMap'].dirty || batchForm.controls['locationMap'].touched)" class="errors">
+                <div *ngIf="hasError('locationMap', 'minlength')">
+                    {{ 'BATCH-LOCATIONMAP' | translate }}: {{ 'FIELD-MUSTBE-MINIMUM-LENGTH' | translate }} 1</div>
+                <div *ngIf="hasError('locationMap', 'maxlength')">
+                    {{ 'BATCH-LOCATIONMAP' | translate }}: {{ 'FIELD-MUSTBE-MAXIMUM-LENGTH' | translate }} 50</div>
+			</div>
+			<ion-item>
+                <input matInput type="text" formControlName="premisePhoto" id="premisePhoto" 
+                    name="premisePhoto" placeholder="{{ 'BATCH-PREMISEPHOTO' | translate }}" maxlength="50"/>
+			</ion-item>
+			<div *ngIf="(batchForm.controls['premisePhoto'].dirty || batchForm.controls['premisePhoto'].touched)" class="errors">
+                <div *ngIf="hasError('premisePhoto', 'minlength')">
+                    {{ 'BATCH-PREMISEPHOTO' | translate }}: {{ 'FIELD-MUSTBE-MINIMUM-LENGTH' | translate }} 1</div>
+                <div *ngIf="hasError('premisePhoto', 'maxlength')">
+                    {{ 'BATCH-PREMISEPHOTO' | translate }}: {{ 'FIELD-MUSTBE-MAXIMUM-LENGTH' | translate }} 50</div>
+			</div>
+		</ion-card-content>
+		<ion-footer>
+			<ion-toolbar color="light" style="padding-left: 20px;">
+			<ion-button color="primary" (click)="save(batchForm.value)" 
+				[disabled]="!batchForm.valid">{{ 'SAVE' | translate }}</ion-button>
+			<ion-button type="button" color="medium"
+				(click)="onCancel()">{{ 'CANCEL' | translate }}</ion-button>
+			</ion-toolbar>
+		</ion-footer>
+    </form>
+</ion-content>

@@ -1,0 +1,299 @@
+<h2 mat-dialog-title>{{ 'BATCH' | translate }} - {{ 'NEW' | translate }}</h2>
+<mat-dialog-content>
+	<form [formGroup]="batchForm" *ngIf="batchForm">
+		<mat-card-subtitle *ngIf="errorMessage" class="alert-danger">{{ errorMessage }}</mat-card-subtitle>
+		<mat-card-content class="my-form">
+			<mat-form-field>
+				<input matInput type="text" formControlName="code" id="code" 
+					name="code" placeholder="{{ 'BATCH-CODE' | translate }}" 
+					minlength="1" maxlength="50" required />
+                <mat-error *ngIf="hasError('code', 'required')">
+                    {{ 'BATCH-CODE' | translate }}: {{ 'FIELD-IS-REQUIRED' | translate }}</mat-error>
+                <mat-error *ngIf="hasError('code', 'minlength')">
+                    {{ 'BATCH-CODE' | translate }}: {{ 'FIELD-MUSTBE-MINIMUM-LENGTH' | translate }} 1</mat-error>
+                <mat-error *ngIf="hasError('code', 'maxlength')">
+                    {{ 'BATCH-CODE' | translate }}: {{ 'FIELD-MUSTBE-MAXIMUM-LENGTH' | translate }} 50</mat-error>
+			</mat-form-field>
+			<mat-form-field>
+				<mat-label>{{ 'BATCH-LECTURESTARTDATE' | translate }}</mat-label>
+				<input formControlName="lectureStartDate" matInput [matDatepicker]="lectureStartDate" placeholder="{{ 'BATCH-LECTURESTARTDATE' | translate }}">
+				<mat-datepicker-toggle matSuffix [for]="lectureStartDate"></mat-datepicker-toggle>
+				<mat-datepicker #lectureStartDate></mat-datepicker>
+                <mat-error *ngIf="hasError('lectureStartDate', 'required')">
+                    {{ 'BATCH-LECTURESTARTDATE' | translate }}: {{ 'FIELD-IS-REQUIRED' | translate }}</mat-error>
+			</mat-form-field>
+			<mat-form-field>
+				<mat-label>{{ 'BATCH-LECTUREENDDATE' | translate }}</mat-label>
+				<input formControlName="lectureEndDate" matInput [matDatepicker]="lectureEndDate" placeholder="{{ 'BATCH-LECTUREENDDATE' | translate }}">
+				<mat-datepicker-toggle matSuffix [for]="lectureEndDate"></mat-datepicker-toggle>
+				<mat-datepicker #lectureEndDate></mat-datepicker>
+                <mat-error *ngIf="hasError('lectureEndDate', 'required')">
+                    {{ 'BATCH-LECTUREENDDATE' | translate }}: {{ 'FIELD-IS-REQUIRED' | translate }}</mat-error>
+			</mat-form-field>
+			<mat-form-field>
+				<input matInput type="text" formControlName="lectureDurationDays" id="lectureDurationDays" 
+					name="lectureDurationDays" placeholder="{{ 'BATCH-LECTUREDURATIONDAYS' | translate }}" 
+					min="1" max="50" />
+                <mat-error *ngIf="hasError('lectureDurationDays', 'min')">
+                    {{ 'BATCH-LECTUREDURATIONDAYS' | translate }}: {{ 'FIELD-MUSTBE-MINIMUM' | translate }} 1</mat-error>
+                <mat-error *ngIf="hasError('lectureDurationDays', 'max')">
+                    {{ 'BATCH-LECTUREDURATIONDAYS' | translate }}: {{ 'FIELD-MUSTBE-MAXIMUM' | translate }} 50</mat-error>
+				<mat-error *ngIf="hasError('lectureDurationDays', 'pattern')">
+					{{ 'BATCH-LECTUREDURATIONDAYS' | translate }}: {{ 'FIELD-MUSTBE-NUMERIC' | translate }}</mat-error>
+			</mat-form-field>
+			<mat-form-field>
+				<input matInput type="text" formControlName="lectureDurationHours" id="lectureDurationHours" 
+					name="lectureDurationHours" placeholder="{{ 'BATCH-LECTUREDURATIONHOURS' | translate }}" 
+					min="1" max="500" />
+                <mat-error *ngIf="hasError('lectureDurationHours', 'min')">
+                    {{ 'BATCH-LECTUREDURATIONHOURS' | translate }}: {{ 'FIELD-MUSTBE-MINIMUM' | translate }} 1</mat-error>
+                <mat-error *ngIf="hasError('lectureDurationHours', 'max')">
+                    {{ 'BATCH-LECTUREDURATIONHOURS' | translate }}: {{ 'FIELD-MUSTBE-MAXIMUM' | translate }} 500</mat-error>
+				<mat-error *ngIf="hasError('lectureDurationHours', 'pattern')">
+					{{ 'BATCH-LECTUREDURATIONHOURS' | translate }}: {{ 'FIELD-MUSTBE-NUMERIC' | translate }}</mat-error>
+			</mat-form-field>
+			<mat-form-field>
+				<mat-label>{{ 'BATCH-ONLINESTARTDATE' | translate }}</mat-label>
+				<input formControlName="onlineStartDate" matInput [matDatepicker]="onlineStartDate" placeholder="{{ 'BATCH-ONLINESTARTDATE' | translate }}">
+				<mat-datepicker-toggle matSuffix [for]="onlineStartDate"></mat-datepicker-toggle>
+				<mat-datepicker #onlineStartDate></mat-datepicker>
+                <mat-error *ngIf="hasError('onlineStartDate', 'minlength')">
+                    {{ 'BATCH-ONLINESTARTDATE' | translate }}: {{ 'FIELD-MUSTBE-MINIMUM-LENGTH' | translate }} 1</mat-error>
+                <mat-error *ngIf="hasError('onlineStartDate', 'maxlength')">
+                    {{ 'BATCH-ONLINESTARTDATE' | translate }}: {{ 'FIELD-MUSTBE-MAXIMUM-LENGTH' | translate }} 100</mat-error>
+			</mat-form-field>
+			<mat-form-field>
+				<mat-label>{{ 'BATCH-ONLINEENDDATE' | translate }}</mat-label>
+				<input formControlName="onlineEndDate" matInput [matDatepicker]="onlineEndDate" placeholder="{{ 'BATCH-ONLINEENDDATE' | translate }}">
+				<mat-datepicker-toggle matSuffix [for]="onlineEndDate"></mat-datepicker-toggle>
+				<mat-datepicker #onlineEndDate></mat-datepicker>
+			</mat-form-field>
+			<mat-form-field>
+				<input matInput type="text" formControlName="onlineDurationDays" id="onlineDurationDays" 
+					name="onlineDurationDays" placeholder="{{ 'BATCH-ONLINEDURATIONDAYS' | translate }}" 
+					min="1" max="50" />
+                <mat-error *ngIf="hasError('onlineDurationDays', 'min')">
+                    {{ 'BATCH-ONLINEDURATIONDAYS' | translate }}: {{ 'FIELD-MUSTBE-MINIMUM' | translate }} 1</mat-error>
+                <mat-error *ngIf="hasError('onlineDurationDays', 'max')">
+                    {{ 'BATCH-ONLINEDURATIONDAYS' | translate }}: {{ 'FIELD-MUSTBE-MAXIMUM' | translate }} 50</mat-error>
+				<mat-error *ngIf="hasError('onlineDurationDays', 'pattern')">
+					{{ 'BATCH-ONLINEDURATIONDAYS' | translate }}: {{ 'FIELD-MUSTBE-NUMERIC' | translate }}</mat-error>
+			</mat-form-field>
+			<mat-form-field>
+				<input matInput type="text" formControlName="onlineDurationHours" id="onlineDurationHours" 
+					name="onlineDurationHours" placeholder="{{ 'BATCH-ONLINEDURATIONHOURS' | translate }}" 
+					min="1" max="500" />
+                <mat-error *ngIf="hasError('onlineDurationHours', 'min')">
+                    {{ 'BATCH-ONLINEDURATIONHOURS' | translate }}: {{ 'FIELD-MUSTBE-MINIMUM' | translate }} 1</mat-error>
+                <mat-error *ngIf="hasError('onlineDurationHours', 'max')">
+                    {{ 'BATCH-ONLINEDURATIONHOURS' | translate }}: {{ 'FIELD-MUSTBE-MAXIMUM' | translate }} 500</mat-error>
+				<mat-error *ngIf="hasError('onlineDurationHours', 'pattern')">
+					{{ 'BATCH-ONLINEDURATIONHOURS' | translate }}: {{ 'FIELD-MUSTBE-NUMERIC' | translate }}</mat-error>
+			</mat-form-field>
+			<mat-form-field>
+				<mat-label>{{ 'BATCH-MENTORINGSTARTDATE' | translate }}</mat-label>
+				<input formControlName="mentoringStartDate" matInput [matDatepicker]="mentoringStartDate" placeholder="{{ 'BATCH-MENTORINGSTARTDATE' | translate }}">
+				<mat-datepicker-toggle matSuffix [for]="mentoringStartDate"></mat-datepicker-toggle>
+				<mat-datepicker #mentoringStartDate></mat-datepicker>
+			</mat-form-field>
+			<mat-form-field>
+				<mat-label>{{ 'BATCH-MENTORINGENDDATE' | translate }}</mat-label>
+				<input formControlName="mentoringEndDate" matInput [matDatepicker]="mentoringEndDate" placeholder="{{ 'BATCH-MENTORINGENDDATE' | translate }}">
+				<mat-datepicker-toggle matSuffix [for]="mentoringEndDate"></mat-datepicker-toggle>
+				<mat-datepicker #mentoringEndDate></mat-datepicker>
+			</mat-form-field>
+			<mat-form-field>
+				<input matInput type="text" formControlName="mentoringDurationDays" id="mentoringDurationDays" 
+					name="mentoringDurationDays" placeholder="{{ 'BATCH-MENTORINGDURATIONDAYS' | translate }}" 
+					min="1" max="50" />
+                <mat-error *ngIf="hasError('mentoringDurationDays', 'min')">
+                    {{ 'BATCH-MENTORINGDURATIONDAYS' | translate }}: {{ 'FIELD-MUSTBE-MINIMUM' | translate }} 1</mat-error>
+                <mat-error *ngIf="hasError('mentoringDurationDays', 'max')">
+                    {{ 'BATCH-MENTORINGDURATIONDAYS' | translate }}: {{ 'FIELD-MUSTBE-MAXIMUM' | translate }} 50</mat-error>
+				<mat-error *ngIf="hasError('mentoringDurationDays', 'pattern')">
+					{{ 'BATCH-MENTORINGDURATIONDAYS' | translate }}: {{ 'FIELD-MUSTBE-NUMERIC' | translate }}</mat-error>
+			</mat-form-field>
+			<mat-form-field>
+				<input matInput type="text" formControlName="mentoringDurationHours" id="mentoringDurationHours" 
+					name="mentoringDurationHours" placeholder="{{ 'BATCH-MENTORINGDURATIONHOURS' | translate }}" 
+					min="1" max="500" />
+                <mat-error *ngIf="hasError('mentoringDurationHours', 'min')">
+                    {{ 'BATCH-MENTORINGDURATIONHOURS' | translate }}: {{ 'FIELD-MUSTBE-MINIMUM' | translate }} 1</mat-error>
+                <mat-error *ngIf="hasError('mentoringDurationHours', 'max')">
+                    {{ 'BATCH-MENTORINGDURATIONHOURS' | translate }}: {{ 'FIELD-MUSTBE-MAXIMUM' | translate }} 500</mat-error>
+				<mat-error *ngIf="hasError('mentoringDurationHours', 'pattern')">
+					{{ 'BATCH-MENTORINGDURATIONHOURS' | translate }}: {{ 'FIELD-MUSTBE-NUMERIC' | translate }}</mat-error>
+			</mat-form-field>
+			<mat-form-field>
+				<input matInput type="text" formControlName="contactPersonName" id="contactPersonName" 
+					name="contactPersonName" placeholder="{{ 'BATCH-CONTACTPERSONNAME' | translate }}" 
+					minlength="1" maxlength="60" />
+                <mat-error *ngIf="hasError('contactPersonName', 'minlength')">
+                    {{ 'BATCH-CONTACTPERSONNAME' | translate }}: {{ 'FIELD-MUSTBE-MINIMUM-LENGTH' | translate }} 1</mat-error>
+                <mat-error *ngIf="hasError('contactPersonName', 'maxlength')">
+                    {{ 'BATCH-CONTACTPERSONNAME' | translate }}: {{ 'FIELD-MUSTBE-MAXIMUM-LENGTH' | translate }} 60</mat-error>
+			</mat-form-field>
+			<mat-form-field>
+				<input matInput type="text" formControlName="locationName" id="locationName" 
+					name="locationName" placeholder="{{ 'BATCH-LOCATIONNAME' | translate }}" 
+					minlength="1" maxlength="200" />
+                <mat-error *ngIf="hasError('locationName', 'minlength')">
+                    {{ 'BATCH-LOCATIONNAME' | translate }}: {{ 'FIELD-MUSTBE-MINIMUM-LENGTH' | translate }} 1</mat-error>
+                <mat-error *ngIf="hasError('locationName', 'maxlength')">
+                    {{ 'BATCH-LOCATIONNAME' | translate }}: {{ 'FIELD-MUSTBE-MAXIMUM-LENGTH' | translate }} 200</mat-error>
+			</mat-form-field>
+			<mat-form-field>
+				<input matInput type="text" formControlName="houseNumber" id="houseNumber" 
+					name="houseNumber" placeholder="{{ 'BATCH-HOUSENUMBER' | translate }}" 
+					minlength="1" maxlength="10" />
+                <mat-error *ngIf="hasError('houseNumber', 'minlength')">
+                    {{ 'BATCH-HOUSENUMBER' | translate }}: {{ 'FIELD-MUSTBE-MINIMUM-LENGTH' | translate }} 1</mat-error>
+                <mat-error *ngIf="hasError('houseNumber', 'maxlength')">
+                    {{ 'BATCH-HOUSENUMBER' | translate }}: {{ 'FIELD-MUSTBE-MAXIMUM-LENGTH' | translate }} 10</mat-error>
+			</mat-form-field>
+			<mat-form-field>
+				<input matInput type="text" formControlName="addressLineOne" id="addressLineOne" 
+					name="addressLineOne" placeholder="{{ 'BATCH-ADDRESSLINEONE' | translate }}" 
+					minlength="1" maxlength="200" />
+                <mat-error *ngIf="hasError('addressLineOne', 'minlength')">
+                    {{ 'BATCH-ADDRESSLINEONE' | translate }}: {{ 'FIELD-MUSTBE-MINIMUM-LENGTH' | translate }} 1</mat-error>
+                <mat-error *ngIf="hasError('addressLineOne', 'maxlength')">
+                    {{ 'BATCH-ADDRESSLINEONE' | translate }}: {{ 'FIELD-MUSTBE-MAXIMUM-LENGTH' | translate }} 200</mat-error>
+			</mat-form-field>
+			<mat-form-field>
+				<input matInput type="text" formControlName="addressLineTwo" id="addressLineTwo" 
+					name="addressLineTwo" placeholder="{{ 'BATCH-ADDRESSLINETWO' | translate }}" 
+					minlength="1" maxlength="200" />
+                <mat-error *ngIf="hasError('addressLineTwo', 'minlength')">
+                    {{ 'BATCH-ADDRESSLINETWO' | translate }}: {{ 'FIELD-MUSTBE-MINIMUM-LENGTH' | translate }} 1</mat-error>
+                <mat-error *ngIf="hasError('addressLineTwo', 'maxlength')">
+                    {{ 'BATCH-ADDRESSLINETWO' | translate }}: {{ 'FIELD-MUSTBE-MAXIMUM-LENGTH' | translate }} 200</mat-error>
+			</mat-form-field>
+			<mat-form-field>
+				<input matInput type="text" formControlName="postcode" id="postcode" 
+					name="postcode" placeholder="{{ 'BATCH-POSTCODE' | translate }}" 
+					minlength="1" maxlength="10" />
+                <mat-error *ngIf="hasError('postcode', 'minlength')">
+                    {{ 'BATCH-POSTCODE' | translate }}: {{ 'FIELD-MUSTBE-MINIMUM-LENGTH' | translate }} 1</mat-error>
+                <mat-error *ngIf="hasError('postcode', 'maxlength')">
+                    {{ 'BATCH-POSTCODE' | translate }}: {{ 'FIELD-MUSTBE-MAXIMUM-LENGTH' | translate }} 10</mat-error>
+			</mat-form-field>
+			<mat-form-field>
+				<mat-label>{{ 'BATCH-COUNTRY' | translate }}</mat-label>
+				<mat-select formControlName="country" id="country" name="country" 
+						[compareWith]="compareCountry" required>
+				    <mat-option *ngFor="let country of countries" [value]="country">
+				    	{{ country.name }}</mat-option>
+				</mat-select>
+				<mat-error *ngIf="hasError('country', 'required')">
+					{{ 'BATCH-COUNTRY' | translate }}: {{ 'FIELD-IS-REQUIRED' | translate }}</mat-error>
+			</mat-form-field>
+			<mat-form-field>
+				<mat-label>{{ 'BATCH-STATE' | translate }}</mat-label>
+				<mat-select formControlName="state" id="state" name="state" 
+						[compareWith]="compareState" required>
+				    <mat-option *ngFor="let state of states" [value]="state">
+				    	{{ state.name }}</mat-option>
+				</mat-select>
+				<mat-error *ngIf="hasError('state', 'required')">
+					{{ 'BATCH-STATE' | translate }}: {{ 'FIELD-IS-REQUIRED' | translate }}</mat-error>
+			</mat-form-field>
+			<mat-form-field>
+				<input matInput type="text" formControlName="district" id="district" 
+					name="district" placeholder="{{ 'BATCH-DISTRICT' | translate }}" 
+					minlength="1" maxlength="60" />
+                <mat-error *ngIf="hasError('district', 'minlength')">
+                    {{ 'BATCH-DISTRICT' | translate }}: {{ 'FIELD-MUSTBE-MINIMUM-LENGTH' | translate }} 1</mat-error>
+                <mat-error *ngIf="hasError('district', 'maxlength')">
+                    {{ 'BATCH-DISTRICT' | translate }}: {{ 'FIELD-MUSTBE-MAXIMUM-LENGTH' | translate }} 60</mat-error>
+			</mat-form-field>
+			<mat-form-field>
+				<input matInput type="text" formControlName="city" id="city" 
+					name="city" placeholder="{{ 'BATCH-CITY' | translate }}" 
+					minlength="1" maxlength="60" />
+                <mat-error *ngIf="hasError('city', 'minlength')">
+                    {{ 'BATCH-CITY' | translate }}: {{ 'FIELD-MUSTBE-MINIMUM-LENGTH' | translate }} 1</mat-error>
+                <mat-error *ngIf="hasError('city', 'maxlength')">
+                    {{ 'BATCH-CITY' | translate }}: {{ 'FIELD-MUSTBE-MAXIMUM-LENGTH' | translate }} 60</mat-error>
+			</mat-form-field>
+			<mat-form-field>
+				<input matInput type="text" formControlName="telephoneNumberOne" id="telephoneNumberOne" 
+					name="telephoneNumberOne" placeholder="{{ 'BATCH-TELEPHONENUMBERONE' | translate }}" 
+					minlength="1" maxlength="20" />
+                <mat-error *ngIf="hasError('telephoneNumberOne', 'minlength')">
+                    {{ 'BATCH-TELEPHONENUMBERONE' | translate }}: {{ 'FIELD-MUSTBE-MINIMUM-LENGTH' | translate }} 1</mat-error>
+                <mat-error *ngIf="hasError('telephoneNumberOne', 'maxlength')">
+                    {{ 'BATCH-TELEPHONENUMBERONE' | translate }}: {{ 'FIELD-MUSTBE-MAXIMUM-LENGTH' | translate }} 20</mat-error>
+			</mat-form-field>
+			<mat-form-field>
+				<input matInput type="text" formControlName="handphoneNumberOne" id="handphoneNumberOne" 
+					name="handphoneNumberOne" placeholder="{{ 'BATCH-HANDPHONENUMBERONE' | translate }}" 
+					minlength="1" maxlength="20" />
+                <mat-error *ngIf="hasError('handphoneNumberOne', 'minlength')">
+                    {{ 'BATCH-HANDPHONENUMBERONE' | translate }}: {{ 'FIELD-MUSTBE-MINIMUM-LENGTH' | translate }} 1</mat-error>
+                <mat-error *ngIf="hasError('handphoneNumberOne', 'maxlength')">
+                    {{ 'BATCH-HANDPHONENUMBERONE' | translate }}: {{ 'FIELD-MUSTBE-MAXIMUM-LENGTH' | translate }} 20</mat-error>
+			</mat-form-field>
+			<mat-form-field>
+				<input matInput type="text" formControlName="emailAddressOne" id="emailAddressOne" 
+					name="emailAddressOne" placeholder="{{ 'BATCH-EMAILADDRESSONE' | translate }}" 
+					minlength="1" maxlength="120" />
+                <mat-error *ngIf="hasError('emailAddressOne', 'minlength')">
+                    {{ 'BATCH-EMAILADDRESSONE' | translate }}: {{ 'FIELD-MUSTBE-MINIMUM-LENGTH' | translate }} 1</mat-error>
+                <mat-error *ngIf="hasError('emailAddressOne', 'maxlength')">
+                    {{ 'BATCH-EMAILADDRESSONE' | translate }}: {{ 'FIELD-MUSTBE-MAXIMUM-LENGTH' | translate }} 120</mat-error>
+			</mat-form-field>
+			<mat-form-field>
+				<input matInput type="text" formControlName="websiteAddress" id="websiteAddress" 
+					name="websiteAddress" placeholder="{{ 'BATCH-WEBSITEADDRESS' | translate }}" 
+					minlength="1" maxlength="120" />
+                <mat-error *ngIf="hasError('websiteAddress', 'minlength')">
+                    {{ 'BATCH-WEBSITEADDRESS' | translate }}: {{ 'FIELD-MUSTBE-MINIMUM-LENGTH' | translate }} 1</mat-error>
+                <mat-error *ngIf="hasError('websiteAddress', 'maxlength')">
+                    {{ 'BATCH-WEBSITEADDRESS' | translate }}: {{ 'FIELD-MUSTBE-MAXIMUM-LENGTH' | translate }} 120</mat-error>
+			</mat-form-field>
+			<mat-form-field>
+				<input matInput type="text" formControlName="latitude" id="latitude" 
+					name="latitude" placeholder="{{ 'BATCH-LATITUDE' | translate }}" 
+					minlength="1" maxlength="50" />
+                <mat-error *ngIf="hasError('latitude', 'minlength')">
+                    {{ 'BATCH-LATITUDE' | translate }}: {{ 'FIELD-MUSTBE-MINIMUM-LENGTH' | translate }} 1</mat-error>
+                <mat-error *ngIf="hasError('latitude', 'maxlength')">
+                    {{ 'BATCH-LATITUDE' | translate }}: {{ 'FIELD-MUSTBE-MAXIMUM-LENGTH' | translate }} 50</mat-error>
+			</mat-form-field>
+			<mat-form-field>
+				<input matInput type="text" formControlName="longitude" id="longitude" 
+					name="longitude" placeholder="{{ 'BATCH-LONGITUDE' | translate }}" 
+					minlength="1" maxlength="50" />
+                <mat-error *ngIf="hasError('longitude', 'minlength')">
+                    {{ 'BATCH-LONGITUDE' | translate }}: {{ 'FIELD-MUSTBE-MINIMUM-LENGTH' | translate }} 1</mat-error>
+                <mat-error *ngIf="hasError('longitude', 'maxlength')">
+                    {{ 'BATCH-LONGITUDE' | translate }}: {{ 'FIELD-MUSTBE-MAXIMUM-LENGTH' | translate }} 50</mat-error>
+			</mat-form-field>
+			<mat-form-field>
+				<input matInput type="text" formControlName="locationMap" id="locationMap" 
+					name="locationMap" placeholder="{{ 'BATCH-LOCATIONMAP' | translate }}" 
+					minlength="1" maxlength="50" />
+                <mat-error *ngIf="hasError('locationMap', 'minlength')">
+                    {{ 'BATCH-LOCATIONMAP' | translate }}: {{ 'FIELD-MUSTBE-MINIMUM-LENGTH' | translate }} 1</mat-error>
+                <mat-error *ngIf="hasError('locationMap', 'maxlength')">
+                    {{ 'BATCH-LOCATIONMAP' | translate }}: {{ 'FIELD-MUSTBE-MAXIMUM-LENGTH' | translate }} 50</mat-error>
+			</mat-form-field>
+			<mat-form-field>
+				<input matInput type="text" formControlName="premisePhoto" id="premisePhoto" 
+					name="premisePhoto" placeholder="{{ 'BATCH-PREMISEPHOTO' | translate }}" 
+					minlength="1" maxlength="50" />
+                <mat-error *ngIf="hasError('premisePhoto', 'minlength')">
+                    {{ 'BATCH-PREMISEPHOTO' | translate }}: {{ 'FIELD-MUSTBE-MINIMUM-LENGTH' | translate }} 1</mat-error>
+                <mat-error *ngIf="hasError('premisePhoto', 'maxlength')">
+                    {{ 'BATCH-PREMISEPHOTO' | translate }}: {{ 'FIELD-MUSTBE-MAXIMUM-LENGTH' | translate }} 50</mat-error>
+			</mat-form-field>
+        </mat-card-content>
+    </form>
+</mat-dialog-content>
+<mat-dialog-actions>
+    <button mat-raised-button color="primary" (click)="save(batchForm.value)" 
+        [disabled]="!batchForm.valid">{{ 'SAVE' | translate }}</button>
+    <button type="button" mat-raised-button color="warn"
+        (click)="onCancel()">{{ 'CANCEL' | translate }}</button>
+</mat-dialog-actions>

@@ -1,0 +1,44 @@
+<h2 mat-dialog-title>{{ 'PROGRAM' | translate }} - {{ 'NEW' | translate }}</h2>
+<mat-dialog-content>
+	<form [formGroup]="programForm" *ngIf="programForm">
+		<mat-card-subtitle *ngIf="errorMessage" class="alert-danger">{{ errorMessage }}</mat-card-subtitle>
+		<mat-card-content class="my-form">
+			<mat-form-field>
+				<mat-label>{{ 'PROGRAM-PROGRAMMASTER' | translate }}</mat-label>
+				<mat-select formControlName="programMaster" id="programMaster" name="programMaster" 
+						[compareWith]="compareProgramMaster" required>
+				    <mat-option *ngFor="let programMaster of programMasters" [value]="programMaster">
+				    	{{ programMaster.title }}</mat-option>
+				</mat-select>
+				<mat-error *ngIf="hasError('programMaster', 'required')">
+					{{ 'PROGRAM-PROGRAMMASTER' | translate }}: {{ 'FIELD-IS-REQUIRED' | translate }}</mat-error>
+			</mat-form-field>
+			<mat-form-field>
+				<mat-label>{{ 'PROGRAM-TRAININGDELIVERY' | translate }}</mat-label>
+				<mat-select formControlName="trainingDelivery" id="trainingDelivery" name="trainingDelivery" 
+						[compareWith]="compareTrainingDelivery" required>
+				    <mat-option *ngFor="let trainingDelivery of trainingDeliveries" [value]="trainingDelivery">
+				    	{{ trainingDelivery.name }}</mat-option>
+				</mat-select>
+				<mat-error *ngIf="hasError('trainingDelivery', 'required')">
+					{{ 'PROGRAM-TRAININGDELIVERY' | translate }}: {{ 'FIELD-IS-REQUIRED' | translate }}</mat-error>
+			</mat-form-field>
+			<mat-form-field>
+				<mat-label>{{ 'PROGRAM-TRAININGMODE' | translate }}</mat-label>
+				<mat-select formControlName="trainingMode" id="trainingMode" name="trainingMode" 
+						[compareWith]="compareTrainingMode" required>
+				    <mat-option *ngFor="let trainingMode of trainingModes" [value]="trainingMode">
+				    	{{ trainingMode.name }}</mat-option>
+				</mat-select>
+				<mat-error *ngIf="hasError('trainingMode', 'required')">
+					{{ 'PROGRAM-TRAININGMODE' | translate }}: {{ 'FIELD-IS-REQUIRED' | translate }}</mat-error>
+			</mat-form-field>
+        </mat-card-content>
+    </form>
+</mat-dialog-content>
+<mat-dialog-actions>
+    <button mat-raised-button color="primary" (click)="save(programForm.value)" 
+        [disabled]="!programForm.valid">{{ 'SAVE' | translate }}</button>
+    <button type="button" mat-raised-button color="warn"
+        (click)="onCancel()">{{ 'CANCEL' | translate }}</button>
+</mat-dialog-actions>

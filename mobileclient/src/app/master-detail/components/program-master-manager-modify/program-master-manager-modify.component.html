@@ -1,0 +1,150 @@
+<ion-toolbar color="primary">
+	<ion-buttons slot="start">
+		<ion-menu-button></ion-menu-button>
+	</ion-buttons>
+	<ion-title>{{ 'PROGRAM-MASTER' | translate }}</ion-title>
+</ion-toolbar>
+<ion-content padding>
+	<form [formGroup]="programMasterForm" *ngIf="programMasterForm">
+		<ion-card-content>
+			<ion-item>
+				<ion-label position="floating">{{ 'PROGRAM-MASTER-SEQUENCE' | translate }}</ion-label>
+                <ion-input formControlName="sequence" id="sequence" name="sequence" #sequence
+					placeholder="{{ 'PROGRAM-MASTER-SEQUENCE' | translate }}" min="1" max="2000">
+				</ion-input>
+			<div *ngIf="(programMasterForm.controls['sequence'].dirty || programMasterForm.controls['sequence'].touched)" class="errors">
+                <div *ngIf="hasError('sequence', 'required')">
+                    {{ 'PROGRAM-MASTER-SEQUENCE' | translate }}: {{ 'FIELD-IS-REQUIRED' | translate }}</div>
+                <div *ngIf="hasError('sequence', 'min')">
+                    {{ 'PROGRAM-MASTER-SEQUENCE' | translate }}: {{ 'FIELD-MUSTBE-MINIMUM' | translate }} 1</div>
+                <div *ngIf="hasError('sequence', 'max')">
+                    {{ 'PROGRAM-MASTER-SEQUENCE' | translate }}: {{ 'FIELD-MUSTBE-MAXIMUM' | translate }} 2000</div>
+				<div *ngIf="hasError('sequence', 'pattern')">
+					{{ 'PROGRAM-MASTER-SEQUENCE' | translate }}: {{ 'FIELD-MUSTBE-NUMERIC' | translate }}</div>
+			</div>
+			</ion-item>
+			<ion-item>
+                <input matInput type="text" formControlName="title" id="title" 
+                    name="title" placeholder="{{ 'PROGRAM-MASTER-TITLE' | translate }}" maxlength="60"/>
+			<div *ngIf="(programMasterForm.controls['title'].dirty || programMasterForm.controls['title'].touched)" class="errors">
+                <div *ngIf="hasError('title', 'required')">
+                    {{ 'PROGRAM-MASTER-TITLE' | translate }}: {{ 'FIELD-IS-REQUIRED' | translate }}</div>
+                <div *ngIf="hasError('title', 'minlength')">
+                    {{ 'PROGRAM-MASTER-TITLE' | translate }}: {{ 'FIELD-MUSTBE-MINIMUM-LENGTH' | translate }} 1</div>
+                <div *ngIf="hasError('title', 'maxlength')">
+                    {{ 'PROGRAM-MASTER-TITLE' | translate }}: {{ 'FIELD-MUSTBE-MAXIMUM-LENGTH' | translate }} 60</div>
+			</div>
+			</ion-item>
+			<ion-item>
+				<ion-label>{{ 'PROGRAM-MASTER-PROGRAMCATEGORY' | translate }}</ion-label>
+				<ion-select formControlName="programCategory" id="programCategory" name="programCategory" 
+						[compareWith]="compareProgramCategory" required>
+					<ion-select-option *ngFor="let programCategory of programCategories" [value]="programCategory">
+						{{ programCategory.name }}</ion-select-option>
+				</ion-select>
+			</ion-item>
+			<div *ngIf="(programMasterForm.controls['programCategory'].dirty || programMasterForm.controls['programCategory'].touched)" class="errors">
+				<div *ngIf="hasError('programCategory', 'required')">
+					{{ 'PROGRAM-MASTER-PROGRAMCATEGORY' | translate }}: {{ 'FIELD-IS-REQUIRED' | translate }}</div>
+			</div>
+			<ion-item>
+				<ion-label>{{ 'PROGRAM-MASTER-PROGRAMTYPE' | translate }}</ion-label>
+				<ion-select formControlName="programType" id="programType" name="programType" 
+						[compareWith]="compareProgramType" required>
+					<ion-select-option *ngFor="let programType of programTypes" [value]="programType">
+						{{ programType.name }}</ion-select-option>
+				</ion-select>
+			</ion-item>
+			<div *ngIf="(programMasterForm.controls['programType'].dirty || programMasterForm.controls['programType'].touched)" class="errors">
+				<div *ngIf="hasError('programType', 'required')">
+					{{ 'PROGRAM-MASTER-PROGRAMTYPE' | translate }}: {{ 'FIELD-IS-REQUIRED' | translate }}</div>
+			</div>
+			<div style="color:#666666;padding-bottom:8px"><ion-label>{{ 'PROGRAM-MASTER-DESCRIPTION' | translate }}</ion-label></div>
+            <editor 
+                formControlName = "description"
+                [init]="{ 
+	                	base_url: '/tinymce', 
+	                	menubar: false,
+	                    suffix: '.min', 
+	                    plugins: 'lists advlist table',
+	                    toolbar: 'undo redo | bold italic underline | ' + 
+	                    	'alignleft aligncenter alignright alignjustify | ' +
+	                    	'bullist numlist outdent indent | removeformat' 
+				}">
+			</editor><br />
+			<div style="color:#666666;padding-bottom:8px"><ion-label>{{ 'PROGRAM-MASTER-OBJECTIVE' | translate }}</ion-label></div>
+            <editor 
+                formControlName = "objective"
+                [init]="{ 
+	                	base_url: '/tinymce', 
+	                	menubar: false,
+	                    suffix: '.min', 
+	                    plugins: 'lists advlist table',
+	                    toolbar: 'undo redo | bold italic underline | ' + 
+	                    	'alignleft aligncenter alignright alignjustify | ' +
+	                    	'bullist numlist outdent indent | removeformat' 
+				}">
+			</editor><br />
+			<div style="color:#666666;padding-bottom:8px"><ion-label>{{ 'PROGRAM-MASTER-TARGETPARTICIPANTS' | translate }}</ion-label></div>
+            <editor 
+                formControlName = "targetParticipants"
+                [init]="{ 
+	                	base_url: '/tinymce', 
+	                	menubar: false,
+	                    suffix: '.min', 
+	                    plugins: 'lists advlist table',
+	                    toolbar: 'undo redo | bold italic underline | ' + 
+	                    	'alignleft aligncenter alignright alignjustify | ' +
+	                    	'bullist numlist outdent indent | removeformat' 
+				}">
+			</editor><br />
+			<div style="color:#666666;padding-bottom:8px"><ion-label>{{ 'PROGRAM-MASTER-PROGRAMPREREQUISITES' | translate }}</ion-label></div>
+            <editor 
+                formControlName = "programPrerequisites"
+                [init]="{ 
+	                	base_url: '/tinymce', 
+	                	menubar: false,
+	                    suffix: '.min', 
+	                    plugins: 'lists advlist table',
+	                    toolbar: 'undo redo | bold italic underline | ' + 
+	                    	'alignleft aligncenter alignright alignjustify | ' +
+	                    	'bullist numlist outdent indent | removeformat' 
+				}">
+			</editor><br />
+			<div style="color:#666666;padding-bottom:8px"><ion-label>{{ 'PROGRAM-MASTER-DELIVERYMODE' | translate }}</ion-label></div>
+            <editor 
+                formControlName = "deliveryMode"
+                [init]="{ 
+	                	base_url: '/tinymce', 
+	                	menubar: false,
+	                    suffix: '.min', 
+	                    plugins: 'lists advlist table',
+	                    toolbar: 'undo redo | bold italic underline | ' + 
+	                    	'alignleft aligncenter alignright alignjustify | ' +
+	                    	'bullist numlist outdent indent | removeformat' 
+				}">
+			</editor><br />
+			<div style="color:#666666;padding-bottom:8px"><ion-label>{{ 'PROGRAM-MASTER-MOREINFO' | translate }}</ion-label></div>
+            <editor 
+                formControlName = "moreInfo"
+                [init]="{ 
+	                	base_url: '/tinymce', 
+	                	menubar: false,
+	                    suffix: '.min', 
+	                    plugins: 'lists advlist table',
+	                    toolbar: 'undo redo | bold italic underline | ' + 
+	                    	'alignleft aligncenter alignright alignjustify | ' +
+	                    	'bullist numlist outdent indent | removeformat' 
+				}">
+			</editor><br />
+        </ion-card-content>
+		<ion-footer>
+			<ion-toolbar color="light" style="padding-left: 20px;">
+			<ion-button color="primary" (click)="save(programMasterForm.value)" 
+				[disabled]="!programMasterForm.valid">{{ 'SAVE' | translate }}</ion-button>
+			<ion-button type="button" color="medium"
+				(click)="onCancel()">{{ 'CANCEL' | translate }}</ion-button>
+			</ion-toolbar>
+		</ion-footer>
+    </form>
+</ion-content>

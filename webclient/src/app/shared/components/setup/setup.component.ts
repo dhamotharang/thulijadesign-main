@@ -139,8 +139,7 @@ export class SetupComponent implements OnInit {
 						this.departmentService.save(department).subscribe((departments:Department[]) => {
 							department = departments[0];
 							let user:User = new User(0, organization, branch, department, 
-								strFirstName, strLastName, strUsername, strPassword);
-							user.status = this.status;
+								strFirstName, strLastName, strUsername, strPassword, 0, undefined, this.status, "admin");
 							this.userService.save(user).subscribe((users:User[]) => {
 								this.router.navigate(['/login']);
 							})

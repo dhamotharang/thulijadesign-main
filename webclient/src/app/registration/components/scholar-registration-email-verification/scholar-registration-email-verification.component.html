@@ -1,0 +1,26 @@
+<h2 mat-dialog-title>{{ 'SCHOLAR-REGISTRATION-VERIFICATION-CODE' | translate }}</h2>
+<p>{{ 'SCHOLAR-REGISTRATION-VERIFICATION-CODE-MESSAGE' | translate }}</p>
+<mat-dialog-content>
+	<form [formGroup]="scholarRegistrationEmailVerificationForm">
+		<mat-card-content class="my-form">
+			<mat-form-field>
+				<input matInput type="text" formControlName="verificationCode" id="verificationCode" 
+					name="verificationCode" placeholder="{{ 'SCHOLAR-REGISTRATION-VERIFICATION-CODE' | translate }}" 
+					min="100000" max="999999" required />
+				<mat-icon matPrefix style="padding-right: 20px;">account_balance</mat-icon>
+				<mat-error *ngIf="hasVerificationError('verificationCode', 'required')">
+					{{ 'SCHOLAR-REGISTRATION-VERIFICATION-CODE' | translate }}: {{ 'FIELD-IS-REQUIRED' | translate }}</mat-error>
+				<mat-error *ngIf="hasVerificationError('verificationCode', 'min')">
+					{{ 'SCHOLAR-REGISTRATION-VERIFICATION-CODE' | translate }}: {{ 'FIELD-MUSTBE-MINIMUM-LENGTH' | translate }} 1</mat-error>
+				<mat-error *ngIf="hasVerificationError('verificationCode', 'max')">
+					{{ 'SCHOLAR-REGISTRATION-VERIFICATION-CODE' | translate }}: {{ 'FIELD-MUSTBE-MAXIMUM-LENGTH' | translate }} 50</mat-error>
+				<mat-error *ngIf="hasVerificationError('verificationCode', 'pattern')">
+					{{ 'SCHOLAR-REGISTRATION-VERIFICATION-CODE' | translate }}: {{ 'FIELD-MUSTBE-NUMERIC' | translate }}</mat-error>
+			</mat-form-field>
+		</mat-card-content>
+		<mat-card-actions class="my-form">
+			<button mat-raised-button color="primary" (click)="confirm(scholarRegistrationEmailVerificationForm.value)" 
+				[disabled]="!scholarRegistrationEmailVerificationForm.valid">{{ 'CONFIRM' | translate }}</button>
+		</mat-card-actions>		
+	</form>
+</mat-dialog-content>

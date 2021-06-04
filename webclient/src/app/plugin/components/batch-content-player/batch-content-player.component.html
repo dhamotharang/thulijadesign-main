@@ -1,0 +1,31 @@
+<div class="container mat-elevation-z2 container-size" fxLayout="row" fxLayout.xs="column" 
+	fxLayoutWrap fxLayoutGap="0.5%" fxLayoutAlign="center">
+	<div fxFlex="25%">
+		<mat-accordion>
+			<mat-expansion-panel *ngFor="let batchModuleContent of batchModuleContents; first as isFirst"
+				[expanded]="isFirst">
+				<mat-expansion-panel-header>
+					<mat-panel-title>{{ batchModuleContent.module.name }}</mat-panel-title>
+				</mat-expansion-panel-header>
+				<button mat-flat-button class="fullwidth" 
+					*ngFor="let batchContent of batchModuleContent.contents"
+					(click)="showDetail(batchContent)">{{ batchContent.name }}</button>
+			</mat-expansion-panel>
+		</mat-accordion>
+	</div>
+	<div fxFlex="75%">
+		<div *ngIf="multimediaDetail !== undefined && multimediaDetail.mediaSource === 'youtube' 
+				&& multimediaDetail.mediaType === 'video' && safeUrl !== undefined">
+			<iframe id="youtubeplayer" type="text/html" [src]="safeUrl" frameborder="0" autoplay="1"
+				allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" 
+				allowfullscreen>
+			</iframe>
+		</div>
+		<div *ngIf="multimediaDetail !== undefined && multimediaDetail.mediaSource === 'frompc' 
+				&& multimediaDetail.mediaType === 'pdf' && safeUrl !== undefined">
+			<ngx-extended-pdf-viewer [src]="safeUrl"
+				[height]="'80vh'" [useBrowserLocale]="true" [textLayer]="true" [showHandToolButton]="true">
+			</ngx-extended-pdf-viewer>
+		</div>
+	</div>
+</div>

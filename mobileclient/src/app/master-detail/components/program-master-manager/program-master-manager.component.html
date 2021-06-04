@@ -1,0 +1,54 @@
+<ion-toolbar color="primary">
+	<ion-buttons slot="start">
+		<ion-menu-button></ion-menu-button>
+	</ion-buttons>
+	<ion-title>{{ 'PROGRAM-MASTER' | translate }}</ion-title>
+	<ion-buttons slot="end" color="success">
+		<ion-button fill="clear" (click)="add()">
+			<ion-icon slot="icon-only" name="add-circle-outline"></ion-icon>
+		</ion-button>
+	</ion-buttons>
+</ion-toolbar>
+<ion-content padding>
+	<ion-card *ngFor="let programMaster of programMasters">
+		<ion-card-content style="padding: bottom 0px;">
+			<h2>
+				<b>{{ 'PROGRAM-MASTER-SEQUENCE' | translate }}:</b>&nbsp;
+				{{ programMaster.sequence }}
+			</h2>
+			<h2>
+				<b>{{ 'PROGRAM-MASTER-TITLE' | translate }}:</b>&nbsp;
+				{{ programMaster.title }}
+			</h2>
+			<h2>
+				<b>{{ 'PROGRAM-MASTER-PROGRAMCATEGORY' | translate }}:</b>&nbsp;
+				{{ programMaster.programCategory.name }}
+			</h2>
+			<h2>
+				<b>{{ 'PROGRAM-MASTER-PROGRAMTYPE' | translate }}:</b>&nbsp;
+				{{ programMaster.programType.name }}
+			</h2>
+			<h2>
+				<b>{{ 'PROGRAM-MASTER-DESCRIPTION' | translate }}:</b>&nbsp;
+				<span [innerHTML]="programMaster.description"></span>
+			</h2>
+			<ion-row no-padding>
+				<ion-col size="4" no-padding></ion-col>
+				<ion-col size="8" no-padding>
+					<ion-button fill="clear" size="small" (click)="edit(programMaster)">
+						<ion-icon name="create-outline"></ion-icon>
+					</ion-button>
+					<ion-button fill="clear" size="small" (click)="delete(programMaster)">
+						<ion-icon name="trash-outline"></ion-icon>
+					</ion-button>
+					<ion-button fill="clear" size="small" (click)="print(programMaster)">
+						<ion-icon name="print-outline"></ion-icon>
+					</ion-button>
+					<ion-button fill="clear" size="small" (click)="showDetail(programMaster)">
+						<ion-icon name="list-outline"></ion-icon>
+					</ion-button>
+				</ion-col>
+			</ion-row>
+		</ion-card-content>
+	</ion-card>
+</ion-content>

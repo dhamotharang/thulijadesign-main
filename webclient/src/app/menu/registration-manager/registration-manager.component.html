@@ -1,0 +1,11 @@
+<mat-sidenav-container menuHeight>
+    <mat-sidenav #sidenav mode="side" opened role="navigation" [fixedInViewport]="false">
+        <mat-nav-list>
+			<a mat-list-item [routerLink]="['/registrationmanager', {outlets: { 'sidebar':['registration', 'scholarregistrations'] }}]">
+				{{ 'SCHOLAR-REGISTRATION' | translate }} </a>
+        </mat-nav-list>
+    </mat-sidenav>
+    <mat-sidenav-content>
+        <router-outlet name="sidebar"></router-outlet>
+    </mat-sidenav-content>
+</mat-sidenav-container>

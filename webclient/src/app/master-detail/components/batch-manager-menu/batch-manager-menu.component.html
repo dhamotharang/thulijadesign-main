@@ -1,0 +1,24 @@
+<mat-toolbar color="secondary" class="mat-elevation-z2">
+	<mat-toolbar-row>
+		<button type="button" mat-icon-button (click)="back()">
+			<mat-icon>keyboard_arrow_left</mat-icon>
+		</button>&nbsp;&nbsp;
+		<a mat-button disabled style="color: black" *ngIf="program">
+			{{ program.programMaster.title }}&nbsp;&nbsp;
+		</a>
+		<a mat-button disabled style="color: black" *ngIf="batch">
+			{{ batch.code }}&nbsp;
+			{{ batch.lectureStartDate | date }}&nbsp;
+		</a>&nbsp;&nbsp;
+		<span class="spacer"></span>
+		<a mat-button [routerLink]="['/masterdetail/programmanagers', programId, 'batchmanagers', batchId, 'batchprerequisitemanagers']" routerLinkActive="active">
+			{{ 'BATCHPREREQUISITEMANAGER' | translate }}</a>
+		<a mat-button [routerLink]="['/masterdetail/programmanagers', programId, 'batchmanagers', batchId, 'batchscholarmanagers']" routerLinkActive="active">
+			{{ 'BATCHSCHOLARMANAGER' | translate }}</a>
+		<a mat-button [routerLink]="['/masterdetail/programmanagers', programId, 'batchmanagers', batchId, 'batchmodulemanagers']" routerLinkActive="active">
+			{{ 'BATCHMODULEMANAGER' | translate }}</a>
+		<a mat-button [routerLink]="['/masterdetail/programmanagers', programId, 'batchmanagers', batchId, 'batchcontentmanagers']" routerLinkActive="active">
+			{{ 'BATCHCONTENTMANAGER' | translate }}</a>
+	</mat-toolbar-row>
+</mat-toolbar>
+<router-outlet></router-outlet>

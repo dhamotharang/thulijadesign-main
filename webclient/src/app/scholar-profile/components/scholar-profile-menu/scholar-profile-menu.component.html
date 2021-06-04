@@ -1,0 +1,21 @@
+<nav mat-tab-nav-bar>
+	<a mat-tab-link [routerLink]="['/scholarprofile/scholarprofilemenu', 'scholars']" 
+		routerLinkActive #rlascholars="routerLinkActive" [active]="rlascholars.isActive">
+		{{ 'SCHOLAR' | translate }}</a>
+	<a mat-tab-link [routerLink]="['/scholarprofile/scholarprofilemenu', 'scholardetails']" 
+		routerLinkActive #rlascholardetails="routerLinkActive" [active]="rlascholardetails.isActive">
+		{{ 'SCHOLAR-DETAIL' | translate }}</a>
+	<a mat-tab-link [routerLink]="['/scholarprofile/scholarprofilemenu', 'scholaraddresses']" 
+		routerLinkActive #rlascholaraddresses="routerLinkActive" [active]="rlascholaraddresses.isActive">
+		{{ 'SCHOLAR-ADDRESS' | translate }}</a>
+	<a mat-tab-link [routerLink]="['/scholarprofile/scholarprofilemenu', 'scholarfamilies']" 
+		routerLinkActive #rlascholarfamilies="routerLinkActive" [active]="rlascholarfamilies.isActive">
+		{{ 'SCHOLAR-FAMILY' | translate }}</a>
+	<a mat-tab-link [routerLink]="['/scholarprofile/scholarprofilemenu', 'scholareducationdetails']" 
+		routerLinkActive #rlascholareducationdetails="routerLinkActive" [active]="rlascholareducationdetails.isActive">
+		{{ 'SCHOLAR-EDUCATION-DETAIL' | translate }}</a>
+	<a mat-tab-link [routerLink]="['/scholarprofile/scholarprofilemenu', 'scholaroccupations']" 
+		routerLinkActive #rlascholaroccupations="routerLinkActive" [active]="rlascholaroccupations.isActive">
+		{{ 'SCHOLAR-OCCUPATION' | translate }}</a>
+</nav>
+<router-outlet></router-outlet>

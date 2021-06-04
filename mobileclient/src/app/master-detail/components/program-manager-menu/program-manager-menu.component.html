@@ -1,0 +1,11 @@
+<ion-content>
+	<button type="button" mat-icon-button (click)="back()">
+		<ion-icon>keyboard_arrow_left</ion-icon>
+	</button>&nbsp;&nbsp;
+	<a mat-button disabled style="color: black" *ngIf="program">
+			{{ program.programMaster.title }}&nbsp;&nbsp;
+	</a>
+	<span class="spacer"></span>
+		<a mat-button [routerLink]="['/masterdetail/programmanagers', programId, 'batchmanagers']" routerLinkActive="active">
+			{{ 'BATCHMANAGER' | translate }}</a>
+</ion-content>

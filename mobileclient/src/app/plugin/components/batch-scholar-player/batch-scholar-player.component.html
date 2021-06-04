@@ -1,0 +1,44 @@
+<ion-toolbar color="primary">
+	<ion-buttons slot="start">
+		<ion-menu-button></ion-menu-button>
+	</ion-buttons>
+	<ion-title>{{ 'BATCH-SCHOLAR-PLAYER' | translate }}</ion-title>
+</ion-toolbar>
+<ion-content padding>
+	<ion-card *ngFor="let batchScholar of batchScholars">
+		<img src="/assets/img/digitalmarketing.png" />
+		<ion-card-header>
+			<ion-card-title>{{ batchScholar.batch.program.programMaster.title }}</ion-card-title>
+		</ion-card-header>
+		<ion-card-content style="padding: bottom 0px;">
+			<ion-list lines="none">
+				<ion-item class="ion-no-padding">
+					<ion-label>
+						{{ 'PLUGIN-BATCH-LOCATIONNAME' | translate }}: &nbsp;
+						{{ batchScholar.batch.locationName }}
+					</ion-label>
+				</ion-item>
+				<ion-item class="ion-no-padding">
+					<ion-label>
+						{{ 'PLUGIN-BATCH-LECTURESTARTDATE' | translate }}: &nbsp;
+						{{ batchScholar.batch.lectureStartDate | date }}
+					</ion-label>
+				</ion-item>
+				<ion-item class="ion-no-padding">
+					<ion-label>
+						{{ 'PLUGIN-BATCH-LECTUREENDDATE' | translate }}: &nbsp;
+						{{ batchScholar.batch.lectureEndDate | date }}
+					</ion-label>
+				</ion-item>
+				<ion-row no-padding>
+					<ion-col col-12 no-padding style="text-align: center">
+						<ion-chip color="primary" button (click)="showDetail(batchScholar)">
+							<ion-icon name="videocam"></ion-icon>
+							<ion-label>&nbsp;&nbsp; Play &nbsp;&nbsp;</ion-label>
+						</ion-chip>
+					</ion-col>
+				</ion-row>
+			</ion-list>
+		</ion-card-content>
+	</ion-card>
+</ion-content>

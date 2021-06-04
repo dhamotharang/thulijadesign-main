@@ -1,0 +1,46 @@
+<ion-toolbar color="primary">
+	<ion-buttons slot="start">
+		<ion-menu-button></ion-menu-button>
+	</ion-buttons>
+	<ion-title>{{ 'BATCH-MODULE' | translate }}</ion-title>
+	<ion-buttons slot="end" color="success">
+		<ion-button fill="clear" (click)="add()">
+			<ion-icon slot="icon-only" name="add-circle-outline"></ion-icon>
+		</ion-button>
+	</ion-buttons>
+</ion-toolbar>
+<ion-content padding>
+	<ion-card *ngFor="let batchModule of batchModules">
+		<ion-card-content style="padding: bottom 0px;">
+			<h2>
+				<b>{{ 'BATCH-MODULE-SEQUENCE' | translate }}:</b>&nbsp;
+				{{ batchModule.sequence }}
+			</h2>
+			<h2>
+				<b>{{ 'BATCH-MODULE-NAME' | translate }}:</b>&nbsp;
+				{{ batchModule.name }}
+			</h2>
+			<h2>
+				<b>{{ 'BATCH-MODULE-DESCRIPTION' | translate }}:</b>&nbsp;
+				<span [innerHTML]="batchModule.description"></span>
+			</h2>
+			<ion-row no-padding>
+				<ion-col size="4" no-padding></ion-col>
+				<ion-col size="8" no-padding>
+					<ion-button fill="clear" size="small" (click)="edit(batchModule)">
+						<ion-icon name="create-outline"></ion-icon>
+					</ion-button>
+					<ion-button fill="clear" size="small" (click)="delete(batchModule)">
+						<ion-icon name="trash-outline"></ion-icon>
+					</ion-button>
+					<ion-button fill="clear" size="small" (click)="print(batchModule)">
+						<ion-icon name="print-outline"></ion-icon>
+					</ion-button>
+					<ion-button fill="clear" size="small" (click)="showDetail(batchModule)">
+						<ion-icon name="list-outline"></ion-icon>
+					</ion-button>
+				</ion-col>
+			</ion-row>
+		</ion-card-content>
+	</ion-card>
+</ion-content>

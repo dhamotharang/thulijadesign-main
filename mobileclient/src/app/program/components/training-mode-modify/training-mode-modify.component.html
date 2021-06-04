@@ -1,0 +1,65 @@
+<ion-toolbar color="primary">
+	<ion-title>{{ 'TRAINING-MODE' | translate }} - {{ 'NEW' | translate }}</ion-title>
+</ion-toolbar>
+<ion-content padding>
+	<form [formGroup]="trainingModeForm" *ngIf="trainingModeForm">
+		<ion-card-content>
+			<ion-item>
+				<ion-label position="floating">{{ 'TRAINING-MODE-SEQUENCE' | translate }}</ion-label>
+                <ion-input formControlName="sequence" id="sequence" name="sequence" #sequence
+					placeholder="{{ 'TRAINING-MODE-SEQUENCE' | translate }}" min="1" max="2000">
+				</ion-input>
+			</ion-item>
+			<div *ngIf="(trainingModeForm.controls['sequence'].dirty || trainingModeForm.controls['sequence'].touched)" class="errors">
+                <div *ngIf="hasError('sequence', 'required')">
+                    {{ 'TRAINING-MODE-SEQUENCE' | translate }}: {{ 'FIELD-IS-REQUIRED' | translate }}</div>
+                <div *ngIf="hasError('sequence', 'min')">
+                    {{ 'TRAINING-MODE-SEQUENCE' | translate }}: {{ 'FIELD-MUSTBE-MINIMUM' | translate }} 1</div>
+                <div *ngIf="hasError('sequence', 'max')">
+                    {{ 'TRAINING-MODE-SEQUENCE' | translate }}: {{ 'FIELD-MUSTBE-MAXIMUM' | translate }} 2000</div>
+				<div *ngIf="hasError('sequence', 'pattern')">
+					{{ 'TRAINING-MODE-SEQUENCE' | translate }}: {{ 'FIELD-MUSTBE-NUMERIC' | translate }}</div>
+			</div>
+			<ion-item>
+				<ion-label position="floating">{{ 'TRAINING-MODE-NAME' | translate }}</ion-label>
+				<ion-input formControlName="name" id="name" name="name" #name
+					placeholder="{{ 'TRAINING-MODE-NAME' | translate }}" maxlength="60">
+				</ion-input>
+			</ion-item>
+			<div *ngIf="(trainingModeForm.controls['name'].dirty || trainingModeForm.controls['name'].touched)" class="errors">
+                <div *ngIf="hasError('name', 'required')">
+                    {{ 'TRAINING-MODE-NAME' | translate }}: {{ 'FIELD-IS-REQUIRED' | translate }}</div>
+                <div *ngIf="hasError('name', 'minlength')">
+                    {{ 'TRAINING-MODE-NAME' | translate }}: {{ 'FIELD-MUSTBE-MINIMUM-LENGTH' | translate }} 1</div>
+                <div *ngIf="hasError('name', 'maxlength')">
+                    {{ 'TRAINING-MODE-NAME' | translate }}: {{ 'FIELD-MUSTBE-MAXIMUM-LENGTH' | translate }} 60</div>
+			</div>
+			<ion-item>
+				<ion-label position="floating">{{ 'TRAINING-MODE-DESCRIPTION' | translate }}</ion-label>
+				<ion-input formControlName="description" id="description" name="description" #description
+					placeholder="{{ 'TRAINING-MODE-DESCRIPTION' | translate }}" maxlength="250">
+				</ion-input>
+			</ion-item>
+			<div *ngIf="(trainingModeForm.controls['description'].dirty || trainingModeForm.controls['description'].touched)" class="errors">
+                <div *ngIf="hasError('description', 'required')">
+                    {{ 'TRAINING-MODE-DESCRIPTION' | translate }}: {{ 'FIELD-IS-REQUIRED' | translate }}</div>
+                <div *ngIf="hasError('description', 'minlength')">
+                    {{ 'TRAINING-MODE-DESCRIPTION' | translate }}: {{ 'FIELD-MUSTBE-MINIMUM-LENGTH' | translate }} 1</div>
+                <div *ngIf="hasError('description', 'maxlength')">
+                    {{ 'TRAINING-MODE-DESCRIPTION' | translate }}: {{ 'FIELD-MUSTBE-MAXIMUM-LENGTH' | translate }} 250</div>
+			</div>
+			<ion-item>
+				<ion-checkbox formControlName="byDefault" id="byDefault" color="danger"></ion-checkbox>&nbsp;&nbsp;&nbsp;
+				<ion-label>{{ 'TRAINING-MODE-BYDEFAULT' | translate }}</ion-label>
+			</ion-item>
+		</ion-card-content>
+		<ion-footer>
+			<ion-toolbar color="light" style="padding-left: 20px;">
+			<ion-button color="primary" (click)="save(trainingModeForm.value)" 
+				[disabled]="!trainingModeForm.valid">{{ 'SAVE' | translate }}</ion-button>
+			<ion-button type="button" color="medium"
+				(click)="onCancel()">{{ 'CANCEL' | translate }}</ion-button>
+			</ion-toolbar>
+		</ion-footer>
+	</form>
+</ion-content>

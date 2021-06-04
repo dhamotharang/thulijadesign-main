@@ -1,0 +1,221 @@
+<ion-content padding *ngIf="!success">
+	<form [formGroup]="scholarRegistrationForm" *ngIf="scholarRegistrationForm">
+		<div class="input-group">
+			<ion-toolbar color="primary">
+				<ion-title>{{ 'SCHOLAR-REGISTRATION' | translate }}</ion-title>
+				<ion-title size="small">{{ 'SCHOLAR-REGISTRATION-MESSAGE' | translate }}</ion-title>
+			</ion-toolbar>
+			<ion-item class="errorMessage" *ngIf="errorMessage">
+				<p>{{ errorMessage }}</p>
+			</ion-item>
+			<ion-item>
+				<ion-label>{{ 'SCHOLAR-REGISTRATION-ORGANIZATION' | translate }}</ion-label>
+				<ion-select formControlName="organization" id="organization" name="organization" 
+						[compareWith]="compareOrganization" required>
+					<ion-select-option *ngFor="let organization of organizations" [value]="organization">
+						{{ organization.name }}</ion-select-option>
+				</ion-select>
+				<ion-icon name="storefront-outline" slot="start" class="no-padding-margin"></ion-icon>
+			</ion-item>
+			<div *ngIf="(scholarRegistrationForm.controls['organization'].dirty || scholarRegistrationForm.controls['organization'].touched)" class="errors">
+				<div *ngIf="hasError('organization', 'required')">
+					{{ 'SCHOLAR-REGISTRATION-ORGANIZATION' | translate }}: {{ 'FIELD-IS-REQUIRED' | translate }}</div>
+			</div>
+			<ion-item>
+				<ion-label>{{ 'SCHOLAR-REGISTRATION-BRANCH' | translate }}</ion-label>
+				<ion-select formControlName="branch" id="branch" name="branch" 
+						[compareWith]="compareBranch" required>
+					<ng-container *ngFor="let branch of branches">
+						<ion-select-option *ngIf="branch.organization.id == scholarRegistrationForm.value.organization.id" [value]="branch">
+							{{ branch.name }}</ion-select-option>
+					</ng-container>
+				</ion-select>
+				<ion-icon name="trail-sign-outline" slot="start" class="no-padding-margin"></ion-icon>
+			</ion-item>
+			<div *ngIf="(scholarRegistrationForm.controls['branch'].dirty || scholarRegistrationForm.controls['branch'].touched)" class="errors">
+				<div *ngIf="hasError('branch', 'required')">
+					{{ 'SCHOLAR-REGISTRATION-BRANCH' | translate }}: {{ 'FIELD-IS-REQUIRED' | translate }}</div>
+			</div>
+			<ion-item>
+				<ion-label>{{ 'SCHOLAR-REGISTRATION-DEPARTMENT' | translate }}</ion-label>
+				<ion-select formControlName="department" id="department" name="department" 
+						[compareWith]="compareDepartment" required>
+					<ng-container *ngFor="let department of departments">
+						<ion-select-option *ngIf="department.branch.id == scholarRegistrationForm.value.branch.id" [value]="department">
+							{{ department.name }}</ion-select-option>
+					</ng-container>
+				</ion-select>
+				<ion-icon name="home-outline" slot="start" class="no-padding-margin"></ion-icon>
+			</ion-item>
+			<div *ngIf="(scholarRegistrationForm.controls['department'].dirty || scholarRegistrationForm.controls['department'].touched)" class="errors">
+				<div *ngIf="hasError('department', 'required')">
+					{{ 'SCHOLAR-REGISTRATION-DEPARTMENT' | translate }}: {{ 'FIELD-IS-REQUIRED' | translate }}</div>
+			</div>
+			<ion-item>
+				<ion-label>{{ 'SCHOLAR-REGISTRATION-SALUTATION' | translate }}</ion-label>
+				<ion-select formControlName="salutation" id="salutation" name="salutation" 
+						[compareWith]="compareSalutation" required>
+					<ion-select-option *ngFor="let salutation of salutations" [value]="salutation">
+						{{ salutation.name }}</ion-select-option>
+				</ion-select>
+				<ion-icon name="school-outline" slot="start" class="no-padding-margin"></ion-icon>
+			</ion-item>
+			<div *ngIf="(scholarRegistrationForm.controls['salutation'].dirty || scholarRegistrationForm.controls['salutation'].touched)" class="errors">
+				<div *ngIf="hasError('salutation', 'required')">
+					{{ 'SCHOLAR-REGISTRATION-SALUTATION' | translate }}: {{ 'FIELD-IS-REQUIRED' | translate }}</div>
+			</div>
+			<ion-item>
+				<ion-input formControlName="firstName" id="firstName" name="firstName" #firstName
+					placeholder="{{ 'SCHOLAR-REGISTRATION-FIRSTNAME' | translate }}" maxlength="50">
+					<ion-icon name="person-outline" slot="start"></ion-icon>
+				</ion-input>
+			</ion-item>
+			<div *ngIf="(scholarRegistrationForm.controls['firstName'].dirty || scholarRegistrationForm.controls['firstName'].touched)" class="errors">
+				<div *ngIf="hasError('firstName', 'required')">
+					{{ 'SCHOLAR-REGISTRATION-FIRSTNAME' | translate }}: {{ 'FIELD-IS-REQUIRED' | translate }}</div>
+				<div *ngIf="hasError('firstName', 'minlength')">
+					{{ 'SCHOLAR-REGISTRATION-FIRSTNAME' | translate }}: {{ 'FIELD-MUSTBE-MINIMUM-LENGTH' | translate }} 1</div>
+				<div *ngIf="hasError('firstName', 'maxlength')">
+					{{ 'SCHOLAR-REGISTRATION-FIRSTNAME' | translate }}: {{ 'FIELD-MUSTBE-MAXIMUM-LENGTH' | translate }} 50</div>
+			</div>
+			<ion-item>
+				<ion-input formControlName="lastName" id="lastName" name="lastName" #lastName
+					placeholder="{{ 'SCHOLAR-REGISTRATION-LASTNAME' | translate }}" maxlength="50">
+					<ion-icon name="person-outline" slot="start"></ion-icon>
+				</ion-input>
+			</ion-item>
+			<div *ngIf="(scholarRegistrationForm.controls['lastName'].dirty || scholarRegistrationForm.controls['lastName'].touched)" class="errors">
+				<div *ngIf="hasError('lastName', 'required')">
+					{{ 'SCHOLAR-REGISTRATION-LASTNAME' | translate }}: {{ 'FIELD-IS-REQUIRED' | translate }}</div>
+				<div *ngIf="hasError('lastName', 'minlength')">
+					{{ 'SCHOLAR-REGISTRATION-LASTNAME' | translate }}: {{ 'FIELD-MUSTBE-MINIMUM-LENGTH' | translate }} 1</div>
+				<div *ngIf="hasError('lastName', 'maxlength')">
+					{{ 'SCHOLAR-REGISTRATION-LASTNAME' | translate }}: {{ 'FIELD-MUSTBE-MAXIMUM-LENGTH' | translate }} 50</div>
+			</div>
+			<ion-item>
+				<ion-input formControlName="icNumber" id="icNumber" name="icNumber" #icNumber
+					placeholder="{{ 'SCHOLAR-REGISTRATION-ICNUMBER' | translate }}" maxlength="20">
+					<ion-icon name="id-card-outline" slot="start"></ion-icon>
+				</ion-input>
+			</ion-item>
+			<div *ngIf="(scholarRegistrationForm.controls['icNumber'].dirty || scholarRegistrationForm.controls['icNumber'].touched)" class="errors">
+				<div *ngIf="hasError('icNumber', 'required')">
+					{{ 'SCHOLAR-REGISTRATION-ICNUMBER' | translate }}: {{ 'FIELD-IS-REQUIRED' | translate }}</div>
+				<div *ngIf="hasError('icNumber', 'minlength')">
+					{{ 'SCHOLAR-REGISTRATION-ICNUMBER' | translate }}: {{ 'FIELD-MUSTBE-MINIMUM-LENGTH' | translate }} 1</div>
+				<div *ngIf="hasError('icNumber', 'maxlength')">
+					{{ 'SCHOLAR-REGISTRATION-ICNUMBER' | translate }}: {{ 'FIELD-MUSTBE-MAXIMUM-LENGTH' | translate }} 20</div>
+			</div>
+			<ion-item>
+				<ion-label>{{ 'SCHOLAR-REGISTRATION-GENDER' | translate }}</ion-label>
+				<ion-select formControlName="gender" id="gender" name="gender" 
+						[compareWith]="compareGender" required>
+					<ion-select-option *ngFor="let gender of genders" [value]="gender">
+						{{ gender.name }}</ion-select-option>
+				</ion-select>
+				<ion-icon name="male-female-outline" slot="start" class="no-padding-margin"></ion-icon>
+			</ion-item>
+			<div *ngIf="(scholarRegistrationForm.controls['gender'].dirty || scholarRegistrationForm.controls['gender'].touched)" class="errors">
+				<div *ngIf="hasError('gender', 'required')">
+					{{ 'SCHOLAR-REGISTRATION-GENDER' | translate }}: {{ 'FIELD-IS-REQUIRED' | translate }}</div>
+			</div>
+			<ion-item>
+				<ion-input formControlName="handphoneNumber" id="handphoneNumber" name="handphoneNumber" #handphoneNumber
+					placeholder="{{ 'SCHOLAR-REGISTRATION-HANDPHONENUMBER' | translate }}" maxlength="20">
+					<ion-icon name="call-outline" slot="start"></ion-icon>
+				</ion-input>
+			</ion-item>
+			<div *ngIf="(scholarRegistrationForm.controls['handphoneNumber'].dirty || scholarRegistrationForm.controls['handphoneNumber'].touched)" class="errors">
+				<div *ngIf="hasError('handphoneNumber', 'required')">
+					{{ 'SCHOLAR-REGISTRATION-HANDPHONENUMBER' | translate }}: {{ 'FIELD-IS-REQUIRED' | translate }}</div>
+				<div *ngIf="hasError('handphoneNumber', 'minlength')">
+					{{ 'SCHOLAR-REGISTRATION-HANDPHONENUMBER' | translate }}: {{ 'FIELD-MUSTBE-MINIMUM-LENGTH' | translate }} 5</div>
+				<div *ngIf="hasError('handphoneNumber', 'maxlength')">
+					{{ 'SCHOLAR-REGISTRATION-HANDPHONENUMBER' | translate }}: {{ 'FIELD-MUSTBE-MAXIMUM-LENGTH' | translate }} 20</div>
+			</div>
+			<ion-item>
+				<ion-input formControlName="emailAddress" id="emailAddress" name="emailAddress" #emailAddress
+					placeholder="{{ 'SCHOLAR-REGISTRATION-EMAILADDRESS' | translate }}" maxlength="120">
+					<ion-icon name="mail-outline" slot="start"></ion-icon>
+				</ion-input>
+			</ion-item>
+			<div *ngIf="(scholarRegistrationForm.controls['emailAddress'].dirty || scholarRegistrationForm.controls['emailAddress'].touched)" class="errors">
+				<div *ngIf="hasError('emailAddress', 'required')">
+					{{ 'SCHOLAR-REGISTRATION-EMAILADDRESS' | translate }}: {{ 'FIELD-IS-REQUIRED' | translate }}</div>
+				<div *ngIf="hasError('emailAddress', 'minlength')">
+					{{ 'SCHOLAR-REGISTRATION-EMAILADDRESS' | translate }}: {{ 'FIELD-MUSTBE-MINIMUM-LENGTH' | translate }} 3</div>
+				<div *ngIf="hasError('emailAddress', 'maxlength')">
+					{{ 'SCHOLAR-REGISTRATION-EMAILADDRESS' | translate }}: {{ 'FIELD-MUSTBE-MAXIMUM-LENGTH' | translate }} 120</div>
+				<div *ngIf="hasError('emailAddress', 'pattern')">
+					{{ 'SCHOLAR-REGISTRATION-EMAILADDRESS' | translate }}: {{ 'FIELD-MUSTBE-PATTERN' | translate }} email</div>
+				<div *ngIf="hasError('emailAddress', 'unique')">
+					{{ 'SCHOLAR-REGISTRATION-EMAILADDRESS' | translate }}: {{ 'FIELD-MUSTBE-UNIQUE' | translate }} try another</div>
+			</div>
+			<ion-item>
+				<ion-input formControlName="password" id="password" name="password" #password
+						[type]="passwordHide ? 'password' : 'text'" placeholder="{{ 'SCHOLAR-REGISTRATION-PASSWORD' | translate }}" 
+						minlength="5" maxlength="120" required>
+					<ion-icon name="lock-closed-outline" slot="start"></ion-icon>
+				</ion-input>
+				<ion-icon name="eye" slot="end" (click)="passwordHide = !passwordHide"></ion-icon>
+			</ion-item>
+			<div *ngIf="(scholarRegistrationForm.controls['password'].dirty || scholarRegistrationForm.controls['password'].touched)" class="errors">
+				<div *ngIf="hasError('password', 'required')">
+					{{ 'SCHOLAR-REGISTRATION-PASSWORD' | translate }}: {{ 'FIELD-IS-REQUIRED' | translate }}</div>
+				<div *ngIf="hasError('password', 'minlength')">
+					{{ 'SCHOLAR-REGISTRATION-PASSWORD' | translate }}: {{ 'FIELD-MUSTBE-MINIMUM-LENGTH' | translate }} 5</div>
+				<div *ngIf="hasError('password', 'maxlength')">
+					{{ 'SCHOLAR-REGISTRATION-PASSWORD' | translate }}: {{ 'FIELD-MUSTBE-MAXIMUM-LENGTH' | translate }} 120</div>
+				<div *ngIf="hasError('password', 'mustmatch')">
+					{{ 'SCHOLAR-REGISTRATION-PASSWORD' | translate }}: {{ 'FIELD-MUSTBE-MATCH' | translate }}</div>
+				<div *ngIf="hasError('password', 'strength')">
+					{{ 'SCHOLAR-REGISTRATION-PASSWORD' | translate }}: {{ 'PASSWORD-STRONG' | translate }}</div>
+			</div>
+			<ion-item>
+				<ion-input formControlName="confirmPassword" id="confirmPassword" name="confirmPassword" #confirmPassword
+						[type]="confirmPasswordHide ? 'password' : 'text'" placeholder="Confirm Password" 
+						minlength="5" maxlength="120" required>
+					<ion-icon name="lock-closed-outline" slot="start"></ion-icon>
+				</ion-input>
+				<ion-icon name="eye" slot="end" (click)="confirmPasswordHide = !confirmPasswordHide"></ion-icon>
+			</ion-item>
+			<div *ngIf="(scholarRegistrationForm.controls['confirmPassword'].dirty || scholarRegistrationForm.controls['confirmPassword'].touched)" class="errors">
+				<div *ngIf="hasError('confirmPassword', 'required')">
+					{{ 'SCHOLAR-REGISTRATION-CONFIRM-PASSWORD' | translate }}: {{ 'FIELD-IS-REQUIRED' | translate }}</div>
+				<div *ngIf="hasError('confirmPassword', 'minlength')">
+					{{ 'SCHOLAR-REGISTRATION-CONFIRM-PASSWORD' | translate }}: {{ 'FIELD-MUSTBE-MINIMUM-LENGTH' | translate }} 5</div>
+				<div *ngIf="hasError('confirmPassword', 'maxlength')">
+					{{ 'SCHOLAR-REGISTRATION-CONFIRM-PASSWORD' | translate }}: {{ 'FIELD-MUSTBE-MAXIMUM-LENGTH' | translate }} 120</div>
+				<div *ngIf="hasError('confirmPassword', 'mustmatch')">
+					{{ 'SCHOLAR-REGISTRATION-CONFIRM-PASSWORD' | translate }}: {{ 'FIELD-MUSTBE-MATCH' | translate }}</div>
+				<div *ngIf="hasError('confirmPassword', 'strength')">
+					{{ 'SCHOLAR-REGISTRATION-CONFIRM-PASSWORD' | translate }}: {{ 'PASSWORD-STRONG' | translate }}</div>
+			</div>
+		</div>
+		<ion-button type="button" expand="block" color="tertiary" (click)="save(scholarRegistrationForm.value)"
+			[disabled]="!scholarRegistrationForm.valid">{{ 'REGISTER' | translate }}</ion-button><br/><br/>
+		<ion-button type="button" expand="block" color="light" (click)="doLogin()">
+			{{ 'LOGIN' | translate }}</ion-button>
+		<ion-button type="button" expand="block" color="secondary" (click)="doForgotPassword()">
+			{{ 'FORGOT-PASSWORD' | translate }}</ion-button>
+	</form>
+	<br/><br/>
+</ion-content>
+<ion-content padding *ngIf="success">
+	<div class="input-group">
+		<ion-toolbar color="primary">
+			<ion-title>{{ 'SCHOLAR-REGISTRATION' | translate }}</ion-title>
+			<ion-title size="small">{{ 'SCHOLAR-REGISTRATION-MESSAGE' | translate }}</ion-title>
+		</ion-toolbar>
+		<div class="input-group">
+			<ion-card style="text-align: center;">
+				<img src="/assets/img/registration-success.png" />
+				<ion-card-header>
+					<ion-card-title>Success !</ion-card-title>
+					<ion-card-subtitle>Congratulations, your account has been successfully created.</ion-card-subtitle>
+				</ion-card-header>
+				<ion-card-content>Check your email for your account activation link</ion-card-content>
+			</ion-card>
+		</div>
+	</div>
+</ion-content>

@@ -1,0 +1,75 @@
+<ion-toolbar color="primary">
+	<ion-buttons slot="start">
+		<ion-menu-button></ion-menu-button>
+	</ion-buttons>
+	<ion-title>{{ 'SCHOLAR-DETAIL' | translate }}</ion-title>
+	<ion-buttons slot="end" color="success">
+		<ion-button fill="clear" (click)="add()">
+			<ion-icon slot="icon-only" name="add-circle-outline"></ion-icon>
+		</ion-button>
+	</ion-buttons>
+</ion-toolbar>
+<ion-content padding>
+	<ion-card *ngFor="let scholarDetail of scholarDetails">
+		<ion-card-content style="padding: bottom 0px;">
+			<ion-list lines="none">
+				<ion-item>
+					<ion-label>{{ 'SCHOLAR-DETAIL-DATEOFBIRTH' | translate }}: </ion-label>
+					<ion-text>{{ scholarDetail.dateOfBirth | date }}</ion-text>
+				</ion-item>
+				<ion-item>
+					<ion-label>{{ 'SCHOLAR-DETAIL-AGE' | translate }}: </ion-label>
+					<ion-text>{{ scholarDetail.age }}</ion-text>
+				</ion-item>
+				<ion-item>
+					<ion-label>{{ 'SCHOLAR-DETAIL-MARITALSTATUS' | translate }}: </ion-label>
+					<ion-text>{{ scholarDetail.maritalStatus.name }}</ion-text>
+				</ion-item>
+				<ion-item>
+					<ion-label>{{ 'SCHOLAR-DETAIL-DEPENDENTS' | translate }}: </ion-label>
+					<ion-text>{{ scholarDetail.dependents }}</ion-text>
+				</ion-item>
+				<ion-item>
+					<ion-label>{{ 'SCHOLAR-DETAIL-RACE' | translate }}: </ion-label>
+					<ion-text>{{ scholarDetail.race.name }}</ion-text>
+				</ion-item>
+				<ion-item>
+					<ion-label>{{ 'SCHOLAR-DETAIL-RELIGION' | translate }}: </ion-label>
+					<ion-text>{{ scholarDetail.religion.name }}</ion-text>
+				</ion-item>
+				<ion-item>
+					<ion-label>{{ 'SCHOLAR-DETAIL-PASSPORTNUMBER' | translate }}: </ion-label>
+					<ion-text>{{ scholarDetail.passportNumber }}</ion-text>
+				</ion-item>
+				<ion-item>
+					<ion-label>{{ 'SCHOLAR-DETAIL-VISANUMBER' | translate }}: </ion-label>
+					<ion-text>{{ scholarDetail.visaNumber }}</ion-text>
+				</ion-item>
+				<ion-item>
+					<ion-label>{{ 'SCHOLAR-DETAIL-VISAISSUEDATE' | translate }}: </ion-label>
+					<ion-text>{{ scholarDetail.visaIssueDate | date }}</ion-text>
+				</ion-item>
+				<ion-item>
+					<ion-label>{{ 'SCHOLAR-DETAIL-VISAEXPIRYDATE' | translate }}: </ion-label>
+					<ion-text>{{ scholarDetail.visaExpiryDate | date }}</ion-text>
+				</ion-item>
+			</ion-list>
+			<ion-row no-padding>
+				<ion-col col-12 no-padding style="text-align: center">
+					<ion-chip color="dark" button (click)="edit(scholarDetail)">
+						<ion-icon name="create-outline"></ion-icon>
+						<ion-label>Edit</ion-label>
+					</ion-chip>
+					<ion-chip color="dark" button (click)="delete(scholarDetail)">
+						<ion-icon name="trash-outline"></ion-icon>
+						<ion-label>Delete</ion-label>
+					</ion-chip>
+					<ion-chip color="dark" button (click)="print(scholarDetail)">
+						<ion-icon name="print-outline"></ion-icon>
+						<ion-label>Print</ion-label>
+					</ion-chip>
+				</ion-col>
+			</ion-row>
+		</ion-card-content>
+	</ion-card>
+</ion-content>

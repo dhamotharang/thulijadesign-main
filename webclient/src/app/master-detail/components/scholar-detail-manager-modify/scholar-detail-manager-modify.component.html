@@ -1,0 +1,106 @@
+<h2 mat-dialog-title>{{ 'SCHOLAR-DETAIL' | translate }} - {{ 'NEW' | translate }}</h2>
+<mat-dialog-content>
+	<form [formGroup]="scholarDetailForm" *ngIf="scholarDetailForm">
+		<mat-card-subtitle *ngIf="errorMessage" class="alert-danger">{{ errorMessage }}</mat-card-subtitle>
+		<mat-card-content class="my-form">
+			<mat-form-field>
+				<mat-label>{{ 'SCHOLAR-DETAIL-DATEOFBIRTH' | translate }}</mat-label>
+				<input formControlName="dateOfBirth" matInput [matDatepicker]="dateOfBirth" placeholder="{{ 'SCHOLAR-DETAIL-DATEOFBIRTH' | translate }}">
+				<mat-datepicker-toggle matSuffix [for]="dateOfBirth"></mat-datepicker-toggle>
+				<mat-datepicker #dateOfBirth></mat-datepicker>
+                <mat-error *ngIf="hasError('dateOfBirth', 'required')">
+                    {{ 'SCHOLAR-DETAIL-DATEOFBIRTH' | translate }}: {{ 'FIELD-IS-REQUIRED' | translate }}</mat-error>
+			</mat-form-field>
+			<mat-form-field>
+				<input matInput type="text" formControlName="age" id="age" 
+					name="age" placeholder="{{ 'SCHOLAR-DETAIL-AGE' | translate }}" 
+					min="1" max="200" required />
+                <mat-error *ngIf="hasError('age', 'required')">
+                    {{ 'SCHOLAR-DETAIL-AGE' | translate }}: {{ 'FIELD-IS-REQUIRED' | translate }}</mat-error>
+                <mat-error *ngIf="hasError('age', 'min')">
+                    {{ 'SCHOLAR-DETAIL-AGE' | translate }}: {{ 'FIELD-MUSTBE-MINIMUM' | translate }} 1</mat-error>
+                <mat-error *ngIf="hasError('age', 'max')">
+                    {{ 'SCHOLAR-DETAIL-AGE' | translate }}: {{ 'FIELD-MUSTBE-MAXIMUM' | translate }} 200</mat-error>
+				<mat-error *ngIf="hasError('age', 'pattern')">
+					{{ 'SCHOLAR-DETAIL-AGE' | translate }}: {{ 'FIELD-MUSTBE-NUMERIC' | translate }}</mat-error>
+			</mat-form-field>
+			<mat-form-field>
+				<mat-label>{{ 'SCHOLAR-DETAIL-MARITALSTATUS' | translate }}</mat-label>
+				<mat-select formControlName="maritalStatus" id="maritalStatus" name="maritalStatus" 
+						[compareWith]="compareMaritalStatus" required>
+				    <mat-option *ngFor="let maritalStatus of maritalStatuses" [value]="maritalStatus">
+				    	{{ maritalStatus.name }}</mat-option>
+				</mat-select>
+				<mat-error *ngIf="hasError('maritalStatus', 'required')">
+					{{ 'SCHOLAR-DETAIL-MARITALSTATUS' | translate }}: {{ 'FIELD-IS-REQUIRED' | translate }}</mat-error>
+			</mat-form-field>
+			<mat-form-field>
+				<input matInput type="text" formControlName="dependents" id="dependents" 
+					name="dependents" placeholder="{{ 'SCHOLAR-DETAIL-DEPENDENTS' | translate }}" 
+					min="1" max="200" />
+                <mat-error *ngIf="hasError('dependents', 'min')">
+                    {{ 'SCHOLAR-DETAIL-DEPENDENTS' | translate }}: {{ 'FIELD-MUSTBE-MINIMUM' | translate }} 1</mat-error>
+                <mat-error *ngIf="hasError('dependents', 'max')">
+                    {{ 'SCHOLAR-DETAIL-DEPENDENTS' | translate }}: {{ 'FIELD-MUSTBE-MAXIMUM' | translate }} 200</mat-error>
+				<mat-error *ngIf="hasError('dependents', 'pattern')">
+					{{ 'SCHOLAR-DETAIL-DEPENDENTS' | translate }}: {{ 'FIELD-MUSTBE-NUMERIC' | translate }}</mat-error>
+			</mat-form-field>
+			<mat-form-field>
+				<mat-label>{{ 'SCHOLAR-DETAIL-RACE' | translate }}</mat-label>
+				<mat-select formControlName="race" id="race" name="race" 
+						[compareWith]="compareRace" required>
+				    <mat-option *ngFor="let race of races" [value]="race">
+				    	{{ race.name }}</mat-option>
+				</mat-select>
+				<mat-error *ngIf="hasError('race', 'required')">
+					{{ 'SCHOLAR-DETAIL-RACE' | translate }}: {{ 'FIELD-IS-REQUIRED' | translate }}</mat-error>
+			</mat-form-field>
+			<mat-form-field>
+				<mat-label>{{ 'SCHOLAR-DETAIL-RELIGION' | translate }}</mat-label>
+				<mat-select formControlName="religion" id="religion" name="religion" 
+						[compareWith]="compareReligion" required>
+				    <mat-option *ngFor="let religion of religions" [value]="religion">
+				    	{{ religion.name }}</mat-option>
+				</mat-select>
+				<mat-error *ngIf="hasError('religion', 'required')">
+					{{ 'SCHOLAR-DETAIL-RELIGION' | translate }}: {{ 'FIELD-IS-REQUIRED' | translate }}</mat-error>
+			</mat-form-field>
+			<mat-form-field>
+				<input matInput type="text" formControlName="passportNumber" id="passportNumber" 
+					name="passportNumber" placeholder="{{ 'SCHOLAR-DETAIL-PASSPORTNUMBER' | translate }}" 
+					minlength="1" maxlength="20" />
+                <mat-error *ngIf="hasError('passportNumber', 'minlength')">
+                    {{ 'SCHOLAR-DETAIL-PASSPORTNUMBER' | translate }}: {{ 'FIELD-MUSTBE-MINIMUM-LENGTH' | translate }} 1</mat-error>
+                <mat-error *ngIf="hasError('passportNumber', 'maxlength')">
+                    {{ 'SCHOLAR-DETAIL-PASSPORTNUMBER' | translate }}: {{ 'FIELD-MUSTBE-MAXIMUM-LENGTH' | translate }} 20</mat-error>
+			</mat-form-field>
+			<mat-form-field>
+				<input matInput type="text" formControlName="visaNumber" id="visaNumber" 
+					name="visaNumber" placeholder="{{ 'SCHOLAR-DETAIL-VISANUMBER' | translate }}" 
+					minlength="1" maxlength="20" />
+                <mat-error *ngIf="hasError('visaNumber', 'minlength')">
+                    {{ 'SCHOLAR-DETAIL-VISANUMBER' | translate }}: {{ 'FIELD-MUSTBE-MINIMUM-LENGTH' | translate }} 1</mat-error>
+                <mat-error *ngIf="hasError('visaNumber', 'maxlength')">
+                    {{ 'SCHOLAR-DETAIL-VISANUMBER' | translate }}: {{ 'FIELD-MUSTBE-MAXIMUM-LENGTH' | translate }} 20</mat-error>
+			</mat-form-field>
+			<mat-form-field>
+				<mat-label>{{ 'SCHOLAR-DETAIL-VISAISSUEDATE' | translate }}</mat-label>
+				<input formControlName="visaIssueDate" matInput [matDatepicker]="visaIssueDate" placeholder="{{ 'SCHOLAR-DETAIL-VISAISSUEDATE' | translate }}">
+				<mat-datepicker-toggle matSuffix [for]="visaIssueDate"></mat-datepicker-toggle>
+				<mat-datepicker #visaIssueDate></mat-datepicker>
+			</mat-form-field>
+			<mat-form-field>
+				<mat-label>{{ 'SCHOLAR-DETAIL-VISAEXPIRYDATE' | translate }}</mat-label>
+				<input formControlName="visaExpiryDate" matInput [matDatepicker]="visaExpiryDate" placeholder="{{ 'SCHOLAR-DETAIL-VISAEXPIRYDATE' | translate }}">
+				<mat-datepicker-toggle matSuffix [for]="visaExpiryDate"></mat-datepicker-toggle>
+				<mat-datepicker #visaExpiryDate></mat-datepicker>
+			</mat-form-field>
+        </mat-card-content>
+    </form>
+</mat-dialog-content>
+<mat-dialog-actions>
+    <button mat-raised-button color="primary" (click)="save(scholarDetailForm.value)" 
+        [disabled]="!scholarDetailForm.valid">{{ 'SAVE' | translate }}</button>
+    <button type="button" mat-raised-button color="warn"
+        (click)="onCancel()">{{ 'CANCEL' | translate }}</button>
+</mat-dialog-actions>

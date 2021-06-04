@@ -13,6 +13,8 @@ import { HTTP_INTERCEPTORS } from '@angular/common/http';
 import { AppComponent } from './app.component';
 import { CoreMainComponent } from './menu/core-main/core-main.component';
 import { GeneralMainComponent } from './menu/general-main/general-main.component';
+import { ProgramMainComponent } from './menu/program-main/program-main.component';
+import { RegistrationManagerComponent } from './menu/registration-manager/registration-manager.component';
 
 export function setupTranslateFactory(service: TranslateService): Function {
 	return () => service.use('en');
@@ -23,6 +25,8 @@ export function setupTranslateFactory(service: TranslateService): Function {
 		AppComponent,
 		CoreMainComponent,
 		GeneralMainComponent,
+		ProgramMainComponent,
+		RegistrationManagerComponent
 	],
 	imports: [
 		BrowserModule,

@@ -1,0 +1,148 @@
+<mat-toolbar color="secondary" class="mat-elevation-z2 title-bar">
+	<mat-toolbar-row>
+		<a mat-button disabled style="color: black">{{ 'SCHOLAR-ADDRESS' | translate }}</a>
+		<span class="spacer"></span>
+		<a mat-raised-button color="accent" (click)="add()">{{ 'NEW' | translate }}</a>
+	</mat-toolbar-row>
+</mat-toolbar>
+<div class="container mat-elevation-z2" *ngFor="let scholarAddress of scholarAddresses">
+	<mat-card>
+		<mat-card-header> 
+			<mat-card-title>
+				{{ 'SCHOLAR-ADDRESS' | translate }}
+				<button mat-icon-button class="more-button" [matMenuTriggerFor]="menu" aria-label="Toggle menu">
+					<mat-icon>more_vert</mat-icon>
+				</button>
+				<mat-menu #menu="matMenu">
+					<button mat-menu-item (click)="edit(scholarAddress)">
+						<mat-icon color="accent">edit</mat-icon><span>Edit</span>
+					</button>
+					<button mat-menu-item (click)="delete(scholarAddress)">
+						<mat-icon color="warn">delete</mat-icon><span>Delete</span>
+					</button>
+					<button mat-menu-item (click)="print(scholarAddress)">
+						<mat-icon color="accent">print</mat-icon><span>Print</span>
+					</button>
+				</mat-menu>
+			</mat-card-title>
+		</mat-card-header>
+		<mat-card-content class="dashboard-card-content">
+			<table>
+				<tr>
+					<td>&nbsp;</td>
+					<td>&nbsp;</td>
+					<td>&nbsp;</td>
+					<td>&nbsp;</td>
+				</tr>
+				<tr>
+					<td>&nbsp;</td>
+					<td><span class="mat-subheading-1">{{ 'SCHOLAR-ADDRESS-ADDRESSTYPE' | translate }}</span></td>
+					<td><span class="mat-subheading-1">{{ scholarAddress.addressType.name }}</span></td>
+					<td>&nbsp;</td>
+				</tr>
+				<tr>
+					<td>&nbsp;</td>
+					<td><span class="mat-subheading-1">{{ 'SCHOLAR-ADDRESS-CONTACTPERSONNAME' | translate }}</span></td>
+					<td><span class="mat-subheading-1">{{ scholarAddress.contactPersonName }}</span></td>
+					<td>&nbsp;</td>
+				</tr>
+				<tr>
+					<td>&nbsp;</td>
+					<td><span class="mat-subheading-1">{{ 'SCHOLAR-ADDRESS-ADDRESSLINEONE' | translate }}</span></td>
+					<td><span class="mat-subheading-1">{{ scholarAddress.addressLineOne }}</span></td>
+					<td>&nbsp;</td>
+				</tr>
+				<tr>
+					<td>&nbsp;</td>
+					<td><span class="mat-subheading-1">{{ 'SCHOLAR-ADDRESS-ADDRESSLINETWO' | translate }}</span></td>
+					<td><span class="mat-subheading-1">{{ scholarAddress.addressLineTwo }}</span></td>
+					<td>&nbsp;</td>
+				</tr>
+				<tr>
+					<td>&nbsp;</td>
+					<td><span class="mat-subheading-1">{{ 'SCHOLAR-ADDRESS-POSTCODE' | translate }}</span></td>
+					<td><span class="mat-subheading-1">{{ scholarAddress.postcode }}</span></td>
+					<td>&nbsp;</td>
+				</tr>
+				<tr>
+					<td>&nbsp;</td>
+					<td><span class="mat-subheading-1">{{ 'SCHOLAR-ADDRESS-COUNTRY' | translate }}</span></td>
+					<td><span class="mat-subheading-1">{{ scholarAddress.country.name }}</span></td>
+					<td>&nbsp;</td>
+				</tr>
+				<tr>
+					<td>&nbsp;</td>
+					<td><span class="mat-subheading-1">{{ 'SCHOLAR-ADDRESS-STATE' | translate }}</span></td>
+					<td><span class="mat-subheading-1">{{ scholarAddress.state.name }}</span></td>
+					<td>&nbsp;</td>
+				</tr>
+				<tr>
+					<td>&nbsp;</td>
+					<td><span class="mat-subheading-1">{{ 'SCHOLAR-ADDRESS-DISTRICT' | translate }}</span></td>
+					<td><span class="mat-subheading-1">{{ scholarAddress.district }}</span></td>
+					<td>&nbsp;</td>
+				</tr>
+				<tr>
+					<td>&nbsp;</td>
+					<td><span class="mat-subheading-1">{{ 'SCHOLAR-ADDRESS-CITY' | translate }}</span></td>
+					<td><span class="mat-subheading-1">{{ scholarAddress.city }}</span></td>
+					<td>&nbsp;</td>
+				</tr>
+				<tr>
+					<td>&nbsp;</td>
+					<td><span class="mat-subheading-1">{{ 'SCHOLAR-ADDRESS-TELEPHONENUMBERONE' | translate }}</span></td>
+					<td><span class="mat-subheading-1">{{ scholarAddress.telephoneNumberOne }}</span></td>
+					<td>&nbsp;</td>
+				</tr>
+				<tr>
+					<td>&nbsp;</td>
+					<td><span class="mat-subheading-1">{{ 'SCHOLAR-ADDRESS-HANDPHONENUMBERONE' | translate }}</span></td>
+					<td><span class="mat-subheading-1">{{ scholarAddress.handphoneNumberOne }}</span></td>
+					<td>&nbsp;</td>
+				</tr>
+				<tr>
+					<td>&nbsp;</td>
+					<td><span class="mat-subheading-1">{{ 'SCHOLAR-ADDRESS-EMAILADDRESSONE' | translate }}</span></td>
+					<td><span class="mat-subheading-1">{{ scholarAddress.emailAddressOne }}</span></td>
+					<td>&nbsp;</td>
+				</tr>
+				<tr>
+					<td>&nbsp;</td>
+					<td><span class="mat-subheading-1">{{ 'SCHOLAR-ADDRESS-WEBSITEADDRESS' | translate }}</span></td>
+					<td><span class="mat-subheading-1">{{ scholarAddress.websiteAddress }}</span></td>
+					<td>&nbsp;</td>
+				</tr>
+				<tr>
+					<td>&nbsp;</td>
+					<td><span class="mat-subheading-1">{{ 'SCHOLAR-ADDRESS-LATITUDE' | translate }}</span></td>
+					<td><span class="mat-subheading-1">{{ scholarAddress.latitude }}</span></td>
+					<td>&nbsp;</td>
+				</tr>
+				<tr>
+					<td>&nbsp;</td>
+					<td><span class="mat-subheading-1">{{ 'SCHOLAR-ADDRESS-LONGITUDE' | translate }}</span></td>
+					<td><span class="mat-subheading-1">{{ scholarAddress.longitude }}</span></td>
+					<td>&nbsp;</td>
+				</tr>
+				<tr>
+					<td>&nbsp;</td>
+					<td><span class="mat-subheading-1">{{ 'SCHOLAR-ADDRESS-LOCATIONMAP' | translate }}</span></td>
+					<td><span class="mat-subheading-1">{{ scholarAddress.locationMap }}</span></td>
+					<td>&nbsp;</td>
+				</tr>
+				<tr>
+					<td>&nbsp;</td>
+					<td><span class="mat-subheading-1">{{ 'SCHOLAR-ADDRESS-PREMISEPHOTO' | translate }}</span></td>
+					<td><span class="mat-subheading-1">{{ scholarAddress.premisePhoto }}</span></td>
+					<td>&nbsp;</td>
+				</tr>
+				<tr>
+					<td>&nbsp;</td>
+					<td>&nbsp;</td>
+					<td>&nbsp;</td>
+					<td>&nbsp;</td>
+				</tr>
+			</table>
+		</mat-card-content>
+	</mat-card>
+</div>

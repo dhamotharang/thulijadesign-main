@@ -1,0 +1,133 @@
+<ion-toolbar color="primary">
+	<ion-title>{{ 'SCHOLAR-DETAIL' | translate }} - {{ 'NEW' | translate }}</ion-title>
+</ion-toolbar>
+<ion-content padding>
+	<form [formGroup]="scholarDetailForm" *ngIf="scholarDetailForm">
+		<ion-card-content>
+			<ion-item>
+				<ion-label>{{ 'SCHOLAR-DETAIL-DATEOFBIRTH' | translate }}</ion-label>
+				<ion-datetime displayFormat="DD/MM/YYYY" 
+					formControlName="dateOfBirth" placeholder="{{ 'SCHOLAR-DETAIL-DATEOFBIRTH' | translate }}">
+				</ion-datetime>
+			</ion-item>
+			<div *ngIf="(scholarDetailForm.controls['dateOfBirth'].dirty || scholarDetailForm.controls['dateOfBirth'].touched)" class="errors">
+                <div *ngIf="hasError('dateOfBirth', 'required')">
+                    {{ 'SCHOLAR-DETAIL-DATEOFBIRTH' | translate }}: {{ 'FIELD-IS-REQUIRED' | translate }}</div>
+			</div>
+			<ion-item>
+				<ion-label position="floating">{{ 'SCHOLAR-DETAIL-AGE' | translate }}</ion-label>
+                <ion-input formControlName="age" id="age" name="age" #age
+					placeholder="{{ 'SCHOLAR-DETAIL-AGE' | translate }}" min="1" max="200">
+				</ion-input>
+			</ion-item>
+			<div *ngIf="(scholarDetailForm.controls['age'].dirty || scholarDetailForm.controls['age'].touched)" class="errors">
+                <div *ngIf="hasError('age', 'required')">
+                    {{ 'SCHOLAR-DETAIL-AGE' | translate }}: {{ 'FIELD-IS-REQUIRED' | translate }}</div>
+                <div *ngIf="hasError('age', 'min')">
+                    {{ 'SCHOLAR-DETAIL-AGE' | translate }}: {{ 'FIELD-MUSTBE-MINIMUM' | translate }} 1</div>
+                <div *ngIf="hasError('age', 'max')">
+                    {{ 'SCHOLAR-DETAIL-AGE' | translate }}: {{ 'FIELD-MUSTBE-MAXIMUM' | translate }} 200</div>
+				<div *ngIf="hasError('age', 'pattern')">
+					{{ 'SCHOLAR-DETAIL-AGE' | translate }}: {{ 'FIELD-MUSTBE-NUMERIC' | translate }}</div>
+			</div>
+			<ion-item>
+				<ion-label>{{ 'SCHOLAR-DETAIL-MARITALSTATUS' | translate }}</ion-label>
+				<ion-select formControlName="maritalStatus" id="maritalStatus" name="maritalStatus" 
+						[compareWith]="compareMaritalStatus" required>
+					<ion-select-option *ngFor="let maritalStatus of maritalStatuses" [value]="maritalStatus">
+						{{ maritalStatus.name }}</ion-select-option>
+				</ion-select>
+			</ion-item>
+			<div *ngIf="(scholarDetailForm.controls['maritalStatus'].dirty || scholarDetailForm.controls['maritalStatus'].touched)" class="errors">
+				<div *ngIf="hasError('maritalStatus', 'required')">
+					{{ 'SCHOLAR-DETAIL-MARITALSTATUS' | translate }}: {{ 'FIELD-IS-REQUIRED' | translate }}</div>
+			</div>
+			<ion-item>
+				<ion-label position="floating">{{ 'SCHOLAR-DETAIL-DEPENDENTS' | translate }}</ion-label>
+                <ion-input formControlName="dependents" id="dependents" name="dependents" #dependents
+					placeholder="{{ 'SCHOLAR-DETAIL-DEPENDENTS' | translate }}" min="1" max="200">
+				</ion-input>
+			</ion-item>
+			<div *ngIf="(scholarDetailForm.controls['dependents'].dirty || scholarDetailForm.controls['dependents'].touched)" class="errors">
+                <div *ngIf="hasError('dependents', 'min')">
+                    {{ 'SCHOLAR-DETAIL-DEPENDENTS' | translate }}: {{ 'FIELD-MUSTBE-MINIMUM' | translate }} 1</div>
+                <div *ngIf="hasError('dependents', 'max')">
+                    {{ 'SCHOLAR-DETAIL-DEPENDENTS' | translate }}: {{ 'FIELD-MUSTBE-MAXIMUM' | translate }} 200</div>
+				<div *ngIf="hasError('dependents', 'pattern')">
+					{{ 'SCHOLAR-DETAIL-DEPENDENTS' | translate }}: {{ 'FIELD-MUSTBE-NUMERIC' | translate }}</div>
+			</div>
+			<ion-item>
+				<ion-label>{{ 'SCHOLAR-DETAIL-RACE' | translate }}</ion-label>
+				<ion-select formControlName="race" id="race" name="race" 
+						[compareWith]="compareRace" required>
+					<ion-select-option *ngFor="let race of races" [value]="race">
+						{{ race.name }}</ion-select-option>
+				</ion-select>
+			</ion-item>
+			<div *ngIf="(scholarDetailForm.controls['race'].dirty || scholarDetailForm.controls['race'].touched)" class="errors">
+				<div *ngIf="hasError('race', 'required')">
+					{{ 'SCHOLAR-DETAIL-RACE' | translate }}: {{ 'FIELD-IS-REQUIRED' | translate }}</div>
+			</div>
+			<ion-item>
+				<ion-label>{{ 'SCHOLAR-DETAIL-RELIGION' | translate }}</ion-label>
+				<ion-select formControlName="religion" id="religion" name="religion" 
+						[compareWith]="compareReligion" required>
+					<ion-select-option *ngFor="let religion of religions" [value]="religion">
+						{{ religion.name }}</ion-select-option>
+				</ion-select>
+			</ion-item>
+			<div *ngIf="(scholarDetailForm.controls['religion'].dirty || scholarDetailForm.controls['religion'].touched)" class="errors">
+				<div *ngIf="hasError('religion', 'required')">
+					{{ 'SCHOLAR-DETAIL-RELIGION' | translate }}: {{ 'FIELD-IS-REQUIRED' | translate }}</div>
+			</div>
+			<ion-item>
+				<ion-label position="floating">{{ 'SCHOLAR-DETAIL-PASSPORTNUMBER' | translate }}</ion-label>
+				<ion-input formControlName="passportNumber" id="passportNumber" name="passportNumber" #passportNumber
+					placeholder="{{ 'SCHOLAR-DETAIL-PASSPORTNUMBER' | translate }}" maxlength="20">
+				</ion-input>
+			</ion-item>
+			<div *ngIf="(scholarDetailForm.controls['passportNumber'].dirty || scholarDetailForm.controls['passportNumber'].touched)" class="errors">
+                <div *ngIf="hasError('passportNumber', 'minlength')">
+                    {{ 'SCHOLAR-DETAIL-PASSPORTNUMBER' | translate }}: {{ 'FIELD-MUSTBE-MINIMUM-LENGTH' | translate }} 1</div>
+                <div *ngIf="hasError('passportNumber', 'maxlength')">
+                    {{ 'SCHOLAR-DETAIL-PASSPORTNUMBER' | translate }}: {{ 'FIELD-MUSTBE-MAXIMUM-LENGTH' | translate }} 20</div>
+			</div>
+			<ion-item>
+				<ion-label position="floating">{{ 'SCHOLAR-DETAIL-VISANUMBER' | translate }}</ion-label>
+				<ion-input formControlName="visaNumber" id="visaNumber" name="visaNumber" #visaNumber
+					placeholder="{{ 'SCHOLAR-DETAIL-VISANUMBER' | translate }}" maxlength="20">
+				</ion-input>
+			</ion-item>
+			<div *ngIf="(scholarDetailForm.controls['visaNumber'].dirty || scholarDetailForm.controls['visaNumber'].touched)" class="errors">
+                <div *ngIf="hasError('visaNumber', 'minlength')">
+                    {{ 'SCHOLAR-DETAIL-VISANUMBER' | translate }}: {{ 'FIELD-MUSTBE-MINIMUM-LENGTH' | translate }} 1</div>
+                <div *ngIf="hasError('visaNumber', 'maxlength')">
+                    {{ 'SCHOLAR-DETAIL-VISANUMBER' | translate }}: {{ 'FIELD-MUSTBE-MAXIMUM-LENGTH' | translate }} 20</div>
+			</div>
+			<ion-item>
+				<ion-label>{{ 'SCHOLAR-DETAIL-VISAISSUEDATE' | translate }}</ion-label>
+				<ion-datetime displayFormat="DD/MM/YYYY" 
+					formControlName="visaIssueDate" placeholder="{{ 'SCHOLAR-DETAIL-VISAISSUEDATE' | translate }}">
+				</ion-datetime>
+			</ion-item>
+			<div *ngIf="(scholarDetailForm.controls['visaIssueDate'].dirty || scholarDetailForm.controls['visaIssueDate'].touched)" class="errors">
+			</div>
+			<ion-item>
+				<ion-label>{{ 'SCHOLAR-DETAIL-VISAEXPIRYDATE' | translate }}</ion-label>
+				<ion-datetime displayFormat="DD/MM/YYYY" 
+					formControlName="visaExpiryDate" placeholder="{{ 'SCHOLAR-DETAIL-VISAEXPIRYDATE' | translate }}">
+				</ion-datetime>
+			</ion-item>
+			<div *ngIf="(scholarDetailForm.controls['visaExpiryDate'].dirty || scholarDetailForm.controls['visaExpiryDate'].touched)" class="errors">
+			</div>
+		</ion-card-content>
+		<ion-footer>
+			<ion-toolbar color="light" style="padding-left: 20px;">
+			<ion-button color="primary" (click)="save(scholarDetailForm.value)" 
+				[disabled]="!scholarDetailForm.valid">{{ 'SAVE' | translate }}</ion-button>
+			<ion-button type="button" color="medium"
+				(click)="onCancel()">{{ 'CANCEL' | translate }}</ion-button>
+			</ion-toolbar>
+		</ion-footer>
+    </form>
+</ion-content>

@@ -1,0 +1,99 @@
+.container {
+    max-width: 90%;
+    margin: 20px auto;
+}
+
+.my-form {
+    width:100%;
+}
+
+table {
+    width:100%;
+}
+
+.mat-column-scholar {
+    width:1%;
+}
+
+.mat-column-addressType {
+    width:1%;
+}
+
+.mat-column-contactPersonName {
+    width:4%;
+}
+
+.mat-column-addressLineOne {
+    width:14%;
+}
+
+.mat-column-addressLineTwo {
+    width:14%;
+}
+
+.mat-column-postcode {
+    width:0%;
+}
+
+.mat-column-country {
+    width:1%;
+}
+
+.mat-column-state {
+    width:1%;
+}
+
+.mat-column-district {
+    width:4%;
+}
+
+.mat-column-city {
+    width:4%;
+}
+
+.mat-column-telephoneNumberOne {
+    width:1%;
+}
+
+.mat-column-handphoneNumberOne {
+    width:1%;
+}
+
+.mat-column-emailAddressOne {
+    width:8%;
+}
+
+.mat-column-websiteAddress {
+    width:8%;
+}
+
+.mat-column-latitude {
+    width:3%;
+}
+
+.mat-column-longitude {
+    width:3%;
+}
+
+.mat-column-locationMap {
+    width:3%;
+}
+
+.mat-column-premisePhoto {
+    width:3%;
+}
+
+.mat-column-action {
+    width:8%;
+    text-align: center;
+}
+
+.listimage {
+    max-width: 100%;
+    height: auto;
+}
+
+.title-bar {
+	min-height: 48px !important;
+	height: 48px !important;
+}

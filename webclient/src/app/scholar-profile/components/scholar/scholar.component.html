@@ -1,0 +1,137 @@
+<div class="container" fxLayout="row" fxLayout.xs="column" fxLayoutWrap 
+	fxLayoutGap="0.5%" fxLayoutAlign="center" *ngFor="let scholar of scholars">
+	<div fxFlex="30%">
+		<mat-card>
+			<img mat-card-image src="/assets/nophoto.jpg" alt="Photo of a Shiba Inu">
+			<mat-card-content>
+				<mat-card-title>{{ scholar.user.firstName }}&nbsp;{{ scholar.user.lastName }}</mat-card-title>
+			</mat-card-content>
+		</mat-card>			  
+	</div>
+	<div fxFlex="70%">
+		<mat-card>
+			<mat-card-header> 
+				<mat-card-title>
+					{{ 'SCHOLAR' | translate }}
+					<button mat-icon-button class="more-button" [matMenuTriggerFor]="menu" aria-label="Toggle menu">
+						<mat-icon>more_vert</mat-icon>
+					</button>
+					<mat-menu #menu="matMenu">
+						<button mat-menu-item (click)="edit(scholar)">
+							<mat-icon color="accent">edit</mat-icon><span>Edit</span>
+						</button>
+						<button mat-menu-item (click)="print(scholar)">
+							<mat-icon color="accent">print</mat-icon><span>Print</span>
+						</button>
+					</mat-menu>
+				</mat-card-title>
+			</mat-card-header>
+			<mat-card-content class="dashboard-card-content">
+				<table>
+					<tr>
+						<td>&nbsp;</td>
+						<td>&nbsp;</td>
+						<td>&nbsp;</td>
+						<td>&nbsp;</td>
+					</tr>
+					<tr>
+						<td>&nbsp;</td>
+						<td><span class="mat-subheading-1">{{ 'SCHOLAR-ORGANIZATION' | translate }}</span></td>
+						<td><span class="mat-subheading-1">{{ scholar.user.organization.name}} </span></td>
+						<td>&nbsp;</td>
+					</tr>
+					<tr>
+						<td>&nbsp;</td>
+						<td><span class="mat-subheading-1">{{ 'SCHOLAR-BRANCH' | translate }}</span></td>
+						<td><span class="mat-subheading-1">{{ scholar.user.branch.name}} </span></td>
+						<td>&nbsp;</td>
+					</tr>
+					<tr>
+						<td>&nbsp;</td>
+						<td><span class="mat-subheading-1">{{ 'SCHOLAR-DEPARTMENT' | translate }}</span></td>
+						<td><span class="mat-subheading-1">{{ scholar.user.department.name}} </span></td>
+						<td>&nbsp;</td>
+					</tr>
+					<tr>
+						<td>&nbsp;</td>
+						<td><span class="mat-subheading-1">{{ 'SCHOLAR-SALUTATION' | translate }}</span></td>
+						<td><span class="mat-subheading-1">{{ scholar.salutation.name }}</span></td>
+						<td>&nbsp;</td>
+					</tr>
+					<tr>
+						<td>&nbsp;</td>
+						<td><span class="mat-subheading-1">{{ 'SCHOLAR-FIRSTNAME' | translate }}</span></td>
+						<td><span class="mat-subheading-1">{{ scholar.user.firstName }}</span></td>
+						<td>&nbsp;</td>
+					</tr>
+					<tr>
+						<td>&nbsp;</td>
+						<td><span class="mat-subheading-1">{{ 'SCHOLAR-LASTNAME' | translate }}</span></td>
+						<td><span class="mat-subheading-1">{{ scholar.user.lastName }}</span></td>
+						<td>&nbsp;</td>
+					</tr>
+					<tr>
+						<td>&nbsp;</td>
+						<td><span class="mat-subheading-1">{{ 'SCHOLAR-ICNUMBER' | translate }}</span></td>
+						<td><span class="mat-subheading-1">{{ scholar.icNumber }}</span></td>
+						<td>&nbsp;</td>
+					</tr>
+					<tr>
+						<td>&nbsp;</td>
+						<td><span class="mat-subheading-1">{{ 'SCHOLAR-GENDER' | translate }}</span></td>
+						<td><span class="mat-subheading-1">{{ scholar.gender.name }}</span></td>
+						<td>&nbsp;</td>
+					</tr>
+					<tr>
+						<td>&nbsp;</td>
+						<td><span class="mat-subheading-1">{{ 'SCHOLAR-CITIZEN' | translate }}</span></td>
+						<td><span class="mat-subheading-1">{{ scholar.citizen.name }}</span></td>
+						<td>&nbsp;</td>
+					</tr>
+					<tr>
+						<td>&nbsp;</td>
+						<td><span class="mat-subheading-1">{{ 'SCHOLAR-HANDPHONENUMBER' | translate }}</span></td>
+						<td><span class="mat-subheading-1">{{ scholar.handphoneNumber }}</span></td>
+						<td>&nbsp;</td>
+					</tr>
+					<tr>
+						<td>&nbsp;</td>
+						<td><span class="mat-subheading-1">{{ 'SCHOLAR-EMAILADDRESS' | translate }}</span></td>
+						<td><span class="mat-subheading-1">{{ scholar.user.emailAddress }}</span></td>
+						<td>&nbsp;</td>
+					</tr>
+					<tr>
+						<td>&nbsp;</td>
+						<td><span class="mat-subheading-1">{{ 'SCHOLAR-PASSWORD' | translate }}</span></td>
+						<td><span class="mat-subheading-1">{{ scholar.user.password }}</span></td>
+						<td>&nbsp;</td>
+					</tr>
+					<tr>
+						<td>&nbsp;</td>
+						<td><span class="mat-subheading-1">{{ 'SCHOLAR-NUMLOGINS' | translate }}</span></td>
+						<td><span class="mat-subheading-1">{{ scholar.user.numLogins }}</span></td>
+						<td>&nbsp;</td>
+					</tr>
+					<tr>
+						<td>&nbsp;</td>
+						<td><span class="mat-subheading-1">{{ 'SCHOLAR-LASTLOGINTIME' | translate }}</span></td>
+						<td><span class="mat-subheading-1">{{ scholar.lastLoginTime | date }}</span></td>
+						<td>&nbsp;</td>
+					</tr>
+					<tr>
+						<td>&nbsp;</td>
+						<td><span class="mat-subheading-1">{{ 'SCHOLAR-STATUS' | translate }}</span></td>
+						<td><span class="mat-subheading-1">{{ scholar.user.status.name}} </span></td>
+						<td>&nbsp;</td>
+					</tr>
+					<tr>
+						<td>&nbsp;</td>
+						<td>&nbsp;</td>
+						<td>&nbsp;</td>
+						<td>&nbsp;</td>
+					</tr>
+				</table>
+			</mat-card-content>
+		</mat-card>
+	</div>
+</div>

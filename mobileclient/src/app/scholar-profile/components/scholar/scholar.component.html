@@ -1,0 +1,106 @@
+<ion-content class="profile-detail">
+	<ion-header class="ion-no-border">
+		<ion-toolbar>
+			<ion-buttons slot="start">
+				<ion-menu-button></ion-menu-button>
+			</ion-buttons>
+			<ion-buttons slot="end">
+				<ion-button>
+					<ion-icon slot="icon-only" ios="call-outline" md="call-sharp"></ion-icon>
+				</ion-button>
+				<ion-button>
+					<ion-icon slot="icon-only" ios="share-outline" md="share-sharp"></ion-icon>
+				</ion-button>
+			</ion-buttons>
+		</ion-toolbar>
+	</ion-header>
+	<div class="profile-background" *ngIf="scholars">
+		<img src="/assets/img/nophoto.png">
+		<h3>{{ scholars[0].user.firstName }}&nbsp;{{ scholars[0].user.lastName }}</h3>
+	</div>
+	<div class="profile-detail" *ngIf="scholars">
+		<ion-card *ngFor="let scholar of scholars">
+			<ion-card-content>
+				<ion-list lines="none">
+					<ion-item class="ion-no-padding">
+						<ion-label>{{ 'SCHOLAR-ORGANIZATION' | translate }}: </ion-label>
+						<ion-text>{{ scholar.user.organization.name }}</ion-text>
+					</ion-item>
+					<ion-item class="ion-no-padding">
+						<ion-label>{{ 'SCHOLAR-BRANCH' | translate }}: </ion-label>
+						<ion-text>{{ scholar.user.branch.name }}</ion-text>
+					</ion-item>
+					<ion-item class="ion-no-padding">
+						<ion-label>{{ 'SCHOLAR-DEPARTMENT' | translate }}: </ion-label>
+						<ion-text>{{ scholar.user.department.name }}</ion-text>
+					</ion-item>
+					<ion-item class="ion-no-padding">
+						<ion-label>{{ 'SCHOLAR-SALUTATION' | translate }}: </ion-label>
+						<ion-text>{{ scholar.salutation.name }}</ion-text>
+					</ion-item>
+					<ion-item class="ion-no-padding">
+						<ion-label>{{ 'SCHOLAR-FIRSTNAME' | translate }}: </ion-label>
+						<ion-text>{{ scholar.user.firstName }}</ion-text>
+					</ion-item>
+					<ion-item class="ion-no-padding">
+						<ion-label>{{ 'SCHOLAR-LASTNAME' | translate }}: </ion-label>
+						<ion-text>{{ scholar.user.lastName }}</ion-text>
+					</ion-item>
+					<ion-item class="ion-no-padding">
+						<ion-label>{{ 'SCHOLAR-ICNUMBER' | translate }}: </ion-label>
+						<ion-text>{{ scholar.icNumber }}</ion-text>
+					</ion-item>
+					<ion-item class="ion-no-padding">
+						<ion-label>{{ 'SCHOLAR-GENDER' | translate }}: </ion-label>
+						<ion-text>{{ scholar.gender.name }}</ion-text>
+					</ion-item>
+					<ion-item class="ion-no-padding">
+						<ion-label>{{ 'SCHOLAR-CITIZEN' | translate }}: </ion-label>
+						<ion-text>{{ scholar.citizen.name }}</ion-text>
+					</ion-item>
+					<ion-item class="ion-no-padding">
+						<ion-label>{{ 'SCHOLAR-HANDPHONENUMBER' | translate }}: </ion-label>
+						<ion-text>{{ scholar.handphoneNumber }}</ion-text>
+					</ion-item>
+					<ion-item class="ion-no-padding">
+						<ion-label>{{ 'SCHOLAR-EMAILADDRESS' | translate }}: </ion-label>
+						<ion-text>{{ scholar.user.emailAddress }}</ion-text>
+					</ion-item>
+					<ion-item class="ion-no-padding">
+						<ion-label>{{ 'SCHOLAR-PASSWORD' | translate }}: </ion-label>
+						<ion-text>{{ scholar.user.password }}</ion-text>
+					</ion-item>
+					<ion-item class="ion-no-padding">
+						<ion-label>{{ 'SCHOLAR-NUMLOGINS' | translate }}: </ion-label>
+						<ion-text>{{ scholar.user.numLogins }}</ion-text>
+					</ion-item>
+					<ion-item class="ion-no-padding">
+						<ion-label>{{ 'SCHOLAR-LASTLOGINTIME' | translate }}: </ion-label>
+						<ion-text>{{ scholar.lastLoginTime | date }}</ion-text>
+					</ion-item>
+					<ion-item class="ion-no-padding">
+						<ion-label>{{ 'SCHOLAR-STATUS' | translate }}: </ion-label>
+						<ion-text>{{ scholar.user.status.name }}</ion-text>
+					</ion-item>
+					<hr/>
+					<ion-row no-padding>
+						<ion-col col-12 no-padding style="text-align: center">
+							<ion-chip color="dark" button (click)="edit(scholar)">
+								<ion-icon name="create-outline"></ion-icon>
+								<ion-label>Edit</ion-label>
+							</ion-chip>
+							<ion-chip color="dark" button (click)="delete(scholar)">
+								<ion-icon name="trash-outline"></ion-icon>
+								<ion-label>Delete</ion-label>
+							</ion-chip>
+							<ion-chip color="dark" button (click)="print(scholar)">
+								<ion-icon name="print-outline"></ion-icon>
+								<ion-label>Print</ion-label>
+							</ion-chip>
+						</ion-col>
+					</ion-row>
+				</ion-list>
+			</ion-card-content>
+		</ion-card>
+	</div>
+</ion-content>

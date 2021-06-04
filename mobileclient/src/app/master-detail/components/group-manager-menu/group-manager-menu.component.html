@@ -1,0 +1,11 @@
+<ion-content>
+	<button type="button" mat-icon-button (click)="back()">
+		<ion-icon>keyboard_arrow_left</ion-icon>
+	</button>&nbsp;&nbsp;
+	<a mat-button disabled style="color: black" *ngIf="group">
+			{{ group.name }}&nbsp;
+	</a>
+	<span class="spacer"></span>
+		<a mat-button [routerLink]="['/masterdetail/groupmanagers', groupId, 'usergroupmanagers']" routerLinkActive="active">
+			{{ 'USERGROUPMANAGER' | translate }}</a>
+</ion-content>

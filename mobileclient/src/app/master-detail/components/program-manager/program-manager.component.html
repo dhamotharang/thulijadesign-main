@@ -1,0 +1,46 @@
+<ion-toolbar color="primary">
+	<ion-buttons slot="start">
+		<ion-menu-button></ion-menu-button>
+	</ion-buttons>
+	<ion-title>{{ 'PROGRAM' | translate }}</ion-title>
+	<ion-buttons slot="end" color="success">
+		<ion-button fill="clear" (click)="add()">
+			<ion-icon slot="icon-only" name="add-circle-outline"></ion-icon>
+		</ion-button>
+	</ion-buttons>
+</ion-toolbar>
+<ion-content padding>
+	<ion-card *ngFor="let program of programs">
+		<ion-card-content style="padding: bottom 0px;">
+			<h2>
+				<b>{{ 'PROGRAM-PROGRAMMASTER' | translate }}:</b>&nbsp;
+				{{ program.programMaster.title }}
+			</h2>
+			<h2>
+				<b>{{ 'PROGRAM-TRAININGDELIVERY' | translate }}:</b>&nbsp;
+				{{ program.trainingDelivery.name }}
+			</h2>
+			<h2>
+				<b>{{ 'PROGRAM-TRAININGMODE' | translate }}:</b>&nbsp;
+				{{ program.trainingMode.name }}
+			</h2>
+			<ion-row no-padding>
+				<ion-col size="4" no-padding></ion-col>
+				<ion-col size="8" no-padding>
+					<ion-button fill="clear" size="small" (click)="edit(program)">
+						<ion-icon name="create-outline"></ion-icon>
+					</ion-button>
+					<ion-button fill="clear" size="small" (click)="delete(program)">
+						<ion-icon name="trash-outline"></ion-icon>
+					</ion-button>
+					<ion-button fill="clear" size="small" (click)="print(program)">
+						<ion-icon name="print-outline"></ion-icon>
+					</ion-button>
+					<ion-button fill="clear" size="small" (click)="showDetail(program)">
+						<ion-icon name="list-outline"></ion-icon>
+					</ion-button>
+				</ion-col>
+			</ion-row>
+		</ion-card-content>
+	</ion-card>
+</ion-content>

@@ -1,0 +1,59 @@
+.container {
+    max-width: 90%;
+    margin: 20px auto;
+}
+
+.my-form {
+    width:100%;
+}
+
+table {
+    width:100%;
+}
+
+.mat-column-scholar {
+    width:5%;
+}
+
+.mat-column-relationType {
+    width:5%;
+}
+
+.mat-column-name {
+    width:17%;
+}
+
+.mat-column-occupation {
+    width:17%;
+}
+
+.mat-column-citizen {
+    width:5%;
+}
+
+.mat-column-nricNumber {
+    width:5%;
+}
+
+.mat-column-email {
+    width:22%;
+}
+
+.mat-column-phone {
+    width:5%;
+}
+
+.mat-column-action {
+    width:8%;
+    text-align: center;
+}
+
+.listimage {
+    max-width: 100%;
+    height: auto;
+}
+
+.title-bar {
+	min-height: 48px !important;
+	height: 48px !important;
+}

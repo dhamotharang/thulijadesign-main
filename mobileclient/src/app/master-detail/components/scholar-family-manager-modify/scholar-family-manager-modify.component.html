@@ -1,0 +1,96 @@
+<ion-toolbar color="primary">
+	<ion-buttons slot="start">
+		<ion-menu-button></ion-menu-button>
+	</ion-buttons>
+	<ion-title>{{ 'SCHOLAR-FAMILY' | translate }}</ion-title>
+</ion-toolbar>
+<ion-content padding>
+	<form [formGroup]="scholarFamilyForm" *ngIf="scholarFamilyForm">
+		<ion-card-content>
+			<ion-item>
+				<ion-label>{{ 'SCHOLAR-FAMILY-RELATIONTYPE' | translate }}</ion-label>
+				<ion-select formControlName="relationType" id="relationType" name="relationType" 
+						[compareWith]="compareRelationType" required>
+					<ion-select-option *ngFor="let relationType of relationTypes" [value]="relationType">
+						{{ relationType.name }}</ion-select-option>
+				</ion-select>
+			</ion-item>
+			<div *ngIf="(scholarFamilyForm.controls['relationType'].dirty || scholarFamilyForm.controls['relationType'].touched)" class="errors">
+				<div *ngIf="hasError('relationType', 'required')">
+					{{ 'SCHOLAR-FAMILY-RELATIONTYPE' | translate }}: {{ 'FIELD-IS-REQUIRED' | translate }}</div>
+			</div>
+			<ion-item>
+                <input matInput type="text" formControlName="name" id="name" 
+                    name="name" placeholder="{{ 'SCHOLAR-FAMILY-NAME' | translate }}" maxlength="60"/>
+			</ion-item>
+			<div *ngIf="(scholarFamilyForm.controls['name'].dirty || scholarFamilyForm.controls['name'].touched)" class="errors">
+                <div *ngIf="hasError('name', 'required')">
+                    {{ 'SCHOLAR-FAMILY-NAME' | translate }}: {{ 'FIELD-IS-REQUIRED' | translate }}</div>
+                <div *ngIf="hasError('name', 'minlength')">
+                    {{ 'SCHOLAR-FAMILY-NAME' | translate }}: {{ 'FIELD-MUSTBE-MINIMUM-LENGTH' | translate }} 3</div>
+                <div *ngIf="hasError('name', 'maxlength')">
+                    {{ 'SCHOLAR-FAMILY-NAME' | translate }}: {{ 'FIELD-MUSTBE-MAXIMUM-LENGTH' | translate }} 60</div>
+			</div>
+			<ion-item>
+                <input matInput type="text" formControlName="occupation" id="occupation" 
+                    name="occupation" placeholder="{{ 'SCHOLAR-FAMILY-OCCUPATION' | translate }}" maxlength="60"/>
+			</ion-item>
+			<div *ngIf="(scholarFamilyForm.controls['occupation'].dirty || scholarFamilyForm.controls['occupation'].touched)" class="errors">
+                <div *ngIf="hasError('occupation', 'minlength')">
+                    {{ 'SCHOLAR-FAMILY-OCCUPATION' | translate }}: {{ 'FIELD-MUSTBE-MINIMUM-LENGTH' | translate }} 3</div>
+                <div *ngIf="hasError('occupation', 'maxlength')">
+                    {{ 'SCHOLAR-FAMILY-OCCUPATION' | translate }}: {{ 'FIELD-MUSTBE-MAXIMUM-LENGTH' | translate }} 60</div>
+			</div>
+			<ion-item>
+				<ion-label>{{ 'SCHOLAR-FAMILY-CITIZEN' | translate }}</ion-label>
+				<ion-select formControlName="citizen" id="citizen" name="citizen" 
+						[compareWith]="compareCitizen" required>
+					<ion-select-option *ngFor="let citizen of citizens" [value]="citizen">
+						{{ citizen.name }}</ion-select-option>
+				</ion-select>
+			</ion-item>
+			<div *ngIf="(scholarFamilyForm.controls['citizen'].dirty || scholarFamilyForm.controls['citizen'].touched)" class="errors">
+				<div *ngIf="hasError('citizen', 'required')">
+					{{ 'SCHOLAR-FAMILY-CITIZEN' | translate }}: {{ 'FIELD-IS-REQUIRED' | translate }}</div>
+			</div>
+			<ion-item>
+                <input matInput type="text" formControlName="nricNumber" id="nricNumber" 
+                    name="nricNumber" placeholder="{{ 'SCHOLAR-FAMILY-NRICNUMBER' | translate }}" maxlength="20"/>
+			</ion-item>
+			<div *ngIf="(scholarFamilyForm.controls['nricNumber'].dirty || scholarFamilyForm.controls['nricNumber'].touched)" class="errors">
+                <div *ngIf="hasError('nricNumber', 'minlength')">
+                    {{ 'SCHOLAR-FAMILY-NRICNUMBER' | translate }}: {{ 'FIELD-MUSTBE-MINIMUM-LENGTH' | translate }} 3</div>
+                <div *ngIf="hasError('nricNumber', 'maxlength')">
+                    {{ 'SCHOLAR-FAMILY-NRICNUMBER' | translate }}: {{ 'FIELD-MUSTBE-MAXIMUM-LENGTH' | translate }} 20</div>
+			</div>
+			<ion-item>
+                <input matInput type="text" formControlName="email" id="email" 
+                    name="email" placeholder="{{ 'SCHOLAR-FAMILY-EMAIL' | translate }}" maxlength="80"/>
+			</ion-item>
+			<div *ngIf="(scholarFamilyForm.controls['email'].dirty || scholarFamilyForm.controls['email'].touched)" class="errors">
+                <div *ngIf="hasError('email', 'minlength')">
+                    {{ 'SCHOLAR-FAMILY-EMAIL' | translate }}: {{ 'FIELD-MUSTBE-MINIMUM-LENGTH' | translate }} 1</div>
+                <div *ngIf="hasError('email', 'maxlength')">
+                    {{ 'SCHOLAR-FAMILY-EMAIL' | translate }}: {{ 'FIELD-MUSTBE-MAXIMUM-LENGTH' | translate }} 80</div>
+			</div>
+			<ion-item>
+                <input matInput type="text" formControlName="phone" id="phone" 
+                    name="phone" placeholder="{{ 'SCHOLAR-FAMILY-PHONE' | translate }}" maxlength="20"/>
+			</ion-item>
+			<div *ngIf="(scholarFamilyForm.controls['phone'].dirty || scholarFamilyForm.controls['phone'].touched)" class="errors">
+                <div *ngIf="hasError('phone', 'minlength')">
+                    {{ 'SCHOLAR-FAMILY-PHONE' | translate }}: {{ 'FIELD-MUSTBE-MINIMUM-LENGTH' | translate }} 1</div>
+                <div *ngIf="hasError('phone', 'maxlength')">
+                    {{ 'SCHOLAR-FAMILY-PHONE' | translate }}: {{ 'FIELD-MUSTBE-MAXIMUM-LENGTH' | translate }} 20</div>
+			</div>
+		</ion-card-content>
+		<ion-footer>
+			<ion-toolbar color="light" style="padding-left: 20px;">
+			<ion-button color="primary" (click)="save(scholarFamilyForm.value)" 
+				[disabled]="!scholarFamilyForm.valid">{{ 'SAVE' | translate }}</ion-button>
+			<ion-button type="button" color="medium"
+				(click)="onCancel()">{{ 'CANCEL' | translate }}</ion-button>
+			</ion-toolbar>
+		</ion-footer>
+    </form>
+</ion-content>

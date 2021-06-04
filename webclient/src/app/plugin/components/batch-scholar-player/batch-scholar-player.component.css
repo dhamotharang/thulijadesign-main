@@ -1,0 +1,44 @@
+.container {
+    max-width: 90%;
+    margin: 20px auto;
+}
+
+.my-form {
+    width:100%;
+}
+
+table {
+    width:100%;
+}
+
+.mat-header-cell {
+    padding:15px 10px 8px 8px;
+    font-size:16px;
+    white-space: nowrap;
+}
+
+.mat-column-program {
+    width:50%;
+}
+
+.mat-column-batch {
+    width:16%;
+}
+
+.mat-column-startDate {
+    width:13%;
+}
+
+.mat-column-endDate {
+    width:13%;
+}
+
+.mat-column-action {
+    width:8%;
+    text-align: center;
+}
+
+.listimage {
+    max-width: 100%;
+    height: auto;
+}

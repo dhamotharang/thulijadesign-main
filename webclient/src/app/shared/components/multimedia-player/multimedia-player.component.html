@@ -1,0 +1,57 @@
+<div style="width:800px; height:450px" 
+		*ngIf="multimediaDetail.mediaSource === 'googledrive' && multimediaDetail.mediaType === 'pdf'">
+	<ngx-extended-pdf-viewer [src]="safeUrl"
+		[height]="'80vh'" [useBrowserLocale]="true" [textLayer]="true" [showHandToolButton]="true">
+	</ngx-extended-pdf-viewer>
+</div>
+<div style="width:800px; height:450px" 
+		*ngIf="multimediaDetail.mediaSource === 'frompc' && multimediaDetail.mediaType === 'pdf'">
+	<ngx-extended-pdf-viewer [src]="safeUrl"
+		[height]="'80vh'" [useBrowserLocale]="true" [textLayer]="true" [showHandToolButton]="true">
+	</ngx-extended-pdf-viewer>
+</div>
+<div *ngIf="multimediaDetail.mediaSource === 'youtube' && multimediaDetail.mediaType === 'video'">
+	<iframe width="560" height="315" [src]="safeUrl"
+		frameborder="0" 
+		allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" 
+		allowfullscreen>
+	</iframe>
+</div>
+<div *ngIf="multimediaDetail.mediaType == 'yesno'">
+	<div class="modal-card">
+		<section class="modal-card-body">A simple yes-no dialog.</section>
+		<footer class="modal-card-foot">
+			<div class="buttons is-right">
+				<button (click)="close('yes')" type="button" class="button is-success">Yes</button>
+				<button (click)="close('no')" type="button" class="button is-danger">No</button>
+			</div>
+		</footer>
+	</div>
+</div>
+<div *ngIf="multimediaDetail.mediaType == 'subscribe'">
+	<div class="modal-card">
+		<form>
+			<header class="modal-card-head has-text-weight-bold">Subscribe</header>
+			<section class="modal-card-body">
+				<div class="field">
+					<label class="label">Name</label>
+					<div class="control">
+						<input formControlName="name" class="input" type="text" placeholder="e.g Alex Smith">
+					</div>
+				</div>
+				<div class="field">
+					<label class="label">Email</label>
+					<div class="control">
+						<input formControlName="email" class="input" type="email" placeholder="e.g. alexsmith@gmail.com">
+					</div>
+				</div>
+			</section>
+			<footer class="modal-card-foot">
+				<div class="buttons">
+					<button type="submit" class="button is-success">Subscribe</button>
+					<button type="button" class="button is-danger">Cancel</button>
+				</div>
+			</footer>
+		</form>
+	</div>  
+</div>

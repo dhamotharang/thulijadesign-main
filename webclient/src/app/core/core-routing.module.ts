@@ -14,15 +14,15 @@ import { UserGroupComponent } from './components/user-group/user-group.component
 import { AdministratorGuardService } from '../shared/services/builtin/administrator-guard.service';
 
 const routes: Routes = [
-	{ path: 'branches', component: BranchComponent },
-	{ path: 'departments', component: DepartmentComponent },
-	{ path: 'groups', component: GroupComponent },
-	{ path: 'organizations', component: OrganizationComponent },
-	{ path: 'organizationtypes', component: OrganizationTypeComponent },
-	{ path: 'statuses', component: StatusComponent },
-	{ path: 'users', component: UserComponent },
+	{ path: 'branches', component: BranchComponent, canActivate: [AdministratorGuardService] },
+	{ path: 'departments', component: DepartmentComponent, canActivate: [AdministratorGuardService] },
+	{ path: 'groups', component: GroupComponent, canActivate: [AdministratorGuardService] },
+	{ path: 'organizations', component: OrganizationComponent, canActivate: [AdministratorGuardService] },
+	{ path: 'organizationtypes', component: OrganizationTypeComponent, canActivate: [AdministratorGuardService] },
+	{ path: 'statuses', component: StatusComponent, canActivate: [AdministratorGuardService] },
+	{ path: 'users', component: UserComponent, canActivate: [AdministratorGuardService] },
 	{ path: 'userprofile', component: UserProfileComponent },
-	{ path: 'usergroups', component: UserGroupComponent },
+	{ path: 'usergroups', component: UserGroupComponent, canActivate: [AdministratorGuardService] },
 	{ path: '', redirectTo: 'branches', pathMatch: 'full' }
 ];
 

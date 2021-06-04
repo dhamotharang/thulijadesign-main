@@ -1,0 +1,55 @@
+<h2 mat-dialog-title>{{ 'TRAINING-DELIVERY' | translate }} - {{ 'NEW' | translate }}</h2>
+<mat-dialog-content>
+	<form [formGroup]="trainingDeliveryForm" *ngIf="trainingDeliveryForm">
+		<mat-card-subtitle *ngIf="errorMessage" class="alert-danger">{{ errorMessage }}</mat-card-subtitle>
+		<mat-card-content class="my-form">
+			<mat-form-field>
+				<input matInput type="text" formControlName="sequence" id="sequence" 
+					name="sequence" placeholder="{{ 'TRAINING-DELIVERY-SEQUENCE' | translate }}" 
+					min="1" max="2000" required />
+				<mat-icon matPrefix style="padding-right: 20px;">list</mat-icon>
+                <mat-error *ngIf="hasError('sequence', 'required')">
+                    {{ 'TRAINING-DELIVERY-SEQUENCE' | translate }}: {{ 'FIELD-IS-REQUIRED' | translate }}</mat-error>
+                <mat-error *ngIf="hasError('sequence', 'min')">
+                    {{ 'TRAINING-DELIVERY-SEQUENCE' | translate }}: {{ 'FIELD-MUSTBE-MINIMUM' | translate }} 1</mat-error>
+                <mat-error *ngIf="hasError('sequence', 'max')">
+                    {{ 'TRAINING-DELIVERY-SEQUENCE' | translate }}: {{ 'FIELD-MUSTBE-MAXIMUM' | translate }} 2000</mat-error>
+				<mat-error *ngIf="hasError('sequence', 'pattern')">
+					{{ 'TRAINING-DELIVERY-SEQUENCE' | translate }}: {{ 'FIELD-MUSTBE-NUMERIC' | translate }}</mat-error>
+			</mat-form-field>
+			<mat-form-field>
+				<input matInput type="text" formControlName="name" id="name" 
+					name="name" placeholder="{{ 'TRAINING-DELIVERY-NAME' | translate }}" 
+					minlength="1" maxlength="60" required />
+                <mat-error *ngIf="hasError('name', 'required')">
+                    {{ 'TRAINING-DELIVERY-NAME' | translate }}: {{ 'FIELD-IS-REQUIRED' | translate }}</mat-error>
+                <mat-error *ngIf="hasError('name', 'minlength')">
+                    {{ 'TRAINING-DELIVERY-NAME' | translate }}: {{ 'FIELD-MUSTBE-MINIMUM-LENGTH' | translate }} 1</mat-error>
+                <mat-error *ngIf="hasError('name', 'maxlength')">
+                    {{ 'TRAINING-DELIVERY-NAME' | translate }}: {{ 'FIELD-MUSTBE-MAXIMUM-LENGTH' | translate }} 60</mat-error>
+			</mat-form-field>
+			<mat-form-field>
+				<input matInput type="text" formControlName="description" id="description" 
+					name="description" placeholder="{{ 'TRAINING-DELIVERY-DESCRIPTION' | translate }}" 
+					minlength="1" maxlength="250" required />
+                <mat-error *ngIf="hasError('description', 'required')">
+                    {{ 'TRAINING-DELIVERY-DESCRIPTION' | translate }}: {{ 'FIELD-IS-REQUIRED' | translate }}</mat-error>
+                <mat-error *ngIf="hasError('description', 'minlength')">
+                    {{ 'TRAINING-DELIVERY-DESCRIPTION' | translate }}: {{ 'FIELD-MUSTBE-MINIMUM-LENGTH' | translate }} 1</mat-error>
+                <mat-error *ngIf="hasError('description', 'maxlength')">
+                    {{ 'TRAINING-DELIVERY-DESCRIPTION' | translate }}: {{ 'FIELD-MUSTBE-MAXIMUM-LENGTH' | translate }} 250</mat-error>
+			</mat-form-field>
+			<section class="checkbox-section">
+				<mat-checkbox formControlName="byDefault" 
+					id="byDefault">byDefault
+				</mat-checkbox>
+			</section>
+        </mat-card-content>
+    </form>
+</mat-dialog-content>
+<mat-dialog-actions>
+    <button mat-raised-button color="primary" (click)="save(trainingDeliveryForm.value)" 
+        [disabled]="!trainingDeliveryForm.valid">{{ 'SAVE' | translate }}</button>
+    <button type="button" mat-raised-button color="warn"
+        (click)="onCancel()">{{ 'CANCEL' | translate }}</button>
+</mat-dialog-actions>

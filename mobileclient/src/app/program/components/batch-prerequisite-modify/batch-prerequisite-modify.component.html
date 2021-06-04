@@ -1,0 +1,57 @@
+<ion-toolbar color="primary">
+	<ion-title>{{ 'BATCH-PREREQUISITE' | translate }} - {{ 'NEW' | translate }}</ion-title>
+</ion-toolbar>
+<ion-content padding>
+	<form [formGroup]="batchPrerequisiteForm" *ngIf="batchPrerequisiteForm">
+		<ion-card-content>
+			<ion-item>
+				<ion-label position="floating">{{ 'BATCH-PREREQUISITE-SEQUENCE' | translate }}</ion-label>
+                <ion-input formControlName="sequence" id="sequence" name="sequence" #sequence
+					placeholder="{{ 'BATCH-PREREQUISITE-SEQUENCE' | translate }}" min="1" max="2000">
+				</ion-input>
+			</ion-item>
+			<div *ngIf="(batchPrerequisiteForm.controls['sequence'].dirty || batchPrerequisiteForm.controls['sequence'].touched)" class="errors">
+                <div *ngIf="hasError('sequence', 'required')">
+                    {{ 'BATCH-PREREQUISITE-SEQUENCE' | translate }}: {{ 'FIELD-IS-REQUIRED' | translate }}</div>
+                <div *ngIf="hasError('sequence', 'min')">
+                    {{ 'BATCH-PREREQUISITE-SEQUENCE' | translate }}: {{ 'FIELD-MUSTBE-MINIMUM' | translate }} 1</div>
+                <div *ngIf="hasError('sequence', 'max')">
+                    {{ 'BATCH-PREREQUISITE-SEQUENCE' | translate }}: {{ 'FIELD-MUSTBE-MAXIMUM' | translate }} 2000</div>
+				<div *ngIf="hasError('sequence', 'pattern')">
+					{{ 'BATCH-PREREQUISITE-SEQUENCE' | translate }}: {{ 'FIELD-MUSTBE-NUMERIC' | translate }}</div>
+			</div>
+			<ion-item>
+				<ion-label>{{ 'BATCH-PREREQUISITE-BATCH' | translate }}</ion-label>
+				<ion-select formControlName="batch" id="batch" name="batch" 
+						[compareWith]="compareBatch" required>
+					<ion-select-option *ngFor="let batch of batches" [value]="batch">
+						{{ batch.code }}{{ batch.lectureStartDate }}</ion-select-option>
+				</ion-select>
+			</ion-item>
+			<div *ngIf="(batchPrerequisiteForm.controls['batch'].dirty || batchPrerequisiteForm.controls['batch'].touched)" class="errors">
+				<div *ngIf="hasError('batch', 'required')">
+					{{ 'BATCH-PREREQUISITE-BATCH' | translate }}: {{ 'FIELD-IS-REQUIRED' | translate }}</div>
+			</div>
+			<ion-item>
+				<ion-label position="floating">{{ 'BATCH-PREREQUISITE-DESCRIPTION' | translate }}</ion-label>
+				<ion-input formControlName="description" id="description" name="description" #description
+					placeholder="{{ 'BATCH-PREREQUISITE-DESCRIPTION' | translate }}" maxlength="100">
+				</ion-input>
+			</ion-item>
+			<div *ngIf="(batchPrerequisiteForm.controls['description'].dirty || batchPrerequisiteForm.controls['description'].touched)" class="errors">
+                <div *ngIf="hasError('description', 'minlength')">
+                    {{ 'BATCH-PREREQUISITE-DESCRIPTION' | translate }}: {{ 'FIELD-MUSTBE-MINIMUM-LENGTH' | translate }} 1</div>
+                <div *ngIf="hasError('description', 'maxlength')">
+                    {{ 'BATCH-PREREQUISITE-DESCRIPTION' | translate }}: {{ 'FIELD-MUSTBE-MAXIMUM-LENGTH' | translate }} 100</div>
+			</div>
+		</ion-card-content>
+		<ion-footer>
+			<ion-toolbar color="light" style="padding-left: 20px;">
+			<ion-button color="primary" (click)="save(batchPrerequisiteForm.value)" 
+				[disabled]="!batchPrerequisiteForm.valid">{{ 'SAVE' | translate }}</ion-button>
+			<ion-button type="button" color="medium"
+				(click)="onCancel()">{{ 'CANCEL' | translate }}</ion-button>
+			</ion-toolbar>
+		</ion-footer>
+	</form>
+</ion-content>

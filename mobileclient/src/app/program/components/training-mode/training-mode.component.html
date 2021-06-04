@@ -1,0 +1,47 @@
+<ion-toolbar color="primary">
+	<ion-buttons slot="start">
+		<ion-menu-button></ion-menu-button>
+	</ion-buttons>
+	<ion-title>{{ 'TRAINING-MODE' | translate }}</ion-title>
+	<ion-buttons slot="end" color="success">
+		<ion-button fill="clear" (click)="add()">
+			<ion-icon slot="icon-only" name="add-circle-outline"></ion-icon>
+		</ion-button>
+	</ion-buttons>
+</ion-toolbar>
+<ion-content padding>
+	<ion-card *ngFor="let trainingMode of trainingModes">
+		<ion-card-content style="padding: bottom 0px;">
+			<h2>
+				<b>{{ 'TRAINING-MODE-SEQUENCE' | translate }}: </b>
+				{{ trainingMode.sequence }}
+			</h2>
+			<h2>
+				<b>{{ 'TRAINING-MODE-NAME' | translate }}: </b>
+				{{ trainingMode.name }}
+			</h2>
+			<h2>
+				<b>{{ 'TRAINING-MODE-DESCRIPTION' | translate }}: </b>
+				{{ trainingMode.description }}
+			</h2>
+			<h2>
+				<b>{{ 'TRAINING-MODE-BYDEFAULT' | translate }}: </b>
+				{{ trainingMode.byDefault }}
+			</h2>
+			<ion-row no-padding>
+				<ion-col col-9 no-padding></ion-col>
+				<ion-col col-3 no-padding>
+					<ion-button fill="clear" size="small" (click)="edit(trainingMode)">
+						<ion-icon name="create-outline"></ion-icon>
+					</ion-button>
+					<ion-button fill="clear" size="small" (click)="delete(trainingMode)">
+						<ion-icon name="trash-outline"></ion-icon>
+					</ion-button>
+					<ion-button fill="clear" size="small" (click)="print(trainingMode)">
+						<ion-icon name="print-outline"></ion-icon>
+					</ion-button>
+				</ion-col>
+			</ion-row>
+		</ion-card-content>
+	</ion-card>
+</ion-content>

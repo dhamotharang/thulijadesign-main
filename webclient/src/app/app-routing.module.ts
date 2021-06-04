@@ -9,6 +9,8 @@ import { UserProfileComponent } from './core/components/user-profile/user-profil
 
 import { CoreMainComponent } from './menu/core-main/core-main.component';
 import { GeneralMainComponent } from './menu/general-main/general-main.component';
+import { ProgramMainComponent } from './menu/program-main/program-main.component';
+import { RegistrationManagerComponent } from './menu/registration-manager/registration-manager.component';
 
 const routes:Routes = [
 	{ path:'', redirectTo:'/login', pathMatch:'full' },
@@ -21,12 +23,18 @@ const routes:Routes = [
         loadChildren: () => import('./core/core.module').then(m => m.CoreModule) },
     { path: 'general', 
         loadChildren: () => import('./general/general.module').then(m => m.GeneralModule) },
-    { path: 'trainer', 
-        loadChildren: () => import('./trainer/trainer.module').then(m => m.TrainerModule) },
+    { path: 'program', 
+        loadChildren: () => import('./program/program.module').then(m => m.ProgramModule) },
+    { path: 'registration', 
+        loadChildren: () => import('./registration/registration.module').then(m => m.RegistrationModule) },
+    { path: 'scholar', 
+        loadChildren: () => import('./scholar/scholar.module').then(m => m.ScholarModule) },
     { path: 'masterdetail', 
         loadChildren: () => import('./master-detail/master-detail.module').then(m => m.MasterDetailModule) },
-	{ path: 'trainerprofile', 
-		loadChildren: () => import('./trainer-profile/trainer-profile.module').then(m => m.TrainerProfileModule) },
+    { path: 'plugin', 
+        loadChildren: () => import('./plugin/plugin.module').then(m => m.PluginModule) },
+	{ path: 'scholarprofile', 
+		loadChildren: () => import('./scholar-profile/scholar-profile.module').then(m => m.ScholarProfileModule) },
     { path:'coremain', component:CoreMainComponent, children: [
         {
             path: 'core', 
@@ -43,6 +51,25 @@ const routes:Routes = [
         {
             path: 'general', 
             loadChildren: () => import('./general/general.module').then(m => m.GeneralModule), 
+            outlet:'sidebar' 
+        }
+    ]},
+    { path:'programmain', component:ProgramMainComponent, children: [
+        {
+            path: 'masterdetail',
+            loadChildren: () => import('./master-detail/master-detail.module').then(m => m.MasterDetailModule),
+            outlet:'sidebar'
+        },
+        {
+            path: 'program', 
+            loadChildren: () => import('./program/program.module').then(m => m.ProgramModule), 
+            outlet:'sidebar' 
+        }
+    ]},
+    { path:'registrationmanager', component:RegistrationManagerComponent, children: [
+        {
+            path: 'registration', 
+            loadChildren: () => import('./registration/registration.module').then(m => m.RegistrationModule), 
             outlet:'sidebar' 
         }
     ]},

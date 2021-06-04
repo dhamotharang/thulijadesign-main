@@ -16,6 +16,8 @@ import { ChangePasswordComponent } from './components/change-password/change-pas
 import { DashboardComponent } from './components/dashboard/dashboard.component';
 import { CardComponent } from './components/dashboard-components/card/card.component';
 import { MiniCardComponent } from './components/dashboard-components/mini-card/mini-card.component';
+import { MultimediaDialogComponent } from './components/multimedia-dialog/multimedia-dialog.component';
+import { MultimediaPlayerComponent } from './components/multimedia-player/multimedia-player.component';
 
 import { ParticipantRegistrationChartComponent } from './components/dashboard-components/charts/participant-registration-chart/participant-registration-chart.component';
 import { ProductSalesChartComponent } from './components/dashboard-components/charts/product-sales-chart/product-sales-chart.component';
@@ -40,6 +42,8 @@ import { SpinnerInterceptorService } from './services/builtin/spinner-intercepto
 		DashboardComponent,
 		CardComponent,
 		MiniCardComponent,
+		MultimediaDialogComponent,
+		MultimediaPlayerComponent,
 		ParticipantRegistrationChartComponent,
 		ProductSalesChartComponent,
 		SalesTrafficChartComponent,

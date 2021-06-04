@@ -62,8 +62,13 @@ export class UserGroupService {
 	}
 
 	delete(usergroup:UserGroup):Observable<UserGroup[]> {
-		return this.http.delete<UserGroup[]>(
-			environment.apiEndpoint + '/usergroups/' + usergroup.id);
+		if (usergroup.options != undefined && usergroup.options["masterDetail"] == "Group") {
+			return this.http.delete<UserGroup[]>(
+				environment.apiEndpoint + '/usergroups/' + usergroup.id + "?masterDetail=Group&group_id=" + usergroup.group.id);
+		} else {
+			return this.http.delete<UserGroup[]>(
+				environment.apiEndpoint + '/usergroups/' + usergroup.id);
+		}
 	}
 
 }

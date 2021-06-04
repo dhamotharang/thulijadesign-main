@@ -1,0 +1,67 @@
+.container {
+    max-width: 90%;
+    margin: 20px auto;
+}
+
+.my-form {
+    width:100%;
+}
+
+table {
+    width:100%;
+}
+
+.mat-header-cell {
+    padding:15px 10px 8px 8px;
+    font-size:16px;
+    white-space: nowrap;
+}
+
+.mat-column-sequence {
+    width:8%;
+}
+
+.mat-column-batch {
+    width:2%;
+}
+
+.mat-column-batchModule {
+    width:2%;
+}
+
+.mat-column-name {
+    width:13%;
+}
+
+.mat-column-description {
+    width:56%;
+}
+
+.mat-column-contentUrl {
+    width:2%;
+}
+
+.mat-column-action {
+    width:15%;
+    text-align: center;
+}
+
+.listimage {
+    max-width: 100%;
+    height: auto;
+}
+
+button.fullwidth {
+    width: 100%;
+    text-align: left;
+}
+
+.container-size {
+    height: 80vh;
+    width: 100vw;
+}
+
+iframe {
+    width:100%;
+    height:80vh;
+}

@@ -1,0 +1,23 @@
+<mat-toolbar color="secondary" class="mat-elevation-z2">
+	<mat-toolbar-row>
+		<button type="button" mat-icon-button (click)="back()">
+			<mat-icon>keyboard_arrow_left</mat-icon>
+		</button>&nbsp;&nbsp;
+		<a mat-button disabled style="color: black" *ngIf="scholar">
+			{{ scholar.user.firstName }}&nbsp;
+			{{ scholar.user.lastName }}&nbsp;
+		</a>
+		<span class="spacer"></span>
+		<a mat-button [routerLink]="['/masterdetail/scholarmanagers', scholarId, 'scholardetailmanagers']" routerLinkActive="active">
+			{{ 'SCHOLARDETAILMANAGER' | translate }}</a>
+		<a mat-button [routerLink]="['/masterdetail/scholarmanagers', scholarId, 'scholaraddressmanagers']" routerLinkActive="active">
+			{{ 'SCHOLARADDRESSMANAGER' | translate }}</a>
+		<a mat-button [routerLink]="['/masterdetail/scholarmanagers', scholarId, 'scholarfamilymanagers']" routerLinkActive="active">
+			{{ 'SCHOLARFAMILYMANAGER' | translate }}</a>
+		<a mat-button [routerLink]="['/masterdetail/scholarmanagers', scholarId, 'scholareducationdetailmanagers']" routerLinkActive="active">
+			{{ 'SCHOLAREDUCATIONDETAILMANAGER' | translate }}</a>
+		<a mat-button [routerLink]="['/masterdetail/scholarmanagers', scholarId, 'scholaroccupationmanagers']" routerLinkActive="active">
+			{{ 'SCHOLAROCCUPATIONMANAGER' | translate }}</a>
+	</mat-toolbar-row>
+</mat-toolbar>
+<router-outlet></router-outlet>

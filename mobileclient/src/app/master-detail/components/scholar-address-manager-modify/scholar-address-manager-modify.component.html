@@ -1,0 +1,200 @@
+<ion-toolbar color="primary">
+	<ion-buttons slot="start">
+		<ion-menu-button></ion-menu-button>
+	</ion-buttons>
+	<ion-title>{{ 'SCHOLAR-ADDRESS' | translate }}</ion-title>
+</ion-toolbar>
+<ion-content padding>
+	<form [formGroup]="scholarAddressForm" *ngIf="scholarAddressForm">
+		<ion-card-content>
+			<ion-item>
+				<ion-label>{{ 'SCHOLAR-ADDRESS-ADDRESSTYPE' | translate }}</ion-label>
+				<ion-select formControlName="addressType" id="addressType" name="addressType" 
+						[compareWith]="compareAddressType" required>
+					<ion-select-option *ngFor="let addressType of addressTypes" [value]="addressType">
+						{{ addressType.name }}</ion-select-option>
+				</ion-select>
+			</ion-item>
+			<div *ngIf="(scholarAddressForm.controls['addressType'].dirty || scholarAddressForm.controls['addressType'].touched)" class="errors">
+				<div *ngIf="hasError('addressType', 'required')">
+					{{ 'SCHOLAR-ADDRESS-ADDRESSTYPE' | translate }}: {{ 'FIELD-IS-REQUIRED' | translate }}</div>
+			</div>
+			<ion-item>
+                <input matInput type="text" formControlName="contactPersonName" id="contactPersonName" 
+                    name="contactPersonName" placeholder="{{ 'SCHOLAR-ADDRESS-CONTACTPERSONNAME' | translate }}" maxlength="60"/>
+			</ion-item>
+			<div *ngIf="(scholarAddressForm.controls['contactPersonName'].dirty || scholarAddressForm.controls['contactPersonName'].touched)" class="errors">
+                <div *ngIf="hasError('contactPersonName', 'minlength')">
+                    {{ 'SCHOLAR-ADDRESS-CONTACTPERSONNAME' | translate }}: {{ 'FIELD-MUSTBE-MINIMUM-LENGTH' | translate }} 1</div>
+                <div *ngIf="hasError('contactPersonName', 'maxlength')">
+                    {{ 'SCHOLAR-ADDRESS-CONTACTPERSONNAME' | translate }}: {{ 'FIELD-MUSTBE-MAXIMUM-LENGTH' | translate }} 60</div>
+			</div>
+			<ion-item>
+                <input matInput type="text" formControlName="addressLineOne" id="addressLineOne" 
+                    name="addressLineOne" placeholder="{{ 'SCHOLAR-ADDRESS-ADDRESSLINEONE' | translate }}" maxlength="200"/>
+			</ion-item>
+			<div *ngIf="(scholarAddressForm.controls['addressLineOne'].dirty || scholarAddressForm.controls['addressLineOne'].touched)" class="errors">
+                <div *ngIf="hasError('addressLineOne', 'required')">
+                    {{ 'SCHOLAR-ADDRESS-ADDRESSLINEONE' | translate }}: {{ 'FIELD-IS-REQUIRED' | translate }}</div>
+                <div *ngIf="hasError('addressLineOne', 'minlength')">
+                    {{ 'SCHOLAR-ADDRESS-ADDRESSLINEONE' | translate }}: {{ 'FIELD-MUSTBE-MINIMUM-LENGTH' | translate }} 1</div>
+                <div *ngIf="hasError('addressLineOne', 'maxlength')">
+                    {{ 'SCHOLAR-ADDRESS-ADDRESSLINEONE' | translate }}: {{ 'FIELD-MUSTBE-MAXIMUM-LENGTH' | translate }} 200</div>
+			</div>
+			<ion-item>
+                <input matInput type="text" formControlName="addressLineTwo" id="addressLineTwo" 
+                    name="addressLineTwo" placeholder="{{ 'SCHOLAR-ADDRESS-ADDRESSLINETWO' | translate }}" maxlength="200"/>
+			</ion-item>
+			<div *ngIf="(scholarAddressForm.controls['addressLineTwo'].dirty || scholarAddressForm.controls['addressLineTwo'].touched)" class="errors">
+                <div *ngIf="hasError('addressLineTwo', 'minlength')">
+                    {{ 'SCHOLAR-ADDRESS-ADDRESSLINETWO' | translate }}: {{ 'FIELD-MUSTBE-MINIMUM-LENGTH' | translate }} 1</div>
+                <div *ngIf="hasError('addressLineTwo', 'maxlength')">
+                    {{ 'SCHOLAR-ADDRESS-ADDRESSLINETWO' | translate }}: {{ 'FIELD-MUSTBE-MAXIMUM-LENGTH' | translate }} 200</div>
+			</div>
+			<ion-item>
+                <input matInput type="text" formControlName="postcode" id="postcode" 
+                    name="postcode" placeholder="{{ 'SCHOLAR-ADDRESS-POSTCODE' | translate }}" maxlength="10"/>
+			</ion-item>
+			<div *ngIf="(scholarAddressForm.controls['postcode'].dirty || scholarAddressForm.controls['postcode'].touched)" class="errors">
+                <div *ngIf="hasError('postcode', 'minlength')">
+                    {{ 'SCHOLAR-ADDRESS-POSTCODE' | translate }}: {{ 'FIELD-MUSTBE-MINIMUM-LENGTH' | translate }} 1</div>
+                <div *ngIf="hasError('postcode', 'maxlength')">
+                    {{ 'SCHOLAR-ADDRESS-POSTCODE' | translate }}: {{ 'FIELD-MUSTBE-MAXIMUM-LENGTH' | translate }} 10</div>
+			</div>
+			<ion-item>
+				<ion-label>{{ 'SCHOLAR-ADDRESS-COUNTRY' | translate }}</ion-label>
+				<ion-select formControlName="country" id="country" name="country" 
+						[compareWith]="compareCountry" required>
+					<ion-select-option *ngFor="let country of countries" [value]="country">
+						{{ country.name }}</ion-select-option>
+				</ion-select>
+			</ion-item>
+			<div *ngIf="(scholarAddressForm.controls['country'].dirty || scholarAddressForm.controls['country'].touched)" class="errors">
+				<div *ngIf="hasError('country', 'required')">
+					{{ 'SCHOLAR-ADDRESS-COUNTRY' | translate }}: {{ 'FIELD-IS-REQUIRED' | translate }}</div>
+			</div>
+			<ion-item>
+				<ion-label>{{ 'SCHOLAR-ADDRESS-STATE' | translate }}</ion-label>
+				<ion-select formControlName="state" id="state" name="state" 
+						[compareWith]="compareState" required>
+					<ion-select-option *ngFor="let state of states" [value]="state">
+						{{ state.name }}</ion-select-option>
+				</ion-select>
+			</ion-item>
+			<div *ngIf="(scholarAddressForm.controls['state'].dirty || scholarAddressForm.controls['state'].touched)" class="errors">
+				<div *ngIf="hasError('state', 'required')">
+					{{ 'SCHOLAR-ADDRESS-STATE' | translate }}: {{ 'FIELD-IS-REQUIRED' | translate }}</div>
+			</div>
+			<ion-item>
+                <input matInput type="text" formControlName="district" id="district" 
+                    name="district" placeholder="{{ 'SCHOLAR-ADDRESS-DISTRICT' | translate }}" maxlength="60"/>
+			</ion-item>
+			<div *ngIf="(scholarAddressForm.controls['district'].dirty || scholarAddressForm.controls['district'].touched)" class="errors">
+                <div *ngIf="hasError('district', 'minlength')">
+                    {{ 'SCHOLAR-ADDRESS-DISTRICT' | translate }}: {{ 'FIELD-MUSTBE-MINIMUM-LENGTH' | translate }} 1</div>
+                <div *ngIf="hasError('district', 'maxlength')">
+                    {{ 'SCHOLAR-ADDRESS-DISTRICT' | translate }}: {{ 'FIELD-MUSTBE-MAXIMUM-LENGTH' | translate }} 60</div>
+			</div>
+			<ion-item>
+                <input matInput type="text" formControlName="city" id="city" 
+                    name="city" placeholder="{{ 'SCHOLAR-ADDRESS-CITY' | translate }}" maxlength="60"/>
+			</ion-item>
+			<div *ngIf="(scholarAddressForm.controls['city'].dirty || scholarAddressForm.controls['city'].touched)" class="errors">
+                <div *ngIf="hasError('city', 'minlength')">
+                    {{ 'SCHOLAR-ADDRESS-CITY' | translate }}: {{ 'FIELD-MUSTBE-MINIMUM-LENGTH' | translate }} 1</div>
+                <div *ngIf="hasError('city', 'maxlength')">
+                    {{ 'SCHOLAR-ADDRESS-CITY' | translate }}: {{ 'FIELD-MUSTBE-MAXIMUM-LENGTH' | translate }} 60</div>
+			</div>
+			<ion-item>
+                <input matInput type="text" formControlName="telephoneNumberOne" id="telephoneNumberOne" 
+                    name="telephoneNumberOne" placeholder="{{ 'SCHOLAR-ADDRESS-TELEPHONENUMBERONE' | translate }}" maxlength="20"/>
+			</ion-item>
+			<div *ngIf="(scholarAddressForm.controls['telephoneNumberOne'].dirty || scholarAddressForm.controls['telephoneNumberOne'].touched)" class="errors">
+                <div *ngIf="hasError('telephoneNumberOne', 'minlength')">
+                    {{ 'SCHOLAR-ADDRESS-TELEPHONENUMBERONE' | translate }}: {{ 'FIELD-MUSTBE-MINIMUM-LENGTH' | translate }} 1</div>
+                <div *ngIf="hasError('telephoneNumberOne', 'maxlength')">
+                    {{ 'SCHOLAR-ADDRESS-TELEPHONENUMBERONE' | translate }}: {{ 'FIELD-MUSTBE-MAXIMUM-LENGTH' | translate }} 20</div>
+			</div>
+			<ion-item>
+                <input matInput type="text" formControlName="handphoneNumberOne" id="handphoneNumberOne" 
+                    name="handphoneNumberOne" placeholder="{{ 'SCHOLAR-ADDRESS-HANDPHONENUMBERONE' | translate }}" maxlength="20"/>
+			</ion-item>
+			<div *ngIf="(scholarAddressForm.controls['handphoneNumberOne'].dirty || scholarAddressForm.controls['handphoneNumberOne'].touched)" class="errors">
+                <div *ngIf="hasError('handphoneNumberOne', 'minlength')">
+                    {{ 'SCHOLAR-ADDRESS-HANDPHONENUMBERONE' | translate }}: {{ 'FIELD-MUSTBE-MINIMUM-LENGTH' | translate }} 1</div>
+                <div *ngIf="hasError('handphoneNumberOne', 'maxlength')">
+                    {{ 'SCHOLAR-ADDRESS-HANDPHONENUMBERONE' | translate }}: {{ 'FIELD-MUSTBE-MAXIMUM-LENGTH' | translate }} 20</div>
+			</div>
+			<ion-item>
+                <input matInput type="text" formControlName="emailAddressOne" id="emailAddressOne" 
+                    name="emailAddressOne" placeholder="{{ 'SCHOLAR-ADDRESS-EMAILADDRESSONE' | translate }}" maxlength="120"/>
+			</ion-item>
+			<div *ngIf="(scholarAddressForm.controls['emailAddressOne'].dirty || scholarAddressForm.controls['emailAddressOne'].touched)" class="errors">
+                <div *ngIf="hasError('emailAddressOne', 'minlength')">
+                    {{ 'SCHOLAR-ADDRESS-EMAILADDRESSONE' | translate }}: {{ 'FIELD-MUSTBE-MINIMUM-LENGTH' | translate }} 1</div>
+                <div *ngIf="hasError('emailAddressOne', 'maxlength')">
+                    {{ 'SCHOLAR-ADDRESS-EMAILADDRESSONE' | translate }}: {{ 'FIELD-MUSTBE-MAXIMUM-LENGTH' | translate }} 120</div>
+                <div *ngIf="hasError('emailAddressOne', 'pattern')">
+                    {{ 'SCHOLAR-ADDRESS-EMAILADDRESSONE' | translate }}: {{ 'FIELD-MUSTBE-PATTERN' | translate }} email</div>
+			</div>
+			<ion-item>
+                <input matInput type="text" formControlName="websiteAddress" id="websiteAddress" 
+                    name="websiteAddress" placeholder="{{ 'SCHOLAR-ADDRESS-WEBSITEADDRESS' | translate }}" maxlength="120"/>
+			</ion-item>
+			<div *ngIf="(scholarAddressForm.controls['websiteAddress'].dirty || scholarAddressForm.controls['websiteAddress'].touched)" class="errors">
+                <div *ngIf="hasError('websiteAddress', 'minlength')">
+                    {{ 'SCHOLAR-ADDRESS-WEBSITEADDRESS' | translate }}: {{ 'FIELD-MUSTBE-MINIMUM-LENGTH' | translate }} 1</div>
+                <div *ngIf="hasError('websiteAddress', 'maxlength')">
+                    {{ 'SCHOLAR-ADDRESS-WEBSITEADDRESS' | translate }}: {{ 'FIELD-MUSTBE-MAXIMUM-LENGTH' | translate }} 120</div>
+			</div>
+			<ion-item>
+                <input matInput type="text" formControlName="latitude" id="latitude" 
+                    name="latitude" placeholder="{{ 'SCHOLAR-ADDRESS-LATITUDE' | translate }}" maxlength="50"/>
+			</ion-item>
+			<div *ngIf="(scholarAddressForm.controls['latitude'].dirty || scholarAddressForm.controls['latitude'].touched)" class="errors">
+                <div *ngIf="hasError('latitude', 'minlength')">
+                    {{ 'SCHOLAR-ADDRESS-LATITUDE' | translate }}: {{ 'FIELD-MUSTBE-MINIMUM-LENGTH' | translate }} 1</div>
+                <div *ngIf="hasError('latitude', 'maxlength')">
+                    {{ 'SCHOLAR-ADDRESS-LATITUDE' | translate }}: {{ 'FIELD-MUSTBE-MAXIMUM-LENGTH' | translate }} 50</div>
+			</div>
+			<ion-item>
+                <input matInput type="text" formControlName="longitude" id="longitude" 
+                    name="longitude" placeholder="{{ 'SCHOLAR-ADDRESS-LONGITUDE' | translate }}" maxlength="50"/>
+			</ion-item>
+			<div *ngIf="(scholarAddressForm.controls['longitude'].dirty || scholarAddressForm.controls['longitude'].touched)" class="errors">
+                <div *ngIf="hasError('longitude', 'minlength')">
+                    {{ 'SCHOLAR-ADDRESS-LONGITUDE' | translate }}: {{ 'FIELD-MUSTBE-MINIMUM-LENGTH' | translate }} 1</div>
+                <div *ngIf="hasError('longitude', 'maxlength')">
+                    {{ 'SCHOLAR-ADDRESS-LONGITUDE' | translate }}: {{ 'FIELD-MUSTBE-MAXIMUM-LENGTH' | translate }} 50</div>
+			</div>
+			<ion-item>
+                <input matInput type="text" formControlName="locationMap" id="locationMap" 
+                    name="locationMap" placeholder="{{ 'SCHOLAR-ADDRESS-LOCATIONMAP' | translate }}" maxlength="50"/>
+			</ion-item>
+			<div *ngIf="(scholarAddressForm.controls['locationMap'].dirty || scholarAddressForm.controls['locationMap'].touched)" class="errors">
+                <div *ngIf="hasError('locationMap', 'minlength')">
+                    {{ 'SCHOLAR-ADDRESS-LOCATIONMAP' | translate }}: {{ 'FIELD-MUSTBE-MINIMUM-LENGTH' | translate }} 1</div>
+                <div *ngIf="hasError('locationMap', 'maxlength')">
+                    {{ 'SCHOLAR-ADDRESS-LOCATIONMAP' | translate }}: {{ 'FIELD-MUSTBE-MAXIMUM-LENGTH' | translate }} 50</div>
+			</div>
+			<ion-item>
+                <input matInput type="text" formControlName="premisePhoto" id="premisePhoto" 
+                    name="premisePhoto" placeholder="{{ 'SCHOLAR-ADDRESS-PREMISEPHOTO' | translate }}" maxlength="50"/>
+			</ion-item>
+			<div *ngIf="(scholarAddressForm.controls['premisePhoto'].dirty || scholarAddressForm.controls['premisePhoto'].touched)" class="errors">
+                <div *ngIf="hasError('premisePhoto', 'minlength')">
+                    {{ 'SCHOLAR-ADDRESS-PREMISEPHOTO' | translate }}: {{ 'FIELD-MUSTBE-MINIMUM-LENGTH' | translate }} 1</div>
+                <div *ngIf="hasError('premisePhoto', 'maxlength')">
+                    {{ 'SCHOLAR-ADDRESS-PREMISEPHOTO' | translate }}: {{ 'FIELD-MUSTBE-MAXIMUM-LENGTH' | translate }} 50</div>
+			</div>
+		</ion-card-content>
+		<ion-footer>
+			<ion-toolbar color="light" style="padding-left: 20px;">
+			<ion-button color="primary" (click)="save(scholarAddressForm.value)" 
+				[disabled]="!scholarAddressForm.valid">{{ 'SAVE' | translate }}</ion-button>
+			<ion-button type="button" color="medium"
+				(click)="onCancel()">{{ 'CANCEL' | translate }}</ion-button>
+			</ion-toolbar>
+		</ion-footer>
+    </form>
+</ion-content>

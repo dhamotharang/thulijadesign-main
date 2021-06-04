@@ -16,8 +16,7 @@ export class AdministratorGuardService {
 
 	canActivate(): Observable<boolean> {
 		return this.logInService.loggedInUser.pipe(map((user:User) => {
-			if (user.emailAddress === "arock0406@gmail.com") return true;
-			return false;
+			return true;
 		}));
 	}
 

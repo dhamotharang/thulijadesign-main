@@ -1,0 +1,155 @@
+.container {
+    max-width: 90%;
+    margin: 20px auto;
+}
+
+.my-form {
+    width:100%;
+}
+
+table {
+    width:100%;
+}
+
+.mat-column-program {
+    width:0%;
+}
+
+.mat-column-code {
+    width:1%;
+}
+
+.mat-column-lectureStartDate {
+    width:0%;
+}
+
+.mat-column-lectureEndDate {
+    width:0%;
+}
+
+.mat-column-lectureDurationDays {
+    width:8%;
+}
+
+.mat-column-lectureDurationHours {
+    width:8%;
+}
+
+.mat-column-onlineStartDate {
+    width:0%;
+}
+
+.mat-column-onlineEndDate {
+    width:0%;
+}
+
+.mat-column-onlineDurationDays {
+    width:8%;
+}
+
+.mat-column-onlineDurationHours {
+    width:8%;
+}
+
+.mat-column-mentoringStartDate {
+    width:0%;
+}
+
+.mat-column-mentoringEndDate {
+    width:0%;
+}
+
+.mat-column-mentoringDurationDays {
+    width:8%;
+}
+
+.mat-column-mentoringDurationHours {
+    width:8%;
+}
+
+.mat-column-contactPersonName {
+    width:1%;
+}
+
+.mat-column-locationName {
+    width:4%;
+}
+
+.mat-column-houseNumber {
+    width:0%;
+}
+
+.mat-column-addressLineOne {
+    width:4%;
+}
+
+.mat-column-addressLineTwo {
+    width:4%;
+}
+
+.mat-column-postcode {
+    width:0%;
+}
+
+.mat-column-country {
+    width:0%;
+}
+
+.mat-column-state {
+    width:0%;
+}
+
+.mat-column-district {
+    width:1%;
+}
+
+.mat-column-city {
+    width:1%;
+}
+
+.mat-column-telephoneNumberOne {
+    width:0%;
+}
+
+.mat-column-handphoneNumberOne {
+    width:0%;
+}
+
+.mat-column-emailAddressOne {
+    width:2%;
+}
+
+.mat-column-websiteAddress {
+    width:2%;
+}
+
+.mat-column-latitude {
+    width:1%;
+}
+
+.mat-column-longitude {
+    width:1%;
+}
+
+.mat-column-locationMap {
+    width:1%;
+}
+
+.mat-column-premisePhoto {
+    width:1%;
+}
+
+.mat-column-action {
+    width:8%;
+    text-align: center;
+}
+
+.listimage {
+    max-width: 100%;
+    height: auto;
+}
+
+.title-bar {
+	min-height: 48px !important;
+	height: 48px !important;
+}

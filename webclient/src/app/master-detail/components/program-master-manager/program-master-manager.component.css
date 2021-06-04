@@ -1,0 +1,67 @@
+.container {
+    max-width: 90%;
+    margin: 20px auto;
+}
+
+.my-form {
+    width:100%;
+}
+
+table {
+    width:100%;
+}
+
+.mat-column-sequence {
+    width:8%;
+}
+
+.mat-column-title {
+    width:1%;
+}
+
+.mat-column-programCategory {
+    width:0%;
+}
+
+.mat-column-programType {
+    width:0%;
+}
+
+.mat-column-description {
+    width:12%;
+}
+
+.mat-column-objective {
+    width:12%;
+}
+
+.mat-column-targetParticipants {
+    width:12%;
+}
+
+.mat-column-programPrerequisites {
+    width:12%;
+}
+
+.mat-column-deliveryMode {
+    width:12%;
+}
+
+.mat-column-moreInfo {
+    width:12%;
+}
+
+.mat-column-action {
+    width:8%;
+    text-align: center;
+}
+
+.listimage {
+    max-width: 100%;
+    height: auto;
+}
+
+.title-bar {
+	min-height: 48px !important;
+	height: 48px !important;
+}

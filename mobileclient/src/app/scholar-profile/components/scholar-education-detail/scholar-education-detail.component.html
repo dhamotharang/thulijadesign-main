@@ -1,0 +1,67 @@
+<ion-toolbar color="primary">
+	<ion-buttons slot="start">
+		<ion-menu-button></ion-menu-button>
+	</ion-buttons>
+	<ion-title>{{ 'SCHOLAR-EDUCATION-DETAIL' | translate }}</ion-title>
+	<ion-buttons slot="end" color="success">
+		<ion-button fill="clear" (click)="add()">
+			<ion-icon slot="icon-only" name="add-circle-outline"></ion-icon>
+		</ion-button>
+	</ion-buttons>
+</ion-toolbar>
+<ion-content padding>
+	<ion-card *ngFor="let scholarEducationDetail of scholarEducationDetails">
+		<ion-card-content style="padding: bottom 0px;">
+			<ion-list lines="none">
+				<ion-item>
+					<ion-label>{{ 'SCHOLAR-EDUCATION-DETAIL-INSTITUTENAME' | translate }}: </ion-label>
+					<ion-text>{{ scholarEducationDetail.instituteName }}</ion-text>
+				</ion-item>
+				<ion-item>
+					<ion-label>{{ 'SCHOLAR-EDUCATION-DETAIL-GRADUATIONDATE' | translate }}: </ion-label>
+					<ion-text>{{ scholarEducationDetail.graduationDate | date }}</ion-text>
+				</ion-item>
+				<ion-item>
+					<ion-label>{{ 'SCHOLAR-EDUCATION-DETAIL-QUALIFICATION' | translate }}: </ion-label>
+					<ion-text>{{ scholarEducationDetail.qualification.name }}</ion-text>
+				</ion-item>
+				<ion-item>
+					<ion-label>{{ 'SCHOLAR-EDUCATION-DETAIL-INSTITUTELOCATION' | translate }}: </ion-label>
+					<ion-text>{{ scholarEducationDetail.instituteLocation }}</ion-text>
+				</ion-item>
+				<ion-item>
+					<ion-label>{{ 'SCHOLAR-EDUCATION-DETAIL-FIELDSTUDY' | translate }}: </ion-label>
+					<ion-text>{{ scholarEducationDetail.fieldStudy.name }}</ion-text>
+				</ion-item>
+				<ion-item>
+					<ion-label>{{ 'SCHOLAR-EDUCATION-DETAIL-MAJOR' | translate }}: </ion-label>
+					<ion-text>{{ scholarEducationDetail.major }}</ion-text>
+				</ion-item>
+				<ion-item>
+					<ion-label>{{ 'SCHOLAR-EDUCATION-DETAIL-GRADE' | translate }}: </ion-label>
+					<ion-text>{{ scholarEducationDetail.grade }}</ion-text>
+				</ion-item>
+				<ion-item>
+					<ion-label>{{ 'SCHOLAR-EDUCATION-DETAIL-DESCRIPTION' | translate }}: </ion-label>
+					<ion-text>{{ scholarEducationDetail.description }}</ion-text>
+				</ion-item>
+			</ion-list>
+			<ion-row no-padding>
+				<ion-col col-12 no-padding style="text-align: center">
+					<ion-chip color="dark" button (click)="edit(scholarEducationDetail)">
+						<ion-icon name="create-outline"></ion-icon>
+						<ion-label>Edit</ion-label>
+					</ion-chip>
+					<ion-chip color="dark" button (click)="delete(scholarEducationDetail)">
+						<ion-icon name="trash-outline"></ion-icon>
+						<ion-label>Delete</ion-label>
+					</ion-chip>
+					<ion-chip color="dark" button (click)="print(scholarEducationDetail)">
+						<ion-icon name="print-outline"></ion-icon>
+						<ion-label>Print</ion-label>
+					</ion-chip>
+				</ion-col>
+			</ion-row>
+		</ion-card-content>
+	</ion-card>
+</ion-content>

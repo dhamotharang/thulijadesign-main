@@ -1,0 +1,56 @@
+<ion-toolbar color="primary">
+	<ion-buttons slot="start">
+		<ion-menu-button></ion-menu-button>
+	</ion-buttons>
+	<ion-title>{{ 'PROGRAM' | translate }}</ion-title>
+</ion-toolbar>
+<ion-content padding>
+	<form [formGroup]="programForm" *ngIf="programForm">
+		<ion-card-content>
+			<ion-item>
+				<ion-label>{{ 'PROGRAM-PROGRAMMASTER' | translate }}</ion-label>
+				<ion-select formControlName="programMaster" id="programMaster" name="programMaster" 
+						[compareWith]="compareProgramMaster" required>
+					<ion-select-option *ngFor="let programMaster of programMasters" [value]="programMaster">
+						{{ programMaster.title }}</ion-select-option>
+				</ion-select>
+			</ion-item>
+			<div *ngIf="(programForm.controls['programMaster'].dirty || programForm.controls['programMaster'].touched)" class="errors">
+				<div *ngIf="hasError('programMaster', 'required')">
+					{{ 'PROGRAM-PROGRAMMASTER' | translate }}: {{ 'FIELD-IS-REQUIRED' | translate }}</div>
+			</div>
+			<ion-item>
+				<ion-label>{{ 'PROGRAM-TRAININGDELIVERY' | translate }}</ion-label>
+				<ion-select formControlName="trainingDelivery" id="trainingDelivery" name="trainingDelivery" 
+						[compareWith]="compareTrainingDelivery" required>
+					<ion-select-option *ngFor="let trainingDelivery of trainingDeliveries" [value]="trainingDelivery">
+						{{ trainingDelivery.name }}</ion-select-option>
+				</ion-select>
+			</ion-item>
+			<div *ngIf="(programForm.controls['trainingDelivery'].dirty || programForm.controls['trainingDelivery'].touched)" class="errors">
+				<div *ngIf="hasError('trainingDelivery', 'required')">
+					{{ 'PROGRAM-TRAININGDELIVERY' | translate }}: {{ 'FIELD-IS-REQUIRED' | translate }}</div>
+			</div>
+			<ion-item>
+				<ion-label>{{ 'PROGRAM-TRAININGMODE' | translate }}</ion-label>
+				<ion-select formControlName="trainingMode" id="trainingMode" name="trainingMode" 
+						[compareWith]="compareTrainingMode" required>
+					<ion-select-option *ngFor="let trainingMode of trainingModes" [value]="trainingMode">
+						{{ trainingMode.name }}</ion-select-option>
+				</ion-select>
+			</ion-item>
+			<div *ngIf="(programForm.controls['trainingMode'].dirty || programForm.controls['trainingMode'].touched)" class="errors">
+				<div *ngIf="hasError('trainingMode', 'required')">
+					{{ 'PROGRAM-TRAININGMODE' | translate }}: {{ 'FIELD-IS-REQUIRED' | translate }}</div>
+			</div>
+        </ion-card-content>
+		<ion-footer>
+			<ion-toolbar color="light" style="padding-left: 20px;">
+			<ion-button color="primary" (click)="save(programForm.value)" 
+				[disabled]="!programForm.valid">{{ 'SAVE' | translate }}</ion-button>
+			<ion-button type="button" color="medium"
+				(click)="onCancel()">{{ 'CANCEL' | translate }}</ion-button>
+			</ion-toolbar>
+		</ion-footer>
+    </form>
+</ion-content>

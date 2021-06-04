@@ -20,21 +20,21 @@ import { StateComponent } from './components/state/state.component';
 import { AdministratorGuardService } from '../shared/services/builtin/administrator-guard.service';
 
 const routes: Routes = [
-	{ path: 'addresstypes', component: AddressTypeComponent },
-	{ path: 'citizens', component: CitizenComponent },
-	{ path: 'countries', component: CountryComponent },
-	{ path: 'fieldstudies', component: FieldStudyComponent },
-	{ path: 'genders', component: GenderComponent },
-	{ path: 'maritalstatuses', component: MaritalStatusComponent },
-	{ path: 'occupationtypes', component: OccupationTypeComponent },
-	{ path: 'positionlevels', component: PositionLevelComponent },
-	{ path: 'qualifications', component: QualificationComponent },
-	{ path: 'races', component: RaceComponent },
-	{ path: 'relationtypes', component: RelationTypeComponent },
-	{ path: 'religions', component: ReligionComponent },
-	{ path: 'salaryranges', component: SalaryRangeComponent },
-	{ path: 'salutations', component: SalutationComponent },
-	{ path: 'states', component: StateComponent },
+	{ path: 'addresstypes', component: AddressTypeComponent, canActivate: [AdministratorGuardService] },
+	{ path: 'citizens', component: CitizenComponent, canActivate: [AdministratorGuardService] },
+	{ path: 'countries', component: CountryComponent, canActivate: [AdministratorGuardService] },
+	{ path: 'fieldstudies', component: FieldStudyComponent, canActivate: [AdministratorGuardService] },
+	{ path: 'genders', component: GenderComponent, canActivate: [AdministratorGuardService] },
+	{ path: 'maritalstatuses', component: MaritalStatusComponent, canActivate: [AdministratorGuardService] },
+	{ path: 'occupationtypes', component: OccupationTypeComponent, canActivate: [AdministratorGuardService] },
+	{ path: 'positionlevels', component: PositionLevelComponent, canActivate: [AdministratorGuardService] },
+	{ path: 'qualifications', component: QualificationComponent, canActivate: [AdministratorGuardService] },
+	{ path: 'races', component: RaceComponent, canActivate: [AdministratorGuardService] },
+	{ path: 'relationtypes', component: RelationTypeComponent, canActivate: [AdministratorGuardService] },
+	{ path: 'religions', component: ReligionComponent, canActivate: [AdministratorGuardService] },
+	{ path: 'salaryranges', component: SalaryRangeComponent, canActivate: [AdministratorGuardService] },
+	{ path: 'salutations', component: SalutationComponent, canActivate: [AdministratorGuardService] },
+	{ path: 'states', component: StateComponent, canActivate: [AdministratorGuardService] },
 	{ path: '', redirectTo: 'addresstypes', pathMatch: 'full' }
 ];
 

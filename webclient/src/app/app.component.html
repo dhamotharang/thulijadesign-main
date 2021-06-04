@@ -27,11 +27,29 @@
 				<button mat-menu-item [routerLink]="'/generalmain'">
 					<span>{{ 'GENERALMAIN' | translate }}</span>
 				</button>
+				<button mat-menu-item [routerLink]="'/programmain'">
+					<span>{{ 'PROGRAMMAIN' | translate }}</span>
+				</button>
 			</mat-menu>
 		</span>
-		<span  *ngIf="isInGroup('trainersetupmenu')">
-			<a mat-button [routerLink]="'/masterdetail/trainermanagers'">
-				<span>{{ 'TRAINERMANAGER' | translate }}</span>
+		<span  *ngIf="isInGroup('scholarsetupmenu')">
+			<a mat-button [routerLink]="'/masterdetail/scholarmanagers'">
+				<span>{{ 'SCHOLARMANAGER' | translate }}</span>
+			</a>
+		</span>
+		<span  *ngIf="isInGroup('programsetupmenu')">
+			<a mat-button [routerLink]="'/masterdetail/programmanagers'">
+				<span>{{ 'PROGRAMMANAGER' | translate }}</span>
+			</a>
+		</span>
+		<span  *ngIf="isInGroup('playermenu')">
+			<a mat-button [routerLink]="'/plugin/batchscholarplayers'">
+				<span>{{ 'BATCHSCHOLARPLAYER' | translate }}</span>
+			</a>
+		</span>
+		<span  *ngIf="isInGroup('registrationsetupmenu')">
+        	<a mat-button [routerLink]="'/registrationmanager'">
+            	<span>{{ 'REGISTRATIONMANAGER' | translate }}</span>
 			</a>
 		</span>
 		<a mat-button [matMenuTriggerFor]="menu">

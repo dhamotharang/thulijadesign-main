@@ -1,0 +1,24 @@
+<ion-toolbar color="primary">
+	<ion-buttons slot="start">
+		<ion-menu-button></ion-menu-button>
+	</ion-buttons>
+	<ion-title>ProgramMain</ion-title>
+</ion-toolbar>
+<ion-content>
+	<ion-list>
+		<ion-item [routerLink]="['/program/programcategories']">
+			{{ 'PROGRAM-CATEGORY' | translate }} </ion-item>
+		<ion-item [routerLink]="['/program/programtypes']">
+			{{ 'PROGRAM-TYPE' | translate }} </ion-item>
+		<ion-item [routerLink]="['/program/trainingdeliveries']">
+			{{ 'TRAINING-DELIVERY' | translate }} </ion-item>
+		<ion-item [routerLink]="['/program/trainingmodes']">
+			{{ 'TRAINING-MODE' | translate }} </ion-item>
+		<ion-item [routerLink]="['/programmain', {outlets: { 'sidebar':['masterdetail', 'programmastermanagers'] }}]">
+			{{ 'PROGRAM-MASTER-MANAGER' | translate }} </ion-item>
+		<ion-item [routerLink]="['/program/batchcontents']">
+			{{ 'BATCH-CONTENT' | translate }} </ion-item>
+		<ion-item [routerLink]="['/program/batchprerequisites']">
+			{{ 'BATCH-PREREQUISITE' | translate }} </ion-item>
+	</ion-list>
+</ion-content>

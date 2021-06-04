@@ -1,0 +1,106 @@
+<mat-toolbar color="secondary" class="mat-elevation-z2 title-bar">
+	<mat-toolbar-row>
+		<a mat-button disabled style="color: black">{{ 'SCHOLAR-OCCUPATION' | translate }}</a>
+		<span class="spacer"></span>
+		<a mat-raised-button color="accent" (click)="add()">{{ 'NEW' | translate }}</a>
+	</mat-toolbar-row>
+</mat-toolbar>
+<div class="container mat-elevation-z2" *ngFor="let scholarOccupation of scholarOccupations">
+	<mat-card>
+		<mat-card-header> 
+			<mat-card-title>
+				{{ 'SCHOLAR-OCCUPATION' | translate }}
+				<button mat-icon-button class="more-button" [matMenuTriggerFor]="menu" aria-label="Toggle menu">
+					<mat-icon>more_vert</mat-icon>
+				</button>
+				<mat-menu #menu="matMenu">
+					<button mat-menu-item (click)="edit(scholarOccupation)">
+						<mat-icon color="accent">edit</mat-icon><span>Edit</span>
+					</button>
+					<button mat-menu-item (click)="delete(scholarOccupation)">
+						<mat-icon color="warn">delete</mat-icon><span>Delete</span>
+					</button>
+					<button mat-menu-item (click)="print(scholarOccupation)">
+						<mat-icon color="accent">print</mat-icon><span>Print</span>
+					</button>
+				</mat-menu>
+			</mat-card-title>
+		</mat-card-header>
+		<mat-card-content class="dashboard-card-content">
+			<table>
+				<tr>
+					<td>&nbsp;</td>
+					<td>&nbsp;</td>
+					<td>&nbsp;</td>
+					<td>&nbsp;</td>
+				</tr>
+				<tr>
+					<td>&nbsp;</td>
+					<td><span class="mat-subheading-1">{{ 'SCHOLAR-OCCUPATION-POSITIONTITLE' | translate }}</span></td>
+					<td><span class="mat-subheading-1">{{ scholarOccupation.positionTitle }}</span></td>
+					<td>&nbsp;</td>
+				</tr>
+				<tr>
+					<td>&nbsp;</td>
+					<td><span class="mat-subheading-1">{{ 'SCHOLAR-OCCUPATION-COMPANYNAME' | translate }}</span></td>
+					<td><span class="mat-subheading-1">{{ scholarOccupation.companyName }}</span></td>
+					<td>&nbsp;</td>
+				</tr>
+				<tr>
+					<td>&nbsp;</td>
+					<td><span class="mat-subheading-1">{{ 'SCHOLAR-OCCUPATION-STARTDATE' | translate }}</span></td>
+					<td><span class="mat-subheading-1">{{ scholarOccupation.startDate | date }}</span></td>
+					<td>&nbsp;</td>
+				</tr>
+				<tr>
+					<td>&nbsp;</td>
+					<td><span class="mat-subheading-1">{{ 'SCHOLAR-OCCUPATION-ENDDATE' | translate }}</span></td>
+					<td><span class="mat-subheading-1">{{ scholarOccupation.endDate | date }}</span></td>
+					<td>&nbsp;</td>
+				</tr>
+				<tr>
+					<td>&nbsp;</td>
+					<td><span class="mat-subheading-1">{{ 'SCHOLAR-OCCUPATION-SPECIALIZATION' | translate }}</span></td>
+					<td><span class="mat-subheading-1">{{ scholarOccupation.specialization }}</span></td>
+					<td>&nbsp;</td>
+				</tr>
+				<tr>
+					<td>&nbsp;</td>
+					<td><span class="mat-subheading-1">{{ 'SCHOLAR-OCCUPATION-JOBROLE' | translate }}</span></td>
+					<td><span class="mat-subheading-1">{{ scholarOccupation.jobRole }}</span></td>
+					<td>&nbsp;</td>
+				</tr>
+				<tr>
+					<td>&nbsp;</td>
+					<td><span class="mat-subheading-1">{{ 'SCHOLAR-OCCUPATION-INDUSTRY' | translate }}</span></td>
+					<td><span class="mat-subheading-1">{{ scholarOccupation.industry }}</span></td>
+					<td>&nbsp;</td>
+				</tr>
+				<tr>
+					<td>&nbsp;</td>
+					<td><span class="mat-subheading-1">{{ 'SCHOLAR-OCCUPATION-POSITIONLEVEL' | translate }}</span></td>
+					<td><span class="mat-subheading-1">{{ scholarOccupation.positionLevel.name }}</span></td>
+					<td>&nbsp;</td>
+				</tr>
+				<tr>
+					<td>&nbsp;</td>
+					<td><span class="mat-subheading-1">{{ 'SCHOLAR-OCCUPATION-SALARY' | translate }}</span></td>
+					<td><span class="mat-subheading-1">{{ scholarOccupation.salary }}</span></td>
+					<td>&nbsp;</td>
+				</tr>
+				<tr>
+					<td>&nbsp;</td>
+					<td><span class="mat-subheading-1">{{ 'SCHOLAR-OCCUPATION-DESCRIPTION' | translate }}</span></td>
+					<td><span class="mat-subheading-1" [innerHTML]="scholarOccupation.description"></span></td>
+					<td>&nbsp;</td>
+				</tr>
+				<tr>
+					<td>&nbsp;</td>
+					<td>&nbsp;</td>
+					<td>&nbsp;</td>
+					<td>&nbsp;</td>
+				</tr>
+			</table>
+		</mat-card-content>
+	</mat-card>
+</div>

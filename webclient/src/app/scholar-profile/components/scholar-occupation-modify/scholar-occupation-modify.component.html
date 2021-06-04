@@ -1,0 +1,105 @@
+<h2 mat-dialog-title>{{ 'SCHOLAR-OCCUPATION' | translate }} - {{ 'NEW' | translate }}</h2>
+<mat-dialog-content>
+	<form [formGroup]="scholarOccupationForm" *ngIf="scholarOccupationForm">
+		<mat-card-subtitle *ngIf="errorMessage" class="alert-danger">{{ errorMessage }}</mat-card-subtitle>
+		<mat-card-content class="my-form">
+			<mat-form-field>
+				<input matInput type="text" formControlName="positionTitle" id="positionTitle" 
+					name="positionTitle" placeholder="{{ 'SCHOLAR-OCCUPATION-POSITIONTITLE' | translate }}" 
+					minlength="3" maxlength="60" />
+                <mat-error *ngIf="hasError('positionTitle', 'minlength')">
+                    {{ 'SCHOLAR-OCCUPATION-POSITIONTITLE' | translate }}: {{ 'FIELD-MUSTBE-MINIMUM-LENGTH' | translate }} 3</mat-error>
+                <mat-error *ngIf="hasError('positionTitle', 'maxlength')">
+                    {{ 'SCHOLAR-OCCUPATION-POSITIONTITLE' | translate }}: {{ 'FIELD-MUSTBE-MAXIMUM-LENGTH' | translate }} 60</mat-error>
+			</mat-form-field>
+			<mat-form-field>
+				<input matInput type="text" formControlName="companyName" id="companyName" 
+					name="companyName" placeholder="{{ 'SCHOLAR-OCCUPATION-COMPANYNAME' | translate }}" 
+					minlength="3" maxlength="60" />
+                <mat-error *ngIf="hasError('companyName', 'minlength')">
+                    {{ 'SCHOLAR-OCCUPATION-COMPANYNAME' | translate }}: {{ 'FIELD-MUSTBE-MINIMUM-LENGTH' | translate }} 3</mat-error>
+                <mat-error *ngIf="hasError('companyName', 'maxlength')">
+                    {{ 'SCHOLAR-OCCUPATION-COMPANYNAME' | translate }}: {{ 'FIELD-MUSTBE-MAXIMUM-LENGTH' | translate }} 60</mat-error>
+			</mat-form-field>
+			<mat-form-field>
+				<mat-label>{{ 'SCHOLAR-OCCUPATION-STARTDATE' | translate }}</mat-label>
+				<input formControlName="startDate" matInput [matDatepicker]="startDate" placeholder="{{ 'SCHOLAR-OCCUPATION-STARTDATE' | translate }}">
+				<mat-datepicker-toggle matSuffix [for]="startDate"></mat-datepicker-toggle>
+				<mat-datepicker #startDate></mat-datepicker>
+			</mat-form-field>
+			<mat-form-field>
+				<mat-label>{{ 'SCHOLAR-OCCUPATION-ENDDATE' | translate }}</mat-label>
+				<input formControlName="endDate" matInput [matDatepicker]="endDate" placeholder="{{ 'SCHOLAR-OCCUPATION-ENDDATE' | translate }}">
+				<mat-datepicker-toggle matSuffix [for]="endDate"></mat-datepicker-toggle>
+				<mat-datepicker #endDate></mat-datepicker>
+			</mat-form-field>
+			<mat-form-field>
+				<input matInput type="text" formControlName="specialization" id="specialization" 
+					name="specialization" placeholder="{{ 'SCHOLAR-OCCUPATION-SPECIALIZATION' | translate }}" 
+					minlength="3" maxlength="150" />
+                <mat-error *ngIf="hasError('specialization', 'minlength')">
+                    {{ 'SCHOLAR-OCCUPATION-SPECIALIZATION' | translate }}: {{ 'FIELD-MUSTBE-MINIMUM-LENGTH' | translate }} 3</mat-error>
+                <mat-error *ngIf="hasError('specialization', 'maxlength')">
+                    {{ 'SCHOLAR-OCCUPATION-SPECIALIZATION' | translate }}: {{ 'FIELD-MUSTBE-MAXIMUM-LENGTH' | translate }} 150</mat-error>
+			</mat-form-field>
+			<mat-form-field>
+				<input matInput type="text" formControlName="jobRole" id="jobRole" 
+					name="jobRole" placeholder="{{ 'SCHOLAR-OCCUPATION-JOBROLE' | translate }}" 
+					minlength="3" maxlength="150" />
+                <mat-error *ngIf="hasError('jobRole', 'minlength')">
+                    {{ 'SCHOLAR-OCCUPATION-JOBROLE' | translate }}: {{ 'FIELD-MUSTBE-MINIMUM-LENGTH' | translate }} 3</mat-error>
+                <mat-error *ngIf="hasError('jobRole', 'maxlength')">
+                    {{ 'SCHOLAR-OCCUPATION-JOBROLE' | translate }}: {{ 'FIELD-MUSTBE-MAXIMUM-LENGTH' | translate }} 150</mat-error>
+			</mat-form-field>
+			<mat-form-field>
+				<input matInput type="text" formControlName="industry" id="industry" 
+					name="industry" placeholder="{{ 'SCHOLAR-OCCUPATION-INDUSTRY' | translate }}" 
+					minlength="3" maxlength="150" />
+                <mat-error *ngIf="hasError('industry', 'minlength')">
+                    {{ 'SCHOLAR-OCCUPATION-INDUSTRY' | translate }}: {{ 'FIELD-MUSTBE-MINIMUM-LENGTH' | translate }} 3</mat-error>
+                <mat-error *ngIf="hasError('industry', 'maxlength')">
+                    {{ 'SCHOLAR-OCCUPATION-INDUSTRY' | translate }}: {{ 'FIELD-MUSTBE-MAXIMUM-LENGTH' | translate }} 150</mat-error>
+			</mat-form-field>
+			<mat-form-field>
+				<mat-label>{{ 'SCHOLAR-OCCUPATION-POSITIONLEVEL' | translate }}</mat-label>
+				<mat-select formControlName="positionLevel" id="positionLevel" name="positionLevel" 
+						[compareWith]="comparePositionLevel" required>
+				    <mat-option *ngFor="let positionLevel of positionLevels" [value]="positionLevel">
+				    	{{ positionLevel.name }}</mat-option>
+				</mat-select>
+				<mat-error *ngIf="hasError('positionLevel', 'required')">
+					{{ 'SCHOLAR-OCCUPATION-POSITIONLEVEL' | translate }}: {{ 'FIELD-IS-REQUIRED' | translate }}</mat-error>
+			</mat-form-field>
+			<mat-form-field>
+				<input matInput type="text" formControlName="salary" id="salary" 
+					name="salary" placeholder="{{ 'SCHOLAR-OCCUPATION-SALARY' | translate }}" 
+					min="1" max="2000" />
+                <mat-error *ngIf="hasError('salary', 'min')">
+                    {{ 'SCHOLAR-OCCUPATION-SALARY' | translate }}: {{ 'FIELD-MUSTBE-MINIMUM' | translate }} 1</mat-error>
+                <mat-error *ngIf="hasError('salary', 'max')">
+                    {{ 'SCHOLAR-OCCUPATION-SALARY' | translate }}: {{ 'FIELD-MUSTBE-MAXIMUM' | translate }} 2000</mat-error>
+				<mat-error *ngIf="hasError('salary', 'pattern')">
+					{{ 'SCHOLAR-OCCUPATION-SALARY' | translate }}: {{ 'FIELD-MUSTBE-NUMERIC' | translate }}</mat-error>
+			</mat-form-field>
+			<div style="color:#666666;padding-bottom:8px"><mat-label>{{ 'SCHOLAR-OCCUPATION-DESCRIPTION' | translate }}</mat-label></div>
+            <editor 
+                formControlName = "description"
+                [init]="{ 
+	                	base_url: '/tinymce', 
+	                	menubar: false,
+	                    suffix: '.min', 
+	                    plugins: 'lists advlist table',
+	                    toolbar: 'undo redo | bold italic underline | ' + 
+	                    	'alignleft aligncenter alignright alignjustify | ' +
+	                    	'bullist numlist outdent indent | removeformat' 
+				}">
+			</editor><br />
+        </mat-card-content>
+    </form>
+</mat-dialog-content>
+<mat-dialog-actions>
+    <button mat-raised-button color="primary" (click)="save(scholarOccupationForm.value)" 
+        [disabled]="!scholarOccupationForm.valid">{{ 'SAVE' | translate }}</button>
+    <button type="button" mat-raised-button color="warn"
+        (click)="onCancel()">{{ 'CANCEL' | translate }}</button>
+</mat-dialog-actions>

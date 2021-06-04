@@ -1,0 +1,137 @@
+<h2 mat-dialog-title>{{ 'PROGRAM-MASTER' | translate }} - {{ 'NEW' | translate }}</h2>
+<mat-dialog-content>
+	<form [formGroup]="programMasterForm" *ngIf="programMasterForm">
+		<mat-card-subtitle *ngIf="errorMessage" class="alert-danger">{{ errorMessage }}</mat-card-subtitle>
+		<mat-card-content class="my-form">
+			<mat-form-field>
+				<input matInput type="text" formControlName="sequence" id="sequence" 
+					name="sequence" placeholder="{{ 'PROGRAM-MASTER-SEQUENCE' | translate }}" 
+					min="1" max="2000" required />
+				<mat-icon matPrefix style="padding-right: 20px;">list</mat-icon>
+                <mat-error *ngIf="hasError('sequence', 'required')">
+                    {{ 'PROGRAM-MASTER-SEQUENCE' | translate }}: {{ 'FIELD-IS-REQUIRED' | translate }}</mat-error>
+                <mat-error *ngIf="hasError('sequence', 'min')">
+                    {{ 'PROGRAM-MASTER-SEQUENCE' | translate }}: {{ 'FIELD-MUSTBE-MINIMUM' | translate }} 1</mat-error>
+                <mat-error *ngIf="hasError('sequence', 'max')">
+                    {{ 'PROGRAM-MASTER-SEQUENCE' | translate }}: {{ 'FIELD-MUSTBE-MAXIMUM' | translate }} 2000</mat-error>
+				<mat-error *ngIf="hasError('sequence', 'pattern')">
+					{{ 'PROGRAM-MASTER-SEQUENCE' | translate }}: {{ 'FIELD-MUSTBE-NUMERIC' | translate }}</mat-error>
+			</mat-form-field>
+			<mat-form-field>
+				<input matInput type="text" formControlName="title" id="title" 
+					name="title" placeholder="{{ 'PROGRAM-MASTER-TITLE' | translate }}" 
+					minlength="1" maxlength="60" required />
+                <mat-error *ngIf="hasError('title', 'required')">
+                    {{ 'PROGRAM-MASTER-TITLE' | translate }}: {{ 'FIELD-IS-REQUIRED' | translate }}</mat-error>
+                <mat-error *ngIf="hasError('title', 'minlength')">
+                    {{ 'PROGRAM-MASTER-TITLE' | translate }}: {{ 'FIELD-MUSTBE-MINIMUM-LENGTH' | translate }} 1</mat-error>
+                <mat-error *ngIf="hasError('title', 'maxlength')">
+                    {{ 'PROGRAM-MASTER-TITLE' | translate }}: {{ 'FIELD-MUSTBE-MAXIMUM-LENGTH' | translate }} 60</mat-error>
+			</mat-form-field>
+			<mat-form-field>
+				<mat-label>{{ 'PROGRAM-MASTER-PROGRAMCATEGORY' | translate }}</mat-label>
+				<mat-select formControlName="programCategory" id="programCategory" name="programCategory" 
+						[compareWith]="compareProgramCategory" required>
+				    <mat-option *ngFor="let programCategory of programCategories" [value]="programCategory">
+				    	{{ programCategory.name }}</mat-option>
+				</mat-select>
+				<mat-error *ngIf="hasError('programCategory', 'required')">
+					{{ 'PROGRAM-MASTER-PROGRAMCATEGORY' | translate }}: {{ 'FIELD-IS-REQUIRED' | translate }}</mat-error>
+			</mat-form-field>
+			<mat-form-field>
+				<mat-label>{{ 'PROGRAM-MASTER-PROGRAMTYPE' | translate }}</mat-label>
+				<mat-select formControlName="programType" id="programType" name="programType" 
+						[compareWith]="compareProgramType" required>
+				    <mat-option *ngFor="let programType of programTypes" [value]="programType">
+				    	{{ programType.name }}</mat-option>
+				</mat-select>
+				<mat-error *ngIf="hasError('programType', 'required')">
+					{{ 'PROGRAM-MASTER-PROGRAMTYPE' | translate }}: {{ 'FIELD-IS-REQUIRED' | translate }}</mat-error>
+			</mat-form-field>
+			<div style="color:#666666;padding-bottom:8px"><mat-label>{{ 'PROGRAM-MASTER-DESCRIPTION' | translate }}</mat-label></div>
+            <editor 
+                formControlName = "description"
+                [init]="{ 
+	                	base_url: '/tinymce', 
+	                	menubar: false,
+	                    suffix: '.min', 
+	                    plugins: 'lists advlist table',
+	                    toolbar: 'undo redo | bold italic underline | ' + 
+	                    	'alignleft aligncenter alignright alignjustify | ' +
+	                    	'bullist numlist outdent indent | removeformat' 
+				}">
+			</editor><br />
+			<div style="color:#666666;padding-bottom:8px"><mat-label>{{ 'PROGRAM-MASTER-OBJECTIVE' | translate }}</mat-label></div>
+            <editor 
+                formControlName = "objective"
+                [init]="{ 
+	                	base_url: '/tinymce', 
+	                	menubar: false,
+	                    suffix: '.min', 
+	                    plugins: 'lists advlist table',
+	                    toolbar: 'undo redo | bold italic underline | ' + 
+	                    	'alignleft aligncenter alignright alignjustify | ' +
+	                    	'bullist numlist outdent indent | removeformat' 
+				}">
+			</editor><br />
+			<div style="color:#666666;padding-bottom:8px"><mat-label>{{ 'PROGRAM-MASTER-TARGETPARTICIPANTS' | translate }}</mat-label></div>
+            <editor 
+                formControlName = "targetParticipants"
+                [init]="{ 
+	                	base_url: '/tinymce', 
+	                	menubar: false,
+	                    suffix: '.min', 
+	                    plugins: 'lists advlist table',
+	                    toolbar: 'undo redo | bold italic underline | ' + 
+	                    	'alignleft aligncenter alignright alignjustify | ' +
+	                    	'bullist numlist outdent indent | removeformat' 
+				}">
+			</editor><br />
+			<div style="color:#666666;padding-bottom:8px"><mat-label>{{ 'PROGRAM-MASTER-PROGRAMPREREQUISITES' | translate }}</mat-label></div>
+            <editor 
+                formControlName = "programPrerequisites"
+                [init]="{ 
+	                	base_url: '/tinymce', 
+	                	menubar: false,
+	                    suffix: '.min', 
+	                    plugins: 'lists advlist table',
+	                    toolbar: 'undo redo | bold italic underline | ' + 
+	                    	'alignleft aligncenter alignright alignjustify | ' +
+	                    	'bullist numlist outdent indent | removeformat' 
+				}">
+			</editor><br />
+			<div style="color:#666666;padding-bottom:8px"><mat-label>{{ 'PROGRAM-MASTER-DELIVERYMODE' | translate }}</mat-label></div>
+            <editor 
+                formControlName = "deliveryMode"
+                [init]="{ 
+	                	base_url: '/tinymce', 
+	                	menubar: false,
+	                    suffix: '.min', 
+	                    plugins: 'lists advlist table',
+	                    toolbar: 'undo redo | bold italic underline | ' + 
+	                    	'alignleft aligncenter alignright alignjustify | ' +
+	                    	'bullist numlist outdent indent | removeformat' 
+				}">
+			</editor><br />
+			<div style="color:#666666;padding-bottom:8px"><mat-label>{{ 'PROGRAM-MASTER-MOREINFO' | translate }}</mat-label></div>
+            <editor 
+                formControlName = "moreInfo"
+                [init]="{ 
+	                	base_url: '/tinymce', 
+	                	menubar: false,
+	                    suffix: '.min', 
+	                    plugins: 'lists advlist table',
+	                    toolbar: 'undo redo | bold italic underline | ' + 
+	                    	'alignleft aligncenter alignright alignjustify | ' +
+	                    	'bullist numlist outdent indent | removeformat' 
+				}">
+			</editor><br />
+        </mat-card-content>
+    </form>
+</mat-dialog-content>
+<mat-dialog-actions>
+    <button mat-raised-button color="primary" (click)="save(programMasterForm.value)" 
+        [disabled]="!programMasterForm.valid">{{ 'SAVE' | translate }}</button>
+    <button type="button" mat-raised-button color="warn"
+        (click)="onCancel()">{{ 'CANCEL' | translate }}</button>
+</mat-dialog-actions>
